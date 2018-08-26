@@ -4,6 +4,7 @@ import './Welcome.css';
 
 class Welcome extends Component {
 	render() {
+		
 		return (
 			<div className="Welcome">
 				<h1>Welcome to Augmented</h1>
@@ -14,7 +15,9 @@ class Welcome extends Component {
 							<th>Name</th>
 						</thead>
 						<tbody>
-							<td>Barbell Snatch Pull</td>
+							<tr>
+								<td>Barbell Snatch Pull</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -25,9 +28,15 @@ class Welcome extends Component {
 							<th>Name</th>
 						</thead>
 						<tbody>
-							<td>Olympic Day 1</td>
-							<td>Olympic Day 2</td>
-							<td>Olympic Day 3</td>
+							<tr>
+								<td>Olympic Day 1</td>
+							</tr> 
+							<tr>
+								<td>Olympic Day 1</td>
+							</tr> 
+							<tr>
+								<td>Olympic Day 1</td>
+							</tr> 
 						</tbody>
 					</table>
 				</div>
@@ -36,11 +45,25 @@ class Welcome extends Component {
 					<table>
 						<thead>
 							<th>Name</th>
+							<th>Calories</th>
+							<th>Protien</th>
 						</thead>
 						<tbody>
-							<td>Protien Bar</td>
-							<td>Protien Cookie</td>
-							<td>Protien Shake</td>
+							<tr>
+								<td>Protien Bar</td>
+								<td>310</td>
+								<td>28</td>
+							</tr>
+							<tr>
+								<td>Protien Cookie</td>
+								<td>310</td>
+								<td>20</td>
+							</tr>
+							<tr>
+								<td>Protien Shake</td>
+								<td>130</td>
+								<td>25</td>
+							</tr>
 						</tbody>
 					</table>
 				</div>
@@ -51,8 +74,12 @@ class Welcome extends Component {
 							<th>Name</th>
 						</thead>
 						<tbody>
-							<td>Intemittent Fasting</td>
-							<td>Caloric Surplus</td> 
+							<tr>
+								<td>Intemittent Fasting</td>
+							</tr>
+							<tr>
+								<td>Caloric Surplus</td> 
+							</tr>
 						</tbody>
 					</table>
 				</div>
