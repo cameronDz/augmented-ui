@@ -1,6 +1,15 @@
 import React, { Component } from 'react';
 import './Welcome.css';
 
+class Exercise extends Component {
+	render() {
+		return { 
+			<tr>
+				<td>{this.props.name}</td>
+			</tr>
+		}
+	}
+}
 
 class Welcome extends Component {
 	render() {
@@ -37,6 +46,12 @@ class Welcome extends Component {
 				]
 		}
 		
+		const exerciseComponent = welcome.exercises.map(exerciseObject => {
+			return (
+				<Exercise {...exerciseObject} />
+			)
+		})
+		
 		return (
 			<div className="Welcome">
 				<h1>Welcome to Augmented</h1>
@@ -47,9 +62,9 @@ class Welcome extends Component {
 							<th>Name</th>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Barbell Snatch Pull</td>
-							</tr>
+
+						
+						
 						</tbody>
 					</table>
 				</div>
