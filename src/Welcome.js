@@ -11,19 +11,53 @@ class Exercise extends Component {
 	}
 }
 
+class RoutineTemplate extends Component {
+	render() {
+		return ( 
+			<tr>
+				<td>{this.props.name}</td>
+			</tr>
+		)
+	}
+}
+
+class Food extends Component {
+	render() {
+		return ( 
+			<tr>
+			<td>{this.props.name}</td>
+			<td>{this.props.calories}</td>
+			<td>{this.props.protien}</td>
+			</tr>
+		)
+	}
+}
+
+class Diet extends Component {
+	render() {
+		return ( 
+			<tr>
+				<td>{this.props.name}</td>
+			</tr>
+		)
+	}
+}
+
 class Welcome extends Component {
 	render() {
 		
 		const welcome = {
 				"exercises": [
-					{"name":"Barbell Snatch Pull"}
+					{"name":"Barbell Snatch Pull"},
+					{"name":"Barbell Full Clean"},
+					{"name":"Barbell Power Clean"}
 				],
 				"routineTemplates": [
 					{"name":"Olympic Day 1"},
 					{"name":"Olympic Day 2"},
 					{"name":"Olympic Day 3"}
 				],
-				"food": [
+				"foods": [
 					{
 						"name":"Protein Bar",
 						"calories": 310,
@@ -52,6 +86,24 @@ class Welcome extends Component {
 			)
 		})
 		
+		const routineTemplateComponent = welcome.routineTemplates.map(routineTemplateObject => {
+			return (
+				<RoutineTemplate {...routineTemplateObject} />
+			)
+		})
+		
+		const foodComponent = welcome.foods.map(foodObject => {
+			return (
+				<Food {...foodObject} />
+			)
+		})
+		
+		const dietComponent = welcome.diets.map(dietObject => {
+			return (
+				<Diet {...dietObject} />
+			)
+		})
+		
 		return (
 			<div className="Welcome">
 				<h1>Welcome to Augmented</h1>
@@ -67,21 +119,13 @@ class Welcome extends Component {
 					</table>
 				</div>
 				<div>
-					<h2>Routine Templatess:</h2>
+					<h2>Routine Templates:</h2>
 					<table>
 						<thead>
 							<th>Name</th>
 						</thead>
-						<tbody>
-							<tr>
-								<td>Olympic Day 1</td>
-							</tr> 
-							<tr>
-								<td>Olympic Day 1</td>
-							</tr> 
-							<tr>
-								<td>Olympic Day 1</td>
-							</tr> 
+						<tbody> 
+							{routineTemplateComponent} 
 						</tbody>
 					</table>
 				</div>
@@ -94,21 +138,7 @@ class Welcome extends Component {
 							<th>Protien</th>
 						</thead>
 						<tbody>
-							<tr>
-								<td>Protien Bar</td>
-								<td>310</td>
-								<td>28</td>
-							</tr>
-							<tr>
-								<td>Protien Cookie</td>
-								<td>310</td>
-								<td>20</td>
-							</tr>
-							<tr>
-								<td>Protien Shake</td>
-								<td>130</td>
-								<td>25</td>
-							</tr>
+							{foodComponent} 
 						</tbody>
 					</table>
 				</div>
@@ -118,13 +148,8 @@ class Welcome extends Component {
 						<thead>
 							<th>Name</th>
 						</thead>
-						<tbody>
-							<tr>
-								<td>Intemittent Fasting</td>
-							</tr>
-							<tr>
-								<td>Caloric Surplus</td> 
-							</tr>
+						<tbody> 
+							{dietComponent} 
 						</tbody>
 					</table>
 				</div>
