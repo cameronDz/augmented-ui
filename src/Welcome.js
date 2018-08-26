@@ -46,59 +46,25 @@ class Diet extends Component {
 class Welcome extends Component {
 	render() {
 		
-		const welcome = {
-				"exercises": [
-					{"name":"Barbell Snatch Pull"},
-					{"name":"Barbell Full Clean"},
-					{"name":"Barbell Power Clean"}
-				],
-				"routineTemplates": [
-					{"name":"Olympic Day 1"},
-					{"name":"Olympic Day 2"},
-					{"name":"Olympic Day 3"}
-				],
-				"foods": [
-					{
-						"name":"Protein Bar",
-						"calories": 310,
-						"protien": 28
-					},
-					{
-						"name":"Protein Cookie",
-						"calories": 310,
-						"protien": 20
-					},
-					{
-						"name":"Protein Shake",
-						"calories": 130,
-						"protien": 25
-					}
-				],
-				"diets": [
-					{"name":"Intermittent Fasting"},
-					{"name":"Caloric Surplus"}
-				]
-		}
-		
-		const exerciseComponent = welcome.exercises.map(exerciseObject => {
+		const exerciseComponent = this.props.exercises.map(exerciseObject => {
 			return (
 				<Exercise {...exerciseObject} />
 			)
 		})
 		
-		const routineTemplateComponent = welcome.routineTemplates.map(routineTemplateObject => {
+		const routineTemplateComponent = this.props.routineTemplates.map(routineTemplateObject => {
 			return (
 				<RoutineTemplate {...routineTemplateObject} />
 			)
 		})
 		
-		const foodComponent = welcome.foods.map(foodObject => {
+		const foodComponent = this.props.foods.map(foodObject => {
 			return (
 				<Food {...foodObject} />
 			)
 		})
 		
-		const dietComponent = welcome.diets.map(dietObject => {
+		const dietComponent = this.props.diets.map(dietObject => {
 			return (
 				<Diet {...dietObject} />
 			)
