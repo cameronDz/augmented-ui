@@ -11,7 +11,7 @@
 
 # IDE files
 .project
-./settings
+.settings/
 
 # misc
 .DS_Store
