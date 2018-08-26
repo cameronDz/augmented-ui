@@ -3,11 +3,11 @@ import './Welcome.css';
 
 class Exercise extends Component {
 	render() {
-		return { 
+		return ( 
 			<tr>
 				<td>{this.props.name}</td>
 			</tr>
-		}
+		)
 	}
 }
 
