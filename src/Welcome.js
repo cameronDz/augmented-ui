@@ -61,10 +61,8 @@ class Welcome extends Component {
 						<thead>
 							<th>Name</th>
 						</thead>
-						<tbody>
-
-						
-						
+						<tbody> 
+							{exerciseComponent} 
 						</tbody>
 					</table>
 				</div>
