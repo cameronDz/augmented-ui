@@ -40,18 +40,9 @@ const welcome = {
 }
 
 class App extends Component {
-	
-	constructor(props) {
-		super(props);
-		this.state = {
-			welcome: this.welcome
-		};
-	}
-	
+
 	render() {
-		
-		const { welcome } = this.state;
-		
+
 	    return (
 	    	<div className="App">
 	      		<Welcome {...welcome} />
