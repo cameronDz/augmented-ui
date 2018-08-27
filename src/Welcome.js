@@ -44,27 +44,35 @@ class Diet extends Component {
 }
 
 class Welcome extends Component {
+
+	const welcome = {
+		"exercises": [],
+		"routineTemplates": [],
+		"foods": [],
+		"diets": []
+	}
+	
 	render() {
 		
-		const exerciseComponent = this.props.exercises.map(exerciseObject => {
+		const exerciseComponent = welcome.exercises.map(exerciseObject => {
 			return (
 				<Exercise {...exerciseObject} />
 			)
 		})
 		
-		const routineTemplateComponent = this.props.routineTemplates.map(routineTemplateObject => {
+		const routineTemplateComponent = welcome.routineTemplates.map(routineTemplateObject => {
 			return (
 				<RoutineTemplate {...routineTemplateObject} />
 			)
 		})
 		
-		const foodComponent = this.props.foods.map(foodObject => {
+		const foodComponent = welcome.foods.map(foodObject => {
 			return (
 				<Food {...foodObject} />
 			)
 		})
 		
-		const dietComponent = this.props.diets.map(dietObject => {
+		const dietComponent = welcome.diets.map(dietObject => {
 			return (
 				<Diet {...dietObject} />
 			)
