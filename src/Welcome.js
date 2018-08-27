@@ -64,25 +64,25 @@ class Welcome extends Component {
 	  
 	render() {
 		
-		const exerciseComponent = exercises.map(exerciseObject => {
+		const exerciseComponent = this.state.exercises.map(exerciseObject => {
 			return (
 				<Exercise {...exerciseObject} />
 			)
 		})
 		
-		const routineTemplateComponent = routineTemplates.map(routineTemplateObject => {
+		const routineTemplateComponent = this.state.routineTemplates.map(routineTemplateObject => {
 			return (
 				<RoutineTemplate {...routineTemplateObject} />
 			)
 		})
 		
-		const foodComponent = foods.map(foodObject => {
+		const foodComponent = this.state.foods.map(foodObject => {
 			return (
 				<Food {...foodObject} />
 			)
 		})
 		
-		const dietComponent = diets.map(dietObject => {
+		const dietComponent = this.state.diets.map(dietObject => {
 			return (
 				<Diet {...dietObject} />
 			)
