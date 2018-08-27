@@ -51,7 +51,13 @@ const model = {
 }
 
 class Welcome extends Component {
-	
+
+	  componentDidMount() {
+		fetch('https://mysterious-coast-94126.herokuapp.com/welcomeModel?welcomeId=1')
+		  .then(response => response.json())
+		  .then(data => this.setState({ model: data }));
+	  }
+	  
 	render() {
 		
 		const exerciseComponent = model.exercises.map(exerciseObject => {
