@@ -45,7 +45,7 @@ class Diet extends Component {
 
 class Welcome extends Component {
 
-	const welcome = {
+	const model = {
 		"exercises": [],
 		"routineTemplates": [],
 		"foods": [],
@@ -54,25 +54,25 @@ class Welcome extends Component {
 	
 	render() {
 		
-		const exerciseComponent = welcome.exercises.map(exerciseObject => {
+		const exerciseComponent = model.exercises.map(exerciseObject => {
 			return (
 				<Exercise {...exerciseObject} />
 			)
 		})
 		
-		const routineTemplateComponent = welcome.routineTemplates.map(routineTemplateObject => {
+		const routineTemplateComponent = model.routineTemplates.map(routineTemplateObject => {
 			return (
 				<RoutineTemplate {...routineTemplateObject} />
 			)
 		})
 		
-		const foodComponent = welcome.foods.map(foodObject => {
+		const foodComponent = model.foods.map(foodObject => {
 			return (
 				<Food {...foodObject} />
 			)
 		})
 		
-		const dietComponent = welcome.diets.map(dietObject => {
+		const dietComponent = model.diets.map(dietObject => {
 			return (
 				<Diet {...dietObject} />
 			)
