@@ -40,13 +40,31 @@ const welcome = {
 }
 
 class App extends Component {
+	
+	constructor(props) {
+		super(props);
+		this.state = {
+			welcome: {}
+		};
+	}
+	
 	render() {
+		
+		const { welcome } = this.state;
+		
 	    return (
 	    	<div className="App">
 	      		<Welcome {...welcome} />
 	      	</div>
 	    );
 	}
+	
+  componentDidMount() {
+	fetch('https://mysterious-coast-94126.herokuapp.com/welcomeModel?welcomeId=1')
+	  .then(response => response.json())
+	  .then(data => this.setState({ welcome: data }));
+  }
+	
 }
 
 export default App;
