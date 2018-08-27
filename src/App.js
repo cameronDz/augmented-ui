@@ -7,12 +7,14 @@ const welcome = {
 		"exercises": [
 			{"name":"Barbell Snatch Pull"},
 			{"name":"Barbell Full Clean"},
-			{"name":"Barbell Power Clean"}
+			{"name":"Barbell Power Clean"},
+			{"name":"Push Press"}
 		],
 		"routineTemplates": [
 			{"name":"Olympic Day 1"},
 			{"name":"Olympic Day 2"},
-			{"name":"Olympic Day 3"}
+			{"name":"Olympic Day 3"},
+			{"name":"Cardio Day 1"}
 		],
 		"foods": [
 			{
