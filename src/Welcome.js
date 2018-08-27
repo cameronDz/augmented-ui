@@ -43,42 +43,46 @@ class Diet extends Component {
 	}
 }
 
-const model = {
-	"exercises": [],
-	"routineTemplates": [],
-	"foods": [],
-	"diets": []
-}
-
 class Welcome extends Component {
 
+	constructor(props) {
+		super(props);
+		
+		this.state = {
+			exercises: [],
+			routineTemplates: [],
+			foods: [],
+			diets: []
+		};
+	}
+	
 	  componentDidMount() {
 		fetch('https://mysterious-coast-94126.herokuapp.com/welcomeModel?welcomeId=1')
 		  .then(response => response.json())
-		  .then(data => this.setState({ model: data }));
+		  .then(data => this.setState({ exercises: data.exercises, routineTemplates: data.routineTemplates, foods: data.foods, diets: data.diets }));
 	  }
 	  
 	render() {
 		
-		const exerciseComponent = model.exercises.map(exerciseObject => {
+		const exerciseComponent = exercises.map(exerciseObject => {
 			return (
 				<Exercise {...exerciseObject} />
 			)
 		})
 		
-		const routineTemplateComponent = model.routineTemplates.map(routineTemplateObject => {
+		const routineTemplateComponent = routineTemplates.map(routineTemplateObject => {
 			return (
 				<RoutineTemplate {...routineTemplateObject} />
 			)
 		})
 		
-		const foodComponent = model.foods.map(foodObject => {
+		const foodComponent = foods.map(foodObject => {
 			return (
 				<Food {...foodObject} />
 			)
 		})
 		
-		const dietComponent = model.diets.map(dietObject => {
+		const dietComponent = diets.map(dietObject => {
 			return (
 				<Diet {...dietObject} />
 			)
