@@ -43,14 +43,14 @@ class Diet extends Component {
 	}
 }
 
-class Welcome extends Component {
+const model = {
+	"exercises": [],
+	"routineTemplates": [],
+	"foods": [],
+	"diets": []
+}
 
-	const model = {
-		"exercises": [],
-		"routineTemplates": [],
-		"foods": [],
-		"diets": []
-	}
+class Welcome extends Component {
 	
 	render() {
 		
