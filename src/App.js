@@ -6,11 +6,11 @@ import Routine from './Routine.js';
 
 class App extends Component {
 
-	render() {
+	render() { 
 		return (
 			<div className="App">
-      		<Welcome {...welcome} />
-	      	<Routine />
+      		<Welcome />
+	      	<Routine /> 
 	      	</div>
 		);
 	}
