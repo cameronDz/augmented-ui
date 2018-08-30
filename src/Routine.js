@@ -3,8 +3,6 @@ import React, { Component } from 'react';
 class Exercise extends Component {
 
 	render() {
- 
-		
 		return (
 			<tr>
 				<td>{this.props.name}</td>
@@ -23,7 +21,7 @@ class Routine extends Component {
 		this.state = {
 			name : "",
 			count : 0,
-			exercises : [],
+			exercises : [{}],
 			note : ""
 		};
 	}
