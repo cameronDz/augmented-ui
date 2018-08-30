@@ -27,7 +27,7 @@ class Routine extends Component {
 	}
 
 	componentDidMount() {
-		fetch('https://mysterious-coast-94126.herokuapp.com/basicRoutine?rountineId=1')
+		fetch('https://mysterious-coast-94126.herokuapp.com/basicRoutine?routineId=1')
 			.then(response => response.json())
 			.then(data => this.setState({
 				name : data.name,
@@ -38,7 +38,6 @@ class Routine extends Component {
 	}
 
 	render() {
-
 		const exerciseComponent = this.state.exercises.map(exerciseObject => {
 			return (
 				<Exercise {...exerciseObject} />
