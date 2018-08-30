@@ -3,7 +3,7 @@ import './Welcome.css';
 
 class Exercise extends Component {
 	render() {
-		return ( 
+		return (
 			<tr>
 				<td>{this.props.name}</td>
 			</tr>
@@ -13,7 +13,7 @@ class Exercise extends Component {
 
 class RoutineTemplate extends Component {
 	render() {
-		return ( 
+		return (
 			<tr>
 				<td>{this.props.name}</td>
 			</tr>
@@ -23,11 +23,11 @@ class RoutineTemplate extends Component {
 
 class Food extends Component {
 	render() {
-		return ( 
+		return (
 			<tr>
-			<td>{this.props.name}</td>
-			<td>{this.props.calories}</td>
-			<td>{this.props.protien}</td>
+				<td>{this.props.name}</td>
+				<td>{this.props.calories}</td>
+				<td>{this.props.protien}</td>
 			</tr>
 		)
 	}
@@ -35,7 +35,7 @@ class Food extends Component {
 
 class Diet extends Component {
 	render() {
-		return ( 
+		return (
 			<tr>
 				<td>{this.props.name}</td>
 			</tr>
@@ -47,47 +47,51 @@ class Welcome extends Component {
 
 	constructor(props) {
 		super(props);
-		
+
 		this.state = {
-			exercises: [],
-			routineTemplates: [],
-			foods: [],
-			diets: []
+			exercises : [],
+			routineTemplates : [],
+			foods : [],
+			diets : []
 		};
 	}
-	
-	  componentDidMount() {
+
+	componentDidMount() {
 		fetch('https://mysterious-coast-94126.herokuapp.com/welcomeModel?welcomeId=1')
-		  .then(response => response.json())
-		  .then(data => this.setState({ exercises: data.exercises, routineTemplates: data.routineTemplates, foods: data.foods, diets: data.diets }));
-	  }
-	  
+			.then(response => response.json())
+			.then(data => this.setState({
+				exercises : data.exercises,
+				routineTemplates : data.routineTemplates,
+				foods : data.foods,
+				diets : data.diets
+			}));
+	}
+
 	render() {
-		
 		const exerciseComponent = this.state.exercises.map(exerciseObject => {
 			return (
 				<Exercise {...exerciseObject} />
 			)
 		})
-		
+
 		const routineTemplateComponent = this.state.routineTemplates.map(routineTemplateObject => {
 			return (
 				<RoutineTemplate {...routineTemplateObject} />
 			)
 		})
-		
+
 		const foodComponent = this.state.foods.map(foodObject => {
 			return (
 				<Food {...foodObject} />
 			)
 		})
-		
+
 		const dietComponent = this.state.diets.map(dietObject => {
 			return (
 				<Diet {...dietObject} />
 			)
 		})
-		
+
 		return (
 			<div className="Welcome">
 				<h1>Welcome to Augmented</h1>
@@ -138,7 +142,7 @@ class Welcome extends Component {
 					</table>
 				</div>
 		    </div>
-		);
+			);
 	}
 }
 
