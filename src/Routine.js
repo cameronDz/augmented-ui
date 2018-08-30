@@ -1,13 +1,44 @@
 import React, { Component } from 'react';
+/*
+TODO add formatter back later
+import {FormattedNumber} from 'react-intl';
+<!-- <td>{this.props.reps} X <FormattedNumber value={this.props.percent} style="percent" /></td> -->\		
+*/
 
-class Exercise extends Component {
+class Set extends Component {
 
+	constructor(props) {
+		super(props); 
+	}
+	
 	render() {
 		return (
 			<tr>
-				<td>{this.props.name}</td>
-				<td>{this.props.note}</td>
 				<td></td>
+				<td>{this.props.reps} X {this.props.percent * 100} %</td>
+				<td></td>
+			</tr>
+		);	
+	}
+}
+
+class Exercise extends Component {
+
+	constructor(props) {
+		super(props);
+	}
+	
+	render() {
+		const setComponent = this.props.sets.map(setObject => {
+			return (
+				<Set {...setObject} />
+			)
+		})
+		return (
+			<tr>
+				<td>{this.props.name}</td>
+				<td>{setComponent}</td>
+				<td>{this.props.note}</td>
 			</tr> 
 		)
 	}
@@ -21,7 +52,7 @@ class Routine extends Component {
 		this.state = {
 			name : "",
 			count : 0,
-			exercises : [{}],
+			exercises : [{sets:[{reps:0,percent:0.0}]}],
 			note : ""
 		};
 	}
@@ -47,13 +78,13 @@ class Routine extends Component {
 		return (
 			<div className="Routine">
 				<h1>Routine</h1>
-				<h2>{this.props.name}</h2>
+				<h2>{this.state.name}</h2>
 				<table>
 					<thead>
 						<tr>
 							<th>Name</th>
-							<th>Reps</th>
-							<th>Percent</th> 
+							<th>Sets</th> 
+							<th>Note</th>
 						</tr>
 					</thead>
 					<tbody> 
