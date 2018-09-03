@@ -58,7 +58,7 @@ class Routine extends Component {
 	}
 
 	componentDidMount() {
-		fetch('https://mysterious-coast-94126.herokuapp.com/basicRoutine?routineId=1')
+		fetch('https://desolate-caverns-35920.herokuapp.com/v0.1/basicRoutine?routineId=1')
 			.then(response => response.json())
 			.then(data => this.setState({
 				name : data.name,
