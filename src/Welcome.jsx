@@ -49,10 +49,10 @@ class Welcome extends Component {
 		super(props);
 
 		this.state = {
-			exercises : [],
-			routineTemplates : [],
-			foods : [],
-			diets : []
+			exercises: [],
+			routineTemplates: [],
+			foods: [],
+			diets: []
 		};
 	}
 
@@ -60,10 +60,10 @@ class Welcome extends Component {
 		fetch('https://mysterious-coast-94126.herokuapp.com/welcomeModel?welcomeId=1')
 			.then(response => response.json())
 			.then(data => this.setState({
-				exercises : data.exercises,
-				routineTemplates : data.routineTemplates,
-				foods : data.foods,
-				diets : data.diets
+				exercises: data.exercises,
+				routineTemplates: data.routineTemplates,
+				foods: data.foods,
+				diets: data.diets
 			}));
 	}
 
@@ -101,8 +101,8 @@ class Welcome extends Component {
 						<thead>
 							<th>Name</th>
 						</thead>
-						<tbody> 
-							{exerciseComponent} 
+						<tbody>
+							{exerciseComponent}
 						</tbody>
 					</table>
 				</div>
@@ -112,8 +112,8 @@ class Welcome extends Component {
 						<thead>
 							<th>Name</th>
 						</thead>
-						<tbody> 
-							{routineTemplateComponent} 
+						<tbody>
+							{routineTemplateComponent}
 						</tbody>
 					</table>
 				</div>
@@ -126,7 +126,7 @@ class Welcome extends Component {
 							<th>Protien</th>
 						</thead>
 						<tbody>
-							{foodComponent} 
+							{foodComponent}
 						</tbody>
 					</table>
 				</div>
@@ -136,13 +136,13 @@ class Welcome extends Component {
 						<thead>
 							<th>Name</th>
 						</thead>
-						<tbody> 
-							{dietComponent} 
+						<tbody>
+							{dietComponent}
 						</tbody>
 					</table>
 				</div>
-		    </div>
-			);
+			</div>
+		);
 	}
 }
 

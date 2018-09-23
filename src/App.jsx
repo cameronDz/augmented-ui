@@ -5,12 +5,12 @@ import ExerciseList from './ExerciseList';
 
 class App extends Component {
 
-	render() { 
+	render() {
 		return (
 			<div className="App">
-	      	<Routine /> 
-	      	<ExerciseList /> 
-	      	</div>
+				<Routine />
+				<ExerciseList />
+			</div>
 		);
 	}
 }

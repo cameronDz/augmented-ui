@@ -6,7 +6,7 @@ import {FormattedNumber} from 'react-intl';
 */
 
 class Set extends Component {
-	
+
 	render() {
 		return (
 			<tr>
@@ -14,12 +14,12 @@ class Set extends Component {
 				<td>{this.props.reps} X {this.props.percent * 100} %</td>
 				<td></td>
 			</tr>
-		);	
+		);
 	}
 }
 
 class Exercise extends Component {
-	
+
 	render() {
 		const setComponent = this.props.sets.map(setObject => {
 			return (
@@ -31,7 +31,7 @@ class Exercise extends Component {
 				<td>{this.props.name}</td>
 				<td>{setComponent}</td>
 				<td>{this.props.note}</td>
-			</tr> 
+			</tr>
 		)
 	}
 }
@@ -42,10 +42,10 @@ class Routine extends Component {
 		super(props);
 
 		this.state = {
-			name : "",
-			count : 0,
-			exercises : [{sets:[{reps:0,percent:0.0}]}],
-			note : ""
+			name: "",
+			count: 0,
+			exercises: [{ sets: [{ reps: 0, percent: 0.0 }] }],
+			note: ""
 		};
 	}
 
@@ -53,10 +53,10 @@ class Routine extends Component {
 		fetch('https://desolate-caverns-35920.herokuapp.com/v0.1/basicRoutine?routineId=1')
 			.then(response => response.json())
 			.then(data => this.setState({
-				name : data.name,
-				count : data.count,
-				exercises : data.exercises,
-				note : data.note
+				name: data.name,
+				count: data.count,
+				exercises: data.exercises,
+				note: data.note
 			}));
 	}
 
@@ -75,18 +75,17 @@ class Routine extends Component {
 					<thead>
 						<tr>
 							<th>Name</th>
-							<th>Sets</th> 
+							<th>Sets</th>
 							<th>Note</th>
 						</tr>
 					</thead>
-					<tbody> 
-						{exerciseComponent} 
+					<tbody>
+						{exerciseComponent}
 					</tbody>
 				</table>
 			</div>
 		)
 	}
 }
-
 
 export default Routine;
