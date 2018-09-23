@@ -6,10 +6,6 @@ import {FormattedNumber} from 'react-intl';
 */
 
 class Set extends Component {
-
-	constructor(props) {
-		super(props); 
-	}
 	
 	render() {
 		return (
@@ -23,10 +19,6 @@ class Set extends Component {
 }
 
 class Exercise extends Component {
-
-	constructor(props) {
-		super(props);
-	}
 	
 	render() {
 		const setComponent = this.props.sets.map(setObject => {
