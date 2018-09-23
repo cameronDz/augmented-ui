@@ -26,7 +26,7 @@ class ExerciseList extends Component {
 		fetch('https://augmentedaspnetbackend.azurewebsites.net/v0.2/api/exercises')
 			.then(response => response.json())
 			.then(data => this.setState({
-				exercises: data,
+				exercises : data
 			}));
 	}
 

@@ -2,7 +2,12 @@
   "name": "augmented-frontend",
   "version": "0.1.0",
   "private": true,
-  "proxy": "https://augmentedaspnetbackend.azurewebsites.net/",
+  "proxy": {
+    "/v0.2/api": {
+      "target": "https://augmentedaspnetbackend.azurewebsites.net/",
+      "ws": true
+    }
+  },
   "dependencies": {
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
