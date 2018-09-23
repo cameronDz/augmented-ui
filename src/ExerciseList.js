@@ -3,16 +3,16 @@ import React, { Component } from 'react';
 class Exercise extends Component {
 
 	constructor(props) {
-		super(props); 
+		super(props);
 	}
-	
+
 	render() {
 		return (
 			<tr>
-				<td>{this.props.name}</td> 
-				<td>{this.props.description}</td>
-			</tr> 
-		) 
+				<td>{this.props.Name}</td>
+				<td>{this.props.Description}</td>
+			</tr>
+		)
 	}
 }
 
@@ -22,11 +22,7 @@ class ExerciseList extends Component {
 		super(props);
 
 		this.state = {
-			exercises : [
-				{"name":"",
-				 "description":""
-				}
-			]
+			exercises: []
 		};
 	}
 
@@ -34,7 +30,7 @@ class ExerciseList extends Component {
 		fetch('https://augmentedaspnetbackend.azurewebsites.net/v0.2/api/exercises')
 			.then(response => response.json())
 			.then(data => this.setState({
-				exercises : data,
+				exercises: data,
 			}));
 	}
 
@@ -51,12 +47,12 @@ class ExerciseList extends Component {
 				<table>
 					<thead>
 						<tr>
-							<th>Name</th> 
+							<th>Name</th>
 							<th>Description</th>
 						</tr>
 					</thead>
-					<tbody> 
-						{exerciseComponent} 
+					<tbody>
+						{exerciseComponent}
 					</tbody>
 				</table>
 			</div>
