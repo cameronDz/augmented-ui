@@ -63,3 +63,5 @@ class ExerciseList extends Component {
 		)
 	}
 }
+
+export default ExerciseList;
