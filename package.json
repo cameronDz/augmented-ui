@@ -9,11 +9,13 @@
     }
   },
   "dependencies": {
+    "FortAwesome/Font-Awesome": "*",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
+    "react-fontawesome": "^1.6.1",
     "react-intl": "^2.4.0",
-    "react-scripts": "1.1.5",
-    "FortAwesome/Font-Awesome": "*"
+    "react-onclickoutside": "^6.7.1",
+    "react-scripts": "1.1.5"
   },
   "scripts": {
     "start": "react-scripts start",
