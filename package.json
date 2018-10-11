@@ -12,7 +12,8 @@
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-intl": "^2.4.0",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "FortAwesome/Font-Awesome": "*"
   },
   "scripts": {
     "start": "react-scripts start",
