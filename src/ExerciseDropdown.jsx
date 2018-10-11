@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+import FontAwesome from 'react-fontawesome'
 
 class Exercise extends Component {
 
 	render() {
 		return (
-			{this.props.Name}
+			{ this.props.Name }
 		)
 	}
 }
@@ -31,8 +32,8 @@ class ExerciseDropdown extends Component {
 		this.setState({
 			headerTitle: title,
 			listOpen: false,
-		}, 
-		this.props.resetThenSet(id, stateKey))
+		},
+			this.props.resetThenSet(id, stateKey))
 	}
 
 	toggleList = () => {
@@ -40,8 +41,6 @@ class ExerciseDropdown extends Component {
 			listOpen: !prevState.listOpen
 		}))
 	}
-
-	
 
 	componentDidMount() {
 		fetch('https://augmentedaspnetbackend.azurewebsites.net/v0.2/api/exercises')
@@ -62,23 +61,20 @@ class ExerciseDropdown extends Component {
 			<div className="ExerciseDropdown">
 				<h1>Exercise Dropdown</h1>
 				<p>Name</p>
-				      <div className="dd-wrapper">
-        <div className="dd-header" onClick={this.toggleList}>
-          <div className="dd-header-title">{headerTitle}</div>
-          {listOpen
-            ? <FontAwesome name="angle-up" size="2x"/>
-            : <FontAwesome name="angle-down" size="2x"/>
-          }
-        </div>
-        {listOpen && <ul className="dd-list">
-          {list.map((item)=> (
-            <li className="dd-list-item" key={item.id} onClick={() => this.selectItem(item.title, item.id, item.key)}>{item.title} {item.selected && <FontAwesome name="check"/>}</li>
-          ))}
-        </ul>}
-      </div>
-    )
-
-				
+				<div className="dd-wrapper">
+					<div className="dd-header" onClick={this.toggleList}>
+						<div className="dd-header-title">{headerTitle}</div>
+						{listOpen
+							? <FontAwesome name="angle-up" size="2x" />
+							: <FontAwesome name="angle-down" size="2x" />
+						}
+					</div>
+					{listOpen && <ul className="dd-list">
+						{list.map((item) => (
+							<li className="dd-list-item" key={item.id} onClick={() => this.selectItem(item.title, item.id, item.key)}>{item.title} {item.selected && <FontAwesome name="check" />}</li>
+						))}
+					</ul>}
+				</div>
 			</div>
 		)
 	}
