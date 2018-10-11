@@ -5,7 +5,7 @@ class Exercise extends Component {
 
 	render() {
 		return (
-			{ this.props.Name }
+			<p>{this.props.Name}</p>
 		)
 	}
 }
