@@ -5,8 +5,8 @@ class Exercise extends Component {
 	render() {
 		return (
 			<tr>
-				<td>{this.props.Name}</td>
-				<td>{this.props.Description}</td>
+				<td>{this.props.name}</td>
+				<td>{this.props.description}</td>
 			</tr>
 		)
 	}
