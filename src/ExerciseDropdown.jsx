@@ -48,10 +48,10 @@ class ExerciseDropdown extends Component {
   render() {
     return (
       <div className="App">
-        <p>Dropdown menu examples</p>
+        <p>Exercises</p>
 	<div>
           <Dropdown
-	    title="Testing Exercises"
+	    title="Dropdown Menu"
 	    list={this.state.exercise}
 	    resetThenSet={this.resetThenSet}
 	  />
