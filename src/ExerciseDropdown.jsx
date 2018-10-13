@@ -1,83 +1,66 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome'
-
-class Exercise extends Component {
-
-	render() {
-		return (
-			<p>{this.props.Name}</p>
-		)
-	}
-}
+import Dropdown from './components/Dropdown';
 
 class ExerciseDropdown extends Component {
 
-	constructor(props) {
-		super(props);
+  constructor(){
+    super()
+    this.state = {exercise:[]};     
+  }
+    
+  componentDidMount() {
+    function  processExercise(payLoad)  {
+      var array = [];
+      for(var i = 0; i < payLoad.length; i++) {
+        var counter = payLoad[i];
+        var obj = {};
+        obj.id = counter.exerciseId;
+        obj.title = counter.name;
+        obj.key = 'exercise';
+        obj.selected = false;
+        array.push(obj);
+      }
+      return array;
+    }
 
-		this.state = {
-			listOpen: false,
-			headerTitle: "",
-			exercises: []
-		};
-	}
+    fetch('https://augmentedaspnetbackend.azurewebsites.net/v0.2/api/exercises')
+      .then(response => response.json())
+      .then(data => this.setState({
+        exercise : processExercise(data)
+      })
+    );
+  }
 
-	handleClickOutside(e) {
-		this.setState({
-			listOpen: false
-		})
-	}
+  toggleSelected = (id, key) => {
+    let temp = [...this.state[key]]
+    temp[id].selected = !temp[id].selected
+    this.setState({
+      [key]: temp
+    })
+  }
 
-	selectItem = (title, id, stateKey) => {
-		this.setState({
-			headerTitle: title,
-			listOpen: false,
-		},
-			this.props.resetThenSet(id, stateKey))
-	}
+  resetThenSet = (id, stateKey) => {
+    let exercises = [...this.state.exercise]
+    exercises.forEach(item => item.selected = false);
+    exercises[id].selected = true;
+  }
 
-	toggleList = () => {
-		this.setState(prevState => ({
-			listOpen: !prevState.listOpen
-		}))
-	}
-
-	componentDidMount() {
-		fetch('https://augmentedaspnetbackend.azurewebsites.net/v0.2/api/exercises')
-			.then(response => response.json())
-			.then(data => this.setState({
-				exercises: data
-			}));
-	}
-
-	render() {
-		const exerciseComponent = this.state.exercises.map(exerciseObject => {
-			return (
-				<Exercise {...exerciseObject} />
-			)
-		})
-
-		return (
-			<div className="ExerciseDropdown">
-				<h1>Exercise Dropdown</h1>
-				<p>Name</p>
-				<div className="dd-wrapper">
-					<div className="dd-header" onClick={this.toggleList}>
-						<div className="dd-header-title">{headerTitle}</div>
-						{listOpen
-							? <FontAwesome name="angle-up" size="2x" />
-							: <FontAwesome name="angle-down" size="2x" />
-						}
-					</div>
-					{listOpen && <ul className="dd-list">
-						{list.map((item) => (
-							<li className="dd-list-item" key={item.id} onClick={() => this.selectItem(item.title, item.id, item.key)}>{item.title} {item.selected && <FontAwesome name="check" />}</li>
-						))}
-					</ul>}
-				</div>
-			</div>
-		)
-	}
+  render() {
+    return (
+      <div className="App">
+        <p>Dropdown menu examples</p>
+	<div>
+          <Dropdown
+	    title="Testing Exercises"
+	    list={this.state.exercise}
+	    resetThenSet={this.resetThenSet}
+	  />
+	</div>
+	
+      </div>
+    );
+  }
 }
 
 export default ExerciseDropdown;
