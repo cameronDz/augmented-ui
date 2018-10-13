@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Routine from './Routine';
-import ExerciseDropdown from './ExerciseDropdown';
+import Routine from './components/Routine';
+import ExerciseDropdown from './components/ExerciseDropdown';
 
 class App extends Component {
 

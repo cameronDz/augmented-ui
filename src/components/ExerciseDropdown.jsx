@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Dropdown from './components/Dropdown';
+import Dropdown from './Dropdown';
 
 class ExerciseDropdown extends Component {
 
