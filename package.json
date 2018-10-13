@@ -9,7 +9,6 @@
     }
   },
   "dependencies": {
-    "FortAwesome/Font-Awesome": "*",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
     "react-fontawesome": "^1.6.1",
