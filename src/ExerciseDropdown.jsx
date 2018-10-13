@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import FontAwesome from 'react-fontawesome'
 import Dropdown from './components/Dropdown';
 
 class ExerciseDropdown extends Component {
