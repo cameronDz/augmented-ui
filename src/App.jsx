@@ -3,6 +3,7 @@ import './styles/App.css';
 import './styles/css/bootstrap.css';
 import Routine from './components/Routine';
 import ExerciseDropdown from './components/ExerciseDropdown';
+import PostExercise from './components/PostExercise';
 
 class App extends Component {
 
@@ -18,7 +19,7 @@ class App extends Component {
 			<Routine />
 			</div>
 			<div className="col-sm-4">
-			
+			<PostExercise />
 			</div>
 			</div>
 			</div>
