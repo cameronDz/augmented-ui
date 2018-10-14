@@ -17,7 +17,8 @@ class PostExercise extends Component {
 
 	render() {
 		return (
-			<div>Under construction</div>
+			<div>
+			<p>Under construction</p>
 			<form onSubmit={this.handleSubmit}>
 				<label>
 					Name:
@@ -25,6 +26,8 @@ class PostExercise extends Component {
 						defaultValue=""
 						type="text"
 						ref={this.name} />
+			</label>
+			<label>
 					Description:
                     <input
 						defaultValue=""
@@ -33,6 +36,7 @@ class PostExercise extends Component {
 				</label>
 				<input type="submit" value="Submit" />
 			</form>
+			</div>
         );
 	}
 }
