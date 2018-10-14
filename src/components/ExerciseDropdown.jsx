@@ -48,7 +48,7 @@ class ExerciseDropdown extends Component {
   render() {
     return (
       <Dropdown
-        title="Dropdown Menu"
+        title="Exercise Dropdown"
         list={this.state.exercise}
         resetThenSet={this.resetThenSet}
       />
