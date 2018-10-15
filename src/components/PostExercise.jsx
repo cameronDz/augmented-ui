@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 class PostExercise extends Component {
 
@@ -20,21 +19,18 @@ class PostExercise extends Component {
       typeId: this.typeId.current.value
     });; 
 
-    // TODO fix, not POSTing
-    axios({
-      method: 'post',
-      url: 'https://augmentedaspnetbackend.azurewebsites.net/v0.2/api/exercises',
-      data: payload,
-      headers: {'Accepts': 'application/json', 'Content-Type': 'text/json'},
-    });
- 
-    alert('POST data NOT sent. ' + payload);
+    var url = 'https://augmentedaspnetbackend.azurewebsites.net/v0.2/api/exercises';
+    
+    var http = new XMLHttpRequest();
+    http.open('POST', url, true);
+    http.setRequestHeader('Content-type', 'application/json');
+    http.send(payload);
   }
 
   render() {
     return (
       <div>
-        <p>Under construction</p>
+        <p>POST a new exercise:</p>
         <form onSubmit={this.handleSubmit}>
           <label>
             Name:
