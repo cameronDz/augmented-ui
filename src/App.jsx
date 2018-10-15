@@ -7,24 +7,26 @@ import PostExercise from './components/PostExercise';
 
 class App extends Component {
 
-	render() {
-		return (
-			<div className="container">
-			<div className="row">
-			
-			<div className="col-sm-4">
-			<ExerciseDropdown />
-			</div>
-			<div className="col-sm-4">
-			<Routine />
-			</div>
-			<div className="col-sm-4">
-			<PostExercise />
-			</div>
-			</div>
-			</div>
-		);
-	}
+  render() {
+    return (
+      <div className="container">
+        <div className="row">
+	  <div className="col-sm-12">
+            <h1>Augmented Frontend</h1>
+          </div>
+          <div className="col-sm-4">
+            <ExerciseDropdown />
+          </div>
+          <div className="col-sm-4">
+            <Routine />
+          </div>
+          <div className="col-sm-4">
+            <PostExercise />
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;

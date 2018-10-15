@@ -47,11 +47,16 @@ class ExerciseDropdown extends Component {
 
   render() {
     return (
-      <Dropdown
-        title="Exercise Dropdown"
-        list={this.state.exercise}
-        resetThenSet={this.resetThenSet}
-      />
+      <div>
+        <div>
+          <p>Exercise Dropdown Menu</p>
+        </div>
+        <Dropdown
+          title="Exercise Dropdown"
+          list={this.state.exercise}
+          resetThenSet={this.resetThenSet}
+        />
+      </div>
     );
   }
 }
