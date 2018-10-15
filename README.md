@@ -1,6 +1,6 @@
 # augmented-frontend ReactJS Application #
 Currently deployed [here](http://augmented-frontend.s3-website-us-east-1.amazonaws.com), using AWS S3 bucket static page. <br/>
-This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). <br/>> 
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). <br/> 
 Link for some information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
 ## npm - Commands for Application ##
