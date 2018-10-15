@@ -1,6 +1,7 @@
 {
   "name": "augmented-frontend",
   "version": "0.1.0",
+  "homepage": "http://augmented-frontend.s3-website-us-east-1.amazonaws.com",
   "private": true,
   "proxy": {
     "/v0.2/api": {
