@@ -4,11 +4,14 @@ import './styles/css/bootstrap.css';
 import Routine from './components/Routine';
 import ExerciseDropdown from './components/ExerciseDropdown';
 import PostExercise from './components/PostExercise';
+import BulmaNavbar from './components/navbar/BulmaNavbar';
 
 class App extends Component {
 
   render() {
     return (
+      <div>
+      <BulmaNavbar />
       <div className="container">
         <div className="row">
 	  <div className="col-sm-12">
@@ -24,6 +27,7 @@ class App extends Component {
             <PostExercise />
           </div>
         </div>
+      </div>
       </div>
     );
   }
