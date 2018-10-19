@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome'
 import onClickOutside from "react-onclickoutside";
-import '../styles/css/global.css';
+import '../styles/css/bulma.css';
 
 class Dropdown extends Component {
   constructor(props) {
@@ -35,20 +35,24 @@ class Dropdown extends Component {
     const { list } = this.props
     const { listOpen, headerTitle } = this.state
     return (
-      <div className="dd-wrapper">
-	<div className="dd-header" onClick={this.toggleList}>
-          <div className="dd-header-title">{headerTitle}</div>
-          {listOpen
-            ? <FontAwesome name="angle-up" size="2x" />
-            : <FontAwesome name="angle-down" size="2x" />
-          }
+      <div className="dropdown is-active">
+	<div className="dropdown-trigger" onClick={this.toggleList}>
+          <button className="button" aria-haspopup="true" aria-controls="drowndown-menu">
+            <span>{headerTitle}</span> 
+          </button>
+          {listOpen ? <FontAwesome name="angle-up" /> : <FontAwesome name="angle-down" />}
         </div>
-        {listOpen && <ul className="dd-list">
+        <div className="dropdown-menu" id="dropdown-menu" role="menu">
+        {listOpen && <div className="dropdown-content">
           {list.map((item) => (
-            <li className="dd-list-item" key={item.id} onClick={() => this.selectItem(item.title, item.id, item.key)}>{item.title} {item.selected && <FontAwesome name="check" />}</li>
+            <a className="dropdown-item" key={item.id} onClick={() => this.selectItem(item.title, item.id, item.key)}>
+              {item.title} 
+              {item.selected && <FontAwesome name="check" />}
+            </a>
           ))}
-        </ul>}
+        </div>}
       </div>
+    </div>
     )
   }
 }
