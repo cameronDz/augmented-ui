@@ -1,33 +1,29 @@
 import React, { Component } from 'react';
-import './styles/App.css';
-import './styles/css/bootstrap.css';
 import Routine from './components/Routine';
 import ExerciseDropdown from './components/ExerciseDropdown';
 import PostExercise from './components/PostExercise';
 import BulmaNavbar from './components/navbar/BulmaNavbar';
+import './styles/css/app.css';
+import './styles/css/bulma.css';
 
 class App extends Component {
 
   render() {
     return (
       <div>
-      <BulmaNavbar />
-      <div className="container">
-        <div className="row">
-	  <div className="col-sm-12">
-            <h1>Augmented Frontend</h1>
-          </div>
-          <div className="col-sm-4">
+        <BulmaNavbar />
+        <h1>Augmented Frontend</h1>
+        <div className="columns is-desktop">
+          <div className="column">
             <ExerciseDropdown />
           </div>
-          <div className="col-sm-4">
+          <div className="column">
             <Routine />
           </div>
-          <div className="col-sm-4">
+          <div className="column">
             <PostExercise />
           </div>
         </div>
-      </div>
       </div>
     );
   }

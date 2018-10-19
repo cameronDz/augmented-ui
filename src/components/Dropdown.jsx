@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome'
 import onClickOutside from "react-onclickoutside";
-import '../styles/global.css';
+import '../styles/css/global.css';
 
 class Dropdown extends Component {
   constructor(props) {
