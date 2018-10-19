@@ -32,28 +32,27 @@ class PostExercise extends Component {
       <div>
         <p>POST a new exercise:</p>
         <form onSubmit={this.handleSubmit}>
-          <label>
-            Name:
-            <input
-              defaultValue=""
-              type="text"
-              ref={this.name} />
-          </label>
-          <label>
-            Description:
-            <input
-              defaultValue=""
-              type="text"
-              ref={this.description} />
-          </label>
-	  <label>
-            Type:
-            <input
-              defaultValue="1"
-              type="number"
-              ref={this.typeId} />
-          </label>
-          <input type="submit" value="Submit" />
+          <div>
+	    <label>
+              Name:
+              <input defaultValue="" type="text" ref={this.name} />
+            </label>
+          </div>
+          <div>
+            <label>
+              Description:
+              <input defaultValue="" type="text" ref={this.description} />
+            </label>
+          </div>
+	  <div>
+            <label>
+              Type:
+              <input defaultValue="1" type="number" ref={this.typeId} />
+            </label>
+          </div>
+          <div>
+            <input type="submit" value="Submit" />
+          </div>
         </form>
       </div>
     );

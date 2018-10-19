@@ -12,7 +12,9 @@ class App extends Component {
     return (
       <div>
         <BulmaNavbar />
-        <h1>Augmented Frontend</h1>
+        <div>
+          <h1><strong>Augmented Frontend</strong></h1>
+        </div>
         <div className="columns is-desktop">
           <div className="column">
             <ExerciseDropdown />
