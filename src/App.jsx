@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Routine from './components/Routine';
+import Navbar from './components/navbar/Navbar';
+import Header from './components/Header';
 import ExerciseDropdown from './components/ExerciseDropdown';
 import PostExercise from './components/PostExercise';
-import Navbar from './components/navbar/Navbar';
+import Routine from './components/Routine';
 import './styles/css/bulma.css';
 
 class App extends Component {
@@ -11,18 +12,14 @@ class App extends Component {
     return (
       <div>
         <Navbar />
-        <div>
-          <h1><strong>Augmented Frontend</strong></h1>
-        </div>
-        <div className="columns is-desktop">
-          <div className="column">
+        <Header />
+        <div className="columns is-table">
+          <div className="column is-one-third">
             <ExerciseDropdown />
+	    <PostExercise />
           </div>
-          <div className="column">
+          <div className="column is-two-thirds">
             <Routine />
-          </div>
-          <div className="column">
-            <PostExercise />
           </div>
         </div>
       </div>
