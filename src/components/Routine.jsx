@@ -69,7 +69,7 @@ class Routine extends Component {
 
 		return (
 			<div className="Routine">
-				<div><p>Routine</p></div>
+				<div><p><strong>Routine</strong></p></div>
 				<p>{this.state.name}</p>
 				<table>
 					<thead>

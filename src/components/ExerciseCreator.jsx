@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-class PostExercise extends Component {
+class ExerciseCreator extends Component {
 
   constructor(props) {
     super(props);
@@ -30,25 +30,19 @@ class PostExercise extends Component {
   render() {
     return (
       <div>
-        <p>POST a new exercise:</p>
+        <p><strong>Create a new Exercise</strong></p>
         <form onSubmit={this.handleSubmit}>
           <div>
-	    <label>
-              Name:
-              <input defaultValue="" type="text" ref={this.name} />
-            </label>
+	    <label for="name">Name:</label><br/>
+            <input name="name"defaultValue="" type="text" ref={this.name} />
           </div>
           <div>
-            <label>
-              Description:
-              <input defaultValue="" type="text" ref={this.description} />
-            </label>
+            <label for="description">Description:</label><br/>
+            <textarea name="description" defaultValue="" ref={this.description}></textarea>
           </div>
 	  <div>
-            <label>
-              Type:
-              <input defaultValue="1" type="number" ref={this.typeId} />
-            </label>
+            <label for="typeId">Type:</label><br/>
+            <input name="typeId" defaultValue="1" type="number" ref={this.typeId} />
           </div>
           <div>
             <input type="submit" value="Submit" />
@@ -58,4 +52,4 @@ class PostExercise extends Component {
     );
   }
 }
-export default PostExercise;
+export default ExerciseCreator;

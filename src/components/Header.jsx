@@ -5,9 +5,13 @@ class Header extends Component {
 
   render() {
     return (
-      <div>
-        <h1><strong>Augmented Applcation</strong></h1>
-      </div>
+      <section className="hero">
+        <div className="hero-body">       
+          <div className="container">
+            <h1 className="title">Augmented</h1>
+          </div>
+        </div>
+      </section>
     );
   }
 }

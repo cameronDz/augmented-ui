@@ -49,7 +49,7 @@ class ExerciseDropdown extends Component {
     return (
       <div>
         <div>
-          <p>Exercise Dropdown Menu</p>
+          <p><strong>Exercise Dropdown Menu</strong></p>
         </div>
         <Dropdown
           title="Exercise Dropdown"
