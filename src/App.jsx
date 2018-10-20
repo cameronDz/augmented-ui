@@ -3,7 +3,6 @@ import Routine from './components/Routine';
 import ExerciseDropdown from './components/ExerciseDropdown';
 import PostExercise from './components/PostExercise';
 import Navbar from './components/navbar/Navbar';
-import './styles/css/app.css';
 import './styles/css/bulma.css';
 
 class App extends Component {

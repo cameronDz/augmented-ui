@@ -32,10 +32,7 @@ augmented-frontend/
     index.js
     logo.svg
     components/
+      navbar/
     styles/
-      App.css
-      index.css
       css/
-      fonts/
-      stylus/
 ```
