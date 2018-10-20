@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Routine from './components/Routine';
 import ExerciseDropdown from './components/ExerciseDropdown';
 import PostExercise from './components/PostExercise';
-import BulmaNavbar from './components/navbar/BulmaNavbar';
+import Navbar from './components/navbar/Navbar';
 import './styles/css/app.css';
 import './styles/css/bulma.css';
 
@@ -11,7 +11,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <BulmaNavbar />
+        <Navbar />
         <div>
           <h1><strong>Augmented Frontend</strong></h1>
         </div>
