@@ -12,7 +12,9 @@ class App extends Component {
     return (
       <div>
         <Navbar />
-        <Header />
+        <Header 
+          title = "Augmented Home"
+	/>
         <div className="columns is-table">
           <div className="column is-one-third">
             <ExerciseDropdown />
