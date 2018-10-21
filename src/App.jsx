@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import Header from './components/Header';
+import Layout from './components/Layout';
 import HomePage from './components/HomePage';
-import Footer from './components/Footer';
 
 class App extends Component {
 
   render() {
     return (
       <div>
-        <Header title = "Augmented Home" />
-        <HomePage />
-        <Footer />
+        <Layout title = "Augmented Home" children = {<HomePage />} />
       </div>
     );
   }
