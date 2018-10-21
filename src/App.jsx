@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
-import ExerciseDropdown from './components/ExerciseDropdown';
-import ExerciseCreator from './components/ExerciseCreator';
-import Routine from './components/Routine';
-import './styles/css/bulma.css';
+import HomePage from './components/HomePage';
 
 class App extends Component {
 
@@ -11,15 +8,8 @@ class App extends Component {
     return (
       <div>
         <Header title = "Augmented Home" />
-        <div className="columns is-table">
-          <div className="column is-one-third">
-            <ExerciseDropdown />
-	    <ExerciseCreator />
-          </div>
-          <div className="column is-two-thirds">
-            <Routine />
-          </div>
-        </div>
+        <HomePage />
+        <br />
       </div>
     );
   }
