@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Navbar from  './navbar/Navbar';
 import '../styles/css/bulma.css';
 
 class Header extends Component {
@@ -13,13 +14,16 @@ class Header extends Component {
   render() {
     const {title} = this.state;
     return (
-      <section className="hero">
-        <div className="hero-body">       
-          <div className="container">
-            <h1 className="title">{title}</h1>
+      <div>
+        <Navbar />
+        <section className="hero">
+          <div className="hero-body">       
+            <div className="container">
+              <h1 className="title">{title}</h1>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     );
   }
 }
