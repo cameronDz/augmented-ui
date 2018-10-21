@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './components/Header';
 import HomePage from './components/HomePage';
+import Footer from './components/Footer';
 
 class App extends Component {
 
@@ -9,7 +10,7 @@ class App extends Component {
       <div>
         <Header title = "Augmented Home" />
         <HomePage />
-        <br />
+        <Footer />
       </div>
     );
   }
