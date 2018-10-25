@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import ExerciseDropdown from './ExerciseDropdown';
 import ExerciseCreator from './ExerciseCreator';
 import Routine from './Routine';
+import Layout from './Layout';
 import '../styles/css/bulma.css';
 
-class HomePage extends Component {
+class Home extends Component {
 
   render() {
     return (
@@ -22,6 +23,17 @@ class HomePage extends Component {
     );
   }
 
+}
+
+class HomePage extends Component {
+
+  render() {
+    return (
+      <div>
+        <Layout title = "Augmented Home" children = {<Home />} />
+      </div>
+    );
+  }
 }
 
 export default HomePage;
