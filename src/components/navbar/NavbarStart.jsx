@@ -19,7 +19,7 @@ class NavbarStart extends Component {
           <a className="navbar-link">Nutrition</a>
           <div className="navbar-dropdown">
             <a className="navbar-item"><Link to="/diet">Diet</Link></a>
-            <a className="navbar-item">Meals</a>
+            <a className="navbar-item"><Link to="/meals">Meals</Link></a>
             <a className="navbar-item">Food</a>
           </div>
         </div>
