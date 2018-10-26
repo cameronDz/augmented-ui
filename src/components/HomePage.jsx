@@ -10,7 +10,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div className="columns is-table">
+        <div className="columns is-tablet">
           <div className="column is-one-third">
             <ExerciseDropdown />
 	    <ExerciseCreator />
