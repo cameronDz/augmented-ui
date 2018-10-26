@@ -20,17 +20,17 @@ class NavbarStart extends Component {
           <div className="navbar-dropdown">
             <a className="navbar-item"><Link to="/diet">Diet</Link></a>
             <a className="navbar-item"><Link to="/meals">Meals</Link></a>
-            <a className="navbar-item">Food</a>
+            <a className="navbar-item"><Link to='/foods'>Food</Link></a>
           </div>
         </div>
         <div className="navbar-item has-dropdown is-hoverable">
           <a className="navbar-link">More</a>
           <div className="navbar-dropdown">
             <a className="navbar-item"><Link to='/about'>About</Link></a>
-            <a className="navbar-item">Contact</a>
-            <a className="navbar-item">Contribute</a>
+            <a className="navbar-item"><Link to='/contacts'>Contact</Link></a>
+            <a className="navbar-item"><Link to='/contribute'>Contribute</Link></a>
             <hr className="navbar-divider" />
-            <a className="navbar-item">Report an issue</a>
+            <a className="navbar-item"><Link to='/issue'>Report an issue</Link></a>
           </div>
         </div>
       </div>
