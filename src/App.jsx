@@ -4,6 +4,7 @@ import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
 import ExercisePage from './components/ExercisePage';
 import SessionPage from './components/SessionPage';
+import DietPage from './components/DietPage';
 
 class App extends Component {
 
@@ -15,6 +16,7 @@ class App extends Component {
           <Route exact path='/about' component={AboutPage} />
           <Route exact path='/exercise' component={ExercisePage} />
           <Route exact path='/session' component={SessionPage} />
+          <Route exact path='/diet' component={DietPage} />
         </Switch>
       </div>
     );
