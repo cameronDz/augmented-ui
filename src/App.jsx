@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
 import AboutPage from './components/AboutPage';
 import ExercisePage from './components/ExercisePage';
+import SessionPage from './components/SessionPage';
 
 class App extends Component {
 
@@ -13,6 +14,7 @@ class App extends Component {
           <Route exact path='/' component={HomePage} />
           <Route exact path='/about' component={AboutPage} />
           <Route exact path='/exercise' component={ExercisePage} />
+          <Route exact path='/session' component={SessionPage} />
         </Switch>
       </div>
     );
