@@ -11,7 +11,7 @@ class NavbarStart extends Component {
         <div className="navbar-item has-dropdown is-hoverable">
           <a className="navbar-link">Fitness</a>
           <div className="navbar-dropdown">
-            <a className="navbar-item">Exercises</a>
+            <a className="navbar-item"><Link to="/exercise">Exercises</Link></a>
             <a className="navbar-item">Sessions</a>
           </div>
         </div>
