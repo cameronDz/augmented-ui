@@ -21,10 +21,10 @@ class App extends Component {
           <Route exact path='/exercise' component={ExercisePage} />
           <Route exact path='/session' component={SessionPage} />
           <Route exact path='/diet' component={DietPage} />
-          <Route exact path='/meals' component={MealPage} />
-          <Route exact path='/foods' component={FoodPage} />
+          <Route exact path='/meal' component={MealPage} />
+          <Route exact path='/food' component={FoodPage} />
           <Route exact path='/about' component={AboutPage} />
-          <Route exact path='/contacts' component={ContactPage} />
+          <Route exact path='/contact' component={ContactPage} />
           <Route exact path='/contribute' component={ContributePage} />
           <Route exact path='/issue' component={IssuePage} />
         </Switch>
