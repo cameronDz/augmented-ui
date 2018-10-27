@@ -13,14 +13,15 @@ class NavbarStart extends Component {
           <div className="navbar-dropdown">
             <a className="navbar-item"><Link to="/exercise">Exercises</Link></a>
             <a className="navbar-item"><Link to="/session">Sessions</Link></a>
+            <a className="navbar-item">Routines</a>
           </div>
         </div>
         <div className="navbar-item has-dropdown is-hoverable">
           <a className="navbar-link">Nutrition</a>
           <div className="navbar-dropdown">
-            <a className="navbar-item"><Link to="/diet">Diet</Link></a>
+            <a className="navbar-item"><Link to="/diet">Diets</Link></a>
             <a className="navbar-item"><Link to="/meal">Meals</Link></a>
-            <a className="navbar-item"><Link to='/food'>Food</Link></a>
+            <a className="navbar-item"><Link to='/food'>Foods</Link></a>
           </div>
         </div>
         <div className="navbar-item has-dropdown is-hoverable">
