@@ -36,3 +36,19 @@ augmented-frontend/
     styles/
       css/
 ```
+
+## S3 Rerouting ##
+Since Augmented Frontend is a Single Page Application (SPA), routing is done on the browser side. This means that the S3 bucket has to be configured to be rerouted. In the S3 buckets portal on AWS, under 'Properties' tab, in the 'Static website hosting' section, a 'Redirection rule' needs to be added to reroute all pages to the home page. This is a temporary solution while application is in its early stages.
+
+```xml
+<RoutingRules>
+  <RoutingRule>
+    <Condition>
+      <KeyPrefixEquals>any/route</KeyPrefixEquals>
+    </Condition>
+    <Redirect>
+      <ReplaceKeyPrefixWith/>
+    </Redirect>
+  </RoutingRule>
+</RoutingRules>
+```
