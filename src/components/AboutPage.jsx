@@ -8,10 +8,7 @@ class About extends Component {
     return (
       <div>
         <div className="columns is-mobile">
-          <div className="column is-one-fifth">
-            <h1>Sidebar</h1>
-          </div>
-          <div className="column is-four-fifths">
+          <div className="column">
             <p>Augmented is an application for tracking fitness, nutrition, and general health. Application is ment to take in data directly from the user, as well as consume data from third party applications like FitBits or Apple Watches.</p>
           </div>
         </div>
