@@ -23,7 +23,7 @@ class ExerciseDropdown extends Component {
       return array;
     }
 
-    fetch('https://augmentedaspnetbackend.azurewebsites.net/v0.2/api/exercises')
+    fetch('https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/exercises')
       .then(response => response.json())
       .then(data => this.setState({
         exercise : processExercise(data)
