@@ -17,9 +17,9 @@ class ExerciseCreator extends Component {
       name: this.name.current.value,
       description: this.description.current.value,
       typeId: this.typeId.current.value
-    });; 
+    }); 
 
-    var url = 'https://augmentedaspnetbackend.azurewebsites.net/v0.2/api/exercises';
+    var url = 'https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/exercises';
     
     var http = new XMLHttpRequest();
     http.open('POST', url, true);
