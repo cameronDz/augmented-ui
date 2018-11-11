@@ -4,15 +4,15 @@ class CardioMachine extends Component {
 
   render() {
     return (
-      <div>
-        <span>Session #: {this.props.id}</span><br/>
-        <span>Machine: {this.props.machineType}</span><br/>
-        <span>When: {this.props.startTime}</span><br/>
-        <span>Duration (seconds): {this.props.duration}</span><br/>
-        <span>Distance (miles): {this.props.distance}</span><br/>
-        <span>User: {this.props.userName}</span><br/>
-        <span>Comment: {this.props.comment}</span><br/><br/>
-      </div>
+      <tr>
+        <td>{this.props.id}</td>
+        <td>{this.props.machineType}</td>
+        <td>{this.props.startTime}</td>
+        <td>{this.props.duration}</td>
+        <td>{this.props.distance}</td>
+        <td>{this.props.userName}</td>
+        <td>{this.props.comment}</td>
+      </tr>
     );
   }
 }
@@ -60,7 +60,24 @@ class CardioMachineSessions extends Component {
     return (
       <div>
         <div><p><strong>Cardio Machine Sessions</strong></p></div>
-        <div>{cardioMachineComponent}</div>
+        <div>
+          <table className="table is-bordered is-striped is-narrow is-fullwidth">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Machine</th>
+                <th>Date</th>
+                <th>Duration (s)</th>
+                <th>Distance (m)</th>
+                <th>User</th>
+                <th>Comment</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cardioMachineComponent}
+            </tbody>
+          </table>
+        </div>
       </div>
     );
   }
