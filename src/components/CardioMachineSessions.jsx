@@ -1,5 +1,22 @@
 import React, { Component } from 'react';
 
+class CardioMachine extends Component {
+
+  render() {
+    return (
+      <div>
+        <span>Session #: {this.props.id}</span><br/>
+        <span>Machine: {this.props.machineType}</span><br/>
+        <span>When: {this.props.startTime}</span><br/>
+        <span>Duration (seconds): {this.props.duration}</span><br/>
+        <span>Distance (miles): {this.props.distance}</span><br/>
+        <span>User: {this.props.userName}</span><br/>
+        <span>Comment: {this.props.comment}</span><br/><br/>
+      </div>
+    );
+  }
+}
+
 class CardioMachineSessions extends Component {
 
   constructor(props) {
@@ -16,7 +33,7 @@ class CardioMachineSessions extends Component {
         obj.id = counter.cardioMachineExerciseId;
         obj.machineType = counter.machineType;
         obj.startTime = counter.startTime;
-        obj.duration = counter.duration;
+        obj.duration = counter.durationSeconds;
         obj.distance = counter.distanceMiles;
         obj.userName = counter.userName;
         obj.comment = counter.comment;
@@ -28,15 +45,22 @@ class CardioMachineSessions extends Component {
     fetch('https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/CardioMachineExercises')
       .then(response => response.json())
       .then(data => this.setState({
-        exercise : processPayload(data)
+        cardioSessions: processPayload(data)
       })
     );
   }
 
   render() {
+    const cardioMachineComponent = this.state.cardioSessions.map(cardioMachineObjects => {
+      return (
+        <CardioMachine {...cardioMachineObjects} />
+      );
+    })
+
     return (
       <div>
-        Test, Testing.
+        <div><p><strong>Cardio Machine Sessions</strong></p></div>
+        <div>{cardioMachineComponent}</div>
       </div>
     );
   }
