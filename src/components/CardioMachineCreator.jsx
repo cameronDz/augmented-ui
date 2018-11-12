@@ -53,12 +53,12 @@ class CardioMachineCreator extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="field">
             <label for="machineType">Machine Type:</label><br/>
-            <input className="input" name="machineType"defaultValue="" type="text" ref={this.machineType}></input>
+            <input className="input" name="machineType"defaultValue="" type="text" ref={this.machineType} required />
           </div>
 
           <div className="field is-horizontal">
             <div className="field-label is-normal">
-              <label className="label">Start Date</label>
+              <label className="label">Date</label>
             </div>
             <div className="field-body">
               <div className="field"> 
@@ -78,7 +78,7 @@ class CardioMachineCreator extends Component {
 
           <div className="field is-horizontal">
             <div className="field-label is-normal">
-              <label className="label">Start Time</label>
+              <label className="label">Time</label>
             </div>
             <div className="field-body">
               <div className="field"> 
@@ -118,7 +118,7 @@ class CardioMachineCreator extends Component {
           </div>
           <div className="field">
             <label for="userName">User:</label><br/>
-            <input className="input" name="userName" defaultValue="" type="text" ref={this.userName} />
+            <input className="input" name="userName" defaultValue="" type="text" ref={this.userName} required />
           </div>
           <div className="field">
             <label for="comment">Comment:</label><br/>
