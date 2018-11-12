@@ -12,10 +12,10 @@ class Session extends Component {
           <div className="column is-full">
             <p> Track exercise sessions here.</p>
           </div>
-          <div className="column is-two-fifth">
+          <div className="column is-one-fourth">
             <CardioMachineCreator />
           </div>	    
-          <div className="column is-three-fifths">
+          <div className="column is-three-fourths">
             <CardioMachineSessions />
           </div>	    
         </div>

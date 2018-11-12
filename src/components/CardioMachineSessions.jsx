@@ -3,12 +3,21 @@ import React, { Component } from 'react';
 class CardioMachine extends Component {
 
   render() {
+
+    function getTwoDigitValue(time) {
+      var ret = (time.toString().length === 1 ? '0' + time.toString() : time.toString());
+      return ret; 
+    };
+
+    var minute = Math.floor(this.props.duration / 60);
+    var second = getTwoDigitValue(this.props.duration % 60);
+
     return (
       <tr>
         <td>{this.props.id}</td>
         <td>{this.props.machineType}</td>
         <td>{this.props.startTime}</td>
-        <td>{this.props.duration}</td>
+        <td>{minute}:{second}</td>
         <td>{this.props.distance}</td>
         <td>{this.props.userName}</td>
         <td>{this.props.comment}</td>
@@ -67,8 +76,8 @@ class CardioMachineSessions extends Component {
                 <th>#</th>
                 <th>Machine</th>
                 <th>Date</th>
-                <th>Duration (s)</th>
-                <th>Distance (m)</th>
+                <th>Duration (hh:mm)</th>
+                <th>Distance (miles)</th>
                 <th>User</th>
                 <th>Comment</th>
               </tr>
