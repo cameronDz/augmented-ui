@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import FontAwesome from 'react-fontawesome'
 import onClickOutside from "react-onclickoutside";
-import '../styles/css/bulma.css';
 
 class Dropdown extends Component {
   constructor(props) {

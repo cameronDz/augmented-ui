@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import NavbarBrand from './NavbarBrand';
 import NavbarMenu from './NavbarMenu';
-import '../../styles/css/bulma.css';
 
 class Navbar extends Component {
 

@@ -3,7 +3,6 @@ import ExerciseDropdown from './ExerciseDropdown';
 import ExerciseCreator from './ExerciseCreator';
 import Routine from './Routine';
 import Layout from './Layout';
-import '../styles/css/bulma.css';
 
 class Home extends Component {
 

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Layout from './Layout';
-import '../styles/css/bulma.css';
 
 class About extends Component {
 

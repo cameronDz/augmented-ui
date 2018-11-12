@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import '../styles/css/bulma.css';
 
 class Footer extends Component {
 

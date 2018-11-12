@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Navbar from  './navbar/Navbar';
-import '../styles/css/bulma.css';
 
 class Header extends Component {
 
