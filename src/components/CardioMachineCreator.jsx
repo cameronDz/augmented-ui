@@ -5,8 +5,7 @@ class CardioMachineCreator extends Component {
 
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this); 
     this.state = {
       machineType: '',
       userName: '',
@@ -16,12 +15,6 @@ class CardioMachineCreator extends Component {
       distanceMiles: 0.0,
       startDate: new Date()
     };
-  };
-
-  handleDateChange(date) {
-    this.setState({
-      startDate: date
-    });
   };
 
   handleSubmit(event) {
@@ -38,10 +31,7 @@ class CardioMachineCreator extends Component {
       userName: this.state.userName,
       comment: this.state.comment
     });
-    
-    console.log("payload before");
-    console.log(payload);
-    
+
     this.setState({
       userName: '',
       comment: '',
@@ -51,10 +41,7 @@ class CardioMachineCreator extends Component {
       distanceMiles: 0.0,
       startDate: new Date()
     });
-    
-    console.log("payload after");
-    console.log(payload);
-    
+
     var http = new XMLHttpRequest();
     http.open('POST', url, true);
     http.setRequestHeader('Content-type', 'application/json');
@@ -79,12 +66,12 @@ class CardioMachineCreator extends Component {
           <div className="field is-horizontal">
 	          <label className="label" for="startDate">Date &nbsp;</label>
 	          <DatePicker selected={this.state.startDate}
-                        onChange={this.handleDateChange}
                         showTimeSelect
                         timeFormat="HH:mm"
                         timeIntervals={5}
                         dateFormat="MMMM d, yyyy h:mm aa"
-                        timeCaption="time" />
+                        timeCaption="time" 
+                        onChange={ e => this.setState({ startDate : e.target.value }) } />
           </div>
 
           <div className="field is-horizontal">
