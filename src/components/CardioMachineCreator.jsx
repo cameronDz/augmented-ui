@@ -8,12 +8,6 @@ class CardioMachineCreator extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.machineType = React.createRef();
-    this.startYear = React.createRef();
-    this.startMonth = React.createRef();
-    this.startDay = React.createRef();
-    this.startHour = React.createRef();
-    this.startMinute = React.createRef();
-    this.startSecond = React.createRef();
     this.durationSeconds = React.createRef();	
     this.durationMinutes = React.createRef();	  
     this.distanceMiles = React.createRef();
@@ -33,17 +27,9 @@ class CardioMachineCreator extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
-    function getTwoDigitValue(date) {
-      var ret = (date.toString().length === 1 ? '0' + date.toString() : date.toString());
-      return ret; 
-    };
-
-    var seconds = Number(this.durationMinutes.current.value * 60) + Number(this.durationSeconds.current.value);
-    var combinedTimes = this.startYear.current.value + '-' + getTwoDigitValue(this.startMonth.current.value) + '-' + getTwoDigitValue(this.startDay.current.value) + ' ' + getTwoDigitValue(this.startHour.current.value) + ':' + getTwoDigitValue(this.startMinute.current.value) + ':' + getTwoDigitValue(this.startSecond.current.value);
-
     const payload = JSON.stringify({
       machineType: this.machineType.current.value,
-      startTime: combinedTimes,
+      startTime: this.state.startDate,
       durationSeconds: seconds,
       distanceMiles: this.distanceMiles.current.value,
       userName: this.userName.current.value,
@@ -68,7 +54,7 @@ class CardioMachineCreator extends Component {
           </div>
 
           <div className="field is-horizontal">
-	          <label className="label" for="startDate">Date:</label>
+	          <label className="label" for="startDate">Date: </label>
 	          <DatePicker
               selected={this.state.startDate}
               onChange={this.handleChange}
@@ -82,47 +68,7 @@ class CardioMachineCreator extends Component {
 
           <div className="field is-horizontal">
             <div className="field-label is-normal">
-              <label className="label">Date</label>
-            </div>
-            <div className="field-body">
-              <div className="field"> 
-                <label for="startYear">Year</label>
-                <input className="input" name="startYear" defaultValue="2018" min="1971" max="2099" type="number" ref={this.startYear} />
-              </div>
-              <div className="field"> 
-                <label for="startMonth">Month</label>
-                <input className="input" name="startMonth" defaultValue="1" min="1" max="12" type="number" ref={this.startMonth} />
-              </div>
-              <div className="field"> 
-                <label for="startDay">Day</label>
-                <input className="input" name="startDay" defaultValue="1" min="1" max="31" type="number" ref={this.startDay} />
-              </div>
-            </div>
-          </div>
-
-          <div className="field is-horizontal">
-            <div className="field-label is-normal">
-              <label className="label">Time</label>
-            </div>
-            <div className="field-body">
-              <div className="field"> 
-                <label for="startHour">Hour</label>
-                <input className="input" name="startHour" defaultValue="0" min="0" max="23" type="number" ref={this.startHour} />
-              </div>
-              <div className="field"> 
-                <label for="startMinute">Minute</label>
-                <input className="input" name="startMinute" defaultValue="0" min="0" max="59" type="number" ref={this.startMinute} />
-              </div>
-              <div className="field"> 
-                <label for="startSecond">Second</label>
-                <input className="input" name="startSecond" defaultValue="0" min="0" max="59" type="number" ref={this.startSecond} />
-              </div>
-            </div>
-          </div>
-
-          <div className="field is-horizontal">
-            <div className="field-label is-normal">
-              <label className="label">Duration</label>
+              <label className="label">Duration: </label>
             </div>
             <div className="field-body">
               <div className="field"> 
