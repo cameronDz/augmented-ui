@@ -50,12 +50,12 @@ class CardioMachineCreator extends Component {
         <p><strong>Create a new Cardio Sessions</strong></p>
         <form onSubmit={this.handleSubmit}>
           <div className="field is-horizontal">
-            <label className="label" for="machineType">Machine Type:</label>
+            <label className="label" for="machineType">Machine Type &nbsp</label>
             <input className="input" name="machineType" defaultValue="" type="text" ref={this.machineType} required />
           </div>
 
           <div className="field is-horizontal">
-	          <label className="label" for="startDate">Date: </label>
+	          <label className="label" for="startDate">Date &nbsp</label>
 	          <DatePicker
               selected={this.state.startDate}
               onChange={this.handleChange}
@@ -69,7 +69,7 @@ class CardioMachineCreator extends Component {
 
           <div className="field is-horizontal">
             <div className="field-label is-normal">
-              <label className="label">Duration: </label>
+              <label className="label">Duration &nbsp</label>
             </div>
             <div className="field-body">
               <div className="field"> 
@@ -84,15 +84,15 @@ class CardioMachineCreator extends Component {
           </div>
 
           <div className="field is-horizontal">
-            <label className="label" for="distanceMiles">Distance (miles):</label>
+            <label className="label" for="distanceMiles">Distance (miles) &nbsp</label>
             <input className="input" name="distanceMiles" defaultValue="0.0" type="number" step="0.01" ref={this.distanceMiles} />
           </div>
           <div className="field is-horizontal">
-            <label className="label" for="userName">User:</label>
+            <label className="label" for="userName">User &nbsp</label>
             <input className="input" name="userName" defaultValue="" type="text" ref={this.userName} required />
           </div>
           <div className="field">
-            <label className="label" for="comment">Comment:</label><br/>
+            <label className="label" for="comment">Comment &nbsp</label>
             <textarea className="textarea" name="comment"defaultValue="" type="textarea" ref={this.comment} />
           </div>	    
           <div className="field">
