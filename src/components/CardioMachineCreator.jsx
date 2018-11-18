@@ -68,9 +68,9 @@ class CardioMachineCreator extends Component {
           </div>
 
           <div className="field is-horizontal">
-	    <label className="label" for="startDate">Date:</label>
-	    <DatePicker
-              selected={this.startDate}
+	          <label className="label" for="startDate">Date:</label>
+	          <DatePicker
+              selected={this.state.startDate}
               onChange={this.handleChange}
               showTimeSelect
               timeFormat="HH:mm"
