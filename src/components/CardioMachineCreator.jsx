@@ -14,6 +14,12 @@ class CardioMachineCreator extends Component {
     this.userName = React.createRef();
     this.comment = React.createRef();	  
     this.state = {
+      machineType: '',
+      userName: '',
+      comment: '',
+      durationSeconds: 0,
+      durationMinutes: 0,
+      distanceMiles: 0.0,
       startDate: new Date()
     };
   };
@@ -28,24 +34,24 @@ class CardioMachineCreator extends Component {
     document.getElementById("submitCardioBtn").disabled = true;
     event.preventDefault();
     var url = 'https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/CardioMachineExercises';
-    var seconds = Number(this.durationMinutes.current.value * 60) + Number(this.durationSeconds.current.value);
+    var seconds = Number(this.state.durationMinutes * 60) + Number(this.state.durationSeconds);
 
     const payload = JSON.stringify({
-      machineType: this.machineType.current.value,
+      machineType: this.state.machineType,
       startTime: this.state.startDate,
       durationSeconds: seconds,
-      distanceMiles: this.distanceMiles.current.value,
-      userName: this.userName.current.value,
-      comment: this.comment.current.value
+      distanceMiles: this.state.distanceMiles,
+      userName: this.state.userName,
+      comment: this.state.comment
     });
     
-    this.machineType = ""; 
-    this.durationSeconds = 0; 
-    this.durationMinutes = 0;   
-    this.distanceMiles = 0.0;
-    this.userName = "";
-    this.comment = "";   
     this.setState({
+      userName = '';
+      comment = '';   
+      machineType = ''; 
+      durationSeconds = 0; 
+      durationMinutes = 0;   
+      distanceMiles = 0.0;
       startDate: new Date()
     });
     
@@ -64,7 +70,7 @@ class CardioMachineCreator extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="field is-horizontal">
             <label className="label" for="machineType">Machine Type &nbsp;</label>
-            <input className="input" name="machineType" defaultValue="" type="text" ref={this.machineType} required />
+            <input className="input" name="machineType" defaultValue="" type="text" ref={this.state.machineType} required />
           </div>
 
           <div className="field is-horizontal">
@@ -87,26 +93,26 @@ class CardioMachineCreator extends Component {
             <div className="field-body">
               <div className="field"> 
                 <label for="durationMinutes">Minutes</label>
-                <input className="input" name="durationMinutes" defaultValue="0" min="0" type="number" ref={this.durationMinutes} />
+                <input className="input" name="durationMinutes" defaultValue="0" min="0" type="number" ref={this.state.durationMinutes} />
               </div>
               <div className="field"> 
                 <label for="durationSeconds">Seconds</label>
-                <input className="input" name="durationSeconds" defaultValue="0" min="0" max="59" type="number" ref={this.durationSeconds} />
+                <input className="input" name="durationSeconds" defaultValue="0" min="0" max="59" type="number" ref={this.state.durationSeconds} />
               </div>
             </div>
           </div>
 
           <div className="field is-horizontal">
             <label className="label" for="distanceMiles">Distance (miles) &nbsp;</label>
-            <input className="input" name="distanceMiles" defaultValue="0.0" type="number" step="0.01" ref={this.distanceMiles} />
+            <input className="input" name="distanceMiles" defaultValue="0.0" type="number" step="0.01" ref={this.state.distanceMiles} />
           </div>
           <div className="field is-horizontal">
             <label className="label" for="userName">User &nbsp;</label>
-            <input className="input" name="userName" defaultValue="" type="text" ref={this.userName} required />
+            <input className="input" name="userName" defaultValue="" type="text" ref={this.state.userName} required />
           </div>
           <div className="field">
             <label className="label" for="comment">Comment &nbsp;</label>
-            <textarea className="textarea" name="comment"defaultValue="" type="textarea" ref={this.comment} />
+            <textarea className="textarea" name="comment"defaultValue="" type="textarea" ref={this.state.comment} />
           </div>	    
           <div className="field">
             <div className="control">
