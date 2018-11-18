@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import DatePicker from "react-datepicker";
 
 class CardioMachineCreator extends Component {
 
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
     this.machineType = React.createRef();
     this.startYear = React.createRef();
     this.startMonth = React.createRef();
@@ -17,7 +19,16 @@ class CardioMachineCreator extends Component {
     this.distanceMiles = React.createRef();
     this.userName = React.createRef();
     this.comment = React.createRef();	  
-  }
+    this.state = {
+      startDate: new Date()
+    };
+  };
+
+  handleChange(date) {
+    this.setState({
+      startDate: date
+    });
+  };
 
   handleSubmit(event) {
     event.preventDefault();
@@ -44,7 +55,7 @@ class CardioMachineCreator extends Component {
     http.open('POST', url, true);
     http.setRequestHeader('Content-type', 'application/json');
     http.send(payload);
-  }
+  };
 
   render() {
     return (
@@ -53,7 +64,20 @@ class CardioMachineCreator extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="field">
             <label for="machineType">Machine Type:</label><br/>
-            <input className="input" name="machineType"defaultValue="" type="text" ref={this.machineType} required />
+            <input className="input" name="machineType" defaultValue="" type="text" ref={this.machineType} required />
+          </div>
+
+          <div className="field is-horizontal">
+	    <label className="label" for="startDate">Date:</label>
+	    <DatePicker
+              selected={this.startDate}
+              onChange={this.handleChange}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={5}
+              dateFormat="MMMM d, yyyy h:mm aa"
+              timeCaption="time"
+            />
           </div>
 
           <div className="field is-horizontal">
@@ -126,13 +150,13 @@ class CardioMachineCreator extends Component {
           </div>	    
           <div className="field">
             <div className="control">
-              <input className="input" type="submit" value="Submit" />
+              <input id="submitCardioBtn" className="input" type="submit" value="Submit" />
             </div>
           </div>
         </form>
       </div>
     );
-  }
+  };
 }
 
 export default CardioMachineCreator;
