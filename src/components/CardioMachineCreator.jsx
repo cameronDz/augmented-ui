@@ -5,7 +5,8 @@ class CardioMachineCreator extends Component {
 
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this); 
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDateChange = this.handleDateChange.bind(this);
     this.state = {
       machineType: '',
       userName: '',
@@ -15,6 +16,12 @@ class CardioMachineCreator extends Component {
       distanceMiles: 0.0,
       startDate: new Date()
     };
+  };
+
+  handleDateChange(date) {
+    this.setState({
+      startDate: date
+    });
   };
 
   handleSubmit(event) {
@@ -66,12 +73,12 @@ class CardioMachineCreator extends Component {
           <div className="field is-horizontal">
 	          <label className="label" for="startDate">Date &nbsp;</label>
 	          <DatePicker selected={this.state.startDate}
+                        onChange={this.handleDateChange}
                         showTimeSelect
                         timeFormat="HH:mm"
                         timeIntervals={5}
                         dateFormat="MMMM d, yyyy h:mm aa"
-                        timeCaption="time" 
-                        onChange={ e => this.setState({ startDate : e.target.selected }) } />
+                        timeCaption="time" />
           </div>
 
           <div className="field is-horizontal">
