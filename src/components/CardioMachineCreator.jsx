@@ -46,12 +46,12 @@ class CardioMachineCreator extends Component {
     });
     
     this.setState({
-      userName = '';
-      comment = '';   
-      machineType = ''; 
-      durationSeconds = 0; 
-      durationMinutes = 0;   
-      distanceMiles = 0.0;
+      userName: '',
+      comment: '',
+      machineType: '',
+      durationSeconds: 0,
+      durationMinutes: 0,
+      distanceMiles: 0.0,
       startDate: new Date()
     });
     
