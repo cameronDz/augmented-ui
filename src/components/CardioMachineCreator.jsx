@@ -72,7 +72,7 @@ class CardioMachineCreator extends Component {
                    name="machineType" 
                    type="text" 
                    value={this.state.machineType} 
-                   onChange={ e => this.setState({ durationMinutes : e.target.value }) } 
+                   onChange={ e => this.setState({ machineType : e.target.value }) } 
                    required />
           </div>
 
@@ -138,7 +138,7 @@ class CardioMachineCreator extends Component {
                       name="comment" 
                       type="textarea" 
                       value={this.state.comment} 
-                      onChange={ e => this.setState({ userName : e.target.value }) } />
+                      onChange={ e => this.setState({ comment : e.target.value }) } />
           </div>	    
           <div className="field">
             <div className="control">
