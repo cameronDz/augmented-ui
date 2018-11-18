@@ -71,7 +71,7 @@ class CardioMachineCreator extends Component {
                         timeIntervals={5}
                         dateFormat="MMMM d, yyyy h:mm aa"
                         timeCaption="time" 
-                        onChange={ e => this.setState({ startDate : e.target.value }) } />
+                        onChange={ e => this.setState({ startDate : e.target.selected }) } />
           </div>
 
           <div className="field is-horizontal">
