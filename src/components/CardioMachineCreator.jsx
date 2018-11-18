@@ -25,7 +25,9 @@ class CardioMachineCreator extends Component {
   };
 
   handleSubmit(event) {
+    document.getElementById("submitCardioBtn").disabled = true;
     event.preventDefault();
+    var url = 'https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/CardioMachineExercises';
     var seconds = Number(this.durationMinutes.current.value * 60) + Number(this.durationSeconds.current.value);
 
     const payload = JSON.stringify({
@@ -36,8 +38,19 @@ class CardioMachineCreator extends Component {
       userName: this.userName.current.value,
       comment: this.comment.current.value
     });
-    var url = 'https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/CardioMachineExercises';
-
+    
+    this.machineType = ""; 
+    this.durationSeconds = 0; 
+    this.durationMinutes = 0;   
+    this.distanceMiles = 0.0;
+    this.userName = "";
+    this.comment = "";   
+    this.setState({
+      startDate: new Date()
+    });
+    
+    console.log(payload);
+    
     var http = new XMLHttpRequest();
     http.open('POST', url, true);
     http.setRequestHeader('Content-type', 'application/json');
