@@ -26,6 +26,7 @@ class CardioMachineCreator extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    var seconds = Number(this.durationMinutes.current.value * 60) + Number(this.durationSeconds.current.value);
 
     const payload = JSON.stringify({
       machineType: this.machineType.current.value,
