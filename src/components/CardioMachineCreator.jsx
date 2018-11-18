@@ -6,13 +6,13 @@ class CardioMachineCreator extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleChange = this.handleChange.bind(this);
-    this.machineType = React.createRef();
-    this.durationSeconds = React.createRef();	
-    this.durationMinutes = React.createRef();	  
-    this.distanceMiles = React.createRef();
-    this.userName = React.createRef();
-    this.comment = React.createRef();	  
+    this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleMachineChange = this.handleMachineChange.bind(this);
+    this.handleSecondChange = this.handleSecondChange.bind(this);
+    this.handleMinuteChange = this.handleMinuteChange.bind(this);
+    this.handleDistanceChange = this.handleDistanceChange.bind(this);
+    this.handleUserChange = this.handleUserChange.bind(this);
+    this.handleCommentChange = this.handleCommentChange.bind(this); 
     this.state = {
       machineType: '',
       userName: '',
@@ -24,11 +24,48 @@ class CardioMachineCreator extends Component {
     };
   };
 
-  handleChange(date) {
+  handleDateChange(date) {
     this.setState({
       startDate: date
     });
   };
+
+  handleMachineChange(machine) {
+    this.setState({
+      machineType: machine
+    });
+  };
+
+  handleSecondChange(seconds) {
+    this.setState({
+      durationSeconds: seconds
+    });
+  };
+
+  handleMinuteChange(minutes) {
+    this.setState({
+      durationMinutes: minutes
+    });
+  };
+
+  handleDistanceChange(miles) {
+    this.setState({
+      distanceMiles: miles
+    });
+  };
+
+  handleUserChange(user) {
+    this.setState({
+      userName: user
+    });
+  };
+
+  handleCommentChange(comments) {
+    this.setState({
+      comment: comments
+    });
+  }; 
+  
 
   handleSubmit(event) {
     document.getElementById("submitCardioBtn").disabled = true;
@@ -45,6 +82,9 @@ class CardioMachineCreator extends Component {
       comment: this.state.comment
     });
     
+    console.log("payload before");
+    console.log(payload);
+    
     this.setState({
       userName: '',
       comment: '',
@@ -55,6 +95,7 @@ class CardioMachineCreator extends Component {
       startDate: new Date()
     });
     
+    console.log("payload after");
     console.log(payload);
     
     var http = new XMLHttpRequest();
@@ -70,14 +111,14 @@ class CardioMachineCreator extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="field is-horizontal">
             <label className="label" for="machineType">Machine Type &nbsp;</label>
-            <input className="input" name="machineType" defaultValue="" type="text" ref={this.state.machineType} required />
+            <input className="input" name="machineType" defaultValue="" type="text" ref={this.state.machineType} onChange={this.handleMachineChange} required />
           </div>
 
           <div className="field is-horizontal">
 	          <label className="label" for="startDate">Date &nbsp;</label>
 	          <DatePicker
               selected={this.state.startDate}
-              onChange={this.handleChange}
+              onChange={this.handleDateChange}
               showTimeSelect
               timeFormat="HH:mm"
               timeIntervals={5}
@@ -93,11 +134,11 @@ class CardioMachineCreator extends Component {
             <div className="field-body">
               <div className="field"> 
                 <label for="durationMinutes">Minutes</label>
-                <input className="input" name="durationMinutes" defaultValue="0" min="0" type="number" ref={this.state.durationMinutes} />
+                <input className="input" name="durationMinutes" defaultValue="0" min="0" type="number" ref={this.state.durationMinutes} onChange={this.handleMinuteChange} />
               </div>
               <div className="field"> 
                 <label for="durationSeconds">Seconds</label>
-                <input className="input" name="durationSeconds" defaultValue="0" min="0" max="59" type="number" ref={this.state.durationSeconds} />
+                <input className="input" name="durationSeconds" defaultValue="0" min="0" max="59" type="number" ref={this.state.durationSeconds} onChange={this.handleSecondChange} />
               </div>
             </div>
           </div>
@@ -108,11 +149,11 @@ class CardioMachineCreator extends Component {
           </div>
           <div className="field is-horizontal">
             <label className="label" for="userName">User &nbsp;</label>
-            <input className="input" name="userName" defaultValue="" type="text" ref={this.state.userName} required />
+            <input className="input" name="userName" defaultValue="" type="text" ref={this.state.userName} onChange={this.handleUserChange} required />
           </div>
           <div className="field">
             <label className="label" for="comment">Comment &nbsp;</label>
-            <textarea className="textarea" name="comment"defaultValue="" type="textarea" ref={this.state.comment} />
+            <textarea className="textarea" name="comment"defaultValue="" type="textarea" ref={this.state.comment} onChange={this.handleCommentChange} />
           </div>	    
           <div className="field">
             <div className="control">
