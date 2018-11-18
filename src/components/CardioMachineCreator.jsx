@@ -111,7 +111,7 @@ class CardioMachineCreator extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="field is-horizontal">
             <label className="label" for="machineType">Machine Type &nbsp;</label>
-            <input className="input" name="machineType" defaultValue="" type="text" ref={this.state.machineType} onChange={this.handleMachineChange} required />
+            <input className="input" name="machineType" defaultValue="" type="text" value={this.state.machineType} onChange={this.handleMachineChange} required />
           </div>
 
           <div className="field is-horizontal">
@@ -134,26 +134,26 @@ class CardioMachineCreator extends Component {
             <div className="field-body">
               <div className="field"> 
                 <label for="durationMinutes">Minutes</label>
-                <input className="input" name="durationMinutes" defaultValue="0" min="0" type="number" ref={this.state.durationMinutes} onChange={this.handleMinuteChange} />
+                <input className="input" name="durationMinutes" defaultValue="0" min="0" type="number" value={this.state.durationMinutes} onChange={this.handleMinuteChange} />
               </div>
               <div className="field"> 
                 <label for="durationSeconds">Seconds</label>
-                <input className="input" name="durationSeconds" defaultValue="0" min="0" max="59" type="number" ref={this.state.durationSeconds} onChange={this.handleSecondChange} />
+                <input className="input" name="durationSeconds" defaultValue="0" min="0" max="59" type="number" value={this.state.durationSeconds} onChange={this.handleSecondChange} />
               </div>
             </div>
           </div>
 
           <div className="field is-horizontal">
             <label className="label" for="distanceMiles">Distance (miles) &nbsp;</label>
-            <input className="input" name="distanceMiles" defaultValue="0.0" type="number" step="0.01" ref={this.state.distanceMiles} />
+            <input className="input" name="distanceMiles" defaultValue="0.0" type="number" step="0.01" value={this.state.distanceMiles} />
           </div>
           <div className="field is-horizontal">
             <label className="label" for="userName">User &nbsp;</label>
-            <input className="input" name="userName" defaultValue="" type="text" ref={this.state.userName} onChange={this.handleUserChange} required />
+            <input className="input" name="userName" defaultValue="" type="text" value={this.state.userName} onChange={this.handleUserChange} required />
           </div>
           <div className="field">
             <label className="label" for="comment">Comment &nbsp;</label>
-            <textarea className="textarea" name="comment"defaultValue="" type="textarea" ref={this.state.comment} onChange={this.handleCommentChange} />
+            <textarea className="textarea" name="comment"defaultValue="" type="textarea" value={this.state.comment} onChange={this.handleCommentChange} />
           </div>	    
           <div className="field">
             <div className="control">
