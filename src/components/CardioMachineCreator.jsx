@@ -49,7 +49,7 @@ class CardioMachineCreator extends Component {
       <div>
         <p><strong>Create a new Cardio Sessions</strong></p>
         <form onSubmit={this.handleSubmit}>
-          <div className="field">
+          <div className="field is-horizontal">
             <label for="machineType">Machine Type:</label><br/>
             <input className="input" name="machineType" defaultValue="" type="text" ref={this.machineType} required />
           </div>
@@ -83,11 +83,11 @@ class CardioMachineCreator extends Component {
             </div>
           </div>
 
-          <div className="field">
+          <div className="field is-horizontal">
             <label for="distanceMiles">Distance (miles):</label><br/>
             <input className="input" name="distanceMiles" defaultValue="0.0" type="number" step="0.01" ref={this.distanceMiles} />
           </div>
-          <div className="field">
+          <div className="field is-horizontal">
             <label for="userName">User:</label><br/>
             <input className="input" name="userName" defaultValue="" type="text" ref={this.userName} required />
           </div>
