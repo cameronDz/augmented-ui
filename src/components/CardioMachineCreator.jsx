@@ -8,11 +8,12 @@ class CardioMachineCreator extends Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
+    this.handleTimeChange = this.handleTimeChange.bind(this);
     this.state = {
       machineType: '',
       userName: '',
       comment: '',
-      duration: '00:00:00',
+      timing: '00:00:00',
       durationSeconds: 0,
       durationMinutes: 0,
       distanceMiles: 0.0,
@@ -26,12 +27,18 @@ class CardioMachineCreator extends Component {
     });
   };
 
+  handleTimeChange(time) {
+    this.setState({
+      timing: time
+    });
+  };
+
   handleSubmit(event) {
     // document.getElementById("submitCardioBtn").disabled = true;
     event.preventDefault();
     var url = 'https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/CardioMachineExercises'; 
-    var durationArray = this.state.duration.split(':');
-    var seconds = (Number(durationArray[0] * 3600) + Number(durationArray[1] * 60) + Number(durationArray[2]));
+    var timingArray = this.state.timing.split(':');
+    var seconds = (Number(timingArray[0] * 3600) + Number(timingArray[1] * 60) + Number(timingArray[2]));
 
     const payload = JSON.stringify({
       machineType: this.state.machineType,
@@ -46,7 +53,7 @@ class CardioMachineCreator extends Component {
       userName: '',
       comment: '',
       machineType: '',
-      duration: '00:00:00',
+      timing: '00:00:00',
       durationSeconds: 0,
       durationMinutes: 0,
       distanceMiles: 0.0,
@@ -61,6 +68,7 @@ class CardioMachineCreator extends Component {
         document.getElementById("submitCardioBtn").disabled = false;
       }
     };
+    console.log(payload);
     // xhr.send(payload);
   };
 
@@ -94,9 +102,9 @@ class CardioMachineCreator extends Component {
             <div className="field-label is-normal">
               <label className="label">Duration &nbsp;</label>
             </div>
-            <TimeField value={this.state.duration}
+            <TimeField value={this.state.timing}
                        showSeconds="true"
-                       onChange={ e => this.setState({ duration : e.target.value }) } />
+                       onChange={this.handleTimeChange} />
           </div>
 
           <div className="field is-horizontal">
