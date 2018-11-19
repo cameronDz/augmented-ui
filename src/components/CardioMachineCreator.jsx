@@ -33,7 +33,7 @@ class CardioMachineCreator extends Component {
   };
 
   handleSubmit(event) {
-    // document.getElementById("submitCardioBtn").disabled = true;
+    document.getElementById("submitCardioBtn").disabled = true;
     event.preventDefault();
     var url = 'https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/CardioMachineExercises'; 
     var timingArray = this.state.timing.split(':');
@@ -64,14 +64,14 @@ class CardioMachineCreator extends Component {
       if (xhr.readyState === 4) {
         document.getElementById("submitCardioBtn").disabled = false;
       }
-    };
-    console.log(payload);
-    // xhr.send(payload);
+    }; 
+    xhr.send(payload);
   };
 
   render() {
     return (
       <div>
+        <h1 className="title is-3">Enter Cardio Machine Session</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="field is-horizontal">
             <label className="label" for="machineType">Machine Type &nbsp;</label>
