@@ -1,6 +1,6 @@
 div>input.time-field {
     width: 50%;
 }
-div>input.input.distance {
+div.field.is-horizontal>input.input.distance {
     width: 25%;
 }
