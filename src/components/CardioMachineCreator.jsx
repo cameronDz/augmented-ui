@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DatePicker from "react-datepicker";
 import TimeField from 'react-simple-timefield';
+import '../styles/css/cardio.css';
 
 class CardioMachineCreator extends Component {
 
@@ -97,7 +98,8 @@ class CardioMachineCreator extends Component {
             <div className="field-label is-normal">
               <label className="label">Duration &nbsp;</label>
             </div>
-            <TimeField value={this.state.timing}
+            <TimeField className="time-field"
+                       value={this.state.timing}
                        showSeconds="true"
                        onChange={this.handleTimeChange} /> 
             <label className="label" for="distanceMiles">Distance (miles) &nbsp;</label>
