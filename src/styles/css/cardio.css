@@ -2,3 +2,6 @@ div.field.is-horizontal>input.input.distance {
     height: 25;
     width: 60;
 }
+div.field.is-horizontal>input.input.time-field {
+    padding-right: 15;
+}
