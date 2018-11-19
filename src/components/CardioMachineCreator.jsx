@@ -95,13 +95,11 @@ class CardioMachineCreator extends Component {
           </div>
 
           <div className="field is-horizontal">
-            <div className="field-label is-normal">
-              <label className="label">Duration &nbsp;</label>
-            </div>
+            <label className="label">Duration &nbsp;</label>
             <TimeField className="time-field"
                        value={this.state.timing}
                        showSeconds="true"
-                       style={{width:80, height:25}}
+                       style={{width:80, height:25, padding-right:15}}
                        onChange={this.handleTimeChange} /> 
             <label className="label" for="distanceMiles">Distance (miles) &nbsp;</label>
             <input className="input distance" 
