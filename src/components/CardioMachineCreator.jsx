@@ -101,6 +101,7 @@ class CardioMachineCreator extends Component {
             <TimeField className="time-field"
                        value={this.state.timing}
                        showSeconds="true"
+                       style="width: 50%"
                        onChange={this.handleTimeChange} /> 
             <label className="label" for="distanceMiles">Distance (miles) &nbsp;</label>
             <input className="input distance" 
