@@ -27,10 +27,11 @@ class CardioMachineCreator extends Component {
   };
 
   handleSubmit(event) {
-    document.getElementById("submitCardioBtn").disabled = true;
+    // document.getElementById("submitCardioBtn").disabled = true;
     event.preventDefault();
-    var url = 'https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/CardioMachineExercises';
-    var seconds = Number(this.state.durationMinutes * 60) + Number(this.state.durationSeconds);
+    var url = 'https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/CardioMachineExercises'; 
+    var durationArray = this.state.duration.split(':');
+    var seconds = ((Number(durationArray[0] * 3600) + (Number(durationArray[1] * 60) + (Number(durationArray[2]));
 
     const payload = JSON.stringify({
       machineType: this.state.machineType,
@@ -60,7 +61,7 @@ class CardioMachineCreator extends Component {
         document.getElementById("submitCardioBtn").disabled = false;
       }
     };
-    xhr.send(payload);
+    // xhr.send(payload);
   };
 
   render() {
@@ -90,6 +91,9 @@ class CardioMachineCreator extends Component {
           </div>
 
           <div className="field is-horizontal">
+            <div className="field-label is-normal">
+              <label className="label">Duration &nbsp;</label>
+            </div>
             <TimeField value={this.state.duration}
                        showSeconds="true"
                        onChange={ e => this.setState({ duration : e.target.value }) } />
