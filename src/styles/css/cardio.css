@@ -1,3 +1,6 @@
-input.time-field {
+div>input.time-field {
+    width: auto;
+}
+div>input.input.distance {
     width: auto;
 }
