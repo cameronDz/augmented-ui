@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DatePicker from "react-datepicker";
+import TimeField from 'react-simple-timefield';
 
 class CardioMachineCreator extends Component {
 
@@ -11,6 +12,7 @@ class CardioMachineCreator extends Component {
       machineType: '',
       userName: '',
       comment: '',
+      duration: '00:00:00',
       durationSeconds: 0,
       durationMinutes: 0,
       distanceMiles: 0.0,
@@ -43,6 +45,7 @@ class CardioMachineCreator extends Component {
       userName: '',
       comment: '',
       machineType: '',
+      duration: '00:00:00',
       durationSeconds: 0,
       durationMinutes: 0,
       distanceMiles: 0.0,
@@ -84,6 +87,12 @@ class CardioMachineCreator extends Component {
                         timeIntervals={5}
                         dateFormat="MMMM d, yyyy h:mm aa"
                         timeCaption="time" />
+          </div>
+
+          <div className="field is-horizontal">
+            <TimeField value={this.state.duration}
+                       showSeconds=true
+                       onChange={ e => this.setState({ duration : e.target.value }) } />
           </div>
 
           <div className="field is-horizontal">
