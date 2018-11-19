@@ -14,8 +14,6 @@ class CardioMachineCreator extends Component {
       userName: '',
       comment: '',
       timing: '00:00:00',
-      durationSeconds: 0,
-      durationMinutes: 0,
       distanceMiles: 0.0,
       startDate: new Date()
     };
@@ -54,8 +52,6 @@ class CardioMachineCreator extends Component {
       comment: '',
       machineType: '',
       timing: '00:00:00',
-      durationSeconds: 0,
-      durationMinutes: 0,
       distanceMiles: 0.0,
       startDate: new Date()
     });
@@ -75,7 +71,6 @@ class CardioMachineCreator extends Component {
   render() {
     return (
       <div>
-        <p><strong>Create a new Cardio Sessions</strong></p>
         <form onSubmit={this.handleSubmit}>
           <div className="field is-horizontal">
             <label className="label" for="machineType">Machine Type &nbsp;</label>
@@ -104,37 +99,7 @@ class CardioMachineCreator extends Component {
             </div>
             <TimeField value={this.state.timing}
                        showSeconds="true"
-                       onChange={this.handleTimeChange} />
-          </div>
-
-          <div className="field is-horizontal">
-            <div className="field-label is-normal">
-              <label className="label">Duration &nbsp;</label>
-            </div>
-            <div className="field-body">
-              <div className="field"> 
-                <label for="durationMinutes">Minutes</label>
-                <input className="input" 
-                       name="durationMinutes" 
-                       min="0" 
-                       type="number" 
-                       value={this.state.durationMinutes} 
-                       onChange={ e => this.setState({ durationMinutes : e.target.value }) } />
-              </div>
-              <div className="field"> 
-                <label for="durationSeconds">Seconds</label>
-                <input className="input" 
-                       name="durationSeconds" 
-                       min="0" 
-                       max="59" 
-                       type="number"
-                       value={this.state.durationSeconds} 
-                       onChange={ e => this.setState({ durationSeconds : e.target.value }) } />
-              </div>
-            </div>
-          </div>
-
-          <div className="field is-horizontal">
+                       onChange={this.handleTimeChange} /> 
             <label className="label" for="distanceMiles">Distance (miles) &nbsp;</label>
             <input className="input" 
                    name="distanceMiles" 
@@ -143,6 +108,7 @@ class CardioMachineCreator extends Component {
                    value={this.state.distanceMiles}
                    onChange={ e => this.setState({ distanceMiles : e.target.value }) } />
           </div>
+          
           <div className="field is-horizontal">
             <label className="label" for="userName">User &nbsp;</label>
             <input className="input" 
@@ -152,6 +118,7 @@ class CardioMachineCreator extends Component {
                    onChange={ e => this.setState({ userName : e.target.value }) } 
                    required />
           </div>
+          
           <div className="field">
             <label className="label" for="comment">Comment &nbsp;</label>
             <textarea className="textarea" 
