@@ -91,7 +91,7 @@ class CardioMachineCreator extends Component {
 
           <div className="field is-horizontal">
             <TimeField value={this.state.duration}
-                       showSeconds=true
+                       showSeconds="true"
                        onChange={ e => this.setState({ duration : e.target.value }) } />
           </div>
 
