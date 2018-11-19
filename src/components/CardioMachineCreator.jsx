@@ -102,7 +102,7 @@ class CardioMachineCreator extends Component {
                        style={{width:80, height:25}}
                        onChange={this.handleTimeChange} /> 
             <label className="label" for="distanceMiles">Distance (miles) &nbsp;</label>
-            <input className="input distance" 
+            <input className="distance" 
                    name="distanceMiles" 
                    type="number" 
                    step="0.01" 
