@@ -31,7 +31,7 @@ class CardioMachineCreator extends Component {
     event.preventDefault();
     var url = 'https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/CardioMachineExercises'; 
     var durationArray = this.state.duration.split(':');
-    var seconds = ((Number(durationArray[0] * 3600) + (Number(durationArray[1] * 60) + (Number(durationArray[2]));
+    var seconds = (Number(durationArray[0] * 3600) + Number(durationArray[1] * 60) + Number(durationArray[2]));
 
     const payload = JSON.stringify({
       machineType: this.state.machineType,
