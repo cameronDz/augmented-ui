@@ -16,7 +16,6 @@ class CardioMachine extends Component {
 
     return (
       <tr>
-        <td>{this.props.id}</td>
         <td>{this.props.machineType}</td>
         <td>{date} {time}</td>
         <td>{minute}:{second}</td>
@@ -41,7 +40,6 @@ class CardioMachineSessions extends Component {
       for(var i = 0; i < payLoad.length; i++) {
         var counter = payLoad[i];
         var obj = {};
-        obj.id = counter.cardioMachineExerciseId;
         obj.machineType = counter.machineType;
         obj.startTime = counter.startTime;
         obj.duration = counter.durationSeconds;
@@ -75,7 +73,6 @@ class CardioMachineSessions extends Component {
           <table className="table is-bordered is-striped is-narrow is-fullwidth">
             <thead>
               <tr>
-                <th>#</th>
                 <th>Machine</th>
                 <th>Date</th>
                 <th>Duration (hh:mm)</th>
