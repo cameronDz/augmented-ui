@@ -11,12 +11,14 @@ class CardioMachine extends Component {
 
     var minute = Math.floor(this.props.duration / 60);
     var second = getTwoDigitValue(this.props.duration % 60);
+    var date = this.props.startTime.split('T')[0];
+    var time = this.props.startTime.split('T')[1].substring(0,5);
 
     return (
       <tr>
         <td>{this.props.id}</td>
         <td>{this.props.machineType}</td>
-        <td>{this.props.startTime}</td>
+        <td>{date} {time}</td>
         <td>{minute}:{second}</td>
         <td>{this.props.distance}</td>
         <td>{this.props.userName}</td>
