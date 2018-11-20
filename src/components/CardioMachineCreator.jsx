@@ -41,7 +41,7 @@ class CardioMachineCreator extends Component {
 
     const payload = JSON.stringify({
       machineType: this.state.machineType,
-      startTime: this.state.startDate,
+      startTime: this.state.startDate.toLocaleString(),
       durationSeconds: seconds,
       distanceMiles: this.state.distanceMiles,
       userName: this.state.userName,
