@@ -74,7 +74,7 @@ class CardioMachineSessions extends Component {
             <thead>
               <tr>
                 <th>Machine</th>
-                <th>Date</th>
+                <th>Date/Time</th>
                 <th>Duration (hh:mm)</th>
                 <th>Distance (miles)</th>
                 <th>User</th>
