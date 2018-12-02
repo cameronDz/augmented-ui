@@ -9,9 +9,6 @@ class Session extends Component {
     return (
       <div>
         <div className="columns is-multiline is-tablet">
-          <div className="column is-full">
-            <p> Track exercise sessions here.</p>
-          </div>
           <div className="column is-two-fifths">
             <CardioMachineCreator />
           </div>	    
