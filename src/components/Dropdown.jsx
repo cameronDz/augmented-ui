@@ -37,7 +37,7 @@ class Dropdown extends Component {
       <div className="dropdown is-active">
 	<div className="dropdown-trigger" onClick={this.toggleList}>
           <button className="button" aria-haspopup="true" aria-controls="drowndown-menu">
-            <span>{headerTitle} &nbsp</span>
+            <span>{headerTitle} {' '}</span>
             {listOpen ? 
               <FontAwesome name="angle-up" /> : 
               <FontAwesome name="angle-down" />
