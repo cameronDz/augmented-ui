@@ -16,7 +16,7 @@ class ExerciseDropdown extends Component {
         var obj = {};
         obj.id = counter.exerciseId;
         obj.title = counter.name;
-        obj.key = 'exercise';
+        obj.key = i;
         obj.selected = false;
         array.push(obj);
       }
