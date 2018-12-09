@@ -42,7 +42,7 @@ class ExerciseDropdown extends Component {
   resetThenSet = (id, stateKey) => {
     let exercises = [...this.state.exercise]
     exercises.forEach(item => item.selected = false);
-    exercises[id].selected = true;
+    exercises[stateKey].selected = true;
   }
 
   render() {
