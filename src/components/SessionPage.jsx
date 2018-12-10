@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CardioMachineCreator from './Session';
+import Session from './Session';
 import Layout from './Layout';
 
 class SessionPage extends Component {
