@@ -7,13 +7,34 @@ class Session extends Component {
 
   render() {
     return (
-      <div>
-        <div className="columns is-multiline is-tablet">
-          <div className="column is-two-fifths">
-            <CardioMachineCreator />
+      <div className="card">
+        <header className="card-header">
+          <p className="card-header-title">Sessions Page</p>
+        </header>
+        <div className="card-content columns is-multiline is-tablet">
+          <div className="content column is-two-fifths">
+	    <div className="card">
+              <header className="card-header">
+                <p className="card-header-title">Cardio Machine Session Creator</p>
+              </header>
+	      <div className="card-content">
+                <div className="content">
+                  <CardioMachineCreator />
+                </div>
+              </div>   
+            </div>
           </div>	    
-          <div className="column is-three-fifths">
-            <CardioMachineSessions />
+          <div className="content column is-three-fifths">
+            <div className="card">
+              <header className="card-header">
+                <p className="card-header-title">Cardio Machine Session Creator</p>
+              </header>
+              <div className="card-content">
+                <div className="content">
+                  <CardioMachineSessions />
+                </div>
+              </div>
+            </div>
           </div>	    
         </div>
       </div>

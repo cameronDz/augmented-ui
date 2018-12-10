@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import '../styles/css/cardio.css';
 
 class CardioMachine extends Component {
 
@@ -69,7 +70,7 @@ class CardioMachineSessions extends Component {
     return (
       <div>
         <div><p><strong>Cardio Machine Sessions</strong></p></div>
-        <div>
+        <div className="table-wrapper">
           <table className="table is-bordered is-striped is-narrow is-fullwidth">
             <thead>
               <tr>

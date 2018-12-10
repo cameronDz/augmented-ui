@@ -5,3 +5,6 @@ div.field.is-horizontal>input.distance {
 div.field.is-horizontal>input.time-field {
     margin-right: 15px;
 }
+div.table-wrapper {
+  overflow-x: auto;
+}
