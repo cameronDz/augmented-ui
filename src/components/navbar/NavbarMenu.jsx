@@ -8,7 +8,7 @@ class NavbarMenu extends Component {
     return (
       <div id="basicNavbar" className="navbar-menu">
         <NavbarStart />
-	<NavbarEnd />
+        <NavbarEnd />
       </div>
     );
   }
