@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import SessionPage from './SessionPage';
-import Routine from './Routine';
+import Session from './Session';
 import Layout from './Layout';
 
 class Home extends Component {
@@ -8,7 +7,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <SessionPage />
+        <Session />
       </div>
     );
   }
