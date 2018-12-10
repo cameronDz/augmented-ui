@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import ExerciseDropdown from './ExerciseDropdown';
-import ExerciseCreator from './ExerciseCreator';
+import SessionPage from './SessionPage';
 import Routine from './Routine';
 import Layout from './Layout';
 
@@ -9,15 +8,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <div className="columns is-tablet">
-          <div className="column is-one-third">
-            <ExerciseDropdown />
-	    <ExerciseCreator />
-          </div>
-          <div className="column is-two-thirds">
-            <Routine />
-          </div>
-        </div>
+        <SessionPage />
       </div>
     );
   }
