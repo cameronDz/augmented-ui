@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Dropdown from './Dropdown';
+import {azure} from '../api.js';
 
 class ExerciseDropdown extends Component {
 
@@ -23,7 +24,8 @@ class ExerciseDropdown extends Component {
       return array;
     }
 
-    fetch('https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/exercises')
+    var url = azure().base + azure().version + '/api/exercises';
+    fetch(url)
       .then(response => response.json())
       .then(data => this.setState({
         exercise : processExercise(data)

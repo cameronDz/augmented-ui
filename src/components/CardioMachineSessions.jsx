@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import '../styles/css/cardio.css';
+import {azure} from  '../api.js';
 
 class CardioMachine extends Component {
 
@@ -52,7 +53,8 @@ class CardioMachineSessions extends Component {
       return array;
     }
 
-    fetch('https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/CardioMachineExercises')
+    var url = azure().base + azure().version + '/api/CardioMachineExercises';
+    fetch(url)
       .then(response => response.json())
       .then(data => this.setState({
         cardioSessions: processPayload(data)

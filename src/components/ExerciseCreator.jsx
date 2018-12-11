@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {azure} from '../api.js';
 
 class ExerciseCreator extends Component {
 
@@ -19,7 +20,7 @@ class ExerciseCreator extends Component {
       typeId: this.typeId.current.value
     }); 
 
-    var url = 'https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/exercises';
+    var url = azure().base + azure().version + '/api/exercises';
     
     var http = new XMLHttpRequest();
     http.open('POST', url, true);

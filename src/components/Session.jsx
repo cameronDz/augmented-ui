@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+import Parser from 'html-react-parser';
 import CardioMachineCreator from './CardioMachineCreator';
 import CardioMachineSessions from './CardioMachineSessions';
+import {azure} from '../api.js';
 
 class Session extends Component {
 
   render() {
+    var url = azure().base + azure().version + '/api/CardioMachineExercises?csv=csv';
+    const linkTag = '<a className="card-footer-item" ref="' + url + '" download>Download Sessions as CSV file.</a>';
+
     return (
       <div className="card">
         <header className="card-header">
@@ -35,7 +40,7 @@ class Session extends Component {
               </div>
               <footer className="card-footer">
                 <div>
-                  <a className="card-footer-item" ref='https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/CardioMachineExercises?csv=csv' download>Download Sessions as CSV file.</a>
+                  {Parser(linkTag)}
                 </div>
               </footer>
             </div>

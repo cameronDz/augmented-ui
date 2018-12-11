@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import DatePicker from "react-datepicker";
 import TimeField from 'react-simple-timefield';
 import '../styles/css/cardio.css';
+import {azure} from '../api.js';
 
 class CardioMachineCreator extends Component {
 
@@ -35,7 +36,7 @@ class CardioMachineCreator extends Component {
   handleSubmit(event) {
     document.getElementById("submitCardioBtn").disabled = true;
     event.preventDefault();
-    var url = 'https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/CardioMachineExercises'; 
+    var url = azure().base + azure().version + '/api/CardioMachineExercises'; 
     var timingArray = this.state.timing.split(':');
     var seconds = (Number(timingArray[0] * 3600) + Number(timingArray[1] * 60) + Number(timingArray[2]));
 
