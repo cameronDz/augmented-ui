@@ -33,6 +33,11 @@ class Session extends Component {
                   <CardioMachineSessions />
                 </div>
               </div>
+              <footer className="card-footer">
+                <div>
+                  <a className="card-footer-item" ref='https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/CardioMachineExercises?csv=csv' download>Download Sessions as CSV file.</a>
+                </div>
+              </footer>
             </div>
           </div>      
         </div>

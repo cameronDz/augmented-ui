@@ -87,9 +87,6 @@ class CardioMachineSessions extends Component {
             </tbody>
           </table>
         </div>
-        <div>
-          <a href='https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/CardioMachineExercises?csv=csv' download>Download Sessions as CSV file.</a>
-        </div>
       </div>
     );
   }
