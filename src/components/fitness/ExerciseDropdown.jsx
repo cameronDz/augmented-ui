@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Dropdown from '../Dropdown';
-import {azure} from '../../api.js';
+import {apis} from '../../api.js';
 
 class ExerciseDropdown extends Component {
 
@@ -24,7 +24,7 @@ class ExerciseDropdown extends Component {
       return array;
     }
 
-    var url = azure().base + azure().version + '/api/exercises';
+    var url = apis().azure + 'exercises';
     fetch(url)
       .then(response => response.json())
       .then(data => this.setState({

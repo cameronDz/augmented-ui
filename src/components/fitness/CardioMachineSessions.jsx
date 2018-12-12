@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import '../../styles/css/cardio.css';
-import {azure} from  '../../api.js';
+import {apis} from  '../../api.js';
 
 class CardioMachine extends Component {
 
@@ -53,7 +53,7 @@ class CardioMachineSessions extends Component {
       return array;
     }
 
-    var url = azure().base + azure().version + '/api/CardioMachineExercises';
+    var url = apis().azure + 'CardioMachineExercises';
     fetch(url)
       .then(response => response.json())
       .then(data => this.setState({

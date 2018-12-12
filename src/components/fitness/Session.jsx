@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import Parser from 'html-react-parser';
 import CardioMachineCreator from './CardioMachineCreator';
 import CardioMachineSessions from './CardioMachineSessions';
-import {azure} from '../../api.js';
+import {apis} from '../../api.js';
 
 class Session extends Component {
 
   render() {
-    var url = azure().base + azure().version + '/api/CardioMachineExercises?csv=csv';
+    var url = apis().azure + 'CardioMachineExercises?csv=csv';
     const linkTag = '<a className="card-footer-item" ref="' + url + '" download>Download Sessions as CSV file.</a>';
 
     return (
