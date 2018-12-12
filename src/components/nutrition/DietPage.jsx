@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import Layout from './Layout';
+import Layout from '../Layout';
 
-class Meal extends Component {
+class Diet extends Component {
 
   render() {
     return (
       <div>
         <div className="columns is-tablet">
           <div className="column">
-            <p>Track Meals here.</p>
+            <p>Track diets here.</p>
           </div>
         </div>
       </div>
@@ -17,15 +17,15 @@ class Meal extends Component {
 
 }
 
-class MealPage extends Component {
+class DietPage extends Component {
 
   render() {
     return (
       <div>
-        <Layout title = "Meals" children = {<Meal />} />
+        <Layout title = "Diets" children = {<Diet />} />
       </div>
     );
   }
 }
 
-export default MealPage;
+export default DietPage;

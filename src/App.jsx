@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import ExercisePage from './components/ExercisePage';
-import SessionPage from './components/SessionPage';
-import RoutinePage from './components/RoutinePage';
-import DietPage from './components/DietPage';
-import MealPage from './components/MealPage';
-import FoodPage from './components/FoodPage';
-import AboutPage from './components/AboutPage';
-import ContactPage from './components/ContactPage';
-import ContributePage from './components/ContributePage';
-import IssuePage from './components/IssuePage';
-import SignUpPage from './components/SignUpPage';
-import SignInPage from './components/SignInPage';
+import HomePage from './components/general/HomePage';
+import ExercisePage from './components/fitness/ExercisePage';
+import SessionPage from './components/fitness/SessionPage';
+import RoutinePage from './components/fitness/RoutinePage';
+import DietPage from './components/nutrition/DietPage';
+import MealPage from './components/nutrition/MealPage';
+import FoodPage from './components/nutrition/FoodPage';
+import AboutPage from './components/general/AboutPage';
+import ContactPage from './components/general/ContactPage';
+import ContributePage from './components/general/ContributePage';
+import IssuePage from './components/general/IssuePage';
+import SignUpPage from './components/general/SignUpPage';
+import SignInPage from './components/general/SignInPage';
 
 class App extends Component {
 

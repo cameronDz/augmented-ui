@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {heroku} from '../api.js';
+import {heroku} from '../../api.js';
 
 /*
 TODO add formatter back later

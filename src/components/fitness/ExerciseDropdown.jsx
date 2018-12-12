@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Dropdown from './Dropdown';
-import {azure} from '../api.js';
+import Dropdown from '../Dropdown';
+import {azure} from '../../api.js';
 
 class ExerciseDropdown extends Component {
 

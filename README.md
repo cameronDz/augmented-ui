@@ -32,7 +32,10 @@ augmented-frontend/
     index.js
     logo.svg
     components/
-      navbar/
+      fitness/
+      general/
+      layout/
+      nutrition/
     styles/
       css/
 ```

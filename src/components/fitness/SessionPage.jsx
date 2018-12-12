@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Session from './Session';
-import Layout from './Layout';
+import Layout from '../Layout';
 
 class SessionPage extends Component {
 

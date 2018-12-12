@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {azure} from '../api.js';
+import {azure} from '../../api.js';
 
 class ExerciseCreator extends Component {
 

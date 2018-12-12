@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Session from './Session';
-import Layout from './Layout';
+import Session from '../fitness/Session';
+import Layout from '../Layout';
 
 class Home extends Component {
 

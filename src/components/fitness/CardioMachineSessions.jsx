@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import '../styles/css/cardio.css';
-import {azure} from  '../api.js';
+import '../../styles/css/cardio.css';
+import {azure} from  '../../api.js';
 
 class CardioMachine extends Component {
 

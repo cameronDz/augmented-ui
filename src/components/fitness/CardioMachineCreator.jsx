@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import DatePicker from "react-datepicker";
 import TimeField from 'react-simple-timefield';
-import '../styles/css/cardio.css';
-import {azure} from '../api.js';
+import '../../styles/css/cardio.css';
+import {azure} from '../../api.js';
 
 class CardioMachineCreator extends Component {
 
