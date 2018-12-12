@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from '/general/Header';
-import Footer from '/general/Footer';
+import Header from './general/Header';
+import Footer from './general/Footer';
 
 class Layout extends Component {
 
