@@ -1,16 +1,15 @@
 {
   "name": "augmented-frontend",
   "version": "0.1.0",
-  "homepage": "http://augmented-frontend.s3-website-us-east-1.amazonaws.com",
+  "homepage": "http://augmented.fit",
   "private": true,
   "proxy": {
-    "/v0.2/api": {
+    "/v0.3/api": {
       "target": "https://augmentedaspnetbackend.azurewebsites.net/",
       "ws": true
     }
   },
   "dependencies": {
-    "html-react-parser": "^0.4.7",
     "react": "^16.4.2",
     "react-datepicker": "^2.0.0",
     "react-dom": "^16.4.2",

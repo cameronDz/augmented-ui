@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Parser from 'html-react-parser';
 import CardioMachineCreator from './CardioMachineCreator';
 import CardioMachineSessions from './CardioMachineSessions';
 import {apis} from '../../api.js';
@@ -8,7 +7,14 @@ class Session extends Component {
 
   render() {
     var url = apis().azure + 'CardioMachineExercises?csv=csv';
-    const linkTag = '<a className="card-footer-item" ref="' + url + '" download>Download Sessions as CSV file.</a>';
+    const linkTag = React.createElement(
+      'a',
+      {
+        className: "card-footer-item",
+        href : url
+      },
+      'Download Sessions as CSV file.'
+    );
 
     return (
       <div className="card">
@@ -40,7 +46,7 @@ class Session extends Component {
               </div>
               <footer className="card-footer">
                 <div>
-                  {Parser(linkTag)}
+                  {linkTag}
                 </div>
               </footer>
             </div>
