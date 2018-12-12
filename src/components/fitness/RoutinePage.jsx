@@ -6,13 +6,34 @@ class RoutineBase extends Component {
 
   render() {
     return (
-      <div>
-        <div className="columns is-tablet">
-          <div className="column is-one-fifth">
-            <p>Side-bar for Routine information.</p>
-          </div>
-          <div className="column is-four-fifths">
-            <Routine />
+      <div className="card">
+        <header className="card-header">
+          <p className="card-header-title">Routines Page</p>
+        </header>
+        <div className="card-content columns is-tablet">
+          <div className="content column is-one-fifth">
+            <div className="card">
+              <header className="card-header">
+                <p className="card-header-title">Routine Side Bar</p>
+              </header>
+              <div className="card-content">
+                <div className="content">
+                  <p>Side-bar for Routine information.</p>
+                </div>
+              </div>   
+            </div>
+	  </div>
+          <div className="content column is-four-fifths">
+            <div className="card">
+              <header className="card-header">
+                <p className="card-header-title">Latest Routine</p>
+              </header>
+              <div className="card-content">
+                <div className="content">
+	          <Routine />
+                </div>
+              </div>   
+            </div>	    
           </div>
         </div>
       </div>

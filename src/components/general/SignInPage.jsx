@@ -5,10 +5,17 @@ class SignIn extends Component {
 
   render() {
     return (
-      <div>
-        <div className="columns">
+      <div className="card">
+        <header className="card-header">
+          <p className="card-header-title">Sign In</p>
+        </header>
+        <div className="columns is-mobile">
           <div className="column">
-            <p>Use this page to sign into application.</p>
+	    <div className="card-content">
+              <div className="content">
+                <p>Use this page to sign into application.</p>
+              </div>
+	    </div>
           </div>
         </div>
       </div>

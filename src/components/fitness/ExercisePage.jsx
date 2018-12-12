@@ -7,13 +7,34 @@ class Exercise extends Component {
 
   render() {
     return (
-      <div>
-        <div className="columns is-tablet">
-          <div className="column is-one-half">
-            <ExerciseDropdown />
+      <div className="card">
+        <header>
+          <p className="card-header-title">Exercise Page</p>
+        </header>
+        <div className="card-content columns is-tablet">
+          <div className="content column is-one-half">
+            <div className="card">
+              <header className="card-header">
+                <p className="card-header-title">Exercise Dropdown Sample</p>
+              </header>
+              <div className="card-content">
+                <div className="content">	    
+                  <ExerciseDropdown />
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="column is-one-half">
-            <ExerciseCreator />
+          <div className="content column is-one-half">
+            <div className="card">
+              <header className="card-header">
+                <p className="card-header-title">Exercise Creator</p>
+              </header>
+              <div className="card-content">
+                <div className="content">	    
+                  <ExerciseCreator />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>

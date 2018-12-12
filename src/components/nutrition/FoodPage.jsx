@@ -5,10 +5,17 @@ class Food extends Component {
 
   render() {
     return (
-      <div>
-        <div className="columns is-tablet">
+      <div className="card">
+        <header className="card-header">
+          <p className="card-header-title">Foods</p>
+        </header>
+        <div className="columns is-mobile">
           <div className="column">
-            <p>Look up foor information here.</p>
+	    <div className="card-content">
+              <div className="content">
+                <p>Look up foor information here.</p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
