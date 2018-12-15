@@ -6,25 +6,13 @@ import {apis} from  '../../api.js';
 class CardioMachine extends Component {
 
   render() {
-
-    function getTwoDigitValue(time) {
-      var ret = (time.toString().length === 1 ? '0' + time.toString() : time.toString());
-      return ret; 
-    };
-
-    var minute = Math.floor(this.props.duration / 60);
-    var second = getTwoDigitValue(this.props.duration % 60);
     var date = this.props.startTime.split('T')[0];
-    var time = this.props.startTime.split('T')[1].substring(0,5);
 
     return (
       <tr>
+        <td>{date}</td>
         <td>{this.props.machineType}</td>
-        <td>{date} {time}</td>
-        <td>{minute}:{second}</td>
-        <td>{this.props.distance}</td>
         <td>{this.props.userName}</td>
-        <td>{this.props.comment}</td>
         <CardioMachineModalButton {...this.props} />
       </tr>
     );
@@ -73,17 +61,13 @@ class CardioMachineSessions extends Component {
 
     return (
       <div>
-        <div><p><strong>Cardio Machine Sessions</strong></p></div>
         <div className="table-wrapper">
           <table className="table is-bordered is-striped is-narrow is-fullwidth">
             <thead>
               <tr>
+                <th>Date</th>
                 <th>Machine</th>
-                <th>Date/Time</th>
-                <th>Duration (hh:mm)</th>
-                <th>Distance (miles)</th>
                 <th>User</th>
-                <th>Comment</th>
                 <th>Details</th>
               </tr>
             </thead>
