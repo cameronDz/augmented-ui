@@ -24,6 +24,7 @@ class CardioMachine extends Component {
         <td>{this.props.distance}</td>
         <td>{this.props.userName}</td>
         <td>{this.props.comment}</td>
+        <td className="detail-column"><a href="#"><i className="fas fa-info-circle"></i></a></td>
       </tr>
     );
   }
@@ -82,6 +83,7 @@ class CardioMachineSessions extends Component {
                 <th>Distance (miles)</th>
                 <th>User</th>
                 <th>Comment</th>
+                <th>Details</th>
               </tr>
             </thead>
             <tbody>
