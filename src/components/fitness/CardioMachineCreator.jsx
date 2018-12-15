@@ -72,7 +72,6 @@ class CardioMachineCreator extends Component {
   render() {
     return (
       <div>
-        <h1 className="title is-3">Enter Cardio Machine Session</h1>
         <form onSubmit={this.handleSubmit}>
           <div className="field is-horizontal">
             <label className="label" for="machineType">Machine Type &nbsp;</label>

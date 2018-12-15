@@ -25,7 +25,7 @@ class Session extends Component {
           <div className="content column is-two-fifths">
             <div className="card">
               <header className="card-header">
-                <p className="card-header-title">Cardio Machine Session Creator</p>
+                <p className="card-header-title">Create Cardio Machine Session</p>
               </header>
               <div className="card-content">
                 <div className="content">
