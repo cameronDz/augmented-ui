@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import CardioMachineModalButton from './CardioMachineModalButton';
 import '../../styles/css/cardio.css';
 import {apis} from  '../../api.js';
 
@@ -24,7 +25,7 @@ class CardioMachine extends Component {
         <td>{this.props.distance}</td>
         <td>{this.props.userName}</td>
         <td>{this.props.comment}</td>
-        <td className="detail-column"><a href="#"><i className="fas fa-info-circle"></i></a></td>
+        <CardioMachineModalButton {...this.props} />
       </tr>
     );
   }
