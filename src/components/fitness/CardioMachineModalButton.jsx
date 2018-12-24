@@ -10,14 +10,28 @@ class CardioMachineModalButton extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { open : false };
   }
+    
+  state = { 
+    show : false
+  };
+
+  static propTypes = {
+    modal: PropTypes.object,
+    children: PropTypes.node.isRequired,
+  };
+
+  static defaultProps = {
+    modal: {};
+  };
+
+  open = () => this.setState({ show: true });
+  close = () => this.setState({ show: false });
 
   render() {
 
     function getTwoDigitValue(time) {
-      var ret = (time.toString().length === 1 ? '0' + time.toString() : time.toString());
-      return ret;
+      return (time.toString().length === 1 ? '0' + time.toString() : time.toString());
     };
 
     var minute = Math.floor(this.props.duration / 60);
@@ -27,10 +41,10 @@ class CardioMachineModalButton extends Component {
 
     return (
       <td className="detail-column">
-        <button className="button" onClick={() => this.setState({open : true})}>
+        <button className="button" onClick={this.open}>
           <i className="fas fa-info-circle"></i>
         </button>
-        <Modal show={this.state.open} onClose={() => this.setState({open : false})}>
+        <Modal modal={{closeOnBlur: true, showClose: false, closeOnEsc: true}} show={this.state.show} onClose={this.close}>
           <Modal.Card>
             <Modal.Card.Head>
               <Modal.Card.Title>{this.props.machineType} - {date}</Modal.Card.Title>
