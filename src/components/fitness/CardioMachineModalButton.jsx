@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import {Modal} from 'react-bulma-components';
 import '../../styles/css/cardio.css';
 
@@ -8,10 +9,8 @@ import '../../styles/css/cardio.css';
  */  
 class CardioMachineModalButton extends Component {
 
-  constructor(props) {
-    super(props);
-  }
-    
+  // no useless constructor
+
   state = { 
     show : false
   };
@@ -22,11 +21,15 @@ class CardioMachineModalButton extends Component {
   };
 
   static defaultProps = {
-    modal: {};
+    modal: {
+      closeOnBlur: true, 
+      showClose: true, 
+      closeOnEsc: true
+    }
   };
 
-  open = () => this.setState({ show: true });
-  close = () => this.setState({ show: false });
+  openModal = () => this.setState({ show: true });
+  closeModal = () => this.setState({ show: false });
 
   render() {
 
@@ -41,14 +44,14 @@ class CardioMachineModalButton extends Component {
 
     return (
       <td className="detail-column">
-        <button className="button" onClick={this.open}>
+        <button className="button" onClick={this.openModal}>
           <i className="fas fa-info-circle"></i>
         </button>
-        <Modal modal={{closeOnBlur: true, showClose: false, closeOnEsc: true}} show={this.state.show} onClose={this.close}>
+        <Modal {...this.props.modal} show={this.state.show} onClose={this.closeModal}>
           <Modal.Card>
-            <Modal.Card.Head>
+            <header className="modal-card-head">
               <Modal.Card.Title>{this.props.machineType} - {date}</Modal.Card.Title>
-            </Modal.Card.Head>
+            </header>
             <Modal.Card.Body>
               <div>Date: {date}</div>
               <div>Time: {time}</div>
