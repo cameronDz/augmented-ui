@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from './general/Header';
 import Footer from './general/Footer';
+import '../styles/css/layout.css';
 
 class Layout extends Component {
 
@@ -17,7 +18,8 @@ class Layout extends Component {
     return (
       <div>
         <Header title = {title} />
-          {children}
+        {children}
+        <div className="spacer"></div>
         <Footer />
       </div>
     );
