@@ -44,7 +44,10 @@ class CardioMachineSessions extends Component {
     }
 
     var url = apis().azure + 'CardioMachineExercises';
-    fetch(url)
+    var pageNumber = 1;
+    var pageSize = 10;
+    var params = '?pageNumber=' + pageNumber + '&pageSize=' + pageSize;
+    fetch(url + params)
       .then(response => response.json())
       .then(data => this.setState({
         cardioSessions: processPayload(data)
