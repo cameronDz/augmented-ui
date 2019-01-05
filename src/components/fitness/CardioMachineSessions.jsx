@@ -94,7 +94,7 @@ class CardioMachineSessions extends Component {
             </tbody>
 	      </table>
         </div>
-        <CardioMachineTablePagination />
+        <CardioMachineTablePagination links={this.state.links} />
       </div>
     );
   }
