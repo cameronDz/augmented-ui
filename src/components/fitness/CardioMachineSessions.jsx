@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CardioMachineModalButton from './CardioMachineModalButton';
+import CardioMachineTablePagination from './CardioMachineTablePagination';
 import '../../styles/css/cardio.css';
 import {apis} from  '../../api.js';
 
@@ -24,28 +25,6 @@ class CardioMachine extends Component {
 
 /**
  *
- */ 
-class CardioMachineTablePagination extends Component {
-
-  render() {
-    return (
-      <div>
-	<div className="table-pagination" aria-label="pagination">
-          <a className="pagination-link">1</a>
-          <span className="pagination-ellipsis">&hellip;</span>
-          <a className="pagination-link">2</a>
-          <a className="pagination-link is-current">3</a>
-          <a className="pagination-link">4</a>
-          <span className="pagination-ellipsis">&hellip;</span>
-          <a className="pagination-link">5</a>
-        </div>
-      </div>
-    );	  
-  };
-}
-
-/**
- *
  */
 class CardioMachineSessions extends Component {
 
@@ -53,6 +32,7 @@ class CardioMachineSessions extends Component {
     super(props);
     this.state = {
       cardioSessions: [],
+      links: [],
       totalPages: 0,
       currentPage: 0
     };
@@ -84,7 +64,8 @@ class CardioMachineSessions extends Component {
       .then(data => this.setState({
         cardioSessions: processPayload(data.data),
         currentPage: data.meta._currentPage,
-        totalPages: data.meta._totalPages
+        totalPages: data.meta._totalPages,
+        links: data.links
       })
     );
   }
@@ -94,7 +75,7 @@ class CardioMachineSessions extends Component {
       return (
         <CardioMachine {...cardioMachineObjects} />
       );
-    })
+    });    
 
     return (
       <div>
@@ -111,7 +92,7 @@ class CardioMachineSessions extends Component {
             <tbody>
               {cardioMachineComponent}
             </tbody>
-	  </table>
+	      </table>
         </div>
         <CardioMachineTablePagination />
       </div>
