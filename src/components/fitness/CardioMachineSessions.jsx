@@ -23,7 +23,11 @@ class CardioMachineSessions extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {cardioSessions:[]};
+    this.state = {
+      cardioSessions: [],
+      totalPages: 0,
+      currentPage: 0
+    };
   }
 
   componentDidMount() {
@@ -50,7 +54,9 @@ class CardioMachineSessions extends Component {
     fetch(url + params)
       .then(response => response.json())
       .then(data => this.setState({
-        cardioSessions: processPayload(data.data)
+        cardioSessions: processPayload(data.data),
+        currentPage: data.meta._currentPage,
+        totalPages: data.meta._totalPages
       })
     );
   }
