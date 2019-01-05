@@ -3,6 +3,9 @@ import CardioMachineModalButton from './CardioMachineModalButton';
 import '../../styles/css/cardio.css';
 import {apis} from  '../../api.js';
 
+/**
+ *
+ */
 class CardioMachine extends Component {
 
   render() {
@@ -19,6 +22,31 @@ class CardioMachine extends Component {
   }
 }
 
+/**
+ *
+ */ 
+class CardioMachineTablePagination extends Component {
+
+  render() {
+    return (
+      <div>
+	<div className="table-pagination" aria-label="pagination">
+          <a className="pagination-link">1</a>
+          <span className="pagination-ellipsis">&hellip;</span>
+          <a className="pagination-link">2</a>
+          <a className="pagination-link is-current">3</a>
+          <a className="pagination-link">4</a>
+          <span className="pagination-ellipsis">&hellip;</span>
+          <a className="pagination-link">5</a>
+        </div>
+      </div>
+    );	  
+  };
+}
+
+/**
+ *
+ */
 class CardioMachineSessions extends Component {
 
   constructor(props) {
@@ -85,15 +113,7 @@ class CardioMachineSessions extends Component {
             </tbody>
 	  </table>
         </div>
-        <div className="table-pagination" aria-label="pagination">
-          <a className="pagination-link">1</a>
-          <span className="pagination-ellipsis">&hellip;</span>
-          <a className="pagination-link">2</a>
-          <a className="pagination-link is-current">3</a>
-          <a className="pagination-link">4</a>
-          <span className="pagination-ellipsis">&hellip;</span>
-          <a className="pagination-link">5</a>
-        </div>
+        <CardioMachineTablePagination />
       </div>
     );
   }
