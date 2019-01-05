@@ -50,7 +50,7 @@ class CardioMachineSessions extends Component {
     fetch(url + params)
       .then(response => response.json())
       .then(data => this.setState({
-        cardioSessions: processPayload(data)
+        cardioSessions: processPayload(data.data)
       })
     );
   }

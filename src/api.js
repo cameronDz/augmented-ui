@@ -4,7 +4,7 @@
  */
 export const apis = () => {
   var api = {};
-  api.azure = 'https://augmentedaspnetbackend.azurewebsites.net/v0.3/api/';
+  api.azure = 'https://augmentedaspnetbackend.azurewebsites.net/v0.4/api/';
   api.heroku = 'https://desolate-caverns-35920.herokuapp.com/v0.1/';
   return api;
 }
