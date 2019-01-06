@@ -15,17 +15,21 @@ class CardioMachineTablePagination extends Component {
     super(props);
   };
 
+  onPaginationClick(link) {
+    console.log(link);
+  };
+
   render() {
     return(
       <div>
-	    <div className="table-pagination" aria-label="pagination">
-          <a href={this.props.links.first} className="pagination-link">1</a>
+          <div className="table-pagination" aria-label="pagination">
+          <a onClick={() => this.onPaginationClick(this.props.links.first)} className="pagination-link">1</a>
           <span className="pagination-ellipsis">&hellip;</span>
-          <a href={this.props.links.prev} className="pagination-link">2</a>
+          <a onClick={() => this.onPaginationClick(this.props.links.prev)} className="pagination-link">2</a>
           <a className="pagination-link is-current">3</a>
-          <a href={this.props.links.next} className="pagination-link">4</a>
+          <a onClick={() => this.onPaginationClick(this.props.links.next)} className="pagination-link">4</a>
           <span className="pagination-ellipsis">&hellip;</span>
-          <a href={this.props.links.last} className="pagination-link">5</a>
+          <a onClick={() => this.onPaginationClick(this.props.links.last)} className="pagination-link">5</a>
         </div>
       </div>
     );
