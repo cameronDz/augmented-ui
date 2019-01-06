@@ -1,16 +1,21 @@
 import React, { Component } from 'react';
 
 /**
- * 
+ *
  */
-class CardioMachineTablePagination extends Component {
-    
-  /**
-   * Expected props;
-   * links: ["self": "", "first": "", "last": "", "prev": "", "next": ""]
-   * currentPage: int
-   * totalPages: int
-   */
+class PageEllipsis extends Component {
+  render() {
+    return (
+      <span className="pagination-ellipsis">&hellip;</span>
+    );
+  };
+}
+
+/**
+ *
+ */
+class PageButton extends Component {
+
   constructor(props) {
     super(props);
   };
@@ -44,16 +49,40 @@ class CardioMachineTablePagination extends Component {
   };
 
   render() {
+    return (
+      <a className="pagination-link" onClick={() => this.onPaginationClick(this.props.pageLink)}>
+        {this.props.pageNumber}
+      </a>
+    );
+  }
+}
+
+/**
+ * 
+ */
+class CardioMachineTablePagination extends Component {
+    
+  /**
+   * Expected props;
+   * links: ["self": "", "first": "", "last": "", "prev": "", "next": ""]
+   * currentPage: int
+   * totalPages: int
+   */
+  constructor(props) {
+    super(props);
+  };
+
+  render() {
     return(
       <div>
           <div className="table-pagination" aria-label="pagination">
-          <a onClick={() => this.onPaginationClick(this.props.links.first)} className="pagination-link">1</a>
-          <span className="pagination-ellipsis">&hellip;</span>
-          <a onClick={() => this.onPaginationClick(this.props.links.prev)} className="pagination-link">2</a>
+          <PageButton pageLink={this.props.links.first} pageNumber="1" />
+          <PageEllipsis />
+          <PageButton pageLink={this.props.links.prev} pageNumber="2" />
           <a className="pagination-link is-current">3</a>
-          <a onClick={() => this.onPaginationClick(this.props.links.next)} className="pagination-link">4</a>
-          <span className="pagination-ellipsis">&hellip;</span>
-          <a onClick={() => this.onPaginationClick(this.props.links.last)} className="pagination-link">5</a>
+          <PageButton pageLink={this.props.links.next} pageNumber="4" />
+          <PageEllipsis />
+          <PageButton pageLink={this.props.links.last} pageNumber="5" />
         </div>
       </div>
     );
