@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 /**
- *
+ * Triple dot between buttons when multiple pages inbetween next button.
  */
 class PageEllipsis extends Component {
   render() {
@@ -12,7 +12,10 @@ class PageEllipsis extends Component {
 }
 
 /**
- *
+ * 
+ * @prop links Array of Strings
+ * @prop currentPage 
+ * @prop totalPages
  */
 class PageButton extends Component {
 
@@ -62,6 +65,9 @@ class PageButton extends Component {
 
 /**
  * 
+ * @prop links Array of Strings
+ * @prop currentPage 
+ * @prop totalPages
  */
 class CardioMachineTablePagination extends Component {
     
@@ -77,10 +83,10 @@ class CardioMachineTablePagination extends Component {
     } else if(this.props.totalPages >= 4 && this.props.currentPage === 1) {
       pager = (
         <div className="table-pagination" aria-label="pagination">	      
-          <PageButton pageLink={this.props.links.first} pageNumber="1" />
-          <PageButton pageLink={this.props.links.next} pageNumber="2" />
+          <PageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber="1" />
+          <PageButton pageLink={this.props.links.next} currentPage={this.props.currentPage} pageNumber="2" />
           <PageEllipsis />
-          <PageButton pageLink={this.props.links.last} pageNumber={this.props.totalPages} />	      
+          <PageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />	      
         </div>	      
       );	      
     }	    
