@@ -72,7 +72,12 @@ class CardioMachineTablePagination extends Component {
   render() {
     let pager;	  
 
-    if(this.props.totalPages === 1) {
+    if (this.props.totalPages === 0 ) {
+      pager = (
+        <div className="table-pagination" aria-label="pagination">
+        </div>
+      );
+    } else if(this.props.totalPages === 1) {
       pager = (
         <div className="table-pagination" aria-label="pagination">      
           <PageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} /> 
