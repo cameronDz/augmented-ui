@@ -9,6 +9,7 @@ Pull the application down, and run the following commands:
 ```javascript
 npm install
 npm install react-bulma-components
+npm install --save react-redux
 ```
 
 ## npm - Commands for Application ##
