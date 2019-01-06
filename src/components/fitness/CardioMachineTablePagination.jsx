@@ -73,11 +73,35 @@ class CardioMachineTablePagination extends Component {
     let pager;	  
 
     if(this.props.totalPages === 1) {
-      // one logic
+      pager = (
+        <div className="table-pagination" aria-label="pagination">      
+          <PageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} /> 
+        </div>            
+      );        
     } else if(this.props.totalPages === 2) {
-      // two logic
+      pager = (
+        <div className="table-pagination" aria-label="pagination">      
+          <PageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} /> 
+          <PageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />  
+        </div>     
+      );               
     } else if(this.props.totalPages === 3) {
-      // three logic	    
+      let linkTwo;
+      if(this.props.currentPage === 1) {
+        linkTwo = this.props.links.next;
+      } else if (this.props.currentPage === 3) {
+        linkTwo = this.props.links.prev;
+      } else {
+        linkTwo = this.props.links.self;
+      }
+      
+      pager = (
+        <div className="table-pagination" aria-label="pagination">      
+          <PageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} /> 
+          <PageButton pageLink={linkTwo} currentPage={this.props.currentPage} pageNumber={2} /> 
+          <PageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />  
+        </div>     
+      );   
     } else if(this.props.totalPages >= 4 && this.props.currentPage === 1) {
       pager = (
         <div className="table-pagination" aria-label="pagination">	      
@@ -87,7 +111,35 @@ class CardioMachineTablePagination extends Component {
           <PageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />	      
         </div>	      
       );	      
-    }	    
+    } else if(this.props.totalPages >= 4 && this.props.currentPage === this.props.totalPages) {
+      pager = (
+        <div className="table-pagination" aria-label="pagination">        
+          <PageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} />
+          <PageEllipsis />
+          <PageButton pageLink={this.props.links.prev} currentPage={this.props.currentPage} pageNumber={this.props.totalPages - 1} />
+          <PageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />       
+        </div>        
+      );        
+    } else if (this.props.totalPages === 4) {
+      let linkTwo;
+      let linkThree;
+      if(this.props.currentPage === 2) {
+        linkTwo = this.props.links.self;
+        linkThree = this.props.links.next;
+      } else {
+        linkTwo = this.props.links.prev;
+        linkThree = this.props.links.self;
+      } 
+      
+      pager = (
+        <div className="table-pagination" aria-label="pagination">        
+          <PageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} />
+          <PageButton pageLink={linkTwo} currentPage={this.props.currentPage} pageNumber={2} />
+          <PageButton pageLink={linkThree} currentPage={this.props.currentPage} pageNumber={3} />
+          <PageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={4} />       
+        </div>        
+      );  
+    }
 
     return(
       <div>
