@@ -15,8 +15,32 @@ class CardioMachineTablePagination extends Component {
     super(props);
   };
 
+  processPayload(payLoad)  {
+    var array = [];
+    for(var i = 0; i < payLoad.length; i++) {
+      var counter = payLoad[i];
+      var obj = {};
+      obj.machineType = counter.machineType;
+      obj.startTime = counter.startTime;
+      obj.duration = counter.durationSeconds;
+      obj.distance = counter.distanceMiles;
+      obj.userName = counter.userName;
+      obj.comment = counter.comment;
+      array.push(obj);
+    }
+    return array;
+  }
+
   onPaginationClick(link) {
-    console.log(link);
+    fetch(link)
+      .then(response => response.json())
+      .then(data => this.setState({
+        cardioSessions: this.processPayload(data.data),
+        currentPage: data.meta._currentPage,
+        totalPages: data.meta._totalPages,
+        links: data.links
+      })
+    );
   };
 
   render() {
