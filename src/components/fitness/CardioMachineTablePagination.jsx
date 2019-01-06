@@ -48,12 +48,10 @@ class PageButton extends Component {
   };
 
   render() {
-    let classValues;
+    let classValues = "pagination-link";
     if(this.props.currentPage === this.props.pageNumber) {
-      classValues = "pagination-link is-current";
-    } else { 
-      classValues = "pagination-link";
-    }	    
+      classValues += " is-current";
+    }
 
     return (
       <a className={classValues} onClick={() => this.onPaginationClick(this.props.pageLink)}>
@@ -83,8 +81,8 @@ class CardioMachineTablePagination extends Component {
     } else if(this.props.totalPages >= 4 && this.props.currentPage === 1) {
       pager = (
         <div className="table-pagination" aria-label="pagination">	      
-          <PageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber="1" />
-          <PageButton pageLink={this.props.links.next} currentPage={this.props.currentPage} pageNumber="2" />
+          <PageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} />
+          <PageButton pageLink={this.props.links.next} currentPage={this.props.currentPage} pageNumber={2} />
           <PageEllipsis />
           <PageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />	      
         </div>	      
