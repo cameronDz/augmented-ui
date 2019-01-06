@@ -3,10 +3,18 @@ Web site live at [http://www.augmented.fit](http://www.augmented.fit). Live webs
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app). <br/> 
 Link for some information on how to perform common tasks [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+## Installing locally ##
+Pull the application down, and run the following commands:
+
+```javascript
+npm install
+npm install react-bulma-components
+```
+
 ## npm - Commands for Application ##
 The following three commands are used for building, testing, and deploying the application.
 
-```
+```javascript
 npm run build
 npm run start
 npm run deploy
