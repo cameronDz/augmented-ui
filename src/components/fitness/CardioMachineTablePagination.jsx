@@ -16,10 +16,6 @@ class PageEllipsis extends Component {
  */
 class PageButton extends Component {
 
-  constructor(props) {
-    super(props);
-  };
-
   processPayload(payLoad)  {
     var array = [];
     for(var i = 0; i < payLoad.length; i++) {
@@ -49,8 +45,15 @@ class PageButton extends Component {
   };
 
   render() {
+    let classValues;
+    if(this.props.currentPage === this.props.pageNumber) {
+      classValues = "pagination-link is-current";
+    } else { 
+      classValues = "pagination-link";
+    }	    
+
     return (
-      <a className="pagination-link" onClick={() => this.onPaginationClick(this.props.pageLink)}>
+      <a className={classValues} onClick={() => this.onPaginationClick(this.props.pageLink)}>
         {this.props.pageNumber}
       </a>
     );
@@ -62,28 +65,29 @@ class PageButton extends Component {
  */
 class CardioMachineTablePagination extends Component {
     
-  /**
-   * Expected props;
-   * links: ["self": "", "first": "", "last": "", "prev": "", "next": ""]
-   * currentPage: int
-   * totalPages: int
-   */
-  constructor(props) {
-    super(props);
-  };
-
   render() {
+    let pager;	  
+
+    if(this.props.totalPages === 1) {
+      // one logic
+    } else if(this.props.totalPages === 2) {
+      // two logic
+    } else if(this.props.totalPages === 3) {
+      // three logic	    
+    } else if(this.props.totalPages >= 4 && this.props.currentPage === 1) {
+      pager = (
+        <div className="table-pagination" aria-label="pagination">	      
+          <PageButton pageLink={this.props.links.first} pageNumber="1" />
+          <PageButton pageLink={this.props.links.next} pageNumber="2" />
+          <PageEllipsis />
+          <PageButton pageLink={this.props.links.last} pageNumber={this.props.totalPages} />	      
+        </div>	      
+      );	      
+    }	    
+
     return(
       <div>
-          <div className="table-pagination" aria-label="pagination">
-          <PageButton pageLink={this.props.links.first} pageNumber="1" />
-          <PageEllipsis />
-          <PageButton pageLink={this.props.links.prev} pageNumber="2" />
-          <a className="pagination-link is-current">3</a>
-          <PageButton pageLink={this.props.links.next} pageNumber="4" />
-          <PageEllipsis />
-          <PageButton pageLink={this.props.links.last} pageNumber="5" />
-        </div>
+        {pager}
       </div>
     );
   };
