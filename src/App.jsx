@@ -13,6 +13,7 @@ import ContributePage from './components/general/ContributePage';
 import IssuePage from './components/general/IssuePage';
 import SignUpPage from './components/general/SignUpPage';
 import SignInPage from './components/general/SignInPage';
+import { connect } from 'react-redux';
 
 class App extends Component {
 
@@ -39,4 +40,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default connect() (App);
