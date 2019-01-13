@@ -13,9 +13,19 @@ import ContributePage from './components/general/ContributePage';
 import IssuePage from './components/general/IssuePage';
 import SignUpPage from './components/general/SignUpPage';
 import SignInPage from './components/general/SignInPage';
+
 import { connect } from 'react-redux';
+import { simpleAction } from '/actions/simpleAction';
 
 class App extends Component {
+
+  const mapStateToProps = state => ({
+    ...state
+  });
+
+  const mapDispatchToProps = dispatch => ({
+    simpleAction: () => dispatch(simpleAction())
+  });
 
   render() {
     return (
@@ -40,4 +50,4 @@ class App extends Component {
   }
 }
 
-export default connect() (App);
+export default connect(mapStateToProps, mapDispatchToProps) (App);
