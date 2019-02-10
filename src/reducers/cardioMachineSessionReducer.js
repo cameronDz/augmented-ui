@@ -1,7 +1,9 @@
+import initialState from './initialState';
+
 /**
  *
  */
-export default (state = {}, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case 'SIMPLE_ACTION':
       return {
@@ -11,4 +13,3 @@ export default (state = {}, action) => {
       return state;
   }
 }
-
