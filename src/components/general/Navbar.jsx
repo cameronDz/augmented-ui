@@ -4,21 +4,30 @@ import { Link } from 'react-router-dom';
 class Navbar extends Component {
 
   componentDidMount() {
+    // get elements to be dropdowns 
+    let fitnessButton = document.getElementById('fitnessNavbarButton');
+    let nutritionButton = document.getElementById('nutritionNavbarButton');
+    let moreButton = document.getElementById('moreNavbarButton');
+
+    // create function for deactivating all dropdowns
+    function deactivateDropdowns() {
+      fitnessButton.nextElementSibling.style.display = "none";
+      nutritionButton.nextElementSibling.style.display = "none";
+      moreButton.nextElementSibling.style.display = "none";
+    };
+
+    // create listener for that shows and hides drop downs
     function buttonListener(event) {
       event.preventDefault();
       this.classList.toggle("active", true);
       let items = this.nextElementSibling;
       if(items.style.display === "none") {
+        deactivateDropdowns();
         items.style.display = "block";
       } else {
         items.style.display = "none";
       }
     };
-
-    // get elements to be dropdowns 
-    let fitnessButton = document.getElementById('fitnessNavbarButton');
-    let nutritionButton = document.getElementById('nutritionNavbarButton');
-    let moreButton = document.getElementById('moreNavbarButton');
 
     // add listeners to dropdowns 
     fitnessButton.addEventListener("click", buttonListener);
@@ -26,9 +35,7 @@ class Navbar extends Component {
     moreButton.addEventListener("click", buttonListener);
 
     // deactivate dropdowns on init
-    fitnessButton.nextElementSibling.style.display = "none";
-    nutritionButton.nextElementSibling.style.display = "none";
-    moreButton.nextElementSibling.style.display = "none";
+    deactivateDropdowns();
   };
 
   /**
