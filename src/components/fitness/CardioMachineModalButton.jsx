@@ -16,8 +16,7 @@ class CardioMachineModalButton extends Component {
   };
 
   static propTypes = {
-    modal: PropTypes.object,
-    children: PropTypes.node.isRequired,
+    modal: PropTypes.object
   };
 
   static defaultProps = {
