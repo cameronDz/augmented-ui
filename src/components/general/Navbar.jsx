@@ -1,19 +1,45 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import '../../styles/css/navbar.css';
 
 class Navbar extends Component {
+
+  componentDidMount() {
+    function buttonListener(event) {
+      console.log('testtesttrest');
+      event.preventDefault();
+      this.classList.toggle("active", true);
+      let items = this.nextElementSibling;
+      if(items.style.display === "none") {
+        items.style.display = "block";
+      } else {
+        items.style.display = "none";
+      }
+    };
+
+    // get elements to be dropdowns 
+    let fitnessButton = document.getElementsByClassName('#fitnessNavbarButton');
+    let nutritionButton = document.getElementsByClassName('#nutritionNavbarButton');
+    let moreButton = document.getElementsByClassName('#moreNavbarButton');
+
+    // add listeners to dropdowns 
+    fitnessButton.addEventListener("click", buttonListener);
+    nutritionButton.addEventListener("click", buttonListener);
+    moreButton.addEventListener("click", buttonListener);
+  };
 
   /**
    * Click handler for main burger menu.
    */
   handleBurgerClick = () => {
     document.querySelector('.navbar-menu').classList.toggle('is-active');
-  }
+  };
 
   /**
    * Click handler for fitness dropdown.
    */
   handleFitnessClick = () => {
+    let fitnessBar = document.getElementsByClassName('#fitnessNavbarItems');
     // TODO add is-active logic
     console.log('handleFitnessClick');
   }
@@ -22,6 +48,7 @@ class Navbar extends Component {
    * Click handler for nutrition dropdown.
    */
   handleNutritionClick = () => {
+    let nutritionBar = document.getElementsByClassName('#nutritionNavbarItems');
     // TODO add is-active logic
     console.log('handleNutritionClick');
   }
@@ -30,6 +57,7 @@ class Navbar extends Component {
    * Click handler for more dropdown.
    */
   handleMoreClick = () => {
+    let moreBar = document.getElementsByClassName('#moreNavbarItems');
     // TODO add is-active logic
     console.log('handleMoreClick');
   }
@@ -51,24 +79,24 @@ class Navbar extends Component {
           <div className="navbar-start">
             <div className="navbar-item"><Link to="/">Home</Link></div>
             <div className="navbar-item has-dropdown is-hoverable">
-              <div className="navbar-link" data-targets="fitnessNavbar" onClick={this.handleFitnessClick}>Fitness</div>
-              <div id="fitnessNavbar" className="navbar-dropdown">
+              <div id="fitnessNavbarButton" className="navbar-link" data-targets="fitnessNavbar" onClick={this.handleFitnessClick}>Fitness</div>
+              <div id="fitnessNavbarItems" className="navbar-dropdown">
                 <div className="navbar-item"><Link to="/exercise">Exercises</Link></div>
                 <div className="navbar-item"><Link to="/session">Sessions</Link></div>
                 <div className="navbar-item"><Link to="/routine">Routines</Link></div>
               </div>
             </div>
             <div className="navbar-item has-dropdown is-hoverable">
-              <div className="navbar-link" data-targets="nutritionNavbar" onClick={this.handleNutritionClick}>Nutrition</div>
-              <div id="nutritionNavbar" className="navbar-dropdown">
+              <div id="nutritionNavbarButton" className="navbar-link" data-targets="nutritionNavbar" onClick={this.handleNutritionClick}>Nutrition</div>
+              <div id="nutritionNavbarItems" className="navbar-dropdown">
                 <div className="navbar-item"><Link to="/diet">Diets</Link></div>
                 <div className="navbar-item"><Link to="/meal">Meals</Link></div>
                 <div className="navbar-item"><Link to='/food'>Foods</Link></div>
               </div>
             </div>
             <div className="navbar-item has-dropdown is-hoverable">
-              <div className="navbar-link" data-targets="moreNavbar" onClick={this.handleMoreClick}>More</div>
-              <div id="moreNavbar" className="navbar-dropdown">
+              <div id="moreNavbarButton" className="navbar-link" data-targets="moreNavbar" onClick={this.handleMoreClick}>More</div>
+              <div id="moreNavbarItems" className="navbar-dropdown">
                 <div className="navbar-item"><Link to='/about'>About</Link></div>
                 <div className="navbar-item"><Link to='/contact'>Contact</Link></div>
                 <div className="navbar-item"><Link to='/contribute'>Contribute</Link></div>
