@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 /**
  * Triple dot between buttons when multiple pages inbetween next button.
  */
 class PageEllipsis extends Component {
-  render() {
+  render() {  
     return (
       <span className="pagination-ellipsis">&hellip;</span>
     );
   };
-}
+};
 
 /**
  * 
@@ -20,6 +21,7 @@ class PageEllipsis extends Component {
 class PageButton extends Component {
 
   processPayload(payLoad)  {
+    console.log("cardioState: " + this.props.cardioState);
     var array = [];
     for(var i = 0; i < payLoad.length; i++) {
       var counter = payLoad[i];
@@ -216,6 +218,10 @@ class CardioMachineTablePagination extends Component {
       </div>
     );
   };
-}
+};
 
-export default CardioMachineTablePagination;
+const mapStateToProps = state =>  ({
+  cardioState: state.cardioMachineSessionState
+});
+
+export default connect(mapStateToProps, null)(CardioMachineTablePagination);

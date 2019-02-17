@@ -7,6 +7,6 @@ import cardioMachineSessionReducer from './cardioMachineSessionReducer';
  */
 export default combineReducers({
   simple: simpleReducer,
-  cardioMachineSessios: cardioMachineSessionReducer
+  cardioMachineSessions: cardioMachineSessionReducer
 });
   
