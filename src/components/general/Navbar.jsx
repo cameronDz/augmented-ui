@@ -38,50 +38,50 @@ class Navbar extends Component {
     return (
       <nav className="navbar" aria-label="main navigation">
         <div className="navbar-brand">
-          <a className="navbar-item">
+          <div className="navbar-item">
             <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="bulma-logo" />
-          </a>  
-          <a role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="basicNavbar" onClick={this.handleBurgerClick}>
+          </div>  
+          <div role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="basicNavbar" onClick={this.handleBurgerClick}>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span> 
             <span aria-hidden="true"></span>
-          </a>
+          </div>
         </div>
         <div id="basicNavbar" className="navbar-menu">
           <div className="navbar-start">
-            <a className="navbar-item"><Link to="/">Home</Link></a>
+            <div className="navbar-item"><Link to="/">Home</Link></div>
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link" data-targets="fitnessNavbar" onclick={this.handleFitnessClick}>Fitness</a>
+              <div className="navbar-link" data-targets="fitnessNavbar" onClick={this.handleFitnessClick}>Fitness</div>
               <div id="fitnessNavbar" className="navbar-dropdown">
-                <a className="navbar-item"><Link to="/exercise">Exercises</Link></a>
-                <a className="navbar-item"><Link to="/session">Sessions</Link></a>
-                <a className="navbar-item"><Link to="/routine">Routines</Link></a>
+                <div className="navbar-item"><Link to="/exercise">Exercises</Link></div>
+                <div className="navbar-item"><Link to="/session">Sessions</Link></div>
+                <div className="navbar-item"><Link to="/routine">Routines</Link></div>
               </div>
             </div>
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link" data-targets="nutritionNavbar" onclick={this.handleNutritionClick}>Nutrition</a>
+              <div className="navbar-link" data-targets="nutritionNavbar" onClick={this.handleNutritionClick}>Nutrition</div>
               <div id="nutritionNavbar" className="navbar-dropdown">
-                <a className="navbar-item"><Link to="/diet">Diets</Link></a>
-                <a className="navbar-item"><Link to="/meal">Meals</Link></a>
-                <a className="navbar-item"><Link to='/food'>Foods</Link></a>
+                <div className="navbar-item"><Link to="/diet">Diets</Link></div>
+                <div className="navbar-item"><Link to="/meal">Meals</Link></div>
+                <div className="navbar-item"><Link to='/food'>Foods</Link></div>
               </div>
             </div>
             <div className="navbar-item has-dropdown is-hoverable">
-              <a className="navbar-link" data-targets="moreNavbar" onclick={this.handleMoreClick}>More</a>
+              <div className="navbar-link" data-targets="moreNavbar" onClick={this.handleMoreClick}>More</div>
               <div id="moreNavbar" className="navbar-dropdown">
-                <a className="navbar-item"><Link to='/about'>About</Link></a>
-                <a className="navbar-item"><Link to='/contact'>Contact</Link></a>
-                <a className="navbar-item"><Link to='/contribute'>Contribute</Link></a>
+                <div className="navbar-item"><Link to='/about'>About</Link></div>
+                <div className="navbar-item"><Link to='/contact'>Contact</Link></div>
+                <div className="navbar-item"><Link to='/contribute'>Contribute</Link></div>
                 <hr className="navbar-divider" />
-                <a className="navbar-item"><Link to='/issue'>Report an issue</Link></a>
+                <div className="navbar-item"><Link to='/issue'>Report an issue</Link></div>
               </div>
             </div>
           </div>
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <a className="button is-light"><Link to="/signup"><strong>Sign up</strong></Link></a>
-                <a className="button is-light"><Link to="/signin"><strong>Sign In</strong></Link></a>
+                <div className="button is-light"><Link to="/signup"><strong>Sign up</strong></Link></div>
+                <div className="button is-light"><Link to="/signin"><strong>Sign In</strong></Link></div>
               </div>
             </div>
           </div>

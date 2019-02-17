@@ -55,11 +55,11 @@ class CardioMachineSessions extends Component {
   };
 
   /**
-   * Renders the sessions as a table row.
+   * Renders the sessions as a table rows in a table body element.
    */
   renderData() {
     const cardioMachineSessionTableRow = this.state.cardioSessions.map(
-      (index, element) => {
+      (element, index) => {
         let date = element.startTime.split('T')[0];
         return (
           <tr key={index}>
@@ -71,7 +71,11 @@ class CardioMachineSessions extends Component {
         );
     }); 
 
-    return ({cardioMachineSessionTableRow});
+    return (
+      <tbody>
+        {cardioMachineSessionTableRow}
+      </tbody>
+    );
   };
 
   /**
@@ -90,10 +94,8 @@ class CardioMachineSessions extends Component {
                 <th>Details</th>
               </tr>
             </thead>
-            <tbody>
-              {this.renderData()}
-            </tbody>
-	      </table>
+            {this.renderData()}
+	  </table>
         </div>
         <CardioMachineTablePagination links={this.state.links} currentPage={this.state.currentPage} totalPages={this.state.totalPages} />
       </div>
@@ -101,4 +103,4 @@ class CardioMachineSessions extends Component {
   }
 }
 
-export default CardioMachineSessions;
+export default CardioMachineSessions

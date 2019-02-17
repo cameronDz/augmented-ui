@@ -74,7 +74,7 @@ class CardioMachineCreator extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div className="field is-horizontal">
-            <label className="label" for="machineType">Machine Type &nbsp;</label>
+            <label className="label" htmlFor="machineType">Machine Type &nbsp;</label>
             <input className="input" 
                    name="machineType" 
                    type="text" 
@@ -84,7 +84,7 @@ class CardioMachineCreator extends Component {
           </div>
 
           <div className="field is-horizontal">
-	          <label className="label" for="startDate">Date &nbsp;</label>
+	          <label className="label" htmlFor="startDate">Date &nbsp;</label>
 	          <DatePicker selected={this.state.startDate}
                         onChange={this.handleDateChange}
                         showTimeSelect
@@ -98,10 +98,10 @@ class CardioMachineCreator extends Component {
             <label className="label">Duration &nbsp;</label>
             <TimeField className="time-field"
                        value={this.state.timing}
-                       showSeconds="true"
+                       showSeconds={true}
                        style={{width:80, height:25}}
                        onChange={this.handleTimeChange} /> 
-            <label className="label" for="distanceMiles">Distance (miles) &nbsp;</label>
+            <label className="label" htmlFor="distanceMiles">Distance (miles) &nbsp;</label>
             <input className="distance" 
                    name="distanceMiles" 
                    type="number" 
@@ -111,7 +111,7 @@ class CardioMachineCreator extends Component {
           </div>
           
           <div className="field is-horizontal">
-            <label className="label" for="userName">User &nbsp;</label>
+            <label className="label" htmlFor="userName">User &nbsp;</label>
             <input className="input" 
                    name="userName" 
                    type="text" 
@@ -121,7 +121,7 @@ class CardioMachineCreator extends Component {
           </div>
           
           <div className="field">
-            <label className="label" for="comment">Comment &nbsp;</label>
+            <label className="label" htmlFor="comment">Comment &nbsp;</label>
             <textarea className="textarea" 
                       name="comment" 
                       type="textarea" 
