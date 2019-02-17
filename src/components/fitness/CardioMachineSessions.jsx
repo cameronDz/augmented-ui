@@ -5,26 +5,7 @@ import '../../styles/css/cardio.css';
 import {apis} from  '../../api.js';
 
 /**
- *
- */
-class CardioMachine extends Component {
-
-  render() {
-    var date = this.props.startTime.split('T')[0];
-
-    return (
-      <tr>
-        <td>{date}</td>
-        <td>{this.props.machineType}</td>
-        <td>{this.props.userName}</td>
-        <CardioMachineModalButton {...this.props} />
-      </tr>
-    );
-  }
-}
-
-/**
- *
+ * Display of cardio machine sessions on a table.
  */
 class CardioMachineSessions extends Component {
 
@@ -38,6 +19,9 @@ class CardioMachineSessions extends Component {
     };
   }
 
+  /**
+   * 
+   */
   componentDidMount() {
     function  processPayload(payLoad)  {
       var array = [];
@@ -53,7 +37,7 @@ class CardioMachineSessions extends Component {
         array.push(obj);
       }
       return array;
-    }
+    };
 
     var url = apis().azure + 'CardioMachineExercises';
     var pageNumber = 1;
@@ -70,19 +54,32 @@ class CardioMachineSessions extends Component {
     );
   };
 
+  /**
+   * Renders the sessions as a table row.
+   */
   renderData() {
-    return (
-      <div></div>
-    );
+    var date = this.props.startTime.split('T')[0];
+
+    const cardioMachineSessionTableRow = this.state.cardioSessions.map(
+      (index, element) => {
+        let date = element.startTime.split('T')[0];
+        return (
+          <tr key={index}>
+            <td>{date}</td>
+            <td>{element.machineType}</td>
+            <td>{element.userName}</td>
+            <CardioMachineModalButton {...element} />
+          </tr>
+        );
+    }); 
+
+    return ({cardioMachineSessionTableRow});
   };
 
+  /**
+   * Component UI display.
+   */
   render() {
-    const cardioMachineComponent = this.state.cardioSessions.map(cardioMachineObjects => {
-      return (
-        <CardioMachine {...cardioMachineObjects} />
-      );
-    });    
-
     return (
       <div>
         <div className="table-wrapper">
@@ -96,7 +93,7 @@ class CardioMachineSessions extends Component {
               </tr>
             </thead>
             <tbody>
-              {cardioMachineComponent}
+              {this.renderData()}
             </tbody>
 	      </table>
         </div>
