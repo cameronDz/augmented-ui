@@ -1,12 +1,10 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
-import '../../styles/css/navbar.css';
 
 class Navbar extends Component {
 
   componentDidMount() {
     function buttonListener(event) {
-      console.log('testtesttrest');
       event.preventDefault();
       this.classList.toggle("active", true);
       let items = this.nextElementSibling;
@@ -18,14 +16,19 @@ class Navbar extends Component {
     };
 
     // get elements to be dropdowns 
-    let fitnessButton = document.getElementsByClassName('#fitnessNavbarButton');
-    let nutritionButton = document.getElementsByClassName('#nutritionNavbarButton');
-    let moreButton = document.getElementsByClassName('#moreNavbarButton');
+    let fitnessButton = document.getElementById('fitnessNavbarButton');
+    let nutritionButton = document.getElementById('nutritionNavbarButton');
+    let moreButton = document.getElementById('moreNavbarButton');
 
     // add listeners to dropdowns 
     fitnessButton.addEventListener("click", buttonListener);
     nutritionButton.addEventListener("click", buttonListener);
     moreButton.addEventListener("click", buttonListener);
+
+    // deactivate dropdowns on init
+    fitnessButton.nextElementSibling.style.display = "none";
+    nutritionButton.nextElementSibling.style.display = "none";
+    moreButton.nextElementSibling.style.display = "none";
   };
 
   /**
@@ -34,33 +37,6 @@ class Navbar extends Component {
   handleBurgerClick = () => {
     document.querySelector('.navbar-menu').classList.toggle('is-active');
   };
-
-  /**
-   * Click handler for fitness dropdown.
-   */
-  handleFitnessClick = () => {
-    let fitnessBar = document.getElementsByClassName('#fitnessNavbarItems');
-    // TODO add is-active logic
-    console.log('handleFitnessClick');
-  }
-
-  /**
-   * Click handler for nutrition dropdown.
-   */
-  handleNutritionClick = () => {
-    let nutritionBar = document.getElementsByClassName('#nutritionNavbarItems');
-    // TODO add is-active logic
-    console.log('handleNutritionClick');
-  }
-
-  /**
-   * Click handler for more dropdown.
-   */
-  handleMoreClick = () => {
-    let moreBar = document.getElementsByClassName('#moreNavbarItems');
-    // TODO add is-active logic
-    console.log('handleMoreClick');
-  }
 
   render() {
     return (
@@ -79,7 +55,7 @@ class Navbar extends Component {
           <div className="navbar-start">
             <div className="navbar-item"><Link to="/">Home</Link></div>
             <div className="navbar-item has-dropdown is-hoverable">
-              <div id="fitnessNavbarButton" className="navbar-link" data-targets="fitnessNavbar" onClick={this.handleFitnessClick}>Fitness</div>
+              <div id="fitnessNavbarButton" className="navbar-link" data-targets="fitnessNavbar">Fitness</div>
               <div id="fitnessNavbarItems" className="navbar-dropdown">
                 <div className="navbar-item"><Link to="/exercise">Exercises</Link></div>
                 <div className="navbar-item"><Link to="/session">Sessions</Link></div>
@@ -87,7 +63,7 @@ class Navbar extends Component {
               </div>
             </div>
             <div className="navbar-item has-dropdown is-hoverable">
-              <div id="nutritionNavbarButton" className="navbar-link" data-targets="nutritionNavbar" onClick={this.handleNutritionClick}>Nutrition</div>
+              <div id="nutritionNavbarButton" className="navbar-link" data-targets="nutritionNavbar">Nutrition</div>
               <div id="nutritionNavbarItems" className="navbar-dropdown">
                 <div className="navbar-item"><Link to="/diet">Diets</Link></div>
                 <div className="navbar-item"><Link to="/meal">Meals</Link></div>
@@ -95,7 +71,7 @@ class Navbar extends Component {
               </div>
             </div>
             <div className="navbar-item has-dropdown is-hoverable">
-              <div id="moreNavbarButton" className="navbar-link" data-targets="moreNavbar" onClick={this.handleMoreClick}>More</div>
+              <div id="moreNavbarButton" className="navbar-link" data-targets="moreNavbar">More</div>
               <div id="moreNavbarItems" className="navbar-dropdown">
                 <div className="navbar-item"><Link to='/about'>About</Link></div>
                 <div className="navbar-item"><Link to='/contact'>Contact</Link></div>
