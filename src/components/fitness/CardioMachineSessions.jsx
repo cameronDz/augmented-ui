@@ -58,8 +58,6 @@ class CardioMachineSessions extends Component {
    * Renders the sessions as a table row.
    */
   renderData() {
-    var date = this.props.startTime.split('T')[0];
-
     const cardioMachineSessionTableRow = this.state.cardioSessions.map(
       (index, element) => {
         let date = element.startTime.split('T')[0];
