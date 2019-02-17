@@ -68,7 +68,13 @@ class CardioMachineSessions extends Component {
         links: data.links
       })
     );
-  }
+  };
+
+  renderData() {
+    return (
+      <div></div>
+    );
+  };
 
   render() {
     const cardioMachineComponent = this.state.cardioSessions.map(cardioMachineObjects => {
