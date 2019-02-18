@@ -60,7 +60,7 @@ export function fetchSessionsIfNeeded(sessionApiUrl) {
  */
 function shouldFetchSessions(state) {
   console.log("shouldFetchSessions hit");
-  const sessions = JSON.parse(state.cardioMachineSessions);
+  const sessions = state.cardioMachineSessions;
   console.log("sessions: " + JSON.stringify(sessions));
   console.log("sessions.isFetching: " + sessions.isFetching);
   console.log("sessions.didInvalidate: " + sessions.didInvalidate);
