@@ -2,7 +2,7 @@
  * Initial state values for applicaiton.
  */
 export default {
-    cardioMachineSessionState: {
+    cardioMachineSessions: {
         totalRecords: 0,
         totalPages: 0,
         currentPage: 0,
@@ -13,6 +13,9 @@ export default {
             last: '',
             prev: '',
             next: ''
-        }
+        },
+        isFetching: false,
+        didInvalidate: true,
+        lastUpdated: null
     }
 }

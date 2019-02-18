@@ -1,12 +1,6 @@
 import {combineReducers } from 'redux';
-import simpleReducer from './simpleReducer';
-import cardioMachineSessionReducer from './cardioMachineSessionReducer';
+import cardioMachineSessions from './cardioMachineSessionReducer';
 
-/**
- *
- */
 export default combineReducers({
-  simple: simpleReducer,
-  cardioMachineSessions: cardioMachineSessionReducer
+  cardioMachineSessions
 });
-  

@@ -1,11 +1,80 @@
-import { NEW_CARDIO_MACHINE_SESSION, UPDATE_CARDIO_MACHINE_LIST } from './actionTypes';
+import {
+    INVALIDATED_CARDIO_MACHINE_SESSIONS,
+    REQUEST_CARDIO_MACHINE_SESSIONS, 
+    RECIEVE_CARDIO_MACHINE_SESSIONS} from './actionTypes';
+
+/**
+ * Refresh cardio machine sessions.
+ */
+export function invalidateCardioMachineSession() {
+  return {
+    type: INVALIDATED_CARDIO_MACHINE_SESSIONS
+  };
+};
+
+/**
+ * Request cardio machine session payload.
+ * @param {*} sessionApiUrl String URL to request sessions from.
+ */
+export function requestCardioMachineSessions(sessionApiUrl) {
+  return {
+    type: REQUEST_CARDIO_MACHINE_SESSIONS,
+    sessionApiUrl
+  };
+};
+
+/**
+ * Recieve a response from a request for cardio machine sessions.
+ * @param {*} sessionApiUrl String URL request is being returned from.
+ * @param {*} json String of payload received from request.
+ */
+export function recieveCardioMachineSessions(sessionApiUrl, json) {
+  return {
+    type: RECIEVE_CARDIO_MACHINE_SESSIONS,
+    sessionApiUrl,
+    payload: json.data.children.map(child => child.data),
+    receivedAt: Date.now()
+  };
+};
 
 /**
  * 
+ * @param {*} sessionApiUrl 
  */
-export const cardioMachineSessionAction = () => dispatch => {
-  dispatch({
-    type: NEW_CARDIO_MACHINE_SESSION,
-    payload: 'result_of_simple_action'
-  });
-}
+export function fetchSessionsIfNeeded(sessionApiUrl) {
+  return (dispatch, getState) => {
+    if (shouldFetchSessions(getState(), sessionApiUrl)) {
+      return dispatch(fetchSessions(sessionApiUrl))
+    }
+  };
+};
+
+/**
+ * 
+ * @param {*} state 
+ */
+function shouldFetchSessions(state) {
+  const sessions = state.cardioMachineSessions;
+  let ret;
+  if (!sessions) {
+    ret = true;
+  } else if (sessions.isFetching) {
+    ret = false;
+  } else {
+    ret = sessions.didInvalidate;
+  }
+  return ret;
+};
+
+/**
+ * 
+ * @param {*} sessionApiUrl 
+ */
+function fetchSessions(sessionApiUrl) {
+  return dispatch => {
+    dispatch(recieveCardioMachineSessions(sessionApiUrl))
+    return fetch(sessionApiUrl)
+      .then(response => response.json())
+      .then(json => dispatch(receivePosts(sessionApiUrl, json)))
+  };
+};

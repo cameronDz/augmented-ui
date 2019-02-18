@@ -15,14 +15,9 @@ import SignUpPage from './components/general/SignUpPage';
 import SignInPage from './components/general/SignInPage';
 
 import { connect } from 'react-redux';
-import { simpleAction } from './actions/simpleActions';
 
 const mapStateToProps = state => ({
   ...state
-});
-
-const mapDispatchToProps = dispatch => ({
-  simpleAction: () => dispatch(simpleAction())
 });
 
 class App extends Component {
@@ -50,4 +45,4 @@ class App extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (App);
+export default connect(mapStateToProps, null) (App);

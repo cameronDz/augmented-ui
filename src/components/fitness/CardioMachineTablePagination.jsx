@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction';
 
 /**
  * Triple dot between buttons when multiple pages inbetween next button.
@@ -38,6 +39,7 @@ class PageButton extends Component {
   }
 
   onPaginationClick(link) {
+    dispatch(fetchPostsIfNeeded(link));
     fetch(link)
       .then(response => response.json())
       .then(data => this.setState({
