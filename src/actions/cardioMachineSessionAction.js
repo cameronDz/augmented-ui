@@ -64,10 +64,13 @@ function shouldFetchSessions(state) {
   console.log("sessions: " + JSON.stringify(sessions));
   let ret;
   if (!sessions) {
+    console.log("ret: hit !sessions");
     ret = true;
   } else if (sessions.isFetching) {
+    console.log("ret: hit sessions.isFetching");
     ret = false;
   } else {
+    console.log("ret: hit sessions.didInvalidate");
     ret = sessions.didInvalidate;
   }
   console.log("ret: " + ret);
