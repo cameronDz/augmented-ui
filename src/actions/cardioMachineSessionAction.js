@@ -60,7 +60,8 @@ export function fetchSessionsIfNeeded(sessionApiUrl) {
  */
 function shouldFetchSessions(state) {
   console.log("shouldFetchSessions hit");
-	const sessions = state.cardioMachineSessions;
+  const sessions = state.cardioMachineSessions;
+  console.log("sessions: " + JSON.stringify(sessions));
   let ret;
   if (!sessions) {
     ret = true;
@@ -69,6 +70,7 @@ function shouldFetchSessions(state) {
   } else {
     ret = sessions.didInvalidate;
   }
+  console.log("ret: " + ret);
   return ret;
 };
 
