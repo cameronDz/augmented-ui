@@ -30,6 +30,7 @@ class CardioMachinePageButton extends Component {
     }
   
     onPaginationClick(link) {
+      this.props.dispatchFetchSessions(link);
       fetch(link)
         .then(response => response.json())
         .then(data => this.setState({
