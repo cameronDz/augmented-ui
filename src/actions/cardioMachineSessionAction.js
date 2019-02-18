@@ -62,7 +62,7 @@ function shouldFetchSessions(state) {
   console.log("shouldFetchSessions hit");
   const sessions = state.cardioMachineSessions;
   console.log("sessions: " + JSON.stringify(sessions));
-  console.log("sessions.isFetching: " + sessions.isFetching);
+  console.log("sessions.isFetching: " + JSON.parse(sessions.isFetching));
   console.log("sessions.didInvalidate: " + sessions.didInvalidate);
   console.log("sessions.cardioMachineSessions: " + JSON.stringify(sessions.cardioMachineSessions));
   let ret;
