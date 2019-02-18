@@ -60,22 +60,14 @@ export function fetchSessionsIfNeeded(sessionApiUrl) {
  */
 function shouldFetchSessions(state) {
   console.log("shouldFetchSessions hit");
-  const sessions = state.cardioMachineSessions;
+  const sessions = state.cardioMachineSessions.cardioMachineSessions;
   console.log("sessions: " + JSON.stringify(sessions));
-  console.log("sessions.isFetching: " + sessions.isFetching);
-  console.log("sessions.didInvalidate: " + sessions.didInvalidate);
-  console.log("sessions.cardioMachineSessions: " + JSON.stringify(sessions.cardioMachineSessions));
   let ret;
   if (!sessions) {
-    console.log("ret: hit !sessions");
     ret = true;
   } else if (sessions.isFetching) {
-    console.log("ret: hit sessions.isFetching");
     ret = false;
   } else {
-    console.log("ret: hit sessions.didInvalidate");
-    console.log("sessions.didInvalidate: " + sessions.didInvalidate);
-    console.log("sessions.cardioMachineSessions: " + sessions.cardioMachineSessions);
     ret = sessions.didInvalidate;
   }
   console.log("ret: " + ret);
