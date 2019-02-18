@@ -13,7 +13,7 @@ import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction'
 class CardioMachinePageButton extends Component {
 
     processPayload(payLoad)  {
-      console.log("cardioState: " + this.props.cardioState);
+      console.log("cardioState: " + JSON.stringify(this.props.cardioState));
       var array = [];
       for(var i = 0; i < payLoad.length; i++) {
         var counter = payLoad[i];
@@ -59,7 +59,7 @@ class CardioMachinePageButton extends Component {
 }
   
 const mapStateToProps = state =>  ({
-    cardioState: state.cardioMachineSession
+    cardioState: state.cardioMachineSessions
 });
 
 const mapDispatchToProps = (dispatch) => {

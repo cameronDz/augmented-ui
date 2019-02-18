@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction';
 
 import CardioMachinePageButton from './CardioMachinePageButton';
 
@@ -173,7 +172,7 @@ class CardioMachineTablePagination extends Component {
 };
 
 const mapStateToProps = state =>  ({
-  cardioState: state.cardioMachineSession
+  cardioState: state.cardioMachineSessions
 });
 
 export default connect(mapStateToProps, null)(CardioMachineTablePagination);
