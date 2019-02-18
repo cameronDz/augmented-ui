@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction';
 
@@ -40,7 +39,9 @@ class PageButton extends Component {
   }
 
   onPaginationClick(link) {
-    this.props.dispatch(fetchSessionsIfNeeded(link));
+	  console.log('link: ' + link);
+	  console.log('this: ' + this);
+    this.props.dispatchFetchSessions(link);
     fetch(link)
       .then(response => response.json())
       .then(data => this.setState({
@@ -75,6 +76,8 @@ class PageButton extends Component {
 class CardioMachineTablePagination extends Component {
     
   render() {
+	  console.log("render");
+	  console.log("this: " + this);
     let pager;	  
 
     if (this.props.totalPages === 0 ) {
@@ -224,11 +227,15 @@ class CardioMachineTablePagination extends Component {
 };
 
 const mapStateToProps = state =>  ({
-  cardioState: state.cardioMachineSessionState
+  cardioState: state.cardioMachineSession
 });
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ fetchSessionsIfNeeded }, dispatch);
+  return {
+    dispatchFetchSessions: (link) => {
+      dispatch(fetchSessionsIfNeeded(link));
+    }
+  };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardioMachineTablePagination);
