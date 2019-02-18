@@ -72,6 +72,7 @@ function shouldFetchSessions(state) {
   } else {
     console.log("ret: hit sessions.didInvalidate");
     console.log("sessions.didInvalidate: " + sessions.didInvalidate);
+    console.log("sessions.cardioMachineSessions: " + sessions.cardioMachineSessions);
     ret = sessions.didInvalidate;
   }
   console.log("ret: " + ret);
