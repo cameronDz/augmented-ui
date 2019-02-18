@@ -71,6 +71,7 @@ function shouldFetchSessions(state) {
     ret = false;
   } else {
     console.log("ret: hit sessions.didInvalidate");
+    console.log("sessions.didInvalidate: " + sessions.didInvalidate);
     ret = sessions.didInvalidate;
   }
   console.log("ret: " + ret);
