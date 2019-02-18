@@ -7,6 +7,7 @@ import {
  * Refresh cardio machine sessions.
  */
 export function invalidateCardioMachineSession() {
+  console.log("invalidateCardioMachineSession hit");
   return {
     type: INVALIDATED_CARDIO_MACHINE_SESSIONS
   };
@@ -17,6 +18,7 @@ export function invalidateCardioMachineSession() {
  * @param {*} sessionApiUrl String URL to request sessions from.
  */
 export function requestCardioMachineSessions(sessionApiUrl) {
+  console.log("requestCardioMachineSessions hit");
   return {
     type: REQUEST_CARDIO_MACHINE_SESSIONS,
     sessionApiUrl
@@ -29,6 +31,8 @@ export function requestCardioMachineSessions(sessionApiUrl) {
  * @param {*} json String of payload received from request.
  */
 export function recieveCardioMachineSessions(sessionApiUrl, json) {
+  console.log("recieveCardioMachineSessions hit");
+  console.log("json: " + JSON.stringify(json));
   return {
     type: RECIEVE_CARDIO_MACHINE_SESSIONS,
     sessionApiUrl,
@@ -42,6 +46,7 @@ export function recieveCardioMachineSessions(sessionApiUrl, json) {
  * @param {*} sessionApiUrl 
  */
 export function fetchSessionsIfNeeded(sessionApiUrl) {
+  console.log("fetchSessionsIfNeeded hit");
   return (dispatch, getState) => {
     if (shouldFetchSessions(getState(), sessionApiUrl)) {
       return dispatch(fetchSessions(sessionApiUrl))
@@ -72,6 +77,7 @@ function shouldFetchSessions(state) {
  * @param {*} sessionApiUrl 
  */
 function fetchSessions(sessionApiUrl) {
+  console.log("hit fetchSessions");
   return dispatch => {
     dispatch(requestCardioMachineSessions(sessionApiUrl))
     return fetch(sessionApiUrl)
