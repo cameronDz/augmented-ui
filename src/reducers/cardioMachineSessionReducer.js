@@ -2,7 +2,7 @@ import initialState from './initialState';
 import {
   INVALIDATED_CARDIO_MACHINE_SESSIONS,
   REQUEST_CARDIO_MACHINE_SESSIONS, 
-  RECIEVE_CARDIO_MACHINE_SESSIONS} from './actionTypes';
+  RECIEVE_CARDIO_MACHINE_SESSIONS} from '../actions/actionTypes';
 
 function sessions(
   state = {
@@ -18,11 +18,13 @@ function sessions(
         didInvalidate: true
       })
     case REQUEST_CARDIO_MACHINE_SESSIONS:
+		  console.log("hit request");
       return Object.assign({}, state, {
         isFetching: true,
         didInvalidate: false
       })
     case RECIEVE_CARDIO_MACHINE_SESSIONS:
+		  console.log("hit recieve");
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,

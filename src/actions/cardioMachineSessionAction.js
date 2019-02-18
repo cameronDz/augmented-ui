@@ -54,7 +54,8 @@ export function fetchSessionsIfNeeded(sessionApiUrl) {
  * @param {*} state 
  */
 function shouldFetchSessions(state) {
-  const sessions = state.cardioMachineSessions;
+  console.log("shouldFetchSessions hit");
+	const sessions = state.cardioMachineSessions;
   let ret;
   if (!sessions) {
     ret = true;
@@ -72,9 +73,10 @@ function shouldFetchSessions(state) {
  */
 function fetchSessions(sessionApiUrl) {
   return dispatch => {
-    dispatch(recieveCardioMachineSessions(sessionApiUrl))
+    dispatch(requestCardioMachineSessions(sessionApiUrl))
     return fetch(sessionApiUrl)
       .then(response => response.json())
-      .then(json => dispatch(receivePosts(sessionApiUrl, json)))
+      .then(json => dispatch(recieveCardioMachineSessions(sessionApiUrl, json)))
   };
 };
+

@@ -39,7 +39,7 @@ class PageButton extends Component {
   }
 
   onPaginationClick(link) {
-    dispatch(fetchPostsIfNeeded(link));
+    this.props.dispatch(fetchSessionsIfNeeded(link));
     fetch(link)
       .then(response => response.json())
       .then(data => this.setState({
