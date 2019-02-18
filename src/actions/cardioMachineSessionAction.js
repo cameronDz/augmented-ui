@@ -36,7 +36,8 @@ export function recieveCardioMachineSessions(sessionApiUrl, json) {
   return {
     type: RECIEVE_CARDIO_MACHINE_SESSIONS,
     sessionApiUrl,
-    payload: json.data.children.map(child => child.data),
+    dataPayload: json.data,
+    metaPayload: json.meta,
     receivedAt: Date.now()
   };
 };
