@@ -8,7 +8,14 @@ function sessions(
   state = {
     isFetching: false,
     didInvalidate: true,
-    sessions: []
+    sessions: [],
+    links: {
+      self: '',
+      first: '',
+      last: '',
+      prev: '',
+      next: ''
+    }
   },
   action
 ) {
