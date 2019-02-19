@@ -34,7 +34,7 @@ function sessions(
     case RECIEVE_CARDIO_MACHINE_SESSIONS:
       console.log("hit recieve - action: "  + JSON.stringify(action));
       return Object.assign({}, state, {
-        cardioMachineSessions: action.dataPayload,
+        sessions: action.dataPayload,
         totalRecords: action.metaPayload._totalRecords,
         totalPages: action.metaPayload._totalPages,
         currentPage: action.metaPayload._currentPage,
