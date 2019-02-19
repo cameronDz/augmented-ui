@@ -13,23 +13,7 @@ import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction'
 class CardioMachineSessions extends Component {
 
   componentDidMount() {
-    function  processPayload(payLoad)  {
-      var array = [];
-      for(var i = 0; i < payLoad.length; i++) {
-        var counter = payLoad[i];
-        var obj = {};
-        obj.machineType = counter.machineType;
-        obj.startTime = counter.startTime;
-        obj.duration = counter.durationSeconds;
-        obj.distance = counter.distanceMiles;
-        obj.userName = counter.userName;
-        obj.comment = counter.comment;
-        array.push(obj);
-      }
-      return array;
-    };
-    console.log("STATE CMS: " + JSON.stringify(this.state));
-    console.log("PROPS CMS: " + JSON.stringify(this.props));
+    console.log("PROPS CMS didMount: " + JSON.stringify(this.props));
 
     var url = apis().azure + 'CardioMachineExercises';
     var pageNumber = 1;
@@ -37,22 +21,12 @@ class CardioMachineSessions extends Component {
     var params = '?pageNumber=' + pageNumber + '&pageSize=' + pageSize;
     let link = url + params;
     this.props.dispatchFetchSessions(link);
-    fetch(link)
-      .then(response => response.json())
-      .then(data => this.setState({
-        //cardioSessions: processPayload(data.data),
-        currentPage: data.meta._currentPage,
-        totalPages: data.meta._totalPages,
-        links: data.links
-      })
-    );
   };
 
   /**
    * Renders the sessions as a table rows in a table body element.
    */
   renderData() {
-    console.log("STATE CMS renderData: " + JSON.stringify(this.state));
     console.log("PROPS CMS renderData: " + JSON.stringify(this.props));
     console.log("PROPS CMS sessions renderData: " + JSON.stringify(this.props.sessions));
     const cardioMachineSessionTableRow = this.props.sessions.map(
