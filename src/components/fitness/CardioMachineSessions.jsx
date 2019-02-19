@@ -54,6 +54,7 @@ class CardioMachineSessions extends Component {
   renderData() {
     console.log("STATE CMS renderData: " + JSON.stringify(this.state));
     console.log("PROPS CMS renderData: " + JSON.stringify(this.props));
+    console.log("PROPS CMS sessions renderData: " + JSON.stringify(this.props.sessions));
     const cardioMachineSessionTableRow = this.props.sessions.map(
       (element, index) => {
         let date = element.startTime.split('T')[0];
