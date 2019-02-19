@@ -3,6 +3,9 @@ import CardioMachineModalButton from './CardioMachineModalButton';
 import CardioMachineTablePagination from './CardioMachineTablePagination';
 import '../../styles/css/cardio.css';
 import {apis} from  '../../api.js';
+import { connect } from 'react-redux';
+
+import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction';
 
 /**
  * Display of cardio machine sessions on a table.
