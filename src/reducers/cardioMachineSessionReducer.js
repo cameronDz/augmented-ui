@@ -7,8 +7,15 @@ import {
 function sessions(
   state = {
     isFetching: false,
-    didInvalidate: false,
-    items: []
+    didInvalidate: true,
+    sessions: [],
+    links: {
+      self: '',
+      first: '',
+      last: '',
+      prev: '',
+      next: ''
+    }
   },
   action
 ) {
@@ -18,17 +25,27 @@ function sessions(
         didInvalidate: true
       })
     case REQUEST_CARDIO_MACHINE_SESSIONS:
-		  console.log("hit request");
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        didInvalidate: true,
+        sessions: [],
+        links: {
+          self: '',
+          first: '',
+          last: '',
+          prev: '',
+          next: ''
+        }
       })
     case RECIEVE_CARDIO_MACHINE_SESSIONS:
-		  console.log("hit recieve");
       return Object.assign({}, state, {
+        sessions: action.dataPayload,
+        totalRecords: action.metaPayload._totalRecords,
+        totalPages: action.metaPayload._totalPages,
+        currentPage: action.metaPayload._currentPage,
+        links: action.linkPayload,
         isFetching: false,
-        didInvalidate: false,
-        sessions: action.payload.cardioMachineSessions.cardioMachineSessions,
+        didInvalidate: true,
         lastUpdated: action.receivedAt
       })
     default:
