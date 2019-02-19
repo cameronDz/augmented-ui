@@ -158,7 +158,7 @@ class CardioMachineTablePagination extends Component {
           <CardioMachinePageButton pageLink={this.props.links.self} currentPage={this.props.currentPage} pageNumber={this.props.currentPage} />
           <CardioMachinePageButton pageLink={this.props.links.next} currentPage={this.props.currentPage} pageNumber={this.props.currentPage + 1} />  
           <PageEllipsis />   
-          <CardioMachinePageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={5} />  
+          <CardioMachinePageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />  
         </div>    
       );  
     }
