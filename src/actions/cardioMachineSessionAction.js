@@ -7,7 +7,6 @@ import {
  * Refresh cardio machine sessions.
  */
 export function invalidateCardioMachineSession() {
-  console.log("invalidateCardioMachineSession hit");
   return {
     type: INVALIDATED_CARDIO_MACHINE_SESSIONS
   };
@@ -18,7 +17,6 @@ export function invalidateCardioMachineSession() {
  * @param {*} sessionApiUrl String URL to request sessions from.
  */
 export function requestCardioMachineSessions(sessionApiUrl) {
-  console.log("requestCardioMachineSessions hit");
   return {
     type: REQUEST_CARDIO_MACHINE_SESSIONS,
     sessionApiUrl
@@ -31,8 +29,7 @@ export function requestCardioMachineSessions(sessionApiUrl) {
  * @param {*} json String of payload received from request.
  */
 export function recieveCardioMachineSessions(sessionApiUrl, json) {
-  console.log("recieveCardioMachineSessions hit");
-  console.log("json: " + JSON.stringify(json));
+  console.log("recieveCardioMachineSessions - json: " + JSON.stringify(json));
   return {
     type: RECIEVE_CARDIO_MACHINE_SESSIONS,
     sessionApiUrl,
@@ -47,7 +44,6 @@ export function recieveCardioMachineSessions(sessionApiUrl, json) {
  * @param {*} sessionApiUrl 
  */
 export function fetchSessionsIfNeeded(sessionApiUrl) {
-  console.log("fetchSessionsIfNeeded hit");
   return (dispatch, getState) => {
     if (shouldFetchSessions(getState(), sessionApiUrl)) {
       return dispatch(fetchSessions(sessionApiUrl))
@@ -60,9 +56,8 @@ export function fetchSessionsIfNeeded(sessionApiUrl) {
  * @param {*} state 
  */
 function shouldFetchSessions(state) {
-  console.log("shouldFetchSessions hit");
   const sessions = state.cardioMachineSessions.cardioMachineSessions;
-  console.log("sessions: " + JSON.stringify(sessions));
+  console.log("shouldFetchSessions - sessions: " + JSON.stringify(sessions));
   let ret;
   if (!sessions) {
     ret = true;
@@ -71,7 +66,6 @@ function shouldFetchSessions(state) {
   } else {
     ret = sessions.didInvalidate;
   }
-  console.log("ret: " + ret);
   return ret;
 };
 
@@ -80,7 +74,6 @@ function shouldFetchSessions(state) {
  * @param {*} sessionApiUrl 
  */
 function fetchSessions(sessionApiUrl) {
-  console.log("hit fetchSessions");
   return dispatch => {
     dispatch(requestCardioMachineSessions(sessionApiUrl))
     return fetch(sessionApiUrl)
@@ -88,4 +81,3 @@ function fetchSessions(sessionApiUrl) {
       .then(json => dispatch(recieveCardioMachineSessions(sessionApiUrl, json)))
   };
 };
-
