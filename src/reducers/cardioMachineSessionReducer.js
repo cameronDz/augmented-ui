@@ -21,7 +21,8 @@ function sessions(
 		  console.log("hit request");
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false
+        didInvalidate: false,
+        sessions: []
       })
     case RECIEVE_CARDIO_MACHINE_SESSIONS:
       console.log("hit recieve - action: "  + JSON.stringify(action));
