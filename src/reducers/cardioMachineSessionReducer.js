@@ -22,7 +22,14 @@ function sessions(
       return Object.assign({}, state, {
         isFetching: true,
         didInvalidate: false,
-        sessions: []
+        sessions: [],
+        links: {
+          self: '',
+          first: '',
+          last: '',
+          prev: '',
+          next: ''
+        }
       })
     case RECIEVE_CARDIO_MACHINE_SESSIONS:
       console.log("hit recieve - action: "  + JSON.stringify(action));
