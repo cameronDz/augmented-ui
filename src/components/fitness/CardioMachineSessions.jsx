@@ -113,7 +113,14 @@ class CardioMachineSessions extends Component {
 }
 
 const mapStateToProps = state =>  ({
-  cardioState: state.cardioMachineSessions.cardioMachineSessions
+  links: state.cardioMachineSessions.cardioMachineSessions.links,
+  totalRecords: state.cardioMachineSessions.cardioMachineSessions.totalRecords,
+  totalPages: state.cardioMachineSessions.cardioMachineSessions.totalPages,
+  currentPage: state.cardioMachineSessions.cardioMachineSessions.currentPage,
+  sessions: state.cardioMachineSessions.cardioMachineSessions.sessions,
+  isFetching: state.cardioMachineSessions.cardioMachineSessions.isFetching,
+  didInvalidate: state.cardioMachineSessions.cardioMachineSessions.didInvalidate,
+  lastUpdated: state.cardioMachineSessions.cardioMachineSessions.lastUpdated
 });
 
 const mapDispatchToProps = (dispatch) => {
