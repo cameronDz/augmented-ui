@@ -28,7 +28,7 @@ function sessions(
 		  console.log("hit request");
       return Object.assign({}, state, {
         isFetching: true,
-        didInvalidate: false,
+        didInvalidate: true,
         sessions: [],
         links: {
           self: '',
