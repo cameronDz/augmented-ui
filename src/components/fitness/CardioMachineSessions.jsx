@@ -12,6 +12,10 @@ import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction'
  */
 class CardioMachineSessions extends Component {
   
+  constructor(props) {
+    this.state.cardioSessions = [];
+  }
+
   componentDidMount() {
     function  processPayload(payLoad)  {
       var array = [];
