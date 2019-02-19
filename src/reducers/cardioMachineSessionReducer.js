@@ -47,7 +47,7 @@ function sessions(
         currentPage: action.metaPayload._currentPage,
         links: action.linkPayload,
         isFetching: false,
-        didInvalidate: false,
+        didInvalidate: true,
         lastUpdated: action.receivedAt
       })
     default:
