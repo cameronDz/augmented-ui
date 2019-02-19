@@ -13,8 +13,6 @@ import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction'
 class CardioMachineSessions extends Component {
 
   componentDidMount() {
-    console.log("PROPS CMS didMount: " + JSON.stringify(this.props));
-
     var url = apis().azure + 'CardioMachineExercises';
     var pageNumber = 1;
     var pageSize = 10;
@@ -27,8 +25,6 @@ class CardioMachineSessions extends Component {
    * Renders the sessions as a table rows in a table body element.
    */
   renderData() {
-    console.log("PROPS CMS renderData: " + JSON.stringify(this.props));
-    console.log("PROPS CMS sessions renderData: " + JSON.stringify(this.props.sessions));
     const cardioMachineSessionTableRow = this.props.sessions.map(
       (element, index) => {
         let date = element.startTime.split('T')[0];

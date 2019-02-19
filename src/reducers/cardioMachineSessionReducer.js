@@ -25,7 +25,6 @@ function sessions(
         didInvalidate: true
       })
     case REQUEST_CARDIO_MACHINE_SESSIONS:
-		  console.log("hit request");
       return Object.assign({}, state, {
         isFetching: true,
         didInvalidate: true,
@@ -39,7 +38,6 @@ function sessions(
         }
       })
     case RECIEVE_CARDIO_MACHINE_SESSIONS:
-      console.log("hit recieve - action: "  + JSON.stringify(action));
       return Object.assign({}, state, {
         sessions: action.dataPayload,
         totalRecords: action.metaPayload._totalRecords,

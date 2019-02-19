@@ -29,7 +29,6 @@ export function requestCardioMachineSessions(sessionApiUrl) {
  * @param {*} json String of payload received from request.
  */
 export function recieveCardioMachineSessions(sessionApiUrl, json) {
-  console.log("recieveCardioMachineSessions - json: " + JSON.stringify(json));
   return {
     type: RECIEVE_CARDIO_MACHINE_SESSIONS,
     sessionApiUrl,
@@ -58,19 +57,14 @@ export function fetchSessionsIfNeeded(sessionApiUrl) {
  */
 function shouldFetchSessions(state) {
   const sessions = state.cardioMachineSessions.cardioMachineSessions;
-  console.log("shouldFetchSessions - sessions: " + JSON.stringify(sessions));
   let ret;
   if (!sessions) {
     ret = true;
-    console.log("shouldFetchSessions - !sessions" + ret);
   } else if (sessions.isFetching) {
     ret = false;
-    console.log("shouldFetchSessions - sessions.isFetching" + ret);
   } else {
     ret = sessions.didInvalidate;
-    console.log("shouldFetchSessions - sessions.didInvalidate" + ret);
   }
-  console.log("shouldFetchSessions - ret: " + ret);
   return ret;
 };
 
