@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import DatePicker from "react-datepicker";
 import TimeField from 'react-simple-timefield';
 import '../../styles/css/cardio.css';
@@ -64,6 +66,7 @@ class CardioMachineCreator extends Component {
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4) {
         document.getElementById("submitCardioBtn").disabled = false;
+        this.props.dispatchFetchSessions(this.props.links.self);
       }
     }; 
     xhr.send(payload);
@@ -139,4 +142,17 @@ class CardioMachineCreator extends Component {
   };
 }
 
-export default CardioMachineCreator;
+const mapStateToProps = state =>  ({
+  links: state.cardioMachineSessions.cardioMachineSessions.links
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchFetchSessions: (link) => {
+      dispatch(fetchSessionsIfNeeded(link));
+    }
+  };
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardioMachineCreator);
