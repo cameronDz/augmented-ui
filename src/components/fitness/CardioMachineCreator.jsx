@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 
 import DatePicker from "react-datepicker";
 import TimeField from 'react-simple-timefield';
-import '../../styles/css/cardio.css';
-import {apis} from '../../api.js';
 
+import { apis } from '../../api.js';
 import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction';
+import '../../styles/css/cardio.css';
 
 class CardioMachineCreator extends Component {
 
@@ -156,6 +156,5 @@ const mapDispatchToProps = (dispatch) => {
     }
   };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(CardioMachineCreator);
