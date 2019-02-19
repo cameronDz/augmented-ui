@@ -39,10 +39,10 @@ class CardioMachineSessions extends Component {
         obj.comment = counter.comment;
         array.push(obj);
       }
-      console.log("STATE: " + JSON.stringify(this.state));
-      console.log("PROPS: " + JSON.stringify(this.props));
       return array;
     };
+    console.log("STATE: " + JSON.stringify(this.state));
+    console.log("PROPS: " + JSON.stringify(this.props));
 
     var url = apis().azure + 'CardioMachineExercises';
     var pageNumber = 1;
