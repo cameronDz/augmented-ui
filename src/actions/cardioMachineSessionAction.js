@@ -62,10 +62,13 @@ function shouldFetchSessions(state) {
   let ret;
   if (!sessions) {
     ret = true;
+    console.log("shouldFetchSessions - !sessions" + ret);
   } else if (sessions.isFetching) {
     ret = false;
+    console.log("shouldFetchSessions - sessions.isFetching" + ret);
   } else {
     ret = sessions.didInvalidate;
+    console.log("shouldFetchSessions - sessions.didInvalidate" + ret);
   }
   console.log("shouldFetchSessions - ret: " + ret);
   return ret;
