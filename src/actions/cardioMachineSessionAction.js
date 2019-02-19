@@ -3,19 +3,12 @@ import {
     REQUEST_CARDIO_MACHINE_SESSIONS, 
     RECIEVE_CARDIO_MACHINE_SESSIONS} from './actionTypes';
 
-/**
- * Refresh cardio machine sessions.
- */
 export function invalidateCardioMachineSession() {
   return {
     type: INVALIDATED_CARDIO_MACHINE_SESSIONS
   };
 };
 
-/**
- * Request cardio machine session payload.
- * @param {*} sessionApiUrl String URL to request sessions from.
- */
 export function requestCardioMachineSessions(sessionApiUrl) {
   return {
     type: REQUEST_CARDIO_MACHINE_SESSIONS,
@@ -23,11 +16,6 @@ export function requestCardioMachineSessions(sessionApiUrl) {
   };
 };
 
-/**
- * Recieve a response from a request for cardio machine sessions.
- * @param {*} sessionApiUrl String URL request is being returned from.
- * @param {*} json String of payload received from request.
- */
 export function recieveCardioMachineSessions(sessionApiUrl, json) {
   return {
     type: RECIEVE_CARDIO_MACHINE_SESSIONS,
@@ -39,10 +27,6 @@ export function recieveCardioMachineSessions(sessionApiUrl, json) {
   };
 };
 
-/**
- * 
- * @param {*} sessionApiUrl 
- */
 export function fetchSessionsIfNeeded(sessionApiUrl) {
   return (dispatch, getState) => {
     if (shouldFetchSessions(getState(), sessionApiUrl)) {
@@ -51,10 +35,6 @@ export function fetchSessionsIfNeeded(sessionApiUrl) {
   };
 };
 
-/**
- * 
- * @param {*} state 
- */
 function shouldFetchSessions(state) {
   const sessions = state.cardioMachineSessions.cardioMachineSessions;
   let ret;
@@ -68,10 +48,6 @@ function shouldFetchSessions(state) {
   return ret;
 };
 
-/**
- * 
- * @param {*} sessionApiUrl 
- */
 function fetchSessions(sessionApiUrl) {
   return dispatch => {
     dispatch(requestCardioMachineSessions(sessionApiUrl))
