@@ -13,6 +13,7 @@ import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction'
 class CardioMachineSessions extends Component {
   
   constructor(props) {
+    super(props);
     this.state.cardioSessions = [];
   }
 
