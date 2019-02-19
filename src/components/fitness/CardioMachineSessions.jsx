@@ -28,8 +28,8 @@ class CardioMachineSessions extends Component {
       }
       return array;
     };
-    console.log("STATE: " + JSON.stringify(this.state));
-    console.log("PROPS: " + JSON.stringify(this.props));
+    console.log("STATE CMS: " + JSON.stringify(this.state));
+    console.log("PROPS CMS: " + JSON.stringify(this.props));
 
     var url = apis().azure + 'CardioMachineExercises';
     var pageNumber = 1;
@@ -52,8 +52,8 @@ class CardioMachineSessions extends Component {
    * Renders the sessions as a table rows in a table body element.
    */
   renderData() {
-    console.log("STATE renderData: " + JSON.stringify(this.state));
-    console.log("PROPS renderData: " + JSON.stringify(this.props));
+    console.log("STATE CMS renderData: " + JSON.stringify(this.state));
+    console.log("PROPS CMS renderData: " + JSON.stringify(this.props));
     const cardioMachineSessionTableRow = this.props.sessions.map(
       (element, index) => {
         let date = element.startTime.split('T')[0];
