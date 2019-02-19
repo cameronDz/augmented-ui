@@ -13,7 +13,7 @@ import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction'
 class CardioMachinePageButton extends Component {
 
     processPayload(payLoad)  {
-      console.log("cardioState: " + JSON.stringify(this.props.cardioState));
+      console.log("CardioMachinePageButton - cardioState: " + JSON.stringify(this.props.cardioState));
       var array = [];
       for(var i = 0; i < payLoad.length; i++) {
         var counter = payLoad[i];

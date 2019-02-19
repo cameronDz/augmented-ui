@@ -28,7 +28,7 @@ function sessions(
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        sessions: action.payload,
+        sessions: action.payload.cardioMachineSessions.cardioMachineSessions,
         lastUpdated: action.receivedAt
       })
     default:
