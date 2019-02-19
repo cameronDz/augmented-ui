@@ -39,6 +39,8 @@ class CardioMachineSessions extends Component {
         obj.comment = counter.comment;
         array.push(obj);
       }
+      console.log("STATE: " + JSON.stringify(this.state));
+      console.log("PROPS: " + JSON.stringify(this.props));
       return array;
     };
 
