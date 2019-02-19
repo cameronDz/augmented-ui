@@ -75,14 +75,14 @@ class CardioMachineSessions extends Component {
 }
 
 const mapStateToProps = state =>  ({
-  links: state.cardioMachineSessions.links,
-  totalRecords: state.cardioMachineSessions.totalRecords,
-  totalPages: state.cardioMachineSessions.totalPages,
-  currentPage: state.cardioMachineSessions.currentPage,
-  sessions: state.cardioMachineSessions.sessions,
-  isFetching: state.cardioMachineSessions.isFetching,
-  didInvalidate: state.cardioMachineSessions.didInvalidate,
-  lastUpdated: state.cardioMachineSessions.lastUpdated
+  links: state.cardioMachineSessions.cardioMachineSessions.links,
+  totalRecords: state.cardioMachineSessions.cardioMachineSessions.totalRecords,
+  totalPages: state.cardioMachineSessions.cardioMachineSessions.totalPages,
+  currentPage: state.cardioMachineSessions.cardioMachineSessions.currentPage,
+  sessions: state.cardioMachineSessions.cardioMachineSessions.sessions,
+  isFetching: state.cardioMachineSessions.cardioMachineSessions.isFetching,
+  didInvalidate: state.cardioMachineSessions.cardioMachineSessions.didInvalidate,
+  lastUpdated: state.cardioMachineSessions.cardioMachineSessions.lastUpdated
 });
 
 const mapDispatchToProps = (dispatch) => {

@@ -7,8 +7,7 @@ import {
 function sessions(
   state = {
     isFetching: false,
-    didInvalidate: false,
-    items: []
+    didInvalidate: true
   },
   action
 ) {

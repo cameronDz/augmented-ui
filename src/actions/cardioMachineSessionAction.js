@@ -66,6 +66,7 @@ function shouldFetchSessions(state) {
   } else {
     ret = sessions.didInvalidate;
   }
+  console.log("shouldFetchSessions - ret: " + ret);
   return ret;
 };
 
