@@ -11,20 +11,7 @@ import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction'
  * Display of cardio machine sessions on a table.
  */
 class CardioMachineSessions extends Component {
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      cardioSessions: [],
-      links: [],
-      totalPages: 0,
-      currentPage: 0
-    };
-  }
-
-  /**
-   * 
-   */
+  
   componentDidMount() {
     function  processPayload(payLoad)  {
       var array = [];
@@ -106,7 +93,7 @@ class CardioMachineSessions extends Component {
             {this.renderData()}
 	        </table>
         </div>
-        <CardioMachineTablePagination links={this.state.links} currentPage={this.state.currentPage} totalPages={this.state.totalPages} />
+        <CardioMachineTablePagination />
       </div>
     );
   }

@@ -3,12 +3,6 @@ import { connect } from 'react-redux';
 
 import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction';
 
-/**
- * 
- * @prop links Array of Strings
- * @prop currentPage 
- * @prop totalPages
- */
 class CardioMachinePageButton extends Component {
   
     onPaginationClick(link) {
