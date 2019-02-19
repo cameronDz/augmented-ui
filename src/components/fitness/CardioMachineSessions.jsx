@@ -43,7 +43,9 @@ class CardioMachineSessions extends Component {
     var pageNumber = 1;
     var pageSize = 10;
     var params = '?pageNumber=' + pageNumber + '&pageSize=' + pageSize;
-    fetch(url + params)
+    let link = url + params;
+    this.props.dispatchFetchSessions(link);
+    fetch(link)
       .then(response => response.json())
       .then(data => this.setState({
         cardioSessions: processPayload(data.data),
@@ -95,7 +97,7 @@ class CardioMachineSessions extends Component {
               </tr>
             </thead>
             {this.renderData()}
-	  </table>
+	        </table>
         </div>
         <CardioMachineTablePagination links={this.state.links} currentPage={this.state.currentPage} totalPages={this.state.totalPages} />
       </div>
@@ -103,4 +105,16 @@ class CardioMachineSessions extends Component {
   }
 }
 
-export default CardioMachineSessions
+const mapStateToProps = state =>  ({
+  cardioState: state.cardioMachineSessions
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchFetchSessions: (link) => {
+      dispatch(fetchSessionsIfNeeded(link));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardioMachineSessions);
