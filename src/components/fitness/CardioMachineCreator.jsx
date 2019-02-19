@@ -6,6 +6,8 @@ import TimeField from 'react-simple-timefield';
 import '../../styles/css/cardio.css';
 import {apis} from '../../api.js';
 
+import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction';
+
 class CardioMachineCreator extends Component {
 
   constructor(props) {
