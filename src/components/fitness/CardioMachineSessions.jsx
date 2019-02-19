@@ -11,11 +11,6 @@ import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction'
  * Display of cardio machine sessions on a table.
  */
 class CardioMachineSessions extends Component {
-  
-  constructor(props) {
-    super(props);
-    this.state.cardioSessions = [];
-  }
 
   componentDidMount() {
     function  processPayload(payLoad)  {
@@ -45,7 +40,7 @@ class CardioMachineSessions extends Component {
     fetch(link)
       .then(response => response.json())
       .then(data => this.setState({
-        cardioSessions: processPayload(data.data),
+        //cardioSessions: processPayload(data.data),
         currentPage: data.meta._currentPage,
         totalPages: data.meta._totalPages,
         links: data.links
@@ -59,7 +54,7 @@ class CardioMachineSessions extends Component {
   renderData() {
     console.log("STATE renderData: " + JSON.stringify(this.state));
     console.log("PROPS renderData: " + JSON.stringify(this.props));
-    const cardioMachineSessionTableRow = this.state.cardioSessions.map(
+    const cardioMachineSessionTableRow = this.props.sessions.map(
       (element, index) => {
         let date = element.startTime.split('T')[0];
         return (
