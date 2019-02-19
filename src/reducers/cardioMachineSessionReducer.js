@@ -24,12 +24,12 @@ function sessions(
         didInvalidate: false
       })
     case RECIEVE_CARDIO_MACHINE_SESSIONS:
-      console.log("hit recieve");
-      console.log("action: "  + JSON.stringify(action));
+      console.log("hit recieve - action: "  + JSON.stringify(action));
       return Object.assign({}, state, {
         isFetching: false,
         didInvalidate: false,
-        sessions: action.dataPayload.cardioMachineSessions.cardioMachineSessions,
+        sessions: action.dataPayload,
+        meta: action.metaPayload,
         lastUpdated: action.receivedAt
       })
     default:
