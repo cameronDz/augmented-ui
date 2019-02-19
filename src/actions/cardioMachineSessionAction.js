@@ -35,6 +35,7 @@ export function recieveCardioMachineSessions(sessionApiUrl, json) {
     sessionApiUrl,
     dataPayload: json.data,
     metaPayload: json.meta,
+    linkPayload: json.links,
     receivedAt: Date.now()
   };
 };
