@@ -45,7 +45,7 @@ function sessions(
         totalRecords: action.metaPayload._totalRecords,
         totalPages: action.metaPayload._totalPages,
         currentPage: action.metaPayload._currentPage,
-        links: action.links,
+        links: action.linkPayload,
         isFetching: false,
         didInvalidate: false,
         lastUpdated: action.receivedAt
