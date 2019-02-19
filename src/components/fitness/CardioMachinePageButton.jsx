@@ -30,7 +30,7 @@ class CardioMachinePageButton extends Component {
 }
   
 const mapStateToProps = state =>  ({
-    cardioState: state.cardioMachineSessions
+    cardioState: state.cardioMachineSessions.cardioMachineSessions
 });
 
 const mapDispatchToProps = (dispatch) => {

@@ -172,7 +172,7 @@ class CardioMachineTablePagination extends Component {
 };
 
 const mapStateToProps = state =>  ({
-  cardioState: state.cardioMachineSessions
+  cardioState: state.cardioMachineSessions.cardioMachineSessions
 });
 
 export default connect(mapStateToProps, null)(CardioMachineTablePagination);
