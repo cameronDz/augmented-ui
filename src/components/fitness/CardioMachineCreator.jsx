@@ -62,13 +62,14 @@ class CardioMachineCreator extends Component {
       startDate: new Date()
     });
 
+    let self = this;
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4) {
         document.getElementById("submitCardioBtn").disabled = false;
-        this.props.dispatchFetchSessions(this.props.links.self);
+        self.props.dispatchFetchSessions(self.props.links.self);
       }
     }; 
     xhr.send(payload);
