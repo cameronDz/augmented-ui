@@ -5,12 +5,18 @@ import {
   RECIEVE_CARDIO_MACHINE_SESSIONS
 } from '../actions/actionTypes';
 
+function getFetchingState() {
+  let fetching = initialState.cardioMachineSessions;
+  fetching.isFetching = true;
+  return fetching;
+}
+
 function sessions(state = initialState.cardioMachineSessions, action) {
   switch (action.type) {
     case INVALIDATED_CARDIO_MACHINE_SESSIONS:
       return Object.assign({}, state, initialState.cardioMachineSessions)
     case REQUEST_CARDIO_MACHINE_SESSIONS:
-      return Object.assign({}, state, initialState.cardioMachineSessions)
+      return Object.assign({}, state, getFetchingState())
     case RECIEVE_CARDIO_MACHINE_SESSIONS:
       return Object.assign({}, state, {
         sessions: action.dataPayload,
