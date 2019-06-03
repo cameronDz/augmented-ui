@@ -36,8 +36,8 @@ class CardioMachineModalButton extends Component {
       return (time.toString().length === 1 ? '0' + time.toString() : time.toString());
     };
 
-    var minute = Math.floor(this.props.duration / 60);
-    var second = getTwoDigitValue(this.props.duration % 60);
+    var minute = Math.floor(this.props.durationSeconds / 60);
+    var second = getTwoDigitValue(this.props.durationSeconds % 60);
     var date = this.props.startTime.split('T')[0];
     var time = this.props.startTime.split('T')[1].substring(0,5);
 
@@ -56,7 +56,7 @@ class CardioMachineModalButton extends Component {
               <div>Time: {time}</div>
               <div>Machine: {this.props.machineType}</div>
               <div>Duration: {minute}m {second}s</div>
-              <div>Distance: {this.props.distance} miles</div>
+              <div>Distance: {this.props.distanceMiles} miles</div>
               <div>User: {this.props.userName}</div>
               <div>Comment: {this.props.comment}</div>
             </Modal.Card.Body>

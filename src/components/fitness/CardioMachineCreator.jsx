@@ -1,8 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import DatePicker from "react-datepicker";
 import TimeField from 'react-simple-timefield';
+
+import { apis } from '../../api.js';
+import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction';
 import '../../styles/css/cardio.css';
-import {apis} from '../../api.js';
 
 class CardioMachineCreator extends Component {
 
@@ -58,12 +62,14 @@ class CardioMachineCreator extends Component {
       startDate: new Date()
     });
 
+    let self = this;
     var xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.onreadystatechange = function() {
       if (xhr.readyState === 4) {
         document.getElementById("submitCardioBtn").disabled = false;
+        self.props.dispatchFetchSessions(self.props.links.self);
       }
     }; 
     xhr.send(payload);
@@ -139,4 +145,16 @@ class CardioMachineCreator extends Component {
   };
 }
 
-export default CardioMachineCreator;
+const mapStateToProps = state =>  ({
+  links: state.cardioMachineSessions.cardioMachineSessions.links
+});
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    dispatchFetchSessions: (link) => {
+      dispatch(fetchSessionsIfNeeded(link));
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(CardioMachineCreator);
