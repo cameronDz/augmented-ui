@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Layout from '../Layout';
-import ExerciseCreator from './ExerciseCreator';
-import ExerciseDropdown from './ExerciseDropdown';
+import Layout from '../../components/Layout';
+import ExerciseCreator from '../../components/fitness/ExerciseCreator';
+import ExerciseDropdown from '../../components/fitness/ExerciseDropdown';
 
 class Exercise extends Component {
   render() {

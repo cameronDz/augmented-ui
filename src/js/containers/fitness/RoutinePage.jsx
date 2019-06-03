@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Layout from '../Layout';
-import Routine from './Routine';
+import Layout from '../../components/Layout';
+import Routine from '../../components/fitness/Routine';
 
 class RoutineBase extends Component {
   render() {

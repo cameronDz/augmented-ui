@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Layout from '../Layout';
+import Layout from '../../components/Layout';
 
 class Food extends Component {
   render() {
