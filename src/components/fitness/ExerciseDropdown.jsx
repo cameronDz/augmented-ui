@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import get from 'lodash.get';
 import Dropdown from '../Dropdown';
-import {apis} from '../../api.js';
+import * as _config from '../../../assets/data/config.json';
 
 class ExerciseDropdown extends Component {
 
@@ -8,23 +9,22 @@ class ExerciseDropdown extends Component {
     super()
     this.state = {exercise:[]};     
   }
-    
+
   componentDidMount() {
     function  processExercise(payLoad)  {
-      var array = [];
-      for(var i = 0; i < payLoad.length; i++) {
-        var counter = payLoad[i];
-        var obj = {};
-        obj.id = counter.exerciseId;
-        obj.title = counter.name;
-        obj.key = i;
-        obj.selected = false;
-        array.push(obj);
-      }
-      return array;
-    }
+      return (Array.isArray(payload))
+        ? payLoad.map((item, index) => {
+            return {
+              'id': get(item, 'exerciseId', -1),
+              'title': get(item, 'name', ''),
+              'key': index,
+              'selected': false
+            };
+          })
+        : null;
+    };
 
-    var url = apis().azure + 'exercises';
+    const url = _config.apis.azure + 'exercises';
     fetch(url)
       .then(response => response.json())
       .then(data => this.setState({
@@ -53,11 +53,9 @@ class ExerciseDropdown extends Component {
         <div>
           <p><strong>Exercise Dropdown Menu</strong></p>
         </div>
-        <Dropdown
-          title="Exercise Dropdown"
-          list={this.state.exercise}
+        <Dropdown list={this.state.exercise}
           resetThenSet={this.resetThenSet}
-        />
+          title="Exercise Dropdown" />
       </div>
     );
   }

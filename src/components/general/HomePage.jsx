@@ -5,24 +5,17 @@ import Layout from '../Layout';
 class Home extends Component {
 
   render() {
-    return (
-      <div>
-        <Session />
-      </div>
-    );
-  }
-
+    return (<div><Session /></div>);
+  };
 }
 
 class HomePage extends Component {
-
   render() {
     return (
       <div>
         <Layout title = "Augmented Home" children = {<Home />} />
-      </div>
-    );
-  }
+      </div>);
+  };
 }
 
 export default HomePage;

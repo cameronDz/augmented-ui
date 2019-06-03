@@ -4,7 +4,6 @@ import ExerciseCreator from './ExerciseCreator';
 import ExerciseDropdown from './ExerciseDropdown';
 
 class Exercise extends Component {
-
   render() {
     return (
       <div className="card">
@@ -37,21 +36,17 @@ class Exercise extends Component {
             </div>
           </div>
         </div>
-      </div>
-    );
-  }
-
+      </div>);
+  };
 }
   
 class ExercisePage extends Component {
-
   render() {
     return (
       <div>
         <Layout title = "Exercises" children = {<Exercise />} />
-      </div>
-    );
-  }
+      </div>);
+  };
 }
 
 export default ExercisePage;

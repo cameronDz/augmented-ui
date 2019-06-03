@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
 import HomePage from './components/general/HomePage';
 import ExercisePage from './components/fitness/ExercisePage';
@@ -14,14 +15,8 @@ import IssuePage from './components/general/IssuePage';
 import SignUpPage from './components/general/SignUpPage';
 import SignInPage from './components/general/SignInPage';
 
-import { connect } from 'react-redux';
-
-const mapStateToProps = state => ({
-  ...state
-});
 
 class App extends Component {
-
   render() {
     return (
       <div>
@@ -40,9 +35,12 @@ class App extends Component {
           <Route exact path='/signin' component={SignInPage} />
           <Route exact path='/signup' component={SignUpPage} />
         </Switch>
-      </div>
-    );
-  }
+      </div>);
+  };
 }
+
+const mapStateToProps = state => ({
+  ...state
+});
 
 export default connect(mapStateToProps, null) (App);

@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Layout from '../Layout';
 
 class Meal extends Component {
-
   render() {
     return (
       <div className="card">
@@ -11,28 +10,24 @@ class Meal extends Component {
         </header>
         <div className="columns is-mobile">
           <div className="column">
-	    <div className="card-content">
+	          <div className="card-content">
               <div className="content">
                 <p>Track Meals here.</p>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    );
-  }
-
+      </div>);
+  };
 }
 
 class MealPage extends Component {
-
   render() {
     return (
       <div>
         <Layout title = "Meals" children = {<Meal />} />
-      </div>
-    );
-  }
+      </div>);
+  };
 }
 
 export default MealPage;

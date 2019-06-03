@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import DatePicker from "react-datepicker";
 import TimeField from 'react-simple-timefield';
 
-import { apis } from '../../api.js';
+import * as _config from '../../../assets/data/config.json';
 import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction';
 import '../../styles/css/cardio.css';
 
@@ -40,7 +40,7 @@ class CardioMachineCreator extends Component {
   handleSubmit(event) {
     document.getElementById("submitCardioBtn").disabled = true;
     event.preventDefault();
-    var url = apis().azure + 'CardioMachineExercises'; 
+    const url = _config.apis.azure + 'CardioMachineExercises';
     var timingArray = this.state.timing.split(':');
     var seconds = (Number(timingArray[0] * 3600) + Number(timingArray[1] * 60) + Number(timingArray[2]));
 
@@ -90,8 +90,8 @@ class CardioMachineCreator extends Component {
           </div>
 
           <div className="field is-horizontal">
-	          <label className="label" htmlFor="startDate">Date &nbsp;</label>
-	          <DatePicker selected={this.state.startDate}
+            <label className="label" htmlFor="startDate">Date &nbsp;</label>
+            <DatePicker selected={this.state.startDate}
                         onChange={this.handleDateChange}
                         showTimeSelect
                         timeFormat="HH:mm"

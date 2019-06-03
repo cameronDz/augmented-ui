@@ -1,7 +1,6 @@
-import {
-    INVALIDATED_CARDIO_MACHINE_SESSIONS,
-    REQUEST_CARDIO_MACHINE_SESSIONS, 
-    RECIEVE_CARDIO_MACHINE_SESSIONS} from './actionTypes';
+import {INVALIDATED_CARDIO_MACHINE_SESSIONS,
+  REQUEST_CARDIO_MACHINE_SESSIONS,
+  RECIEVE_CARDIO_MACHINE_SESSIONS } from './actionTypes';
 
 export function invalidateCardioMachineSession() {
   return {

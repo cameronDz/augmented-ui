@@ -10,6 +10,7 @@
     }
   },
   "dependencies": {
+    "lodash.get": "^4.4.2",
     "react": "^16.4.2",
     "react-datepicker": "^2.0.0",
     "react-dom": "^16.4.2",

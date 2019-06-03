@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {apis} from '../../api.js';
+import * as _config from '../../../assets/data/config.json';
 
 /*
 TODO add formatter back later
@@ -51,7 +51,7 @@ class Routine extends Component {
   }
 
   componentDidMount() {
-    var url = apis().heroku + 'basicRoutine?routineId=1';
+    const url = _config.apis.heroku + 'basicRoutine?routineId=1';
     fetch(url)
       .then(response => response.json())
       .then(data => this.setState({

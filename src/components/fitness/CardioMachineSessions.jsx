@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import CardioMachineModalButton from './CardioMachineModalButton';
 import CardioMachineTablePagination from './CardioMachineTablePagination';
+import * as _config from '../../../assets/data/config.json';
 import '../../styles/css/cardio.css';
-import {apis} from  '../../api.js';
-import { connect } from 'react-redux';
 
 import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction';
 
@@ -13,11 +13,11 @@ import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction'
 class CardioMachineSessions extends Component {
 
   componentDidMount() {
-    var url = apis().azure + 'CardioMachineExercises';
-    var pageNumber = 1;
-    var pageSize = 10;
-    var params = '?pageNumber=' + pageNumber + '&pageSize=' + pageSize;
-    let link = url + params;
+    const url = _config.apis.azure + 'CardioMachineExercises';
+    const pageNumber = 1;
+    const pageSize = 10;
+    const params = '?pageNumber=' + pageNumber + '&pageSize=' + pageSize;
+    const link = url + params;
     this.props.dispatchFetchSessions(link);
   };
 
@@ -62,7 +62,7 @@ class CardioMachineSessions extends Component {
               </tr>
             </thead>
             {this.renderData()}
-	        </table>
+          </table>
         </div>
         <CardioMachineTablePagination />
       </div>

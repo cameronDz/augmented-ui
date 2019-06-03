@@ -3,7 +3,6 @@ import Layout from '../Layout';
 import Routine from './Routine';
 
 class RoutineBase extends Component {
-
   render() {
     return (
       <div className="card">
@@ -22,7 +21,7 @@ class RoutineBase extends Component {
                 </div>
               </div>   
             </div>
-	  </div>
+          </div>
           <div className="content column is-four-fifths">
             <div className="card">
               <header className="card-header">
@@ -30,7 +29,7 @@ class RoutineBase extends Component {
               </header>
               <div className="card-content">
                 <div className="content">
-	          <Routine />
+                  <Routine />
                 </div>
               </div>   
             </div>	    
@@ -43,14 +42,12 @@ class RoutineBase extends Component {
 }
 
 class RoutinePage extends Component {
-
   render() {
     return (
       <div>
         <Layout title = "Routines Page" children = {<RoutineBase />} />
-      </div>
-    );
-  }
+      </div>);
+  };
 }
 
 export default RoutinePage;

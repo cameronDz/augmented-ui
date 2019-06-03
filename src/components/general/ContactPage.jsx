@@ -11,7 +11,7 @@ class Contact extends Component {
         </header>
         <div className="columns is-mobile">
           <div className="column">
-	    <div className="card-content">
+            <div className="card-content">
               <div className="content">
                 <p>Application creator and maintainer: Cameron Dziurgot.</p>
                 <p>Email: <a href="mailto:camerondziurgot@gmail.com">camerondziurgot@gmail.com</a></p>
@@ -20,14 +20,11 @@ class Contact extends Component {
             </div>
           </div>
         </div>
-      </div>
-    );
-  }
-
+      </div>);
+  };
 }
 
 class ContactPage extends Component {
-
   render() {
     return (
       <div>
@@ -38,4 +35,3 @@ class ContactPage extends Component {
 }
 
 export default ContactPage;
-

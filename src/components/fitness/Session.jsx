@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import CardioMachineCreator from './CardioMachineCreator';
 import CardioMachineSessions from './CardioMachineSessions';
-import {apis} from '../../api.js';
+import * as _config from '../../../assets/data/config.json';
 
 class Session extends Component {
 
   render() {
-    var url = apis().azure + 'CardioMachineExercises?csv=csv';
+    const url = _config.apis.azure + 'CardioMachineExercises?csv=csv';
     const linkTag = React.createElement(
       'a',
       {
