@@ -1,185 +1,139 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import get from 'lodash.get';
 
 import CardioMachinePageButton from './CardioMachinePageButton';
 
-/**
- * Triple dot between buttons when multiple pages inbetween next button.
- */
-class PageEllipsis extends Component {
-  render() {  
-    return (
-      <span className="pagination-ellipsis">&hellip;</span>
-    );
-  };
-};
+const cardioMachineTablePagination = props => {
 
-/**
- * 
- * @prop links Array of Strings
- * @prop currentPage 
- * @prop totalPages
- */
-class CardioMachineTablePagination extends Component {
-    
-  render() {
-    let pager;	  
+  const [currentPage, setCurrentPage] = useState(0);
+  const [firstLink, setFirstLink] = useState('');
+  const [lastLink, setLastLink] = useState('');
+  const [nextLink, setNextLink] = useState('');
+  const [prevLink, setPrevLink] = useState('');
+  const [selfLink, setSelfLink] = useState('');
+  const [totalPages, setTotalPages] = useState(0);
 
-    if (this.props.totalPages === 0 ) {
-      pager = (
-        <div className="table-pagination" aria-label="pagination">
-        </div>
-      );
-    } else if(this.props.totalPages === 1) {
-      pager = (
-        <div className="table-pagination" aria-label="pagination">      
-          <CardioMachinePageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} /> 
-        </div>            
-      );        
-    } else if(this.props.totalPages === 2) {
-      pager = (
-        <div className="table-pagination" aria-label="pagination">      
-          <CardioMachinePageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} /> 
-          <CardioMachinePageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />  
-        </div>     
-      );               
-    } else if(this.props.totalPages === 3) {
-      let linkTwo;
-      if(this.props.currentPage === 1) {
-        linkTwo = this.props.links.next;
-      } else if (this.props.currentPage === 3) {
-        linkTwo = this.props.links.prev;
-      } else {
-        linkTwo = this.props.links.self;
-      }
-      
-      pager = (
-        <div className="table-pagination" aria-label="pagination">      
-          <CardioMachinePageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} /> 
-          <CardioMachinePageButton pageLink={linkTwo} currentPage={this.props.currentPage} pageNumber={2} /> 
-          <CardioMachinePageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />  
-        </div>     
-      );   
-    } else if(this.props.totalPages >= 4 && this.props.currentPage === 1) {
-      pager = (
-        <div className="table-pagination" aria-label="pagination">	      
-          <CardioMachinePageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} />
-          <CardioMachinePageButton pageLink={this.props.links.next} currentPage={this.props.currentPage} pageNumber={2} />
-          <PageEllipsis />
-          <CardioMachinePageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />	      
-        </div>	      
-      );	      
-    } else if(this.props.totalPages >= 4 && this.props.currentPage === this.props.totalPages) {
-      pager = (
-        <div className="table-pagination" aria-label="pagination">        
-          <CardioMachinePageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} />
-          <PageEllipsis />
-          <CardioMachinePageButton pageLink={this.props.links.prev} currentPage={this.props.currentPage} pageNumber={this.props.totalPages - 1} />
-          <CardioMachinePageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />       
-        </div>        
-      );        
-    } else if (this.props.totalPages === 4) {
-      let linkTwo;
-      let linkThree;
-      if(this.props.currentPage === 2) {
-        linkTwo = this.props.links.self;
-        linkThree = this.props.links.next;
-      } else {
-        linkTwo = this.props.links.prev;
-        linkThree = this.props.links.self;
-      } 
-      
-      pager = (
-        <div className="table-pagination" aria-label="pagination">        
-          <CardioMachinePageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} />
-          <CardioMachinePageButton pageLink={linkTwo} currentPage={this.props.currentPage} pageNumber={2} />
-          <CardioMachinePageButton pageLink={linkThree} currentPage={this.props.currentPage} pageNumber={3} />
-          <CardioMachinePageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={4} />       
-        </div>        
-      );  
-    } else if (this.props.totalPages >= 5 && this.props.currentPage === 2) {
-      pager = (
-        <div className="table-pagination" aria-label="pagination">        
-          <CardioMachinePageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} /> 
-          <CardioMachinePageButton pageLink={this.props.links.self} currentPage={this.props.currentPage} pageNumber={2} />
-          <CardioMachinePageButton pageLink={this.props.links.next} currentPage={this.props.currentPage} pageNumber={3} />  
-          <PageEllipsis />   
-          <CardioMachinePageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />  
-        </div>    
-      );      
-    } else if (this.props.totalPages >= 5 && this.props.currentPage === this.props.totalPages - 1) {
-      pager = (
-        <div className="table-pagination" aria-label="pagination">        
-          <CardioMachinePageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} /> 
-          <PageEllipsis />   
-          <CardioMachinePageButton pageLink={this.props.links.prev} currentPage={this.props.currentPage} pageNumber={this.props.totalPages - 2} />
-          <CardioMachinePageButton pageLink={this.props.links.self} currentPage={this.props.currentPage} pageNumber={this.props.totalPages - 1} />  
-          <CardioMachinePageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />  
-        </div>    
-      );      
-    } else if (this.props.totalPages === 5) {
-      pager = (
-        <div className="table-pagination" aria-label="pagination">        
-          <CardioMachinePageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} />
-          <CardioMachinePageButton pageLink={this.props.links.prev} currentPage={this.props.currentPage} pageNumber={2} />
-          <CardioMachinePageButton pageLink={this.props.links.self} currentPage={this.props.currentPage} pageNumber={3} />
-          <CardioMachinePageButton pageLink={this.props.links.next} currentPage={this.props.currentPage} pageNumber={4} />     
-          <CardioMachinePageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={5} />  
-        </div>        
-      );  
-    } else if (this.props.currentPage === 3) {
-      pager = (
-        <div className="table-pagination" aria-label="pagination">        
-          <CardioMachinePageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} /> 
-          <CardioMachinePageButton pageLink={this.props.links.prev} currentPage={this.props.currentPage} pageNumber={2} />
-          <CardioMachinePageButton pageLink={this.props.links.self} currentPage={this.props.currentPage} pageNumber={3} />
-          <CardioMachinePageButton pageLink={this.props.links.next} currentPage={this.props.currentPage} pageNumber={4} />  
-          <PageEllipsis />   
-          <CardioMachinePageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />  
-        </div>    
-      );     
-    } else if (this.props.currentPage === this.props.totalPages - 2) {
-      pager = (
-        <div className="table-pagination" aria-label="pagination">        
-          <CardioMachinePageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} /> 
-          <PageEllipsis />   
-          <CardioMachinePageButton pageLink={this.props.links.prev} currentPage={this.props.currentPage} pageNumber={this.props.totalPages - 3} />
-          <CardioMachinePageButton pageLink={this.props.links.self} currentPage={this.props.currentPage} pageNumber={this.props.totalPages - 2} />
-          <CardioMachinePageButton pageLink={this.props.links.next} currentPage={this.props.currentPage} pageNumber={this.props.totalPages - 1} />  
-          <CardioMachinePageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />  
-        </div>    
-      );     
-    } else {
-      pager = (
-        <div className="table-pagination" aria-label="pagination">        
-          <CardioMachinePageButton pageLink={this.props.links.first} currentPage={this.props.currentPage} pageNumber={1} />
-          <PageEllipsis />
-          <CardioMachinePageButton pageLink={this.props.links.prev} currentPage={this.props.currentPage} pageNumber={this.props.currentPage - 1} />
-          <CardioMachinePageButton pageLink={this.props.links.self} currentPage={this.props.currentPage} pageNumber={this.props.currentPage} />
-          <CardioMachinePageButton pageLink={this.props.links.next} currentPage={this.props.currentPage} pageNumber={this.props.currentPage + 1} />  
-          <PageEllipsis />   
-          <CardioMachinePageButton pageLink={this.props.links.last} currentPage={this.props.currentPage} pageNumber={this.props.totalPages} />  
-        </div>    
-      );  
-    }
-    
-    return(
-      <div>
-        {pager}
-      </div>
-    );
+  useEffect(() => {
+    setSelfLink(get(props, 'links.self', ''))
+    setCurrentPage(get(props, 'currentPage', 0))
+    setFirstLink(get(props, 'links.first', ''))
+    setLastLink(get(props, 'links.last', ''))
+    setNextLink(get(props, 'links.next', ''))
+    setPrevLink(get(props, 'links.prev', ''))
+    setTotalPages(get(props, 'totalPages', 0))
+  }, [props]);
+
+  const renderPageEllipsis = () => {
+    return (<span className="pagination-ellipsis">&hellip;</span>);
   };
+
+  let pager;
+  if (totalPages === 0 ) {
+    pager = null;
+  } else if (totalPages === 1) {
+    pager = (<CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />);
+  } else if (totalPages === 2) {
+    pager = (<React.Fragment>
+              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+            </React.Fragment>);
+  } else if (totalPages === 3) {
+    const linkTwo = (currentPage === 1)
+      ? nextLink
+      : (currentPage === 3)
+        ? prevLink
+        : selfLink;
+    pager = (<React.Fragment>
+              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <CardioMachinePageButton pageLink={linkTwo} currentPage={currentPage} pageNumber={2} />
+              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+            </React.Fragment>);
+  } else if (totalPages >= 4 && currentPage === 1) {
+    pager = (<React.Fragment>
+              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <CardioMachinePageButton pageLink={nextLink} currentPage={currentPage} pageNumber={2} />
+              {renderPageEllipsis()}
+              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+            </React.Fragment>);
+  } else if (totalPages >= 4 && currentPage === totalPages) {
+    pager = (<React.Fragment>
+              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              {renderPageEllipsis()}
+              <CardioMachinePageButton pageLink={prevLink} currentPage={currentPage} pageNumber={totalPages - 1} />
+              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+            </React.Fragment>);
+  } else if (totalPages === 4) {
+    const linkTwo = (currentPage === 2)
+      ? selfLink
+      : prevLink;
+    const linkThree = (currentPage === 2)
+      ? nextLink
+      : selfLink;
+    pager = (<React.Fragment>
+              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <CardioMachinePageButton pageLink={linkTwo} currentPage={currentPage} pageNumber={2} />
+              <CardioMachinePageButton pageLink={linkThree} currentPage={currentPage} pageNumber={3} />
+              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={4} />
+            </React.Fragment>);
+  } else if (totalPages >= 5 && currentPage === 2) {
+    pager = (<React.Fragment>
+              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <CardioMachinePageButton pageLink={selfLink} currentPage={currentPage} pageNumber={2} />
+              <CardioMachinePageButton pageLink={nextLink} currentPage={currentPage} pageNumber={3} />
+              {renderPageEllipsis()}
+              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+            </React.Fragment>);
+  } else if (totalPages >= 5 && currentPage === totalPages - 1) {
+    pager = (<React.Fragment>
+              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              {renderPageEllipsis()}
+              <CardioMachinePageButton pageLink={prevLink} currentPage={currentPage} pageNumber={totalPages - 2} />
+              <CardioMachinePageButton pageLink={selfLink} currentPage={currentPage} pageNumber={totalPages - 1} />
+              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+            </React.Fragment>);
+  } else if (totalPages === 5) {
+    pager = (<React.Fragment>
+              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <CardioMachinePageButton pageLink={prevLink} currentPage={currentPage} pageNumber={2} />
+              <CardioMachinePageButton pageLink={selfLink} currentPage={currentPage} pageNumber={3} />
+              <CardioMachinePageButton pageLink={nextLink} currentPage={currentPage} pageNumber={4} />
+              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={5} />
+            </React.Fragment>);
+  } else if (currentPage === 3) {
+    pager = (<React.Fragment>
+              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <CardioMachinePageButton pageLink={prevLink} currentPage={currentPage} pageNumber={2} />
+              <CardioMachinePageButton pageLink={selfLink} currentPage={currentPage} pageNumber={3} />
+              <CardioMachinePageButton pageLink={nextLink} currentPage={currentPage} pageNumber={4} />
+              {renderPageEllipsis()}
+              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+            </React.Fragment>);
+  } else if (currentPage === totalPages - 2) {
+    pager = (<React.Fragment>
+              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              {renderPageEllipsis()}
+              <CardioMachinePageButton pageLink={prevLink} currentPage={currentPage} pageNumber={totalPages - 3} />
+              <CardioMachinePageButton pageLink={selfLink} currentPage={currentPage} pageNumber={totalPages - 2} />
+              <CardioMachinePageButton pageLink={nextLink} currentPage={currentPage} pageNumber={totalPages - 1} />
+              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+            </React.Fragment>);
+  } else {
+    pager = (<React.Fragment>
+              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              {renderPageEllipsis()}
+              <CardioMachinePageButton pageLink={prevLink} currentPage={currentPage} pageNumber={currentPage - 1} />
+              <CardioMachinePageButton pageLink={selfLink} currentPage={currentPage} pageNumber={currentPage} />
+              <CardioMachinePageButton pageLink={nextLink} currentPage={currentPage} pageNumber={currentPage + 1} />
+              {renderPageEllipsis()}
+              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+            </React.Fragment>);
+  }
+  return (<div className="table-pagination" aria-label="pagination">{pager}</div>);
 };
 
 const mapStateToProps = state =>  ({
-  links: state.cardioMachineSessions.cardioMachineSessions.links,
-  totalRecords: state.cardioMachineSessions.cardioMachineSessions.totalRecords,
-  totalPages: state.cardioMachineSessions.cardioMachineSessions.totalPages,
-  currentPage: state.cardioMachineSessions.cardioMachineSessions.currentPage,
-  sessions: state.cardioMachineSessions.cardioMachineSessions.sessions,
-  isFetching: state.cardioMachineSessions.cardioMachineSessions.isFetching,
-  didInvalidate: state.cardioMachineSessions.cardioMachineSessions.didInvalidate,
-  lastUpdated: state.cardioMachineSessions.cardioMachineSessions.lastUpdated
+  sessions: state.cardioMachineSessions.cardioMachineSessions
 });
 
-export default connect(mapStateToProps, null)(CardioMachineTablePagination);
+export default connect(mapStateToProps, null)(cardioMachineTablePagination);
