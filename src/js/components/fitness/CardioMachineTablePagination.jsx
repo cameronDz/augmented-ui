@@ -1,8 +1,7 @@
-import React, { Component, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import get from 'lodash.get';
-
-import CardioMachinePageButton from './CardioMachinePageButton';
+import PaginationButton from './paginationButton';
 
 const cardioMachineTablePagination = props => {
 
@@ -32,11 +31,11 @@ const cardioMachineTablePagination = props => {
   if (totalPages === 0 ) {
     pager = null;
   } else if (totalPages === 1) {
-    pager = (<CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />);
+    pager = (<PaginationButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />);
   } else if (totalPages === 2) {
     pager = (<React.Fragment>
-              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
-              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+              <PaginationButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <PaginationButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
             </React.Fragment>);
   } else if (totalPages === 3) {
     const linkTwo = (currentPage === 1)
@@ -45,23 +44,23 @@ const cardioMachineTablePagination = props => {
         ? prevLink
         : selfLink;
     pager = (<React.Fragment>
-              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
-              <CardioMachinePageButton pageLink={linkTwo} currentPage={currentPage} pageNumber={2} />
-              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+              <PaginationButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <PaginationButton pageLink={linkTwo} currentPage={currentPage} pageNumber={2} />
+              <PaginationButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
             </React.Fragment>);
   } else if (totalPages >= 4 && currentPage === 1) {
     pager = (<React.Fragment>
-              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
-              <CardioMachinePageButton pageLink={nextLink} currentPage={currentPage} pageNumber={2} />
+              <PaginationButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <PaginationButton pageLink={nextLink} currentPage={currentPage} pageNumber={2} />
               {renderPageEllipsis()}
-              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+              <PaginationButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
             </React.Fragment>);
   } else if (totalPages >= 4 && currentPage === totalPages) {
     pager = (<React.Fragment>
-              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <PaginationButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
               {renderPageEllipsis()}
-              <CardioMachinePageButton pageLink={prevLink} currentPage={currentPage} pageNumber={totalPages - 1} />
-              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+              <PaginationButton pageLink={prevLink} currentPage={currentPage} pageNumber={totalPages - 1} />
+              <PaginationButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
             </React.Fragment>);
   } else if (totalPages === 4) {
     const linkTwo = (currentPage === 2)
@@ -71,62 +70,62 @@ const cardioMachineTablePagination = props => {
       ? nextLink
       : selfLink;
     pager = (<React.Fragment>
-              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
-              <CardioMachinePageButton pageLink={linkTwo} currentPage={currentPage} pageNumber={2} />
-              <CardioMachinePageButton pageLink={linkThree} currentPage={currentPage} pageNumber={3} />
-              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={4} />
+              <PaginationButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <PaginationButton pageLink={linkTwo} currentPage={currentPage} pageNumber={2} />
+              <PaginationButton pageLink={linkThree} currentPage={currentPage} pageNumber={3} />
+              <PaginationButton pageLink={lastLink} currentPage={currentPage} pageNumber={4} />
             </React.Fragment>);
   } else if (totalPages >= 5 && currentPage === 2) {
     pager = (<React.Fragment>
-              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
-              <CardioMachinePageButton pageLink={selfLink} currentPage={currentPage} pageNumber={2} />
-              <CardioMachinePageButton pageLink={nextLink} currentPage={currentPage} pageNumber={3} />
+              <PaginationButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <PaginationButton pageLink={selfLink} currentPage={currentPage} pageNumber={2} />
+              <PaginationButton pageLink={nextLink} currentPage={currentPage} pageNumber={3} />
               {renderPageEllipsis()}
-              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+              <PaginationButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
             </React.Fragment>);
   } else if (totalPages >= 5 && currentPage === totalPages - 1) {
     pager = (<React.Fragment>
-              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <PaginationButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
               {renderPageEllipsis()}
-              <CardioMachinePageButton pageLink={prevLink} currentPage={currentPage} pageNumber={totalPages - 2} />
-              <CardioMachinePageButton pageLink={selfLink} currentPage={currentPage} pageNumber={totalPages - 1} />
-              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+              <PaginationButton pageLink={prevLink} currentPage={currentPage} pageNumber={totalPages - 2} />
+              <PaginationButton pageLink={selfLink} currentPage={currentPage} pageNumber={totalPages - 1} />
+              <PaginationButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
             </React.Fragment>);
   } else if (totalPages === 5) {
     pager = (<React.Fragment>
-              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
-              <CardioMachinePageButton pageLink={prevLink} currentPage={currentPage} pageNumber={2} />
-              <CardioMachinePageButton pageLink={selfLink} currentPage={currentPage} pageNumber={3} />
-              <CardioMachinePageButton pageLink={nextLink} currentPage={currentPage} pageNumber={4} />
-              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={5} />
+              <PaginationButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <PaginationButton pageLink={prevLink} currentPage={currentPage} pageNumber={2} />
+              <PaginationButton pageLink={selfLink} currentPage={currentPage} pageNumber={3} />
+              <PaginationButton pageLink={nextLink} currentPage={currentPage} pageNumber={4} />
+              <PaginationButton pageLink={lastLink} currentPage={currentPage} pageNumber={5} />
             </React.Fragment>);
   } else if (currentPage === 3) {
     pager = (<React.Fragment>
-              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
-              <CardioMachinePageButton pageLink={prevLink} currentPage={currentPage} pageNumber={2} />
-              <CardioMachinePageButton pageLink={selfLink} currentPage={currentPage} pageNumber={3} />
-              <CardioMachinePageButton pageLink={nextLink} currentPage={currentPage} pageNumber={4} />
+              <PaginationButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <PaginationButton pageLink={prevLink} currentPage={currentPage} pageNumber={2} />
+              <PaginationButton pageLink={selfLink} currentPage={currentPage} pageNumber={3} />
+              <PaginationButton pageLink={nextLink} currentPage={currentPage} pageNumber={4} />
               {renderPageEllipsis()}
-              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+              <PaginationButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
             </React.Fragment>);
   } else if (currentPage === totalPages - 2) {
     pager = (<React.Fragment>
-              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <PaginationButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
               {renderPageEllipsis()}
-              <CardioMachinePageButton pageLink={prevLink} currentPage={currentPage} pageNumber={totalPages - 3} />
-              <CardioMachinePageButton pageLink={selfLink} currentPage={currentPage} pageNumber={totalPages - 2} />
-              <CardioMachinePageButton pageLink={nextLink} currentPage={currentPage} pageNumber={totalPages - 1} />
-              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+              <PaginationButton pageLink={prevLink} currentPage={currentPage} pageNumber={totalPages - 3} />
+              <PaginationButton pageLink={selfLink} currentPage={currentPage} pageNumber={totalPages - 2} />
+              <PaginationButton pageLink={nextLink} currentPage={currentPage} pageNumber={totalPages - 1} />
+              <PaginationButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
             </React.Fragment>);
   } else {
     pager = (<React.Fragment>
-              <CardioMachinePageButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
+              <PaginationButton pageLink={firstLink} currentPage={currentPage} pageNumber={1} />
               {renderPageEllipsis()}
-              <CardioMachinePageButton pageLink={prevLink} currentPage={currentPage} pageNumber={currentPage - 1} />
-              <CardioMachinePageButton pageLink={selfLink} currentPage={currentPage} pageNumber={currentPage} />
-              <CardioMachinePageButton pageLink={nextLink} currentPage={currentPage} pageNumber={currentPage + 1} />
+              <PaginationButton pageLink={prevLink} currentPage={currentPage} pageNumber={currentPage - 1} />
+              <PaginationButton pageLink={selfLink} currentPage={currentPage} pageNumber={currentPage} />
+              <PaginationButton pageLink={nextLink} currentPage={currentPage} pageNumber={currentPage + 1} />
               {renderPageEllipsis()}
-              <CardioMachinePageButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
+              <PaginationButton pageLink={lastLink} currentPage={currentPage} pageNumber={totalPages} />
             </React.Fragment>);
   }
   return (<div className="table-pagination" aria-label="pagination">{pager}</div>);
