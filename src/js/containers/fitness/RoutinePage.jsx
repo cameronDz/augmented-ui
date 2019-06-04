@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import Layout from '../../components/Layout';
 import Routine from '../../components/fitness/Routine';
+import Card from '../../components/bulma/card';
 
 class RoutineBase extends Component {
   render() {
+    const sideBarTitle = 'Routine Side Bar';
+    const sideBarChild = (<p>Side-bar for Routine information.</p>);
+    const routineTitle = 'Latest Routine';
+    const routineChild = (<Routine />);
     return (
       <div className="card">
         <header className="card-header">
@@ -11,42 +16,21 @@ class RoutineBase extends Component {
         </header>
         <div className="card-content columns is-tablet">
           <div className="content column is-one-fifth">
-            <div className="card">
-              <header className="card-header">
-                <p className="card-header-title">Routine Side Bar</p>
-              </header>
-              <div className="card-content">
-                <div className="content">
-                  <p>Side-bar for Routine information.</p>
-                </div>
-              </div>   
-            </div>
+            <Card child={sideBarChild} title={sideBarTitle} />
           </div>
           <div className="content column is-four-fifths">
-            <div className="card">
-              <header className="card-header">
-                <p className="card-header-title">Latest Routine</p>
-              </header>
-              <div className="card-content">
-                <div className="content">
-                  <Routine />
-                </div>
-              </div>   
-            </div>	    
+            <Card child={routineChild} title={routineTitle} />
           </div>
         </div>
-      </div>
-    );
-  }
-
+      </div>);
+  };
 }
 
 class RoutinePage extends Component {
   render() {
-    return (
-      <div>
-        <Layout title = "Routines Page" children = {<RoutineBase />} />
-      </div>);
+    const title = 'Routines Page';
+    const children = (<RoutineBase />);
+    return (<Layout children={children} title={title} />);
   };
 }
 

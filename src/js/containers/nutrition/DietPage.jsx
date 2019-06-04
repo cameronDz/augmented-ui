@@ -1,32 +1,13 @@
 import React, { Component } from 'react';
 import Layout from '../Layout';
-
-class Diet extends Component {
-  render() {
-    return (
-      <div className="card">
-        <header className="card-header">
-          <p className="card-header-title">Diets</p>
-        </header>
-        <div className="columns is-mobile">
-          <div className="column">
-	          <div className="card-content">
-              <div className="content"> 
-                <p>Track diets here.</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>);
-  };
-}
+import Card from '../../components/bulma/card';
 
 class DietPage extends Component {
   render() {
-    return (
-      <div>
-        <Layout title = "Diets" children = {<Diet />} />
-      </div>);
+    const dietTitle = 'Diets';
+    const dietChild = (<p>Track diets here.</p>);
+    const dietCard = (<Card child={dietChild} title={dietTitle} />);
+    return (<Layout children={dietCard} title={dietTitle} />);
   };
 }
 

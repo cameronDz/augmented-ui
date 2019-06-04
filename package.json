@@ -4,7 +4,7 @@
   "homepage": "http://augmented.fit",
   "private": true,
   "proxy": {
-    "/v0.3/api": {
+    "/v0.4/api": {
       "target": "https://augmentedaspnetbackend.azurewebsites.net/",
       "ws": true
     }

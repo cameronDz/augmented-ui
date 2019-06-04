@@ -2,9 +2,14 @@ import React, { Component } from 'react';
 import Layout from '../../components/Layout';
 import ExerciseCreator from '../../components/fitness/ExerciseCreator';
 import ExerciseDropdown from '../../components/fitness/ExerciseDropdown';
+import Card from '../../components/bulma/card';
 
 class Exercise extends Component {
   render() {
+    const exerciseCreatorChild = (<ExerciseCreator />);
+    const exerciseCreatorTitle = 'Exercise Creator';
+    const exerciseDropdownChild = (<ExerciseDropdown />);
+    const exerciseDropdownTitle = 'Exercise Dropdown Sample';
     return (
       <div className="card">
         <header>
@@ -12,28 +17,10 @@ class Exercise extends Component {
         </header>
         <div className="card-content columns is-tablet">
           <div className="content column is-one-half">
-            <div className="card">
-              <header className="card-header">
-                <p className="card-header-title">Exercise Dropdown Sample</p>
-              </header>
-              <div className="card-content">
-                <div className="content">	    
-                  <ExerciseDropdown />
-                </div>
-              </div>
-            </div>
+            <Card child={exerciseCreatorChild} title={exerciseCreatorTitle} />
           </div>
           <div className="content column is-one-half">
-            <div className="card">
-              <header className="card-header">
-                <p className="card-header-title">Exercise Creator</p>
-              </header>
-              <div className="card-content">
-                <div className="content">	    
-                  <ExerciseCreator />
-                </div>
-              </div>
-            </div>
+            <Card child={exerciseDropdownChild} title={exerciseDropdownTitle} />
           </div>
         </div>
       </div>);
@@ -42,10 +29,9 @@ class Exercise extends Component {
   
 class ExercisePage extends Component {
   render() {
-    return (
-      <div>
-        <Layout title = "Exercises" children = {<Exercise />} />
-      </div>);
+    const title = 'Exercises';
+    const children = (<Exercise />);
+    return (<Layout children={children} title={title} />);
   };
 }
 
