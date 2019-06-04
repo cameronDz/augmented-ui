@@ -1,30 +1,33 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import get from 'lodash.get';
 import Header from './general/Header';
 import Footer from './general/Footer';
 import '../styles/css/layout.css';
 
-class Layout extends Component {
+const propTypes = {
+  children: PropTypes.object.isRequired,
+  title: PropTypes.string.isRequired
+};
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: this.props.title,
-      children: this.props.children
-    }
-  }
+const layout = props => {
 
-  render() {
-    const {title, children} = this.state;
-    return (
-      <div>
-        <Header title = {title} />
-        {children}
-        <div className="spacer"></div>
-        <Footer />
-      </div>
-    );
-  } 
+  const [children, setChildren] = useState();
+  const [title, setTitle] = useState('');
 
-}
+  useEffect(() => {
+    setChildren(get(props, 'children', null));
+    setChildren(get(props, 'title', ''));
+  }, [props]);
 
-export default Layout;
+  return (
+    <React.Fragment>
+      <Header title={title} />
+      {children}
+      <div className="spacer"></div>
+      <Footer />
+    </React.Fragment>);
+};
+
+layout.propTypes = propTypes;
+export default layout;

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Navbar extends Component {
 
   componentDidMount() {
-    // get elements to be dropdowns 
+    // get elements to be dropdowns
     let fitnessButton = document.getElementById('fitnessNavbarButton');
     let nutritionButton = document.getElementById('nutritionNavbarButton');
     let moreButton = document.getElementById('moreNavbarButton');
@@ -29,7 +29,7 @@ class Navbar extends Component {
       }
     };
 
-    // add listeners to dropdowns 
+    // add listeners to dropdowns
     fitnessButton.addEventListener("click", buttonListener);
     nutritionButton.addEventListener("click", buttonListener);
     moreButton.addEventListener("click", buttonListener);
@@ -51,10 +51,10 @@ class Navbar extends Component {
         <div className="navbar-brand">
           <div className="navbar-item">
             <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="bulma-logo" />
-          </div>  
+          </div>
           <div role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="basicNavbar" onClick={this.handleBurgerClick}>
             <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span> 
+            <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
           </div>
         </div>
@@ -97,9 +97,8 @@ class Navbar extends Component {
             </div>
           </div>
         </div>
-      </nav>
-    );
-  }
+      </nav>);
+  };
 }
 
 export default Navbar;

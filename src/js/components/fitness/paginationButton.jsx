@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import get from 'lodash.get';
 import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction';
+
+const propTypes = {
+  pageLink: PropTypes.string.isRequired,
+  pageNumber: PropTypes.number.isRequired
+};
 
 const paginationButton = props => {
 
@@ -14,7 +20,7 @@ const paginationButton = props => {
     setPageLink(get(props, 'pageLink', ''));
     setPageNumber(get(props, 'pageNumber', 0));
   }, [props]);
-  
+
   const onPaginationClick = link => {
     props.dispatchFetchSessions(link);
   };
@@ -24,10 +30,10 @@ const paginationButton = props => {
       ? "pagination-link"
       : "pagination-link is-current";
   };
-  
+
   return (<a className={getClassName()} onClick={() => onPaginationClick(pageLink)}>{pageNumber}</a>);
 };
-  
+
 const mapStateToProps = state =>  ({
     sessions: state.cardioMachineSessions.cardioMachineSessions
 });
@@ -39,5 +45,6 @@ const mapDispatchToProps = (dispatch) => {
     }
   };
 };
-  
+
+paginationButton.propTypes = propTypes;
 export default connect(mapStateToProps, mapDispatchToProps)(paginationButton);

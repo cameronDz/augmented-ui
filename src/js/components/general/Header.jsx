@@ -1,30 +1,30 @@
-import React, {Component} from 'react';
+import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
+import get from 'lodash.get';
 import Navbar from  './Navbar';
 
-class Header extends Component {
+const propTypes = {
+  title: PropTypes.string.isRequired
+};
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      title: this.props.title
-    }
-  }
+const header = props => {
+  const [title, setTitle] = useState('');
+  useEffect(() => {
+    setTitle(get(props, 'title', ''));
+  }, [props]);
 
-  render() {
-    const {title} = this.state;
-    return (
-      <div>
-        <Navbar />
-        <section className="hero">
-          <div className="hero-body">       
-            <div className="container">
-              <h1 className="title">{title}</h1>
-            </div>
+  return (
+    <React.Fragment>
+      <Navbar />
+      <section className="hero">
+        <div className="hero-body">
+          <div className="container">
+            <h1 className="title">{title}</h1>
           </div>
-        </section>
-      </div>
-    );
-  };
-}
+        </div>
+      </section>
+    </React.Fragment>);
+};
 
-export default Header;
+header.propTypes = propTypes;
+export default header;
