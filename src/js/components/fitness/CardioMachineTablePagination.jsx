@@ -131,5 +131,5 @@ const cardioMachineTablePagination = props => {
   return (<div className="table-pagination" aria-label="pagination">{pager}</div>);
 };
 
-const mapStateToProps = state => ({ sessions: state.cardioMachineSessions.cardioMachineSessions });
+const mapStateToProps = state => ({ sessions: state.cardioMachineSessions });
 export default connect(mapStateToProps, null)(cardioMachineTablePagination);

@@ -35,7 +35,7 @@ const paginationButton = props => {
 };
 
 const mapStateToProps = state =>  ({
-    sessions: state.cardioMachineSessions.cardioMachineSessions
+    sessions: state.cardioMachineSessions
 });
 
 const mapDispatchToProps = (dispatch) => {

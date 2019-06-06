@@ -1,5 +1,5 @@
 import initialState from './initialState';
-import * as types from '../actions';
+import * as types from './types';
 
 function getFetchingState() {
   let fetching = initialState;

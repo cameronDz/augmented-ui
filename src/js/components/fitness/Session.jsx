@@ -18,7 +18,7 @@ class Session extends Component {
     const renderSessionCard = () => {
       const title = 'Cardio Machine Session';
       const child = (<CardioMachineSessions />);
-      return (<Card child={child} footer={footer}title={title} />);
+      return (<Card child={child} title={title} />);
     };
 
     const renderContent = () => {

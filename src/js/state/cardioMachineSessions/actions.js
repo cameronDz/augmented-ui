@@ -1,4 +1,4 @@
-import * as types from './actions';
+import * as types from './types';
 
 export function invalidateCardioMachineSession() {
   return { type: types.INVALIDATED_CARDIO_MACHINE_SESSIONS };
@@ -31,7 +31,7 @@ export function fetchSessionsIfNeeded(sessionApiUrl) {
 };
 
 function shouldFetchSessions(state) {
-  const sessions = state.cardioMachineSessions.cardioMachineSessions;
+  const sessions = state.cardioMachineSessions;
   return (!sessions)
     ? true
     : (!!sessions.isFetching)

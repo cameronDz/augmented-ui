@@ -3,9 +3,8 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from './components/App';
-import registerServiceWorker from './registerServiceWorker';
 import configureStore from './state/store';
-import './styles/css/index.css';
+import '../css/index.css';
 
 ReactDOM.render((
   <Provider store={configureStore()}>
@@ -14,4 +13,3 @@ ReactDOM.render((
     </BrowserRouter>
   </Provider>
 ), document.getElementById('root'));
-registerServiceWorker();

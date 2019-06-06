@@ -152,5 +152,5 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const mapStateToProps = state =>  ({ links: state.cardioMachineSessions.cardioMachineSessions.links });
+const mapStateToProps = state =>  ({ links: state.cardioMachineSessions.links });
 export default connect(mapStateToProps, mapDispatchToProps)(CardioMachineCreator);
