@@ -1,20 +1,17 @@
 import initialState from './initialState';
 import * as types from './types';
 
-function getFetchingState() {
-  let fetching = initialState;
-  fetching.isFetching = true;
-  return fetching;
-}
-
-function sessions(state = initialState, action) {
+const reducer = (state = initialState, action) => {
+  let newState;
   switch (action.type) {
     case types.INVALIDATED_CARDIO_MACHINE_SESSIONS:
-      return Object.assign({}, state, initialState)
+      newState = { ...initialState };
+      break;
     case types.REQUEST_CARDIO_MACHINE_SESSIONS:
-      return Object.assign({}, state, getFetchingState())
+      newState = { ...state, isFetching: true };
+      break;
     case types.RECIEVE_CARDIO_MACHINE_SESSIONS:
-      return Object.assign({}, state, {
+      newState = { ...state,
         sessions: action.dataPayload,
         totalRecords: action.metaPayload._totalRecords,
         totalPages: action.metaPayload._totalPages,
@@ -23,21 +20,12 @@ function sessions(state = initialState, action) {
         isFetching: false,
         didInvalidate: true,
         lastUpdated: action.receivedAt
-      })
+      };
+      break;
     default:
-      return state
+      newState = state
   }
+  return newState;
 };
 
-export default (state = initialState, action) => {
-  switch (action.type) {
-    case types.INVALIDATED_CARDIO_MACHINE_SESSIONS:
-    case types.REQUEST_CARDIO_MACHINE_SESSIONS:
-    case types.RECIEVE_CARDIO_MACHINE_SESSIONS:
-      return Object.assign({}, state, {
-        cardioMachineSessions: sessions(state, action)
-      });
-    default:
-      return state;
-  }
-};
+export default reducer;
