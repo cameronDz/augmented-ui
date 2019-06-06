@@ -2,6 +2,15 @@
   "name": "augmented-frontend",
   "version": "0.1.0",
   "homepage": "http://augmented.fit",
+  "scripts": {
+    "webpack-build": "exit 1",
+    "webpack-start": "exit 1",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "deploy": "aws s3 cp --recursive ./build s3://augmented-frontend",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  },
   "private": true,
   "proxy": {
     "/v0.4/api": {
@@ -35,12 +44,5 @@
     "react-simple-timefield": "^2.0.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "deploy": "aws s3 cp --recursive ./build s3://augmented-frontend",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
   }
 }
