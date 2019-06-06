@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
 import DatePicker from "react-datepicker";
 import TimeField from 'react-simple-timefield';
-
-import * as _config from '../../../assets/data/config.json';
-import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction';
-import '../../styles/css/cardio.css';
+import * as _config from '../../../../assets/data/config.json';
+import { fetchSessionsIfNeeded } from '../../state/cardioMachineSessions/actions';
+import '../../../css/cardio.css';
 
 class CardioMachineCreator extends Component {
 
@@ -145,9 +143,6 @@ class CardioMachineCreator extends Component {
   };
 }
 
-const mapStateToProps = state =>  ({
-  links: state.cardioMachineSessions.cardioMachineSessions.links
-});
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -157,4 +152,5 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+const mapStateToProps = state =>  ({ links: state.cardioMachineSessions.cardioMachineSessions.links });
 export default connect(mapStateToProps, mapDispatchToProps)(CardioMachineCreator);

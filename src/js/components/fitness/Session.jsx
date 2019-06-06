@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import CardioMachineCreator from './CardioMachineCreator';
 import CardioMachineSessions from './CardioMachineSessions';
-import * as _config from '../../../assets/data/config.json';
+import * as _config from '../../../../assets/data/config.json';
 import Card from '../bulma/card';
 
 class Session extends Component {

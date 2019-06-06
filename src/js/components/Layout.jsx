@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import get from 'lodash.get';
 import Header from './general/Header';
 import Footer from './general/Footer';
-import '../styles/css/layout.css';
+import '../../css/layout.css';
 
 const propTypes = {
   children: PropTypes.object.isRequired,
@@ -17,7 +17,7 @@ const layout = props => {
 
   useEffect(() => {
     setChildren(get(props, 'children', null));
-    setChildren(get(props, 'title', ''));
+    setTitle(get(props, 'title', ''));
   }, [props]);
 
   return (

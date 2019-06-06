@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import * as _config from '../../../assets/data/config.json';
+import * as _config from '../../../../assets/data/config.json';
 
 /*
 TODO add formatter back later

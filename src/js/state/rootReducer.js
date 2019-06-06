@@ -1,6 +1,4 @@
 import {combineReducers } from 'redux';
-import cardioMachineSessions from './cardioMachineSessionReducer';
+import cardioMachineSessionsReducer from './cardioMachineSessions/reducer.js';
 
-export default combineReducers({
-  cardioMachineSessions
-});
+export default combineReducers({ cardioMachineSessions: cardioMachineSessionsReducer });

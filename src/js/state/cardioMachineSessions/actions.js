@@ -1,23 +1,19 @@
-import {INVALIDATED_CARDIO_MACHINE_SESSIONS,
-  REQUEST_CARDIO_MACHINE_SESSIONS,
-  RECIEVE_CARDIO_MACHINE_SESSIONS } from './actionTypes';
+import * as types from './actions';
 
 export function invalidateCardioMachineSession() {
-  return {
-    type: INVALIDATED_CARDIO_MACHINE_SESSIONS
-  };
+  return { type: types.INVALIDATED_CARDIO_MACHINE_SESSIONS };
 };
 
 export function requestCardioMachineSessions(sessionApiUrl) {
   return {
-    type: REQUEST_CARDIO_MACHINE_SESSIONS,
+    type: types.REQUEST_CARDIO_MACHINE_SESSIONS,
     sessionApiUrl
   };
 };
 
 export function recieveCardioMachineSessions(sessionApiUrl, json) {
   return {
-    type: RECIEVE_CARDIO_MACHINE_SESSIONS,
+    type: types.RECIEVE_CARDIO_MACHINE_SESSIONS,
     sessionApiUrl,
     dataPayload: json.data,
     metaPayload: json.meta,
@@ -36,15 +32,11 @@ export function fetchSessionsIfNeeded(sessionApiUrl) {
 
 function shouldFetchSessions(state) {
   const sessions = state.cardioMachineSessions.cardioMachineSessions;
-  let ret;
-  if (!sessions) {
-    ret = true;
-  } else if (sessions.isFetching) {
-    ret = false;
-  } else {
-    ret = sessions.didInvalidate;
-  }
-  return ret;
+  return (!sessions)
+    ? true
+    : (!!sessions.isFetching)
+      ? false
+      : (!!sessions.didInvalidate);
 };
 
 function fetchSessions(sessionApiUrl) {

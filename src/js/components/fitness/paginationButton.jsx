@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import get from 'lodash.get';
-import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction';
+import { fetchSessionsIfNeeded } from '../../state/cardioMachineSessions/actions';
 
 const propTypes = {
   pageLink: PropTypes.string.isRequired,

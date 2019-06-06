@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import get from 'lodash.get';
 import Dropdown from '../Dropdown';
-import * as _config from '../../../assets/data/config.json';
+import * as _config from '../../../../assets/data/config.json';
 
 class ExerciseDropdown extends Component {
 

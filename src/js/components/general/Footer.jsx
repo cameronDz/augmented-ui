@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import '../../styles/css/footer.css';
+import React from 'react';
+import '../../../css/footer.css';
 
 const footer = () => {
   const githubIo = 'https://cameronDz.github.io';

@@ -1,23 +1,19 @@
 import initialState from './initialState';
-import {
-  INVALIDATED_CARDIO_MACHINE_SESSIONS,
-  REQUEST_CARDIO_MACHINE_SESSIONS,
-  RECIEVE_CARDIO_MACHINE_SESSIONS
-} from '../actions/actionTypes';
+import * as types from '../actions';
 
 function getFetchingState() {
-  let fetching = initialState.cardioMachineSessions;
+  let fetching = initialState;
   fetching.isFetching = true;
   return fetching;
 }
 
-function sessions(state = initialState.cardioMachineSessions, action) {
+function sessions(state = initialState, action) {
   switch (action.type) {
-    case INVALIDATED_CARDIO_MACHINE_SESSIONS:
-      return Object.assign({}, state, initialState.cardioMachineSessions)
-    case REQUEST_CARDIO_MACHINE_SESSIONS:
+    case types.INVALIDATED_CARDIO_MACHINE_SESSIONS:
+      return Object.assign({}, state, initialState)
+    case types.REQUEST_CARDIO_MACHINE_SESSIONS:
       return Object.assign({}, state, getFetchingState())
-    case RECIEVE_CARDIO_MACHINE_SESSIONS:
+    case types.RECIEVE_CARDIO_MACHINE_SESSIONS:
       return Object.assign({}, state, {
         sessions: action.dataPayload,
         totalRecords: action.metaPayload._totalRecords,
@@ -35,9 +31,9 @@ function sessions(state = initialState.cardioMachineSessions, action) {
 
 export default (state = initialState, action) => {
   switch (action.type) {
-    case INVALIDATED_CARDIO_MACHINE_SESSIONS:
-    case REQUEST_CARDIO_MACHINE_SESSIONS:
-    case RECIEVE_CARDIO_MACHINE_SESSIONS:
+    case types.INVALIDATED_CARDIO_MACHINE_SESSIONS:
+    case types.REQUEST_CARDIO_MACHINE_SESSIONS:
+    case types.RECIEVE_CARDIO_MACHINE_SESSIONS:
       return Object.assign({}, state, {
         cardioMachineSessions: sessions(state, action)
       });

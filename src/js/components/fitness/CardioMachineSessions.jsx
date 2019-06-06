@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import CardioMachineModalButton from './CardioMachineModalButton';
 import CardioMachineTablePagination from './CardioMachineTablePagination';
-import * as _config from '../../../assets/data/config.json';
-import '../../styles/css/cardio.css';
-
-import { fetchSessionsIfNeeded } from '../../actions/cardioMachineSessionAction';
+import { fetchSessionsIfNeeded } from '../../state/cardioMachineSessions/actions';
+import * as _config from '../../../../assets/data/config.json';
+import '../../../css/cardio.css';
 
 /**
  * Display of cardio machine sessions on a table.

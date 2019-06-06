@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Switch, Route } from 'react-router-dom';
-import HomePage from './components/general/HomePage';
-import ExercisePage from './components/fitness/ExercisePage';
-import SessionPage from './components/fitness/SessionPage';
-import RoutinePage from './components/fitness/RoutinePage';
-import DietPage from './components/nutrition/DietPage';
-import MealPage from './components/nutrition/MealPage';
-import FoodPage from './components/nutrition/FoodPage';
-import AboutPage from './components/general/AboutPage';
-import ContactPage from './components/general/ContactPage';
-import ContributePage from './components/general/ContributePage';
-import IssuePage from './components/general/IssuePage';
-import SignUpPage from './components/general/SignUpPage';
-import SignInPage from './components/general/SignInPage';
+import HomePage from '../containers/HomePage';
+import SignUpPage from '../containers/SignUpPage';
+import SignInPage from '../containers/SignInPage';
+import ExercisePage from '../containers/fitness/ExercisePage';
+import SessionPage from '../containers/fitness/SessionPage';
+import RoutinePage from '../containers/fitness/RoutinePage';
+import DietPage from '../containers/nutrition/DietPage';
+import MealPage from '../containers/nutrition/MealPage';
+import FoodPage from '../containers/nutrition/FoodPage';
+import AboutPage from '../containers/site/AboutPage';
+import ContactPage from '../containers/site/ContactPage';
+import ContributePage from '../containers/site/ContributePage';
+import IssuePage from '../containers/site/IssuePage';
 
 
 class App extends Component {
@@ -39,8 +39,5 @@ class App extends Component {
   };
 }
 
-const mapStateToProps = state => ({
-  ...state
-});
-
-export default connect(mapStateToProps, null) (App);
+const mapStateToProps = state => ({ ...state });
+export default connect(mapStateToProps)(App);

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import {Modal} from 'react-bulma-components';
-import '../../styles/css/cardio.css';
+import { Modal } from 'react-bulma-components';
+import '../../../css/cardio.css';
 
 /**
  *  Pulled modal from react-bulma-components storybook pages.
