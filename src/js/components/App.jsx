@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import HomePage from '../containers/HomePage';
 import SignUpPage from '../containers/SignUpPage';
@@ -15,29 +14,25 @@ import ContactPage from '../containers/site/ContactPage';
 import ContributePage from '../containers/site/ContributePage';
 import IssuePage from '../containers/site/IssuePage';
 
+const app = () => {
+  return (
+    <div>
+      <Switch>
+        <Route exact path='/' component={HomePage} />
+        <Route exact path='/exercise' component={ExercisePage} />
+        <Route exact path='/session' component={SessionPage} />
+        <Route exact path='/routine' component={RoutinePage} />
+        <Route exact path='/diet' component={DietPage} />
+        <Route exact path='/meal' component={MealPage} />
+        <Route exact path='/food' component={FoodPage} />
+        <Route exact path='/about' component={AboutPage} />
+        <Route exact path='/contact' component={ContactPage} />
+        <Route exact path='/contribute' component={ContributePage} />
+        <Route exact path='/issue' component={IssuePage} />
+        <Route exact path='/signin' component={SignInPage} />
+        <Route exact path='/signup' component={SignUpPage} />
+      </Switch>
+    </div>);
+};
 
-class App extends Component {
-  render() {
-    return (
-      <div>
-        <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/exercise' component={ExercisePage} />
-          <Route exact path='/session' component={SessionPage} />
-          <Route exact path='/routine' component={RoutinePage} />
-          <Route exact path='/diet' component={DietPage} />
-          <Route exact path='/meal' component={MealPage} />
-          <Route exact path='/food' component={FoodPage} />
-          <Route exact path='/about' component={AboutPage} />
-          <Route exact path='/contact' component={ContactPage} />
-          <Route exact path='/contribute' component={ContributePage} />
-          <Route exact path='/issue' component={IssuePage} />
-          <Route exact path='/signin' component={SignInPage} />
-          <Route exact path='/signup' component={SignUpPage} />
-        </Switch>
-      </div>);
-  };
-}
-
-const mapStateToProps = state => ({ ...state });
-export default connect(mapStateToProps)(App);
+export default app;
