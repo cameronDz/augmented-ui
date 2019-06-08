@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import PropType from 'prop-types';
 import get from 'lodash.get';
 import PaginationButton from './paginationButton';
 
-const cardioMachineTablePagination = props => {
+const propTypes = {
+  links: PropType.object.isRequired,
+  totalPages: PropType.number.isRequired,
+  currentPage: PropType.number.isRequired
+};
 
+const tablePagination = props => {
   const [currentPage, setCurrentPage] = useState(0);
   const [firstLink, setFirstLink] = useState('');
   const [lastLink, setLastLink] = useState('');
@@ -131,5 +136,5 @@ const cardioMachineTablePagination = props => {
   return (<div className="table-pagination" aria-label="pagination">{pager}</div>);
 };
 
-const mapStateToProps = state => ({ sessions: state.cardioMachineSessions });
-export default connect(mapStateToProps, null)(cardioMachineTablePagination);
+tablePagination.propTypes = propTypes;
+export default tablePagination;

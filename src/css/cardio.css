@@ -14,3 +14,7 @@ div.table-pagination {
 td.detail-column {
   text-align: center;
 }
+div.circular-loader {
+  padding-top: 15px;
+  text-align: center;
+}
