@@ -11,7 +11,7 @@ const sessionsTableDisplay = props => {
 
   useEffect(() => {
     const apiUrl = _config.apis.azure + 'CardioMachineExercises?pageNumber=1&pageSize=10';
-    props.dispatchFetchSessions(apiUrl);
+    props.fetchSessionsIfNeeded(apiUrl);
   }, []);
 
   const renderSessionsData = () => {
@@ -79,10 +79,5 @@ const mapStateToProps = state =>  ({
   sessions: state.cardioMachineSessions.sessions,
   totalPages: state.cardioMachineSessions.totalPages
 });
-// TODO move to state
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatchFetchSessions: (link) => { dispatch(fetchSessionsIfNeeded(link)); }
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(sessionsTableDisplay);
+
+export default connect(mapStateToProps, { fetchSessionsIfNeeded })(sessionsTableDisplay);

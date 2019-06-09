@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import DatePicker from "react-datepicker";
 import TimeField from 'react-simple-timefield';
 import * as _config from '../../../../../assets/data/config.json';
-import { fetchSessionsIfNeeded } from '../../../state/cardioMachineSessions/actions';
 import '../../../../css/cardio.css';
 
 class SessionCreator extends Component {
@@ -143,14 +142,5 @@ class SessionCreator extends Component {
   };
 }
 
-// TODO move to state
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatchFetchSessions: (link) => {
-      dispatch(fetchSessionsIfNeeded(link));
-    }
-  };
-};
-
 const mapStateToProps = state =>  ({ links: state.cardioMachineSessions.links });
-export default connect(mapStateToProps, mapDispatchToProps)(SessionCreator);
+export default connect(mapStateToProps)(SessionCreator);
