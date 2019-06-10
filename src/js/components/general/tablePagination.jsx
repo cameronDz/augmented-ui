@@ -99,7 +99,7 @@ const tablePagination = props => {
     pager = (<React.Fragment>
               <PaginationButton pageLink={firstLink} pageNumber={1} />
               {renderPageEllipsis()}
-              {displayPrevSelfNextButtons(totalPage-2, totalPage-1, totalPages)}
+              {displayPrevSelfNextButtons(totalPages-2, totalPages-1, totalPages)}
             </React.Fragment>);
   } else if (totalPages === 5) {
     pager = (<React.Fragment>
@@ -118,7 +118,7 @@ const tablePagination = props => {
     pager = (<React.Fragment>
               <PaginationButton pageLink={firstLink} pageNumber={1} />
               {renderPageEllipsis()}
-              {displayPrevSelfNextButtons(totalPage-3, totalPage-2, totalPages-1)}
+              {displayPrevSelfNextButtons(totalPages-3, totalPages-2, totalPages-1)}
               <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
             </React.Fragment>);
   } else {
