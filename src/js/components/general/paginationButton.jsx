@@ -34,17 +34,8 @@ const paginationButton = props => {
   return (<a className={getClassName()} onClick={() => onPaginationClick(pageLink)}>{pageNumber}</a>);
 };
 
-const mapStateToProps = state =>  ({
-    sessions: state.cardioMachineSessions
-});
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    dispatchFetchSessions: (link) => {
-      dispatch(fetchSessionsIfNeeded(link));
-    }
-  };
-};
+const mapStateToProps = state =>  ({ sessions: state.cardioMachineSessions });
+const mapDispatchToProps = () =>  ({ fetchSessionsIfNeeded });
 
 paginationButton.propTypes = propTypes;
 export default connect(mapStateToProps, mapDispatchToProps)(paginationButton);

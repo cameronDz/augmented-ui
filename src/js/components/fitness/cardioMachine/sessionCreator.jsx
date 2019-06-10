@@ -13,12 +13,12 @@ class SessionCreator extends Component {
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
     this.state = {
-      machineType: '',
-      userName: '',
       comment: '',
-      timing: '00:00:00',
       distanceMiles: 0.0,
-      startDate: new Date()
+      machineType: '',
+      startDate: new Date(),
+      timing: '00:00:00',
+      userName: ''
     };
   };
 
@@ -35,32 +35,32 @@ class SessionCreator extends Component {
   };
 
   handleSubmit(event) {
+    const self = this;
     document.getElementById("submitCardioBtn").disabled = true;
     event.preventDefault();
     const url = _config.apis.azure + 'CardioMachineExercises';
-    var timingArray = this.state.timing.split(':');
-    var seconds = (Number(timingArray[0] * 3600) + Number(timingArray[1] * 60) + Number(timingArray[2]));
+    const timingArray = self.state.timing.split(':');
+    const seconds = (Number(timingArray[0] * 3600) + Number(timingArray[1] * 60) + Number(timingArray[2]));
 
     const payload = JSON.stringify({
-      machineType: this.state.machineType,
-      startTime: this.state.startDate.toLocaleString(),
+      comment: self.state.comment,
+      distanceMiles: self.state.distanceMiles,
       durationSeconds: seconds,
-      distanceMiles: this.state.distanceMiles,
-      userName: this.state.userName,
-      comment: this.state.comment
+      machineType: self.state.machineType,
+      startTime: self.state.startDate.toLocaleString(),
+      userName: self.state.userName
     });
 
-    this.setState({
-      userName: '',
+    self.setState({
       comment: '',
-      machineType: '',
-      timing: '00:00:00',
       distanceMiles: 0.0,
-      startDate: new Date()
+      machineType: '',
+      startDate: new Date(),
+      timing: '00:00:00',
+      userName: ''
     });
 
-    let self = this;
-    var xhr = new XMLHttpRequest();
+    const xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-type', 'application/json');
     xhr.onreadystatechange = function() {
@@ -68,7 +68,7 @@ class SessionCreator extends Component {
         document.getElementById("submitCardioBtn").disabled = false;
         self.props.dispatchFetchSessions(self.props.links.self);
       }
-    }; 
+    };
     xhr.send(payload);
   };
 
@@ -78,67 +78,69 @@ class SessionCreator extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="field is-horizontal">
             <label className="label" htmlFor="machineType">Machine Type &nbsp;</label>
-            <input className="input" 
-                   name="machineType" 
-                   type="text" 
-                   value={this.state.machineType} 
-                   onChange={ e => this.setState({ machineType : e.target.value }) } 
-                   required />
+            <input className="input"
+              name="machineType"
+              onChange={ e => this.setState({ machineType : e.target.value }) }
+              required
+              type="text"
+              value={this.state.machineType} />
           </div>
 
           <div className="field is-horizontal">
             <label className="label" htmlFor="startDate">Date &nbsp;</label>
-            <DatePicker selected={this.state.startDate}
-                        onChange={this.handleDateChange}
-                        showTimeSelect
-                        timeFormat="HH:mm"
-                        timeIntervals={5}
-                        dateFormat="MMMM d, yyyy h:mm aa"
-                        timeCaption="time" />
+            <DatePicker dateFormat="MMMM d, yyyy h:mm aa"
+              onChange={this.handleDateChange}
+              selected={this.state.startDate}
+              showTimeSelect
+              timeCaption="time"
+              timeFormat="HH:mm"
+              timeIntervals={5} />
           </div>
 
           <div className="field is-horizontal">
             <label className="label">Duration &nbsp;</label>
             <TimeField className="time-field"
-                       value={this.state.timing}
-                       showSeconds={true}
-                       style={{width:80, height:25}}
-                       onChange={this.handleTimeChange} /> 
+              onChange={this.handleTimeChange}
+              showSeconds={true}
+              style={{width:80, height:25}}
+              value={this.state.timing} />
             <label className="label" htmlFor="distanceMiles">Distance (miles) &nbsp;</label>
-            <input className="distance" 
-                   name="distanceMiles" 
-                   type="number" 
-                   step="0.01" 
-                   value={this.state.distanceMiles}
-                   onChange={ e => this.setState({ distanceMiles : e.target.value }) } />
+            <input className="distance"
+              name="distanceMiles"
+              onChange={ e => this.setState({ distanceMiles : e.target.value }) }
+              step="0.01"
+              type="number"
+              value={this.state.distanceMiles} />
           </div>
-          
+
           <div className="field is-horizontal">
             <label className="label" htmlFor="userName">User &nbsp;</label>
-            <input className="input" 
-                   name="userName" 
-                   type="text" 
-                   value={this.state.userName} 
-                   onChange={ e => this.setState({ userName : e.target.value }) } 
-                   required />
+            <input className="input"
+              name="userName"
+              onChange={ e => this.setState({ userName : e.target.value }) }
+              required
+              type="text"
+              value={this.state.userName} />
           </div>
-          
+
           <div className="field">
             <label className="label" htmlFor="comment">Comment &nbsp;</label>
-            <textarea className="textarea" 
-                      name="comment" 
-                      type="textarea" 
-                      value={this.state.comment} 
-                      onChange={ e => this.setState({ comment : e.target.value }) } />
-          </div>	    
+            <textarea className="textarea"
+              name="comment"
+              onChange={ e => this.setState({ comment : e.target.value }) }
+              type="textarea"
+              value={this.state.comment} />
+          </div>
           <div className="field">
             <div className="control">
-              <input id="submitCardioBtn" className="input" type="submit" value="Submit" />
+              <input className="input"
+                id="submitCardioBtn"
+                type="submit"
+                value="Submit" />
             </div>
           </div>
         </form>
-      </div>
-    );
+      </div>);
   };
 }
 
