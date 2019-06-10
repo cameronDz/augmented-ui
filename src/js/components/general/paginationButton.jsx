@@ -10,7 +10,6 @@ const propTypes = {
 };
 
 const paginationButton = props => {
-
   const [currentPage, setCurrentPage] = useState(0);
   const [pageLink, setPageLink] = useState('');
   const [pageNumber, setPageNumber] = useState(0);
@@ -22,7 +21,7 @@ const paginationButton = props => {
   }, [props]);
 
   const onPaginationClick = link => {
-    props.dispatchFetchSessions(link);
+    props.fetchSessionsIfNeeded(link);
   };
 
   const getClassName = () => {
@@ -34,8 +33,6 @@ const paginationButton = props => {
   return (<a className={getClassName()} onClick={() => onPaginationClick(pageLink)}>{pageNumber}</a>);
 };
 
-const mapStateToProps = state =>  ({ sessions: state.cardioMachineSessions });
-const mapDispatchToProps = () =>  ({ fetchSessionsIfNeeded });
-
 paginationButton.propTypes = propTypes;
-export default connect(mapStateToProps, mapDispatchToProps)(paginationButton);
+const mapStateToProps = state => ({ sessions: state.cardioMachineSessions });
+export default connect(mapStateToProps, { fetchSessionsIfNeeded })(paginationButton);

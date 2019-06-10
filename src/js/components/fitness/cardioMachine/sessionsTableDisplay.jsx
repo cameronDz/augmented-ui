@@ -79,5 +79,4 @@ const mapStateToProps = state =>  ({
   sessions: state.cardioMachineSessions.sessions,
   totalPages: state.cardioMachineSessions.totalPages
 });
-
 export default connect(mapStateToProps, { fetchSessionsIfNeeded })(sessionsTableDisplay);
