@@ -1,55 +1,53 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import axios from 'axios';
+import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
 import * as _config from '../../../../../assets/data/config.json';
 
-const creator = () => {
+const creator = props => {
 
   const submitButtonId = 'submitNutrientConsumption';
   const [amount, setAmount] = useState(0);
   const [amountType, setAmountType] = useState('');
   const [comment, setComment] = useState('');
-  const [nutrient, setNutrient] = useState('');
   const [userName, setUserName] = useState('');
 
   const resetFormValues = () => {
     setAmount(0);
     setAmountType('');
     setComment('');
-    setNutrient('');
     setUserName('');
   };
 
   const handleSubmit = event => {
     event.preventDefault();
     document.getElementById(submitButtonId).disabled = true;
-
-    const url = _config.apis.azure + 'someNewApiEndPoint';
-    const header = { "Content-type": "application/json" };
-    const payload = JSON.stringify({
-      amount: amount,
+    const url = _config.apis.azure + 'CaffeineNutrientIntakes';
+    const header = { header : { "Content-Type": "application/json" } };
+    const payload = {
+      amount: Number(amount),
       amountType: amountType,
       comment: comment,
-      nutrient: nutrient,
-      time: new Date(),
+      intakeTime: new Date().toJSON(),
       userName: userName
-    });
+    };
 
-    axios.post(url, header, payload)
-      .then(response => {
-        console.log('response', response);
+    axios.post(url, payload, header)
+      .then(() => {
         resetFormValues();
+        props.fetchIntakesIfNeeded(url);
       })
       .catch(error => {
+        // TODO inform user
         console.log('error', error);
       })
       .finally(() => {
         document.getElementById(submitButtonId).disabled = false;
-      });
+    });
   };
 
   return (
     <React.Fragment>
-      <div>Caffiene Creator</div>
       <form onSubmit={handleSubmit}>
         <div className="field is-horizontal">
           <label className="label">Amount &nbsp;</label>
@@ -68,15 +66,6 @@ const creator = () => {
             required
             type="text"
             value={amountType} />
-        </div>
-        <div className="field is-horizontal">
-          <label className="label">Nutrient &nbsp;</label>
-          <input className="input"
-            name="nutrient"
-            onChange={ e => setNutrient(e.target.value) }
-            required
-            type="text"
-            value={nutrient} />
         </div>
         <div className="field is-horizontal">
           <label className="label">User Name &nbsp;</label>
@@ -104,4 +93,4 @@ const creator = () => {
     </React.Fragment>);
 };
 
-export default creator;
+export default connect(null, { fetchIntakesIfNeeded })(creator);
