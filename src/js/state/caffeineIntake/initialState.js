@@ -2,7 +2,7 @@ export default {
   totalRecords: 0,
   totalPages: 0,
   currentPage: 0,
-  intake: [],
+  intakes: [],
   links: {
     self: '',
     first: '',

@@ -12,6 +12,7 @@ export const requestCaffeineIntakes = apiUrl => {
 };
 
 export const recieveCaffeineIntakes = (apiUrl, json) => {
+  console.log('hit recieveCaffeineIntakes', json);
   return {
     apiUrl,
     dataPayload: json.data,
@@ -30,6 +31,20 @@ export const fetchIntakesIfNeeded = apiUrl => {
   };
 };
 
-const fetchIntakes = (apiUrl) => {
-  // TODO finish actions
+const shouldFetchIntakes = state => {
+  const intakes = state.caffeineIntakes;
+  return (!intakes)
+    ? true
+    : (!!intakes.isFetching)
+      ? false
+      : (!!intakes.didInvalidate);
+};
+
+const fetchIntakes = apiUrl => {
+  return dispatch => {
+    dispatch(requestCaffeineIntakes(apiUrl))
+    return fetch(apiUrl)
+      .then(response => response.json())
+      .then(json => dispatch(recieveCaffeineIntakes(apiUrl, json)))
+  };
 };
