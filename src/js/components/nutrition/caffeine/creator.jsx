@@ -23,14 +23,13 @@ const creator = () => {
     event.preventDefault();
     document.getElementById(submitButtonId).disabled = true;
 
-    const url = _config.apis.azure + 'someNewApiEndPoint';
+    const url = _config.apis.azure + 'CaffeineNutrientIntakes';
     const header = { "Content-type": "application/json" };
     const payload = JSON.stringify({
       amount: amount,
       amountType: amountType,
       comment: comment,
-      nutrient: nutrient,
-      time: new Date(),
+      intakeTime: new Date().toJSON(),
       userName: userName
     });
 
@@ -44,7 +43,7 @@ const creator = () => {
       })
       .finally(() => {
         document.getElementById(submitButtonId).disabled = false;
-      });
+    });
   };
 
   return (
