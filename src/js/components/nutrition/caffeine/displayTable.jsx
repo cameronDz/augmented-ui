@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
-import '../../../../css/cardio.css';
+import '../../../../css/nutrition.css';
 
 const displayTable = props => {
 
@@ -63,13 +63,19 @@ const displayTable = props => {
   };
 
   const renderTableRows = () => {
-    let ret = null;
-    if (!!props.isFetching) {
-      ret = (<div className='circular-loader'><CircularProgress /></div>);
-    } else if (!props.isFetching && !!props.intakes) {
-      ret = (<tbody>{renderIntakesData()}</tbody>);
-    }
-    return ret;
+    return (!props.isFetching && !!props.intakes)
+      ? (<tbody>{renderIntakesData()}</tbody>)
+      : null;
+  };
+
+  const renderCircularLoader = () => {
+    return (<div className='circular-loader'><CircularProgress /></div>);
+  };
+
+  const renderPagination = () => {
+    return (!!props.isFetching)
+      ? renderCircularLoader()
+      : null;
   };
 
   const renderTableHeader = () => {
@@ -94,6 +100,7 @@ const displayTable = props => {
           {renderTableRows()}
         </table>
       </div>
+      {renderPagination()}
     </div>);
 };
 

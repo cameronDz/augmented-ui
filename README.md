@@ -19,32 +19,28 @@ npm run start
 npm run deploy
 ```
 
-The ```build``` command builds the latest version of the application. The ```start``` deploys the application at localhost:3000. The ```deploy``` command copies the latest build of the applications to the live S3 bucket.
+The ```build``` command builds the latest version of the application. The ```start``` deploys the application at localhost. The ```deploy``` command copies the latest build of the applications to the live S3 bucket.
 
 ## Folder Structure ##
-
-After creation, your project should look like this:
-
 ```
 augmented-frontend/
   README.md
   package.json
-  node_modules/
-  public/
-    index.html
-    favicon.ico
+  package-lock.json
+  assets/
+    data/
+    images/
   src/
-    App.jsx
-    App.test.js
-    index.js
-    logo.svg
-    components/
-      fitness/
-      general/
-      layout/
-      nutrition/
-    styles/
-      css/
+    css/
+    js/
+      components/
+      containers/
+      state/
+      app.jsx
+      index.js
+    index.html
+  tests/
+  webpack/
 ```
 
 ## S3 Rerouting ##
