@@ -13,12 +13,12 @@ class ExerciseCreator extends Component {
 
   handleSubmit(event) {
     event.preventDefault();
-   
+
     const payload = JSON.stringify({
       name: this.name.current.value,
       description: this.description.current.value,
       typeId: this.typeId.current.value
-    }); 
+    });
 
     const url = _config.apis.azure + 'exercises';
     var http = new XMLHttpRequest();
@@ -33,15 +33,15 @@ class ExerciseCreator extends Component {
         <p><strong>Create a new Exercise</strong></p>
         <form onSubmit={this.handleSubmit}>
           <div>
-            <label for="name">Name:</label><br/>
+            <label forHtml="name">Name:</label><br/>
             <input name="name"defaultValue="" type="text" ref={this.name} />
           </div>
           <div>
-            <label for="description">Description:</label><br/>
+            <label forHtml="description">Description:</label><br/>
             <textarea name="description" defaultValue="" ref={this.description}></textarea>
           </div>
           <div>
-            <label for="typeId">Type:</label><br/>
+            <label forHtml="typeId">Type:</label><br/>
             <input name="typeId" defaultValue="1" type="number" ref={this.typeId} />
           </div>
           <div>

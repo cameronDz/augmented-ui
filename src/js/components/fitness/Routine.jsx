@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import * as _config from '../../../../assets/data/config.json';
 
-/*
-TODO add formatter back later
-import {FormattedNumber} from 'react-intl';
-<td>
-  {this.props.reps} X <FormattedNumber value={this.props.percent} style="percent" />
-</td>
-*/
-
 class Set extends Component {
   render() {
     return (

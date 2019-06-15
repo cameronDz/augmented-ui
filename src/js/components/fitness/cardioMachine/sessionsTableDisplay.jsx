@@ -25,8 +25,8 @@ const sessionsTableDisplay = props => {
               <td>{element.userName}</td>
               <ModalButton {...element} />
             </tr>
-          )
-      })
+          );
+        })
       : null;
   };
 

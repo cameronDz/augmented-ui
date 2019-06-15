@@ -1,64 +1,48 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState } from 'react';
 import get from 'lodash.get';
 import Dropdown from '../Dropdown';
 import * as _config from '../../../../assets/data/config.json';
 
-class ExerciseDropdown extends Component {
+const exerciseDropdown = () => {
+  const [exercises, setExercises] = useState();
 
-  constructor(){
-    super()
-    this.state = {exercise:[]};     
-  }
-
-  componentDidMount() {
-    function  processExercise(payLoad)  {
-      return (Array.isArray(payload))
-        ? payLoad.map((item, index) => {
-            return {
-              'id': get(item, 'exerciseId', -1),
-              'title': get(item, 'name', ''),
-              'key': index,
-              'selected': false
-            };
-          })
-        : null;
-    };
-
+  // TODO move to redux state
+  useEffect(() => {
     const url = _config.apis.azure + 'exercises';
     fetch(url)
       .then(response => response.json())
-      .then(data => this.setState({
-        exercise : processExercise(data)
-      })
-    );
-  }
+      .then(data =>{
+        setExercises(processExercise(data));
+    });
+  }, []);
 
-  toggleSelected = (id, key) => {
-    let temp = [...this.state[key]]
-    temp[id].selected = !temp[id].selected
-    this.setState({
-      [key]: temp
-    })
-  }
+  const processExercise = data => {
+    return (Array.isArray(data))
+      ? data.map((item, index) => {
+          return {
+            'id': get(item, 'exerciseId', -1),
+            'title': get(item, 'name', ''),
+            'key': index,
+            'selected': false
+          };
+        })
+      : null;
+  };
 
-  resetThenSet = (id, stateKey) => {
-    let exercises = [...this.state.exercise]
+  const resetThenSet = (id, stateKey) => {
     exercises.forEach(item => item.selected = false);
     exercises[stateKey].selected = true;
   }
 
-  render() {
-    return (
+  return (
+    <React.Fragment>
       <div>
-        <div>
-          <p><strong>Exercise Dropdown Menu</strong></p>
-        </div>
-        <Dropdown list={this.state.exercise}
-          resetThenSet={this.resetThenSet}
-          title="Exercise Dropdown" />
+        <strong>Exercise Dropdown Menu</strong>
       </div>
-    );
-  }
-}
+      <Dropdown list={exercises}
+        resetThenSet={resetThenSet}
+        title="Exercise Dropdown" />
+    </React.Fragment>);
+};
 
-export default ExerciseDropdown;
+export default exerciseDropdown;

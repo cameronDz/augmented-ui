@@ -1,41 +1,83 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
-import * as _config from '../../../../../assets/data/config.json';
+import '../../../../css/cardio.css';
 
 const displayTable = props => {
 
   useEffect(() => {
-    const apiUrl = _config.apis.azure + 'CaffeineNutrientIntakes';
-    props.fetchIntakesIfNeeded(apiUrl);
+    props.fetchIntakesIfNeeded();
   }, []);
 
-  const renderSessionsData = () => {
-    return (!!props.intakes)
-      ? props.intakes.map((element, index) => {
-          return (
-            <tr key={index}>
-              <td>{element.intakeTime}</td>
-              <td>{element.amount}</td>
-              <td>{element.amountType}</td>
-              <td>{element.userName}</td>
-              <td>{element.comment}</td>
-            </tr>);
-        })
-      : null;
+  const orderIntakesByDate = (a, b) => {
+    let aTime, bTime;
+    try {
+      aTime = new Date(a.intakeTime);
+      bTime = new Date(b.intakeTime);
+    } catch {
+      return 0;
+    }
+    if (aTime < bTime) {
+      return 1;
+    } else if (aTime > bTime) {
+      return -1;
+    }
+    return 0;
+  };
+
+  const getIntakeDay = intakeObject => {
+    try {
+      return intakeObject.intakeTime.split('T')[0];
+    } catch {
+      return '';
+    }
+  };
+
+  const getIntakeTime = intakeObject => {
+    try {
+      return intakeObject.intakeTime.split('T')[1].substring(0,5);
+    } catch {
+      return '';
+    }
+  };
+
+  // temporarily limit the number of elements while not paginating
+  const renderIntakesData = () => {
+    return props.intakes.sort(orderIntakesByDate).map((element, index) => {
+      if (index < 9) {
+        const day = getIntakeDay(element);
+        const time = getIntakeTime(element);
+        return (
+          <tr key={index}>
+            <td>{day}</td>
+            <td>{time}</td>
+            <td>{element.amount}</td>
+            <td>{element.amountType}</td>
+            <td>{element.userName}</td>
+            <td>{element.comment}</td>
+          </tr>);
+      }
+      return null;
+    });
   };
 
   const renderTableRows = () => {
-    return (!props.isFetching && !!props.intakes)
-      ? (<tbody>{renderSessionsData()}</tbody>)
-      : null;
+    let ret = null;
+    if (!!props.isFetching) {
+      ret = (<div className='circular-loader'><CircularProgress /></div>);
+    } else if (!props.isFetching && !!props.intakes) {
+      ret = (<tbody>{renderIntakesData()}</tbody>);
+    }
+    return ret;
   };
 
   const renderTableHeader = () => {
     return (
       <thead>
         <tr>
-          <th>Date</th>
+          <th>Day</th>
+          <th>Time</th>
           <th>Amount</th>
           <th>Type</th>
           <th>User</th>
