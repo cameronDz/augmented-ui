@@ -47,7 +47,7 @@ class SessionCreator extends Component {
       distanceMiles: self.state.distanceMiles,
       durationSeconds: seconds,
       machineType: self.state.machineType,
-      startTime: self.state.startDate.toLocaleString(),
+      startTime: self.state.startDate.toGMTString(),
       userName: self.state.userName
     });
 

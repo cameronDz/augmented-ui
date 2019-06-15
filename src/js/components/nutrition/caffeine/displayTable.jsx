@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
 import * as _config from '../../../../../assets/data/config.json';
 
@@ -10,7 +11,7 @@ const displayTable = props => {
     props.fetchIntakesIfNeeded(apiUrl);
   }, []);
 
-  const renderSessionsData = () => {
+  const renderIntakesData = () => {
     return (!!props.intakes)
       ? props.intakes.map((element, index) => {
           return (
@@ -26,9 +27,13 @@ const displayTable = props => {
   };
 
   const renderTableRows = () => {
-    return (!props.isFetching && !!props.intakes)
-      ? (<tbody>{renderSessionsData()}</tbody>)
-      : null;
+    let ret = null;
+    if (!!props.isFetching) {
+      ret = (<div className='circular-loader'><CircularProgress /></div>);
+    } else if (!props.isFetching && !!props.intakes) {
+      ret = (<tbody>{renderIntakesData()}</tbody>);
+    }
+    return ret;
   };
 
   const renderTableHeader = () => {

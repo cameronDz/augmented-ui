@@ -5,13 +5,15 @@ import * as _config from '../../../../assets/data/config.json';
 
 class ExerciseDropdown extends Component {
 
-  constructor(){
-    super()
-    this.state = {exercise:[]};     
+  constructor(props) {
+    super(props)
+    this.state = {
+      exercise: []
+    };
   }
 
   componentDidMount() {
-    function  processExercise(payLoad)  {
+    const processExercise = payload => {
       return (Array.isArray(payload))
         ? payLoad.map((item, index) => {
             return {
