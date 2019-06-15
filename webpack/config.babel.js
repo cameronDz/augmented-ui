@@ -1,4 +1,4 @@
-import HtmlWebPackPlugin from'html-webpack-plugin';
+import HtmlWebPackPlugin from 'html-webpack-plugin';
 import { HotModuleReplacementPlugin } from 'webpack';
 
 module.exports = {
@@ -33,7 +33,10 @@ module.exports = {
     }]
   },
   plugins: [
-    new HtmlWebPackPlugin({ template: './src/index.html', filename: './index.html' }),
+    new HtmlWebPackPlugin({
+      template: './src/index.html',
+      filename: './index.html'
+    }),
     new HotModuleReplacementPlugin()
   ]
 };

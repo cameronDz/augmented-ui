@@ -33,6 +33,16 @@ class Dropdown extends Component {
   render() {
     const { list } = this.props
     const { listOpen, headerTitle } = this.state
+    const renderList = () => {
+      if (!!list) {
+        return list.map((item) => (
+          <a className="dropdown-item" key={item.id} onClick={() => this.selectItem(item.title, item.id, item.key)}>
+            {item.title}
+            {item.selected && <FontAwesome name="check" />}
+          </a>));
+      }
+      return null;
+    };
     return (
       <div className="dropdown is-active">
         <div className="dropdown-trigger" onClick={this.toggleList}>
@@ -46,12 +56,7 @@ class Dropdown extends Component {
         </div>
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
         {listOpen && <div className="dropdown-content">
-          {list.map((item) => (
-            <a className="dropdown-item" key={item.id} onClick={() => this.selectItem(item.title, item.id, item.key)}>
-              {item.title} 
-              {item.selected && <FontAwesome name="check" />}
-            </a>
-          ))}
+          {renderList()}
         </div>}
       </div>
     </div>
