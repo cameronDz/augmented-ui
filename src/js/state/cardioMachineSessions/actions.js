@@ -1,14 +1,7 @@
 import * as types from './types';
+import { shouldFetchState } from '../global';
 
-const shouldFetchSessions = state => {
-  const sessions = state.cardioMachineSessions;
-  return (!sessions)
-    ? true
-    : (!!sessions.isFetching)
-      ? false
-      : (!!sessions.didInvalidate);
-};
-
+// TODO fix call
 const fetchSessions = sessionApiUrl => {
   return dispatch => {
     dispatch(requestCardioMachineSessions(sessionApiUrl))
@@ -42,8 +35,12 @@ export const recieveCardioMachineSessions = (sessionApiUrl, json) => {
 
 export const fetchSessionsIfNeeded = sessionApiUrl => {
   return (dispatch, getState) => {
-    if (shouldFetchSessions(getState(), sessionApiUrl)) {
+    if (shouldFetchSessions(getState())) {
       return dispatch(fetchSessions(sessionApiUrl))
     }
   };
+};
+
+const shouldFetchSessions = (state = {}) => {
+  return shouldFetchState(state.cardioMachineSessions);
 };

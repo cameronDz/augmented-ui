@@ -1,4 +1,5 @@
 import * as types from './types';
+import { shouldFetchState } from '../global';
 
 export const invalidateCaffeineIntakes = () => {
   return { type: types.INVALIDATED_CAFFEINE_INTAKE };
@@ -12,7 +13,6 @@ export const requestCaffeineIntakes = apiUrl => {
 };
 
 export const recieveCaffeineIntakes = (apiUrl, json) => {
-  console.log('hit recieveCaffeineIntakes', json);
   return {
     apiUrl,
     dataPayload: json.data,
@@ -31,15 +31,11 @@ export const fetchIntakesIfNeeded = apiUrl => {
   };
 };
 
-const shouldFetchIntakes = state => {
-  const intakes = state.caffeineIntakes;
-  return (!intakes)
-    ? true
-    : (!!intakes.isFetching)
-      ? false
-      : (!!intakes.didInvalidate);
+const shouldFetchIntakes = (state = {}) => {
+  return shouldFetchState(state.cardioMachineSessions);
 };
 
+// TODO wtf is this logic???
 const fetchIntakes = apiUrl => {
   return dispatch => {
     dispatch(requestCaffeineIntakes(apiUrl))
