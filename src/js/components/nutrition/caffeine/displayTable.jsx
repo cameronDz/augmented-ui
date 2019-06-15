@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
+import '../../../../css/cardio.css';
 
 const displayTable = props => {
 
@@ -25,18 +26,28 @@ const displayTable = props => {
     return 0;
   };
 
+  const getIntakeDay = intakeObject => {
+    try {
+      return intakeObject.intakeTime.split('T')[0];
+    } catch {
+      return '';
+    }
+  };
+
+  const getIntakeTime = intakeObject => {
+    try {
+      return intakeObject.intakeTime.split('T')[1].substring(0,5);
+    } catch {
+      return '';
+    }
+  };
+
   // temporarily limit the number of elements while not paginating
   const renderIntakesData = () => {
     return props.intakes.sort(orderIntakesByDate).map((element, index) => {
       if (index < 9) {
-        let day, time;
-        try {
-          day = element.intakeTime.split('T')[0];
-          time = element.intakeTime.split('T')[1].substring(0,5);
-        } catch {
-          day = '';
-          time = '';
-        }
+        const day = getIntakeDay(element);
+        const time = getIntakeTime(element);
         return (
           <tr key={index}>
             <td>{day}</td>

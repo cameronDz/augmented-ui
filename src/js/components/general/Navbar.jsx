@@ -5,12 +5,12 @@ class Navbar extends Component {
 
   componentDidMount() {
     // get elements to be dropdowns
-    let fitnessButton = document.getElementById('fitnessNavbarButton');
-    let nutritionButton = document.getElementById('nutritionNavbarButton');
-    let moreButton = document.getElementById('moreNavbarButton');
+    const fitnessButton = document.getElementById('fitnessNavbarButton');
+    const nutritionButton = document.getElementById('nutritionNavbarButton');
+    const moreButton = document.getElementById('moreNavbarButton');
 
     // create function for deactivating all dropdowns
-    function deactivateDropdowns() {
+    const deactivateDropdowns = () => {
       fitnessButton.nextElementSibling.style.display = "none";
       nutritionButton.nextElementSibling.style.display = "none";
       moreButton.nextElementSibling.style.display = "none";
@@ -20,7 +20,7 @@ class Navbar extends Component {
     function buttonListener(event) {
       event.preventDefault();
       this.classList.toggle("active", true);
-      let items = this.nextElementSibling;
+      const items = this.nextElementSibling;
       if(items.style.display === "none") {
         deactivateDropdowns();
         items.style.display = "block";

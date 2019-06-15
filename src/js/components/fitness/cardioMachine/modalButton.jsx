@@ -27,7 +27,7 @@ const modalButton = props => {
     setSeconds(getTwoDigitValue(props.durationSeconds % 60));
     setDate(props.startTime.split('T')[0]);
     setTime(props.startTime.split('T')[1].substring(0,5));
-  }, props);
+  }, [props]);
 
   const openModal = () => { setShow(true); };
   const closeModal = () => { setShow(false); };
