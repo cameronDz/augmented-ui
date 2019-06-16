@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Pagination from './pagination';
 import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
 import '../../../../css/nutrition.css';
 
@@ -45,20 +46,17 @@ const displayTable = props => {
   // temporarily limit the number of elements while not paginating
   const renderIntakesData = () => {
     return props.intakes.sort(orderIntakesByDate).map((element, index) => {
-      if (index < 9) {
-        const day = getIntakeDay(element);
-        const time = getIntakeTime(element);
-        return (
-          <tr key={index}>
-            <td>{day}</td>
-            <td>{time}</td>
-            <td>{element.amount}</td>
-            <td>{element.amountType}</td>
-            <td>{element.userName}</td>
-            <td>{element.comment}</td>
-          </tr>);
-      }
-      return null;
+      const day = getIntakeDay(element);
+      const time = getIntakeTime(element);
+      return (
+        <tr key={index}>
+          <td>{day}</td>
+          <td>{time}</td>
+          <td>{element.amount}</td>
+          <td>{element.amountType}</td>
+          <td>{element.userName}</td>
+          <td>{element.comment}</td>
+        </tr>);
     });
   };
 
@@ -75,7 +73,10 @@ const displayTable = props => {
   const renderPagination = () => {
     return (!!props.isFetching)
       ? renderCircularLoader()
-      : null;
+      : (<Pagination
+          currentPage={props.currentPage}
+          links={props.links}
+          totalPages={props.totalPages} />);
   };
 
   const renderTableHeader = () => {
@@ -105,7 +106,10 @@ const displayTable = props => {
 };
 
 const mapStateToProps = state =>  ({
+  currentPage: state.caffeineIntakes.currentPage,
+  intakes: state.caffeineIntakes.intakes,
   isFetching: state.caffeineIntakes.isFetching,
-  intakes: state.caffeineIntakes.intakes
+  links: state.caffeineIntakes.links,
+  totalPages: state.caffeineIntakes.totalPages
 });
 export default connect(mapStateToProps, { fetchIntakesIfNeeded })(displayTable);

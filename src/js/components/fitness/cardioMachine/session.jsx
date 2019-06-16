@@ -11,7 +11,9 @@ const session = () => {
   // TODO move to nutrient/page
   const renderIntakeCreatorCard = () => {
     const child = (<IntakeCreator />);
-    return (<Card child={child} title={'Caffeine Intake Creator'} />);
+    const url = _config.apis.azure + 'CaffeineNutrientIntakes?csv=csv';
+    const footerLink = (<a className="card-footer-item" href={url}>Download Intakes as CSV file.</a>);
+    return (<Card child={child} footer={footerLink} title={'Caffeine Intake Creator'} />);
   };
 
   const renderIntakeDisplayCard = () => {
