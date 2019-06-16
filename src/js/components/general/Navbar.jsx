@@ -75,6 +75,7 @@ class Navbar extends Component {
                 <div className="navbar-item"><Link to="/diet">Diets</Link></div>
                 <div className="navbar-item"><Link to="/meal">Meals</Link></div>
                 <div className="navbar-item"><Link to='/food'>Foods</Link></div>
+                <div className="navbar-item"><Link to='/nutrient'>Caffeine</Link></div>
               </div>
             </div>
             <div className="navbar-item has-dropdown is-hoverable">
