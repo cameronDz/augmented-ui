@@ -39,7 +39,7 @@ const creator = props => {
       })
       .catch(error => {
         // TODO inform user
-        console.log('error', error);
+        console.error(error);
       })
       .finally(() => {
         document.getElementById(submitButtonId).disabled = false;
