@@ -17,17 +17,20 @@ const caffeine = () => {
     return (<Card child={child} title={'Caffeine Intake Display'} />);
   };
 
-  return (
-    <React.Fragment>
-      <div className="card-content columns is-multiline is-tablet">
-        <div className="content column is-two-fifths">
-          {renderIntakeCreatorCard()}
+  const renderSessionContent = () => {
+    return (
+      <React.Fragment>
+        <div className="card-content columns is-multiline is-tablet">
+          <div className="content column is-two-fifths">
+            {renderIntakeCreatorCard()}
+          </div>
+          <div className="content column is-three-fifths">
+            {renderIntakeDisplayCard()}
+          </div>
         </div>
-        <div className="content column is-three-fifths">
-          {renderIntakeDisplayCard()}
-        </div>
-      </div>
-    </React.Fragment>);
+      </React.Fragment>);
+  }
+  return (<Card child={renderSessionContent()} title={'Caffeine Page'} />);
 };
 
 export default caffeine;

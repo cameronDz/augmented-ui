@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import get from 'lodash.get';
+import '../../../css/card.css';
 
 const card = props => {
 
