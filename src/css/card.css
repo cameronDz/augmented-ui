@@ -4,6 +4,9 @@ div.card {
 div.card-content {
   padding: 8px;
 }
+div.content.column {
+  margin-bottom: 8px;
+}
 
 @media all and (max-width: 600px) {
   div.content.column {
