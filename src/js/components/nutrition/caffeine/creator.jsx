@@ -32,6 +32,7 @@ const creator = props => {
       userName: userName
     };
 
+    // TODO move to actions
     axios.post(url, payload, header)
       .then(() => {
         resetFormValues();
@@ -50,25 +51,24 @@ const creator = props => {
     <React.Fragment>
       <form onSubmit={handleSubmit}>
         <div className="field is-horizontal">
-          <label className="label">Amount &nbsp;</label>
+          <label className="label">Amount</label>
           <input className="input"
             name="amount"
             onChange={ e => setAmount(e.target.value) }
             required
             type="number"
             value={amount} />
+          <label className="label">Amount Type</label>
+          <select value={amountType} onChange={ e=> setAmountType(e.target.value)}>
+            <option default value="">--</option>
+            <option value="mg">Milligram</option>
+            <option value="kg">Kilogram</option>
+            <option value="pound">Pound</option>
+            <option value="ounce">Ounce</option>
+          </select>
         </div>
         <div className="field is-horizontal">
-          <label className="label">Amount Type &nbsp;</label>
-          <input className="input"
-            name="amountType"
-            onChange={ e => setAmountType(e.target.value) }
-            required
-            type="text"
-            value={amountType} />
-        </div>
-        <div className="field is-horizontal">
-          <label className="label">User Name &nbsp;</label>
+          <label className="label">User Name</label>
           <input className="input"
             name="userName"
             onChange={ e => setUserName(e.target.value) }
@@ -77,7 +77,7 @@ const creator = props => {
             value={userName} />
         </div>
         <div className="field">
-          <label className="label">Comment &nbsp;</label>
+          <label className="label">Comment</label>
           <textarea className="textarea"
             name="comment"
             onChange={ e => setComment(e.target.value) }
