@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import Switch from '@material-ui/core/Switch';
+// TODO look into material ui picker
 import DatePicker from "react-datepicker";
 import TimeField from 'react-simple-timefield';
 import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/creator.css';
 
+// TODO convert hook component
 class SessionCreator extends Component {
 
   constructor(props) {
@@ -12,6 +15,8 @@ class SessionCreator extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
+    this.handleToggleSwitch = this.handleToggleSwitch.bind(this);
+    // TODO better name for userEndTimeStartDate
     this.state = {
       comment: '',
       distanceMiles: 0.0,
@@ -38,8 +43,7 @@ class SessionCreator extends Component {
       timing: time
     });
 
-    // set start time too
-    if (this.state.useEndTimeStartDate) {
+    if (!!this.state.useEndTimeStartDate) {
       const startTimeMilliseconds = new Date().getTime() - (durationSeconds * 1000);
       const newStartTime = new Date(startTimeMilliseconds);
       this.setState({
@@ -48,12 +52,28 @@ class SessionCreator extends Component {
     }
   };
 
-  calulcateTimingSeconds(time) {
-    if (time) {
-      const timingArray = time.split(':');
-      return (Number(timingArray[0] * 3600) + Number(timingArray[1] * 60) + Number(timingArray[2]));
+  handleToggleSwitch() {
+    if (!this.state.useEndTimeStartDate) {
+      const startTimeMilliseconds = new Date().getTime() - (this.state.seconds * 1000);
+      const newStartTime = new Date(startTimeMilliseconds);
+      this.setState({
+        startDate: newStartTime
+      });
     }
-    return 0;
+    this.setState({
+      useEndTimeStartDate: !this.state.useEndTimeStartDate
+    });
+  }
+
+  calulcateTimingSeconds(time) {
+    let calculatedSeconds = 0;
+    try {
+      const timingArray = time.split(':');
+      calculatedSeconds = (Number(timingArray[0] * 3600) + Number(timingArray[1] * 60) + Number(timingArray[2]));
+    } catch (error) {
+      console.error(error);
+    }
+    return calculatedSeconds;
   };
 
   handleSubmit(event) {
@@ -102,7 +122,7 @@ class SessionCreator extends Component {
             <label className="label" htmlFor="machineType">Machine Type &nbsp;</label>
             <input className="input"
               name="machineType"
-              onChange={ e => this.setState({ machineType : e.target.value }) }
+              onChange={ event => this.setState({ ...this.state, machineType : event.target.value }) }
               required
               type="text"
               value={this.state.machineType} />
@@ -129,17 +149,25 @@ class SessionCreator extends Component {
             <label className="label" htmlFor="distanceMiles">Distance (miles) &nbsp;</label>
             <input className="distance"
               name="distanceMiles"
-              onChange={ e => this.setState({ distanceMiles : e.target.value }) }
+              onChange={ event => this.setState({ ...this.state, distanceMiles : event.target.value }) }
               step="0.01"
               type="number"
               value={this.state.distanceMiles} />
           </div>
 
           <div className="field is-horizontal">
+            <label className="label toggle-label" htmlFor="useEndTimeStartDate">Session Just End &nbsp;</label>
+            <Switch checked={this.state.useEndTimeStartDate}
+              color="primary"
+              onChange={this.handleToggleSwitch}
+              value={this.state.useEndTimeStartDate} />
+          </div>
+
+          <div className="field is-horizontal">
             <label className="label" htmlFor="userName">User &nbsp;</label>
             <input className="input"
               name="userName"
-              onChange={ e => this.setState({ userName : e.target.value }) }
+              onChange={ event => this.setState({ ...this.state, userName : event.target.value }) }
               required
               type="text"
               value={this.state.userName} />
@@ -149,7 +177,7 @@ class SessionCreator extends Component {
             <label className="label" htmlFor="comment">Comment &nbsp;</label>
             <textarea className="textarea"
               name="comment"
-              onChange={ e => this.setState({ comment : e.target.value }) }
+              onChange={ event => this.setState({ ...this.state, comment : event.target.value }) }
               type="textarea"
               value={this.state.comment} />
           </div>
