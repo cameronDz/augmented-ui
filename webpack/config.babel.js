@@ -2,7 +2,7 @@ import HtmlWebPackPlugin from 'html-webpack-plugin';
 import { HotModuleReplacementPlugin } from 'webpack';
 
 module.exports = {
-  entry: './src/js/index.js',
+  entry: './src/index.js',
   output: {
     filename: 'bundle.js',
     path: __dirname + '/../dist',
