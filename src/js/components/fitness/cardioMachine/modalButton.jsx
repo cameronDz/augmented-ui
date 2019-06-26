@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Modal } from 'react-bulma-components';
-import '../../../../css/cardio.css';
+import '../../../../css/table.css';
 
 const propTypes = {
   modal: PropTypes.object

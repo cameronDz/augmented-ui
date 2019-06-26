@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import DatePicker from "react-datepicker";
 import TimeField from 'react-simple-timefield';
 import * as _config from '../../../../../assets/data/config.json';
-import '../../../../css/cardio.css';
+import '../../../../css/creator.css';
 
 class SessionCreator extends Component {
 
@@ -34,13 +34,20 @@ class SessionCreator extends Component {
     });
   };
 
+  calulcateTimingSeconds() {
+    if (!!this.state.timing) {
+      const timingArray = this.state.timing.split(':');
+      return (Number(timingArray[0] * 3600) + Number(timingArray[1] * 60) + Number(timingArray[2]));
+    }
+    return 0;
+  };
+
   handleSubmit(event) {
     const self = this;
     document.getElementById("submitCardioBtn").disabled = true;
     event.preventDefault();
     const url = _config.apis.azure + 'CardioMachineExercises';
-    const timingArray = self.state.timing.split(':');
-    const seconds = (Number(timingArray[0] * 3600) + Number(timingArray[1] * 60) + Number(timingArray[2]));
+    const seconds = this.calulcateTimingSeconds();
 
     const payload = JSON.stringify({
       comment: self.state.comment,
@@ -60,6 +67,7 @@ class SessionCreator extends Component {
       userName: ''
     });
 
+    // TODO axios in middleware
     const xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-type', 'application/json');

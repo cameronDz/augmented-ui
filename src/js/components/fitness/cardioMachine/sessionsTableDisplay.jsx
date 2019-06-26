@@ -5,7 +5,7 @@ import ModalButton from './modalButton';
 import TablePagination from '../../general/tablePagination';
 import { fetchSessionsIfNeeded } from '../../../state/cardioMachineSessions/actions';
 import * as _config from '../../../../../assets/data/config.json';
-import '../../../../css/cardio.css';
+import '../../../../css/table.css';
 
 const sessionsTableDisplay = props => {
 

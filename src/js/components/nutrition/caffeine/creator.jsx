@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
 import * as _config from '../../../../../assets/data/config.json';
+import '../../../../css/creator.css';
 
 const creator = props => {
 
@@ -52,13 +53,13 @@ const creator = props => {
       <form onSubmit={handleSubmit}>
         <div className="field is-horizontal">
           <label className="label">Amount</label>
-          <input className="input"
+          <input className="input input-amount"
             name="amount"
             onChange={ e => setAmount(e.target.value) }
             required
             type="number"
             value={amount} />
-          <label className="label">Amount Type</label>
+          <label className="label">Type</label>
           <select value={amountType} onChange={ e=> setAmountType(e.target.value)}>
             <option default value="">--</option>
             <option value="mg">Milligram</option>
@@ -68,7 +69,7 @@ const creator = props => {
           </select>
         </div>
         <div className="field is-horizontal">
-          <label className="label">User Name</label>
+          <label className="label">User</label>
           <input className="input"
             name="userName"
             onChange={ e => setUserName(e.target.value) }

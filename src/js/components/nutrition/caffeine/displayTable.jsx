@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Pagination from './pagination';
 import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
-import '../../../../css/nutrition.css';
+import '../../../../css/table.css';
 
 const displayTable = props => {
 
