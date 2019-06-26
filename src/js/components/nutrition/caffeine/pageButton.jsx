@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import get from 'lodash.get';
 import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
+import '../../../../css/table.css';
 
 const propTypes = {
   pageLink: PropTypes.string.isRequired,

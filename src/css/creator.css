@@ -1,0 +1,14 @@
+div.field.is-horizontal>input.distance,
+div.field.is-horizontal>input.input-amount {
+  height: 30px;
+  width: 80px;
+}
+
+div.field.is-horizontal>input.time-field {
+  margin-right: 15px;
+}
+
+label.label {
+  margin-left: 10px;
+  margin-right: 10px;
+}
