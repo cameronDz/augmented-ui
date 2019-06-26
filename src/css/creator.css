@@ -12,3 +12,7 @@ label.label {
   margin-left: 10px;
   margin-right: 10px;
 }
+
+label.label.toggle-label {
+  margin-top: 12px;
+}
