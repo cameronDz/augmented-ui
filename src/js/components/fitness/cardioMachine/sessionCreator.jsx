@@ -16,27 +16,41 @@ class SessionCreator extends Component {
       comment: '',
       distanceMiles: 0.0,
       machineType: '',
+      seconds: 0,
       startDate: new Date(),
       timing: '00:00:00',
+      useEndTimeStartDate: true,
       userName: ''
     };
   };
 
   handleDateChange(date) {
     this.setState({
-      startDate: date
+      startDate: date,
+      useEndTimeStartDate: false
     });
   };
 
   handleTimeChange(time) {
+    const durationSeconds = this.calulcateTimingSeconds(time);
     this.setState({
+      seconds: durationSeconds,
       timing: time
     });
+
+    // set start time too
+    if (this.state.useEndTimeStartDate) {
+      const startTimeMilliseconds = new Date().getTime() - (durationSeconds * 1000);
+      const newStartTime = new Date(startTimeMilliseconds);
+      this.setState({
+        startDate: newStartTime
+      });
+    }
   };
 
-  calulcateTimingSeconds() {
-    if (!!this.state.timing) {
-      const timingArray = this.state.timing.split(':');
+  calulcateTimingSeconds(time) {
+    if (time) {
+      const timingArray = time.split(':');
       return (Number(timingArray[0] * 3600) + Number(timingArray[1] * 60) + Number(timingArray[2]));
     }
     return 0;
@@ -47,12 +61,11 @@ class SessionCreator extends Component {
     document.getElementById("submitCardioBtn").disabled = true;
     event.preventDefault();
     const url = _config.apis.azure + 'CardioMachineExercises';
-    const seconds = this.calulcateTimingSeconds();
 
     const payload = JSON.stringify({
       comment: self.state.comment,
       distanceMiles: self.state.distanceMiles,
-      durationSeconds: seconds,
+      durationSeconds: self.state.seconds,
       machineType: self.state.machineType,
       startTime: self.state.startDate.toGMTString(),
       userName: self.state.userName
@@ -62,6 +75,7 @@ class SessionCreator extends Component {
       comment: '',
       distanceMiles: 0.0,
       machineType: '',
+      seconds: 0,
       startDate: new Date(),
       timing: '00:00:00',
       userName: ''
