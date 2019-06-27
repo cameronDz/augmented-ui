@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import * as _config from '../../../../assets/data/config.json';
+import * as _config from '../../../../../assets/data/config.json';
 
-// class ExerciseCreator extends Component {
 const exerciseCreator = () => {
 
   const submitButtonId = "exerciseCreatorSubmitButton";
@@ -13,7 +12,7 @@ const exerciseCreator = () => {
   const resetFormValues = () => {
     setDescription('');
     setName('');
-    setTypeId('');
+    setTypeId(1);
   };
 
   const handleSubmit = event => {
@@ -21,7 +20,7 @@ const exerciseCreator = () => {
     document.getElementById(submitButtonId).disabled = true;
 
     const header = { header : { "Content-Type": "application/json" } };
-    const payload = JSON.stringify({ description, name,  typeId });
+    const payload = { description, name,  typeId };
     const url = _config.apis.azure + 'exercises';
     axios.post(url, payload, header)
       .then(() => {
@@ -41,17 +40,17 @@ const exerciseCreator = () => {
       <p><strong>Create a new Exercise</strong></p>
       <form onSubmit={handleSubmit}>
         <div>
-          <label forHtml="name">Name:</label><br/>
-          <input defaultValue="" name="name" onChange={event => setName(event.target.value)} type="text" />
+          <label forHtml="name">Name</label><br/>
+          <input name="name" onChange={event => setName(event.target.value) } type="text" value={name} />
         </div>
         <div>
-          <label forHtml="description">Description:</label><br/>
-          <textarea defaultValue="" name="description" onChange={event => setDescription(event.target.value)} >
+          <label forHtml="description">Description</label><br/>
+          <textarea name="description" onChange={event => setDescription(event.target.value)} value={description}>
           </textarea>
         </div>
         <div>
-          <label forHtml="typeId">Type:</label><br/>
-          <input defaultValue="1" name="typeId" onChange={event => setTypeId(event.target.value)} type="number" />
+          <label forHtml="typeId">Type</label><br/>
+          <input name="typeId" onChange={event => setTypeId(Number(event.target.value)) } type="number" value={typeId} />
         </div>
         <div>
           <input id={submitButtonId} type="submit" value="Submit" />

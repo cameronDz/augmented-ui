@@ -31,8 +31,8 @@ class Dropdown extends Component {
   }
 
   render() {
-    const { list } = this.props
-    const { listOpen, headerTitle } = this.state
+    const { list } = this.props;
+    const { listOpen, headerTitle } = this.state;
     const renderList = () => {
       if (!!list) {
         return list.map((item) => (
@@ -43,24 +43,32 @@ class Dropdown extends Component {
       }
       return null;
     };
+
+    const dropDownContent = () => {
+      return !!listOpen &&
+        (<div className="dropdown-content">
+          {renderList()}
+        </div>);
+    };
+
+    const listAwesomeFontName = () => {
+      return (!!listOpen)
+      ? <FontAwesome name="angle-up" />
+      : <FontAwesome name="angle-down" />;
+    };
+
     return (
       <div className="dropdown is-active">
         <div className="dropdown-trigger" onClick={this.toggleList}>
           <button className="button" aria-haspopup="true" aria-controls="drowndown-menu">
             <span>{headerTitle} &nbsp;</span>
-            {listOpen
-              ? <FontAwesome name="angle-up" />
-              : <FontAwesome name="angle-down" />
-            }
+            {listAwesomeFontName()}
           </button>
         </div>
         <div className="dropdown-menu" id="dropdown-menu" role="menu">
-        {listOpen && <div className="dropdown-content">
-          {renderList()}
-        </div>}
-      </div>
-    </div>
-    )
+          {dropDownContent()}
+        </div>
+      </div>);
   }
 }
 

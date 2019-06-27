@@ -60,7 +60,7 @@ const creator = props => {
             type="number"
             value={amount} />
           <label className="label">Type</label>
-          <select value={amountType} onChange={ e=> setAmountType(e.target.value)}>
+          <select value={amountType} onChange={ event => setAmountType(event.target.value)}>
             <option default value="">--</option>
             <option value="mg">Milligram</option>
             <option value="kg">Kilogram</option>
@@ -72,7 +72,7 @@ const creator = props => {
           <label className="label">User</label>
           <input className="input"
             name="userName"
-            onChange={ e => setUserName(e.target.value) }
+            onChange={ event => setUserName(event.target.value) }
             required
             type="text"
             value={userName} />
@@ -81,7 +81,7 @@ const creator = props => {
           <label className="label">Comment</label>
           <textarea className="textarea"
             name="comment"
-            onChange={ e => setComment(e.target.value) }
+            onChange={ event => setComment(event.target.value) }
             type="textarea"
             value={comment} />
         </div>
