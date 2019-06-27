@@ -60,7 +60,7 @@ const creator = props => {
             type="number"
             value={amount} />
           <label className="label">Type</label>
-          <select value={amountType} onChange={ event => setAmountType(event.target.value)}>
+          <select onChange={ event => setAmountType(event.target.value)}  value={amountType}>
             <option default value="">--</option>
             <option value="mg">Milligram</option>
             <option value="kg">Kilogram</option>
@@ -86,9 +86,7 @@ const creator = props => {
             value={comment} />
         </div>
         <div>
-          <input id={submitButtonId}
-            type="submit"
-            value="Submit" />
+          <input id={submitButtonId} type="submit" value="Submit" />
         </div>
       </form>
     </React.Fragment>);
