@@ -14,7 +14,23 @@ const card = props => {
     setTitle(get(props, 'title', ''));
   }, []);
 
-  const renderFooter = () =>{
+  const renderHeader = () => {
+    return (
+      <header className="card-header">
+        <p className="card-header-title">{title}</p>
+      </header>);
+  };
+
+  const renderChild = () => {
+    return (
+      <div className="card-content">
+        <div className="content">
+          {child}
+        </div>
+      </div>);
+  };
+
+  const renderFooter = () => {
     return (!!footer)
       ? (<footer className="card-footer">
           <div>
@@ -24,19 +40,22 @@ const card = props => {
       : null;
   };
 
-  return (!!title)
-    ? (<div className="card">
-        <header className="card-header">
-          <p className="card-header-title">{title}</p>
-        </header>
-        <div className="card-content">
-          <div className="content">	    
-            {child}
-          </div>
-        </div>
-        {renderFooter()}
-      </div>)
-    : null;
+  const shouldRenderCard = () => {
+    if (!!title) {
+      return (
+        <div className="card">
+          {renderHeader()}
+          {renderChild()}
+          {renderFooter()}
+        </div>);
+    }
+    return null;
+  }
+
+  return (
+    <React.Fragment>
+      {shouldRenderCard()}
+    </React.Fragment>);
 };
 
 export default card;
