@@ -10,7 +10,7 @@
     "build": "webpack --config webpack/config.babel.js",
     "deploy": "aws s3 cp --recursive ./dist s3://augmented-frontend",
     "start": "webpack-dev-server --open --config webpack/config.babel.js",
-    "test": "mocha tests/js/components/bulma/card.test.js"
+    "test": "mocha --require @babel/register tests/js/components/bulma/card.test.js"
   },
   "private": true,
   "proxy": {
