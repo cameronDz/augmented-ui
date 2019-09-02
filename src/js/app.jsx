@@ -15,10 +15,12 @@ import ContactPage from './containers/site/ContactPage';
 import ContributePage from './containers/site/ContributePage';
 import IssuePage from './containers/site/IssuePage';
 
+import Session from './features/sessions';
+
 const app = () => {
   return (
     <Switch>
-      <Route exact path='/' component={HomePage} />
+      <Route exact path='/' component={Session} />
       <Route exact path='/about' component={AboutPage} />
       <Route exact path='/contact' component={ContactPage} />
       <Route exact path='/contribute' component={ContributePage} />
