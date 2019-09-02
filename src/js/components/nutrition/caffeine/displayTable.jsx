@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import get from 'lodash.get';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Pagination from './pagination';
 import { orderIntakesByDate } from '../../../lib/sorts';
@@ -13,22 +14,25 @@ const displayTable = props => {
   }, []);
 
   const getIntakeDay = intakeObject => {
+    let day = '';
     try {
-      return intakeObject.intakeTime.split('T')[0];
-    } catch {
-      return '';
+      day = intakeObject.intakeTime.split('T')[0];
+    } catch(err) {
+      console.error('issue parsing day');
     }
+    return day;
   };
 
   const getIntakeTime = intakeObject => {
+    let time = '';
     try {
-      return intakeObject.intakeTime.split('T')[1].substring(0,5);
+      time = intakeObject.intakeTime.split('T')[1].substring(0,5);
     } catch {
-      return '';
+      console.error('issue parsing time');
     }
+    return time;
   };
 
-  // temporarily limit the number of elements while not paginating
   const renderIntakesData = () => {
     return props.intakes.sort(orderIntakesByDate).map((element, index) => {
       const day = getIntakeDay(element);
@@ -49,35 +53,24 @@ const displayTable = props => {
     return (!props.isFetching && !!props.intakes) && (<tbody>{renderIntakesData()}</tbody>);
   };
 
-  const renderCircularLoader = () => {
-    return (<div className='circular-loader'><CircularProgress /></div>);
-  };
-
   const renderPagination = () => {
     return (!!props.isFetching)
-      ? renderCircularLoader()
+      ? (<div className='circular-loader'><CircularProgress /></div>)
       : (<Pagination
           currentPage={props.currentPage}
           links={props.links}
-          totalPages={props.totalPages} />);
+          totalPages={props.totalPages}
+        />);
   };
 
   const renderTableHeader = () => {
-    return (
-      <thead>
-        <tr>
-          <th>Day</th>
-          <th>Time</th>
-          <th>Amount</th>
-          <th>Type</th>
-          <th>User</th>
-          <th>Comments</th>
-        </tr>
-      </thead>);
+    const titles = ['Day', 'Time', 'Amount', 'Type', 'User', 'Comments']
+    const renderTitles = titles.map(element => { return <th>{element}</th> });
+    return <thead><tr>{renderTitles}</tr></thead>;
   };
 
   return (
-    <div>
+    <React.Fragment>
       <div className="table-wrapper">
         <table className="table is-bordered is-striped is-narrow is-fullwidth">
           {renderTableHeader()}
@@ -85,7 +78,7 @@ const displayTable = props => {
         </table>
       </div>
       {renderPagination()}
-    </div>);
+    </React.Fragment>);
 };
 
 const mapStateToProps = state =>  ({
