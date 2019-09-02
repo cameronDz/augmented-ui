@@ -116,81 +116,79 @@ class SessionCreator extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <div className="field is-horizontal">
-            <label className="label" htmlFor="machineType">Machine Type &nbsp;</label>
+      <form onSubmit={this.handleSubmit}>
+        <div className="field is-horizontal">
+          <label className="label" htmlFor="machineType">Machine Type &nbsp;</label>
+          <input className="input"
+            name="machineType"
+            onChange={ event => this.setState({ ...this.state, machineType : event.target.value }) }
+            required
+            type="text"
+            value={this.state.machineType} />
+        </div>
+
+        <div className="field is-horizontal">
+          <label className="label" htmlFor="startDate">Date &nbsp;</label>
+          <DatePicker dateFormat="MMMM d, yyyy h:mm aa"
+            onChange={this.handleDateChange}
+            selected={this.state.startDate}
+            showTimeSelect
+            timeCaption="time"
+            timeFormat="HH:mm"
+            timeIntervals={5} />
+        </div>
+
+        <div className="field is-horizontal">
+          <label className="label">Duration &nbsp;</label>
+          <TimeField className="time-field"
+            onChange={this.handleTimeChange}
+            showSeconds={true}
+            style={{width:80, height:25}}
+            value={this.state.timing} />
+          <label className="label" htmlFor="distanceMiles">Distance (miles) &nbsp;</label>
+          <input className="distance"
+            name="distanceMiles"
+            onChange={ event => this.setState({ ...this.state, distanceMiles : event.target.value }) }
+            step="0.01"
+            type="number"
+            value={this.state.distanceMiles} />
+        </div>
+
+        <div className="field is-horizontal">
+          <label className="label toggle-label" htmlFor="useEndTimeStartDate">Session Just End &nbsp;</label>
+          <Switch checked={this.state.useEndTimeStartDate}
+            color="primary"
+            onChange={this.handleToggleSwitch}
+            value={this.state.useEndTimeStartDate} />
+        </div>
+
+        <div className="field is-horizontal">
+          <label className="label" htmlFor="userName">User &nbsp;</label>
+          <input className="input"
+            name="userName"
+            onChange={ event => this.setState({ ...this.state, userName : event.target.value }) }
+            required
+            type="text"
+            value={this.state.userName} />
+        </div>
+
+        <div className="field">
+          <label className="label" htmlFor="comment">Comment &nbsp;</label>
+          <textarea className="textarea"
+            name="comment"
+            onChange={ event => this.setState({ ...this.state, comment : event.target.value }) }
+            type="textarea"
+            value={this.state.comment} />
+        </div>
+        <div className="field">
+          <div className="control">
             <input className="input"
-              name="machineType"
-              onChange={ event => this.setState({ ...this.state, machineType : event.target.value }) }
-              required
-              type="text"
-              value={this.state.machineType} />
+              id="submitCardioBtn"
+              type="submit"
+              value="Submit" />
           </div>
-
-          <div className="field is-horizontal">
-            <label className="label" htmlFor="startDate">Date &nbsp;</label>
-            <DatePicker dateFormat="MMMM d, yyyy h:mm aa"
-              onChange={this.handleDateChange}
-              selected={this.state.startDate}
-              showTimeSelect
-              timeCaption="time"
-              timeFormat="HH:mm"
-              timeIntervals={5} />
-          </div>
-
-          <div className="field is-horizontal">
-            <label className="label">Duration &nbsp;</label>
-            <TimeField className="time-field"
-              onChange={this.handleTimeChange}
-              showSeconds={true}
-              style={{width:80, height:25}}
-              value={this.state.timing} />
-            <label className="label" htmlFor="distanceMiles">Distance (miles) &nbsp;</label>
-            <input className="distance"
-              name="distanceMiles"
-              onChange={ event => this.setState({ ...this.state, distanceMiles : event.target.value }) }
-              step="0.01"
-              type="number"
-              value={this.state.distanceMiles} />
-          </div>
-
-          <div className="field is-horizontal">
-            <label className="label toggle-label" htmlFor="useEndTimeStartDate">Session Just End &nbsp;</label>
-            <Switch checked={this.state.useEndTimeStartDate}
-              color="primary"
-              onChange={this.handleToggleSwitch}
-              value={this.state.useEndTimeStartDate} />
-          </div>
-
-          <div className="field is-horizontal">
-            <label className="label" htmlFor="userName">User &nbsp;</label>
-            <input className="input"
-              name="userName"
-              onChange={ event => this.setState({ ...this.state, userName : event.target.value }) }
-              required
-              type="text"
-              value={this.state.userName} />
-          </div>
-
-          <div className="field">
-            <label className="label" htmlFor="comment">Comment &nbsp;</label>
-            <textarea className="textarea"
-              name="comment"
-              onChange={ event => this.setState({ ...this.state, comment : event.target.value }) }
-              type="textarea"
-              value={this.state.comment} />
-          </div>
-          <div className="field">
-            <div className="control">
-              <input className="input"
-                id="submitCardioBtn"
-                type="submit"
-                value="Submit" />
-            </div>
-          </div>
-        </form>
-      </div>);
+        </div>
+      </form>);
   };
 }
 
