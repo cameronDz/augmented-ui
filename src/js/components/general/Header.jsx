@@ -1,18 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash.get';
 import Navbar from  './Navbar';
 
-const propTypes = {
-  title: PropTypes.string.isRequired
-};
-
-const header = props => {
-  const [title, setTitle] = useState('');
-  useEffect(() => {
-    setTitle(get(props, 'title', ''));
-  }, [props]);
-
+const propTypes = { title: PropTypes.string.isRequired };
+const header = ({title}) => {
   return (
     <React.Fragment>
       <Navbar />

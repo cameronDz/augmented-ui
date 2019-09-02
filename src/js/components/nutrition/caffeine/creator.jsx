@@ -40,7 +40,7 @@ const creator = props => {
         props.fetchIntakesIfNeeded(url);
       })
       .catch(error => {
-        // TODO inform user
+        alert('Something happened.. was unable to save data.')
         console.error(error);
       })
       .finally(() => {
@@ -60,7 +60,7 @@ const creator = props => {
             type="number"
             value={amount} />
           <label className="label">Type</label>
-          <select value={amountType} onChange={ e=> setAmountType(e.target.value)}>
+          <select onChange={ event => setAmountType(event.target.value)}  value={amountType}>
             <option default value="">--</option>
             <option value="mg">Milligram</option>
             <option value="kg">Kilogram</option>
@@ -72,7 +72,7 @@ const creator = props => {
           <label className="label">User</label>
           <input className="input"
             name="userName"
-            onChange={ e => setUserName(e.target.value) }
+            onChange={ event => setUserName(event.target.value) }
             required
             type="text"
             value={userName} />
@@ -81,14 +81,12 @@ const creator = props => {
           <label className="label">Comment</label>
           <textarea className="textarea"
             name="comment"
-            onChange={ e => setComment(e.target.value) }
+            onChange={ event => setComment(event.target.value) }
             type="textarea"
             value={comment} />
         </div>
         <div>
-          <input id={submitButtonId}
-            type="submit"
-            value="Submit" />
+          <input id={submitButtonId} type="submit" value="Submit" />
         </div>
       </form>
     </React.Fragment>);

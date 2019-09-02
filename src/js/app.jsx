@@ -15,26 +15,26 @@ import ContactPage from './containers/site/ContactPage';
 import ContributePage from './containers/site/ContributePage';
 import IssuePage from './containers/site/IssuePage';
 
+import Session from './features/sessions';
+
 const app = () => {
   return (
-    <div>
-      <Switch>
-        <Route exact path='/' component={HomePage} />
-        <Route exact path='/about' component={AboutPage} />
-        <Route exact path='/contact' component={ContactPage} />
-        <Route exact path='/contribute' component={ContributePage} />
-        <Route exact path='/diet' component={DietPage} />
-        <Route exact path='/exercise' component={ExercisePage} />
-        <Route exact path='/food' component={FoodPage} />
-        <Route exact path='/issue' component={IssuePage} />
-        <Route exact path='/meal' component={MealPage} />
-        <Route exact path='/nutrient' component={NutrientPage} />
-        <Route exact path='/routine' component={RoutinePage} />
-        <Route exact path='/session' component={SessionPage} />
-        <Route exact path='/signin' component={SignInPage} />
-        <Route exact path='/signup' component={SignUpPage} />
-      </Switch>
-    </div>);
+    <Switch>
+      <Route exact path='/' component={Session} />
+      <Route exact path='/about' component={AboutPage} />
+      <Route exact path='/contact' component={ContactPage} />
+      <Route exact path='/contribute' component={ContributePage} />
+      <Route exact path='/diet' component={DietPage} />
+      <Route exact path='/exercise' component={ExercisePage} />
+      <Route exact path='/food' component={FoodPage} />
+      <Route exact path='/issue' component={IssuePage} />
+      <Route exact path='/meal' component={MealPage} />
+      <Route exact path='/nutrient' component={NutrientPage} />
+      <Route exact path='/routine' component={RoutinePage} />
+      <Route exact path='/session' component={SessionPage} />
+      <Route exact path='/signin' component={SignInPage} />
+      <Route exact path='/signup' component={SignUpPage} />
+    </Switch>);
 };
 
 export default app;

@@ -15,19 +15,17 @@ const sessionsTableDisplay = props => {
   }, []);
 
   const renderSessionsData = () => {
-    return (!!props.sessions)
-      ? props.sessions.map((element, index) => {
-          const date = element.startTime.split('T')[0];
-          return (
-            <tr key={index}>
-              <td>{date}</td>
-              <td>{element.machineType}</td>
-              <td>{element.userName}</td>
-              <ModalButton {...element} />
-            </tr>
-          );
-        })
-      : null;
+    return (!!props.sessions) && props.sessions.map((element, index) => {
+      const date = element.startTime.split('T')[0];
+      return (
+        <tr key={index}>
+          <td>{date}</td>
+          <td>{element.machineType}</td>
+          <td>{element.userName}</td>
+          <ModalButton {...element} />
+        </tr>
+      );
+    });
   };
 
   const renderCircularLoader = () => {
@@ -35,9 +33,7 @@ const sessionsTableDisplay = props => {
   };
 
   const renderTableRows = () => {
-    return (!props.isFetching && !!props.sessions)
-      ? (<tbody>{renderSessionsData()}</tbody>)
-      : null;
+    return (!props.isFetching && !!props.sessions) && (<tbody>{renderSessionsData()}</tbody>);
   };
 
   const renderPagination = () => {
