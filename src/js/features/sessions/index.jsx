@@ -54,7 +54,7 @@ const sessions = props => {
             <SessionsTableDisplay />
           </TabPanel>
           <TabPanel value={value} index={3}>
-            Under construction
+            <p>Under construction</p>
           </TabPanel>
         </Grid>
         <Grid item xs={12} sm={12} md={1}></Grid>
