@@ -1,18 +1,7 @@
-import React, { useEffect, useState } from 'react';
-import get from 'lodash.get';
+import React from 'react';
 import '../../../css/card.css';
 
-const card = props => {
-
-  const [child, setChild] = useState();
-  const [footer, setFooter] = useState();
-  const [title, setTitle] = useState('');
-
-  useEffect(() => {
-    setChild(get(props, 'child', null));
-    setFooter(get(props, 'footer', null));
-    setTitle(get(props, 'title', ''));
-  }, []);
+const card = ({ child, footer, title }) => {
 
   const renderHeader = () => {
     return (
@@ -43,4 +32,5 @@ const card = props => {
     </div>);
 };
 
+card.propTypes = propTypes;
 export default card;
