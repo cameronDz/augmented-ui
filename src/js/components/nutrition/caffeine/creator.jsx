@@ -40,7 +40,7 @@ const creator = props => {
         props.fetchIntakesIfNeeded(url);
       })
       .catch(error => {
-        // TODO inform user
+        alert('Something happened.. was unable to save data.')
         console.error(error);
       })
       .finally(() => {

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Pagination from './pagination';
+import { orderIntakesByDate } from '../../../lib/sorts';
 import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
 import '../../../../css/table.css';
 
@@ -10,22 +11,6 @@ const displayTable = props => {
   useEffect(() => {
     props.fetchIntakesIfNeeded();
   }, []);
-
-  const orderIntakesByDate = (a, b) => {
-    let aTime, bTime;
-    try {
-      aTime = new Date(a.intakeTime);
-      bTime = new Date(b.intakeTime);
-    } catch {
-      return 0;
-    }
-    if (aTime < bTime) {
-      return 1;
-    } else if (aTime > bTime) {
-      return -1;
-    }
-    return 0;
-  };
 
   const getIntakeDay = intakeObject => {
     try {
@@ -61,9 +46,7 @@ const displayTable = props => {
   };
 
   const renderTableRows = () => {
-    return (!props.isFetching && !!props.intakes)
-      ? (<tbody>{renderIntakesData()}</tbody>)
-      : null;
+    return (!props.isFetching && !!props.intakes) && (<tbody>{renderIntakesData()}</tbody>);
   };
 
   const renderCircularLoader = () => {
