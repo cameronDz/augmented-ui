@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Grid from '@material-ui/core/Grid';
 import Tab from '@material-ui/core/Tab';
@@ -7,6 +8,12 @@ import { withStyles } from '@material-ui/core/styles';
 import Navbar from '../../components/general/Navbar';
 import Footer from '../../components/general/Footer';
 import TabPanel from './tabPanel';
+
+const propTypes = {
+  tabNames: PropTypes.array.isRequired,
+  tabPanels: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired
+};
 
 const styles = {
   hero: { fontSize: '26px', padding: '16px', textAlign: 'center' },
@@ -50,4 +57,5 @@ const page = ({classes, tabNames, tabPanels, title}) => {
 		</Grid>);
 };
 
+page.propTypes = propTypes;
 export default withStyles(styles)(page);
