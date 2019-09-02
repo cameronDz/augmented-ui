@@ -24,38 +24,23 @@ const card = props => {
   const renderChild = () => {
     return (
       <div className="card-content">
-        <div className="content">
-          {child}
-        </div>
+        <div className="content">{child}</div>
       </div>);
   };
 
   const renderFooter = () => {
-    return (!!footer)
-      ? (<footer className="card-footer">
-          <div>
-            {footer}
-          </div>
-        </footer>)
-      : null;
+    return !!footer && (
+      <footer className="card-footer">
+        <div>{footer}</div>
+      </footer>);
   };
 
-  const shouldRenderCard = () => {
-    if (!!title) {
-      return (
-        <div className="card">
-          {renderHeader()}
-          {renderChild()}
-          {renderFooter()}
-        </div>);
-    }
-    return null;
-  }
-
-  return (
-    <React.Fragment>
-      {shouldRenderCard()}
-    </React.Fragment>);
+  return !! title && (
+    <div className="card">
+      {renderHeader()}
+      {renderChild()}
+      {renderFooter()}
+    </div>);
 };
 
 export default card;
