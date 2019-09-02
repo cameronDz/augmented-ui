@@ -1,15 +1,13 @@
 import React, { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
 import Grid from '@material-ui/core/Grid';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
-import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
-
 import Navbar from '../../components/general/Navbar';
 import SessionCreator from '../../components/fitness/cardioMachine/sessionCreator';
 import SessionsTableDisplay from '../../components/fitness/cardioMachine/sessionsTableDisplay';
+import TabPanel from './tabPanel';
 
 const styles = {
   hero: {
@@ -29,20 +27,6 @@ const sessions = props => {
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const TabPanel = props => {
-    const { children, value, index, ...other } = props;
-
-    return (
-      <Typography component="div"
-        hidden={value !== index}
-        id={`simple-tabpanel-${index}`}
-        role="tabpanel"
-        {...other}
-      >
-        <Box p={3}>{children}</Box>
-      </Typography>);
   };
 
   return (
