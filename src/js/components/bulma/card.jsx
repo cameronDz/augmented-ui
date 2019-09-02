@@ -32,5 +32,4 @@ const card = ({ child, footer, title }) => {
     </div>);
 };
 
-card.propTypes = propTypes;
 export default card;
