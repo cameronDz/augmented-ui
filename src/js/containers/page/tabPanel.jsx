@@ -8,7 +8,6 @@ const tabPanel = props => {
   return (
     <Typography component="div"
       hidden={value !== index}
-      id={`simple-tabpanel-${index}`}
       role="tabpanel"
       {...other}
     >
