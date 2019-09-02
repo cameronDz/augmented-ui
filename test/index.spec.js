@@ -3,8 +3,7 @@ import { expect } from 'chai';
 import { mount } from 'enzyme'
 import Card from '../src/js/components/bulma/card';
 
-
-describe('initial test', () => {
+describe('initial tests', () => {
   describe('card tests', () => {
     it('should render with title prop', () => {
       const wrap = mount(<Card title='test' />);

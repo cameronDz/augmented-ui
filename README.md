@@ -39,7 +39,7 @@ augmented-frontend/
       app.jsx
       index.js
     index.html
-  tests/
+  test/
   webpack/
 ```
 
