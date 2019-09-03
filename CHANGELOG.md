@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2019-09-02
+### Added
+- Split lib function for splitting apart text keys from an object, including tests.
+- Table row component used for caffiene intake data.
+
+### Changed
+- Set '/session' route to use new tab styled page.
+- Condensed display table component code for session data.
+- Use new split function to massage caffiene and session data in tables.
+
+### Removed
+- Excess comments in sort lib.
+
 ## [0.1.0] - 2019-09-02
 ### Initialized
 - Initial adding of change log with base project
