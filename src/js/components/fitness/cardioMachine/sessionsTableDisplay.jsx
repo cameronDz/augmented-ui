@@ -4,6 +4,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import ModalButton from './modalButton';
 import TablePagination from '../../general/tablePagination';
 import { fetchSessionsIfNeeded } from '../../../state/cardioMachineSessions/actions';
+import { splitTextKeyToArray } from '../../../lib/splits';
 import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/table.css';
 
@@ -16,15 +17,14 @@ const sessionsTableDisplay = props => {
 
   const renderSessionsData = () => {
     return (!!props.sessions) && props.sessions.map((element, index) => {
-      const date = element.startTime.split('T')[0];
+      const date = splitTextKeyToArray(element, 'startTime', 'T')[0];
       return (
         <tr key={index}>
           <td>{date}</td>
           <td>{element.machineType}</td>
           <td>{element.userName}</td>
           <ModalButton {...element} />
-        </tr>
-      );
+        </tr>);
     });
   };
 
@@ -37,7 +37,8 @@ const sessionsTableDisplay = props => {
       ? <div className='circular-loader'><CircularProgress /></div>
       : (<TablePagination currentPage={props.currentPage}
           links={props.links}
-          totalPages={props.totalPages} />);
+          totalPages={props.totalPages}
+        />);
   };
 
   const renderTableHeader = () => {
