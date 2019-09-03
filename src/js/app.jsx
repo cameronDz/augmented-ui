@@ -1,6 +1,5 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import Session from './features/sessions';
 import SignUpPage from './containers/SignUpPage';
 import SignInPage from './containers/SignInPage';
 import ExercisePage from './containers/fitness/ExercisePage';
@@ -9,24 +8,17 @@ import DietPage from './containers/nutrition/DietPage';
 import FoodPage from './containers/nutrition/FoodPage';
 import MealPage from './containers/nutrition/MealPage';
 import NutrientPage from './containers/nutrition/nutrientsPage';
-import AboutPage from './containers/site/AboutPage';
-import ContactPage from './containers/site/ContactPage';
-import ContributePage from './containers/site/ContributePage';
-import IssuePage from './containers/site/IssuePage';
+import Session from './features/sessions';
 import Help from './features/help';
 
 const app = () => {
   return (
     <Switch>
       <Route exact path='/' component={Session} />
-      <Route exact path='/help' component={Help} />
-      <Route exact path='/about' component={AboutPage} />
-      <Route exact path='/contact' component={ContactPage} />
-      <Route exact path='/contribute' component={ContributePage} />
       <Route exact path='/diet' component={DietPage} />
       <Route exact path='/exercise' component={ExercisePage} />
       <Route exact path='/food' component={FoodPage} />
-      <Route exact path='/issue' component={IssuePage} />
+      <Route exact path='/help' component={Help} />
       <Route exact path='/meal' component={MealPage} />
       <Route exact path='/nutrient' component={NutrientPage} />
       <Route exact path='/routine' component={RoutinePage} />
