@@ -7,13 +7,11 @@ class Navbar extends Component {
     // get elements to be dropdowns
     const fitnessButton = document.getElementById('fitnessNavbarButton');
     const nutritionButton = document.getElementById('nutritionNavbarButton');
-    const moreButton = document.getElementById('moreNavbarButton');
 
     // create function for deactivating all dropdowns
     const deactivateDropdowns = () => {
       fitnessButton.nextElementSibling.style.display = "none";
       nutritionButton.nextElementSibling.style.display = "none";
-      moreButton.nextElementSibling.style.display = "none";
     };
 
     // create listener for that shows and hides drop downs
@@ -32,7 +30,6 @@ class Navbar extends Component {
     // add listeners to dropdowns
     fitnessButton.addEventListener("click", buttonListener);
     nutritionButton.addEventListener("click", buttonListener);
-    moreButton.addEventListener("click", buttonListener);
 
     // deactivate dropdowns on init
     deactivateDropdowns();
