@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import get from 'lodash.get';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Pagination from './pagination';
+import TableRow from './tableRow';
 import { orderIntakesByDate } from '../../../lib/sorts';
 import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
 import '../../../../css/table.css';
@@ -13,39 +13,9 @@ const displayTable = props => {
     props.fetchIntakesIfNeeded();
   }, []);
 
-  const getIntakeDay = intakeObject => {
-    let day = '';
-    try {
-      day = intakeObject.intakeTime.split('T')[0];
-    } catch(err) {
-      console.error('issue parsing day');
-    }
-    return day;
-  };
-
-  const getIntakeTime = intakeObject => {
-    let time = '';
-    try {
-      time = intakeObject.intakeTime.split('T')[1].substring(0,5);
-    } catch {
-      console.error('issue parsing time');
-    }
-    return time;
-  };
-
   const renderIntakesData = () => {
-    return props.intakes.sort(orderIntakesByDate).map((element, index) => {
-      const day = getIntakeDay(element);
-      const time = getIntakeTime(element);
-      return (
-        <tr key={index}>
-          <td>{day}</td>
-          <td>{time}</td>
-          <td>{element.amount}</td>
-          <td>{element.amountType}</td>
-          <td>{element.userName}</td>
-          <td>{element.comment}</td>
-        </tr>);
+    return props.intakes.sort(orderIntakesByDate).map(element => {
+      return <TableRow element={element} />;
     });
   };
 

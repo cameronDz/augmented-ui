@@ -1,10 +1,9 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import HomePage from './containers/HomePage';
+import Session from './features/sessions';
 import SignUpPage from './containers/SignUpPage';
 import SignInPage from './containers/SignInPage';
 import ExercisePage from './containers/fitness/ExercisePage';
-import SessionPage from './containers/fitness/SessionPage';
 import RoutinePage from './containers/fitness/RoutinePage';
 import DietPage from './containers/nutrition/DietPage';
 import FoodPage from './containers/nutrition/FoodPage';
@@ -14,8 +13,6 @@ import AboutPage from './containers/site/AboutPage';
 import ContactPage from './containers/site/ContactPage';
 import ContributePage from './containers/site/ContributePage';
 import IssuePage from './containers/site/IssuePage';
-
-import Session from './features/sessions';
 
 const app = () => {
   return (
@@ -31,7 +28,7 @@ const app = () => {
       <Route exact path='/meal' component={MealPage} />
       <Route exact path='/nutrient' component={NutrientPage} />
       <Route exact path='/routine' component={RoutinePage} />
-      <Route exact path='/session' component={SessionPage} />
+      <Route exact path='/session' component={Session} />
       <Route exact path='/signin' component={SignInPage} />
       <Route exact path='/signup' component={SignUpPage} />
     </Switch>);
