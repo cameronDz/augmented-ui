@@ -38,9 +38,7 @@ class Navbar extends Component {
     deactivateDropdowns();
   };
 
-  /**
-   * Click handler for main burger menu.
-   */
+  // Click handler for main burger menu.
   handleBurgerClick = () => {
     document.querySelector('.navbar-menu').classList.toggle('is-active');
   };
@@ -78,16 +76,7 @@ class Navbar extends Component {
                 <div className="navbar-item"><Link to='/nutrient'>Caffeine</Link></div>
               </div>
             </div>
-            <div className="navbar-item has-dropdown is-hoverable">
-              <div id="moreNavbarButton" className="navbar-link" data-targets="moreNavbar">More</div>
-              <div id="moreNavbarItems" className="navbar-dropdown">
-                <div className="navbar-item"><Link to='/about'>About</Link></div>
-                <div className="navbar-item"><Link to='/contact'>Contact</Link></div>
-                <div className="navbar-item"><Link to='/contribute'>Contribute</Link></div>
-                <hr className="navbar-divider" />
-                <div className="navbar-item"><Link to='/issue'>Report an issue</Link></div>
-              </div>
-            </div>
+            <div className="navbar-item"><Link to="/help">Help</Link></div>
           </div>
           <div className="navbar-end">
             <div className="navbar-item">

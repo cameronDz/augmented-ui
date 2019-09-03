@@ -13,11 +13,13 @@ import AboutPage from './containers/site/AboutPage';
 import ContactPage from './containers/site/ContactPage';
 import ContributePage from './containers/site/ContributePage';
 import IssuePage from './containers/site/IssuePage';
+import Help from './features/help';
 
 const app = () => {
   return (
     <Switch>
       <Route exact path='/' component={Session} />
+      <Route exact path='/help' component={Help} />
       <Route exact path='/about' component={AboutPage} />
       <Route exact path='/contact' component={ContactPage} />
       <Route exact path='/contribute' component={ContributePage} />
