@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.2] - 2019-09-03
+### Added
+- Help page to replace multiple reference pages.
+
+### Changed
+- Navbar tab change from 'More' drop down to direct link to help page.
+
+### Removed
+- About, Contact, Contribute, and Issue pages.
+
 ## [0.1.1] - 2019-09-02
 ### Added
 - Split lib function for splitting apart text keys from an object, including tests.

@@ -7,13 +7,11 @@ class Navbar extends Component {
     // get elements to be dropdowns
     const fitnessButton = document.getElementById('fitnessNavbarButton');
     const nutritionButton = document.getElementById('nutritionNavbarButton');
-    const moreButton = document.getElementById('moreNavbarButton');
 
     // create function for deactivating all dropdowns
     const deactivateDropdowns = () => {
       fitnessButton.nextElementSibling.style.display = "none";
       nutritionButton.nextElementSibling.style.display = "none";
-      moreButton.nextElementSibling.style.display = "none";
     };
 
     // create listener for that shows and hides drop downs
@@ -32,15 +30,12 @@ class Navbar extends Component {
     // add listeners to dropdowns
     fitnessButton.addEventListener("click", buttonListener);
     nutritionButton.addEventListener("click", buttonListener);
-    moreButton.addEventListener("click", buttonListener);
 
     // deactivate dropdowns on init
     deactivateDropdowns();
   };
 
-  /**
-   * Click handler for main burger menu.
-   */
+  // Click handler for main burger menu.
   handleBurgerClick = () => {
     document.querySelector('.navbar-menu').classList.toggle('is-active');
   };
@@ -78,16 +73,7 @@ class Navbar extends Component {
                 <div className="navbar-item"><Link to='/nutrient'>Caffeine</Link></div>
               </div>
             </div>
-            <div className="navbar-item has-dropdown is-hoverable">
-              <div id="moreNavbarButton" className="navbar-link" data-targets="moreNavbar">More</div>
-              <div id="moreNavbarItems" className="navbar-dropdown">
-                <div className="navbar-item"><Link to='/about'>About</Link></div>
-                <div className="navbar-item"><Link to='/contact'>Contact</Link></div>
-                <div className="navbar-item"><Link to='/contribute'>Contribute</Link></div>
-                <hr className="navbar-divider" />
-                <div className="navbar-item"><Link to='/issue'>Report an issue</Link></div>
-              </div>
-            </div>
+            <div className="navbar-item"><Link to="/help">Help</Link></div>
           </div>
           <div className="navbar-end">
             <div className="navbar-item">
