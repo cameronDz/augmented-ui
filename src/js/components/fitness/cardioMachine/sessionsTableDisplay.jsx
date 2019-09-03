@@ -28,36 +28,26 @@ const sessionsTableDisplay = props => {
     });
   };
 
-  const renderCircularLoader = () => {
-    return (<div className='circular-loader'><CircularProgress /></div>);
-  };
-
   const renderTableRows = () => {
     return (!props.isFetching && !!props.sessions) && (<tbody>{renderSessionsData()}</tbody>);
   };
 
   const renderPagination = () => {
     return (!!props.isFetching)
-      ? renderCircularLoader()
+      ? <div className='circular-loader'><CircularProgress /></div>
       : (<TablePagination currentPage={props.currentPage}
           links={props.links}
           totalPages={props.totalPages} />);
   };
 
   const renderTableHeader = () => {
-    return (
-      <thead>
-        <tr>
-          <th>Date</th>
-          <th>Machine</th>
-          <th>User</th>
-          <th>Details</th>
-        </tr>
-      </thead>);
+    const titles = ['Date', 'Machine', 'User', 'Details'];
+    const renderTitles = titles.map(item => { return <th>{item}</th>; });
+    return <thead><tr>{renderTitles}</tr></thead>;
   };
 
   return (
-    <div>
+    <React.Fragment>
       <div className="table-wrapper">
         <table className="table is-bordered is-striped is-narrow is-fullwidth">
           {renderTableHeader()}
@@ -65,7 +55,7 @@ const sessionsTableDisplay = props => {
         </table>
       </div>
       {renderPagination()}
-    </div>);
+    </React.Fragment>);
 };
 
 const mapStateToProps = state =>  ({
