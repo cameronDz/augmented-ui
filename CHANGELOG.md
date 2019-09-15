@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - ESlint with plugins for best practices with StandardJS
 
+### Fixed
+- Updated styling/issues pointed out by linter
+
 ## [0.1.3] - 2019-09-15
 ### Changed
 - Package JSON key order
