@@ -2,7 +2,7 @@
 export const shouldFetchState = state => {
   if (!state) {
     return true;
-  } else if (!!state.isFetching) {
+  } else if (state.isFetching) {
     return false;
   }
   return (!!state.didInvalidate);

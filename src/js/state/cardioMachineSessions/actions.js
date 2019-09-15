@@ -4,10 +4,10 @@ import { shouldFetchState } from '../global';
 // TODO fix call
 const fetchSessions = sessionApiUrl => {
   return dispatch => {
-    dispatch(requestCardioMachineSessions(sessionApiUrl))
+    dispatch(requestCardioMachineSessions(sessionApiUrl));
     return fetch(sessionApiUrl)
       .then(response => response.json())
-      .then(json => dispatch(recieveCardioMachineSessions(sessionApiUrl, json)))
+      .then(json => dispatch(recieveCardioMachineSessions(sessionApiUrl, json)));
   };
 };
 
@@ -36,7 +36,7 @@ export const recieveCardioMachineSessions = (sessionApiUrl, json) => {
 export const fetchSessionsIfNeeded = sessionApiUrl => {
   return (dispatch, getState) => {
     if (shouldFetchSessions(getState())) {
-      return dispatch(fetchSessions(sessionApiUrl))
+      return dispatch(fetchSessions(sessionApiUrl));
     }
   };
 };

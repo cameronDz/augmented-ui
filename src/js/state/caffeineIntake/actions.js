@@ -25,7 +25,7 @@ export const recieveCaffeineIntakes = (json, url = apiUrl) => {
 export const fetchIntakesIfNeeded = (url = apiUrl) => {
   return (dispatch, getState) => {
     if (shouldFetchIntakes(getState())) {
-      return dispatch(fetchIntakes(url))
+      return dispatch(fetchIntakes(url));
     }
   };
 };
@@ -37,9 +37,9 @@ const shouldFetchIntakes = (state = {}) => {
 // TODO wtf is this logic???
 const fetchIntakes = (url = apiUrl) => {
   return dispatch => {
-    dispatch(requestCaffeineIntakes())
+    dispatch(requestCaffeineIntakes());
     return fetch(url)
       .then(response => response.json())
-      .then(json => dispatch(recieveCaffeineIntakes(json)))
+      .then(json => dispatch(recieveCaffeineIntakes(json)));
   };
 };

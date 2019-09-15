@@ -11,7 +11,8 @@ const reducer = (state = initialState, action) => {
       newState = { ...state, isFetching: true };
       break;
     case types.RECIEVE_CARDIO_MACHINE_SESSIONS:
-      newState = { ...state,
+      newState = {
+        ...state,
         sessions: action.dataPayload,
         totalRecords: action.metaPayload._totalRecords,
         totalPages: action.metaPayload._totalPages,
@@ -23,7 +24,7 @@ const reducer = (state = initialState, action) => {
       };
       break;
     default:
-      newState = state
+      newState = state;
   }
   return newState;
 };
