@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 const propTypes = {
   children: PropTypes.object,
   index: PropTypes.number,
-  value: PropTypes.string
+  value: PropTypes.number
 };
 const tabPanel = ({ children, index, value, ...other }) => {
   return (

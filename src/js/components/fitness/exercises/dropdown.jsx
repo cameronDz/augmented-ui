@@ -19,9 +19,8 @@ const exerciseDropdown = props => {
     // TODO move to redux state and own useEffect method
     const header = { header: { 'Content-Type': 'application/json' } };
     axios.get(url, header)
-      .then(response => response.json())
-      .then(data => {
-        setExercises(processExercise(data));
+      .then(payload => {
+        setExercises(processExercise(payload));
       })
       .catch(error => {
         // TODO inform user
@@ -30,8 +29,8 @@ const exerciseDropdown = props => {
   }, []);
 
   const processExercise = data => {
-    return (Array.isArray(data))
-      ? data.map((item, index) => {
+    return (Array.isArray(data.data))
+      ? data.data.map((item, index) => {
         const exerciseId = (item.exerciseId) ? item.exerciseId : -1;
         const name = (item.name) ? item.name : '';
         return {

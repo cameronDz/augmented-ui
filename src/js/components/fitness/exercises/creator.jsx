@@ -39,16 +39,16 @@ const exerciseCreator = () => {
       <p><strong>Create a new Exercise</strong></p>
       <form onSubmit={handleSubmit}>
         <div>
-          <label forHtml="name">Name</label><br/>
+          <label forhtml="name">Name</label><br/>
           <input name="name" onChange={event => setName(event.target.value) } type="text" value={name} />
         </div>
         <div>
-          <label forHtml="description">Description</label><br/>
+          <label forhtml="description">Description</label><br/>
           <textarea name="description" onChange={event => setDescription(event.target.value)} value={description}>
           </textarea>
         </div>
         <div>
-          <label forHtml="typeId">Type</label><br/>
+          <label forhtml="typeId">Type</label><br/>
           <input name="typeId" onChange={event => setTypeId(Number(event.target.value)) } type="number" value={typeId} />
         </div>
         <div>

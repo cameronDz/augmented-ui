@@ -4,7 +4,7 @@ import { Modal } from 'react-bulma-components';
 import '../../../../css/table.css';
 
 const propTypes = {
-  comment: PropTypes.number,
+  comment: PropTypes.string,
   distanceMiles: PropTypes.number,
   durationSeconds: PropTypes.number,
   machineType: PropTypes.string,

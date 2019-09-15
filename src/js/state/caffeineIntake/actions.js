@@ -12,12 +12,12 @@ export const requestCaffeineIntakes = (url = apiUrl) => {
   return { type: types.REQUEST_CAFFEINE_INTAKE, url };
 };
 
-export const recieveCaffeineIntakes = (json, url = apiUrl) => {
+export const recieveCaffeineIntakes = (payload, url = apiUrl) => {
   return {
     url,
-    dataPayload: json.data,
-    linkPayload: json.links,
-    metaPayload: json.meta,
+    dataPayload: payload.data.data,
+    linkPayload: payload.data.links,
+    metaPayload: payload.data.meta,
     receivedAt: Date.now(),
     type: types.RECIEVE_CAFFEINE_INTAKE
   };
@@ -41,7 +41,6 @@ const fetchIntakes = (url = apiUrl) => {
     dispatch(requestCaffeineIntakes());
     const header = { header: { 'Content-Type': 'application/json' } };
     return axios.get(url, header)
-      .then(response => response.json())
-      .then(json => dispatch(recieveCaffeineIntakes(json)));
+      .then(payload => dispatch(recieveCaffeineIntakes(payload)));
   };
 };

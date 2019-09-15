@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import * as _config from '../../../../assets/data/config.json';
@@ -9,12 +9,7 @@ const setPropTypes = {
 };
 class Set extends Component {
   render () {
-    return (
-      <tr>
-        <td></td>
-        <td>{this.props.reps} X {this.props.percent * 100} %</td>
-        <td></td>
-      </tr>);
+    return `${this.props.reps} X ${this.props.percent * 100} %`;
   }
 }
 Set.propTypes = setPropTypes;
@@ -22,12 +17,16 @@ Set.propTypes = setPropTypes;
 const excercisePropTypes = {
   name: PropTypes.string,
   note: PropTypes.string,
-  sets: PropTypes.object
+  sets: PropTypes.array
 };
 class Exercise extends Component {
   render () {
     const setComponent = this.props.sets.map((item, key) => {
-      return (<Set key={key} {...item} />);
+      const breakLine = key + 1 !== this.props.sets.length && <br/>;
+      return (
+        <Fragment key={key}>
+          <Set {...item} /> {breakLine}
+        </Fragment>);
     });
 
     return (
@@ -35,8 +34,7 @@ class Exercise extends Component {
         <td>{this.props.name}</td>
         <td>{setComponent}</td>
         <td>{this.props.note}</td>
-      </tr>
-    );
+      </tr>);
   }
 }
 Exercise.propTypes = excercisePropTypes;
@@ -57,13 +55,14 @@ class Routine extends Component {
     const url = _config.apis.heroku + 'basicRoutine?routineId=1';
     const header = { header: { 'Content-Type': 'application/json' } };
     axios.get(url, header)
-      .then(response => response.json())
-      .then(data => this.setState({
-        name: data.name,
-        count: data.count,
-        exercises: data.exercises,
-        note: data.note
-      }))
+      .then(payload => {
+        this.setState({
+          name: payload.data.name,
+          count: payload.data.count,
+          exercises: payload.data.exercises,
+          note: payload.data.note
+        });
+      })
       .catch(error => {
         // TODO inform user
         console.error(error);
