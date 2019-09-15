@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import * as _config from '../../../../assets/data/config.json';
 
 const setPropTypes = {
@@ -54,14 +55,19 @@ class Routine extends Component {
 
   componentDidMount () {
     const url = _config.apis.heroku + 'basicRoutine?routineId=1';
-    fetch(url)
+    const header = { header: { 'Content-Type': 'application/json' } };
+    axios.get(url, header)
       .then(response => response.json())
       .then(data => this.setState({
         name: data.name,
         count: data.count,
         exercises: data.exercises,
         note: data.note
-      }));
+      }))
+      .catch(error => {
+        // TODO inform user
+        console.error(error);
+      });
   }
 
   render () {

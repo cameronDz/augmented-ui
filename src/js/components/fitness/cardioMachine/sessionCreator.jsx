@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import Switch from '@material-ui/core/Switch';
 // TODO look into material ui picker
@@ -100,17 +101,19 @@ class SessionCreator extends Component {
       userName: ''
     });
 
-    // TODO axios in middleware
-    const xhr = new XMLHttpRequest();
-    xhr.open('POST', url, true);
-    xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.onreadystatechange = function () {
-      if (xhr.readyState === 4) {
-        document.getElementById('submitCardioBtn').disabled = false;
+    // TODO move to middleware
+    const header = { header: { 'Content-Type': 'application/json' } };
+    axios.post(url, payload, header)
+      .then(() => {
         self.props.dispatchFetchSessions(self.props.links.self);
-      }
-    };
-    xhr.send(payload);
+      })
+      .catch(error => {
+        // TODO inform user
+        console.error(error);
+      })
+      .finally(() => {
+        document.getElementById('submitCardioBtn').disabled = false;
+      });
   };
 
   render () {

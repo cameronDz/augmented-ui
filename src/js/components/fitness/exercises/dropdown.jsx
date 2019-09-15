@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import axios from 'axios';
 import Dropdown from '../../Dropdown';
 import * as _config from '../../../../../assets/data/config.json';
 
@@ -16,10 +17,15 @@ const exerciseDropdown = props => {
     const propTitle = (props.title) ? props.title : 'Dropdown';
     setTitle(propTitle);
     // TODO move to redux state and own useEffect method
-    fetch(url)
+    const header = { header: { 'Content-Type': 'application/json' } };
+    axios.get(url, header)
       .then(response => response.json())
       .then(data => {
         setExercises(processExercise(data));
+      })
+      .catch(error => {
+        // TODO inform user
+        console.error(error);
       });
   }, []);
 

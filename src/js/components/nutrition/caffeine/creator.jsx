@@ -44,7 +44,7 @@ const creator = props => {
         props.fetchIntakesIfNeeded(url);
       })
       .catch(error => {
-        alert('Something happened.. was unable to save data.');
+        // TOOD inform user
         console.error(error);
       })
       .finally(() => {

@@ -1,11 +1,13 @@
 import * as types from './types';
+import axios from 'axios';
 import { shouldFetchState } from '../global';
 
 // TODO fix call
 const fetchSessions = sessionApiUrl => {
   return dispatch => {
     dispatch(requestCardioMachineSessions(sessionApiUrl));
-    return fetch(sessionApiUrl)
+    const header = { header: { 'Content-Type': 'application/json' } };
+    return axios.get(sessionApiUrl, header)
       .then(response => response.json())
       .then(json => dispatch(recieveCardioMachineSessions(sessionApiUrl, json)));
   };
