@@ -1,9 +1,14 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import axios from 'axios';
 import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
 import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/creator.css';
+
+const propTypes = {
+  fetchIntakesIfNeeded: PropTypes.func
+};
 
 const creator = props => {
   const submitButtonId = 'submitNutrientConsumption';
@@ -91,4 +96,5 @@ const creator = props => {
     </React.Fragment>);
 };
 
+creator.propTypes = propTypes;
 export default connect(null, { fetchIntakesIfNeeded })(creator);

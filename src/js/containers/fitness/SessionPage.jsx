@@ -4,9 +4,10 @@ import Layout from '../../components/Layout';
 
 class SessionPage extends Component {
   render () {
-    const children = (<Session />);
-    const title = 'Sessions';
-    return (<Layout children={children} title={title} />);
+    return (
+      <Layout title='Sessions'>
+        <Session />
+      </Layout>);
   };
 }
 

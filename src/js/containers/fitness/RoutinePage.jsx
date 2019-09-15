@@ -28,9 +28,10 @@ class RoutineBase extends Component {
 
 class RoutinePage extends Component {
   render () {
-    const title = 'Routines Page';
-    const children = (<RoutineBase />);
-    return (<Layout children={children} title={title} />);
+    return (
+      <Layout title='Routines Page'>
+        <RoutineBase />
+      </Layout>);
   };
 }
 

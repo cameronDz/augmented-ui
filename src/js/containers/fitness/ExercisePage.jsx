@@ -29,9 +29,10 @@ class Exercise extends Component {
 
 class ExercisePage extends Component {
   render () {
-    const title = 'Exercises';
-    const children = (<Exercise />);
-    return (<Layout children={children} title={title} />);
+    return (
+      <Layout title='Exercises'>
+        <Exercise />
+      </Layout>);
   };
 }
 

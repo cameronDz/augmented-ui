@@ -5,6 +5,7 @@ import get from 'lodash.get';
 import { fetchSessionsIfNeeded } from '../../state/cardioMachineSessions/actions';
 
 const propTypes = {
+  fetchSessionsIfNeeded: PropTypes.func,
   pageLink: PropTypes.string.isRequired,
   pageNumber: PropTypes.number.isRequired
 };

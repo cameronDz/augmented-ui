@@ -1,5 +1,15 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { splitTextKeyToArray } from '../../../lib/splits';
+
+const propTypes = {
+  element: PropTypes.shape({
+    amount: PropTypes.number,
+    amountType: PropTypes.string,
+    comment: PropTypes.string,
+    userName: PropTypes.string
+  })
+};
 
 const tableRow = ({ element }) => {
   const getIntakeDay = intakeObject => {
@@ -24,4 +34,5 @@ const tableRow = ({ element }) => {
     </tr>);
 };
 
+tableRow.propTypes = propTypes;
 export default tableRow;

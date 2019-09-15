@@ -1,6 +1,11 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import * as _config from '../../../../assets/data/config.json';
 
+const setPropTypes = {
+  percent: PropTypes.number,
+  reps: PropTypes.number
+};
 class Set extends Component {
   render () {
     return (
@@ -8,15 +13,20 @@ class Set extends Component {
         <td></td>
         <td>{this.props.reps} X {this.props.percent * 100} %</td>
         <td></td>
-      </tr>
-    );
+      </tr>);
   }
 }
+Set.propTypes = setPropTypes;
 
+const excercisePropTypes = {
+  name: PropTypes.string,
+  note: PropTypes.string,
+  sets: PropTypes.object
+};
 class Exercise extends Component {
   render () {
-    const setComponent = this.props.sets.map(setObject => {
-      return (<Set {...setObject} />);
+    const setComponent = this.props.sets.map((item, key) => {
+      return (<Set key={key} {...item} />);
     });
 
     return (
@@ -28,6 +38,7 @@ class Exercise extends Component {
     );
   }
 }
+Exercise.propTypes = excercisePropTypes;
 
 class Routine extends Component {
   constructor (props) {
@@ -54,8 +65,8 @@ class Routine extends Component {
   }
 
   render () {
-    const exerciseComponent = this.state.exercises.map(exerciseObject => {
-      return (<Exercise {...exerciseObject} />);
+    const exerciseComponent = this.state.exercises.map((item, key) => {
+      return (<Exercise key={key} {...item} />);
     });
 
     return (
@@ -74,8 +85,7 @@ class Routine extends Component {
             {exerciseComponent}
           </tbody>
         </table>
-      </div>
-    );
+      </div>);
   }
 }
 

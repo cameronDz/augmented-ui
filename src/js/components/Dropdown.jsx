@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import FontAwesome from 'react-fontawesome';
 import onClickOutside from 'react-onclickoutside';
+
+const propTypes = {
+  list: PropTypes.array,
+  resetThenSet: PropTypes.func,
+  title: PropTypes.string
+};
 
 class Dropdown extends Component {
   constructor (props) {
@@ -35,7 +42,7 @@ class Dropdown extends Component {
     const { listOpen, headerTitle } = this.state;
 
     const renderList = () => {
-      return !!list && list.map((item) => (
+      return Array.isArray(list) && list.map((item) => (
         <a className="dropdown-item" key={item.id} onClick={() => this.selectItem(item.title, item.id, item.key)}>
           {item.title}
           {item.selected && <FontAwesome name="check" />}
@@ -66,4 +73,5 @@ class Dropdown extends Component {
   }
 }
 
+Dropdown.propTypes = propTypes;
 export default onClickOutside(Dropdown);

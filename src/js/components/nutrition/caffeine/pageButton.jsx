@@ -6,6 +6,7 @@ import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
 import '../../../../css/table.css';
 
 const propTypes = {
+  fetchIntakesIfNeeded: PropTypes.func,
   pageLink: PropTypes.string.isRequired,
   pageNumber: PropTypes.number.isRequired
 };

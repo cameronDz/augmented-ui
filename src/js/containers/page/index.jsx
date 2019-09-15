@@ -10,6 +10,7 @@ import Footer from '../../components/general/Footer';
 import TabPanel from './tabPanel';
 
 const propTypes = {
+  classes: PropTypes.object,
   tabNames: PropTypes.array.isRequired,
   tabPanels: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired
@@ -28,14 +29,14 @@ const page = ({ classes, tabNames, tabPanels, title }) => {
   };
 
   const renderTabLabels = () => {
-    return !!Array.isArray(tabNames) && tabNames.map(key => {
-      return <Tab label={key} />;
+    return !!Array.isArray(tabNames) && tabNames.map((item, key) => {
+      return <Tab key={key} label={item} />;
     });
   };
 
   const renderTabPanels = () => {
-    return !!Array.isArray(tabPanels) && tabPanels.map((key, index) => {
-      return (<TabPanel value={value} index={index}>{key}</TabPanel>);
+    return !!Array.isArray(tabPanels) && tabPanels.map((item, key) => {
+      return (<TabPanel index={key} key={key} value={value}>{item}</TabPanel>);
     });
   };
 

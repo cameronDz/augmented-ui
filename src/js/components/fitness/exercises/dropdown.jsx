@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import Dropdown from '../../Dropdown';
 import * as _config from '../../../../../assets/data/config.json';
 
+const propTypes = {
+  title: PropTypes.string
+};
 const exerciseDropdown = props => {
   const [exercises, setExercises] = useState();
   const [selectedId, setSelectedId] = useState(-1);
@@ -53,4 +57,5 @@ const exerciseDropdown = props => {
     </React.Fragment>);
 };
 
+exerciseDropdown.propTypes = propTypes;
 export default exerciseDropdown;
