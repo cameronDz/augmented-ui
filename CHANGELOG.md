@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.3] - 2019-09-15
+### Changed
+- Package JSON key order
+
+### Fixed
+- Updated mix-deep and set-value packages for security issues
+
 ## [0.1.2] - 2019-09-03
 ### Added
 - Help page to replace multiple reference pages.
