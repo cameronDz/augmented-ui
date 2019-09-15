@@ -4,7 +4,7 @@ import Routine from '../../components/fitness/Routine';
 import Card from '../../components/bulma/card';
 
 class RoutineBase extends Component {
-  render() {
+  render () {
     const sideBarTitle = 'Routine Side Bar';
     const sideBarChild = (<p>Side-bar for Routine information.</p>);
     const routineTitle = 'Latest Routine';
@@ -27,7 +27,7 @@ class RoutineBase extends Component {
 }
 
 class RoutinePage extends Component {
-  render() {
+  render () {
     const title = 'Routines Page';
     const children = (<RoutineBase />);
     return (<Layout children={children} title={title} />);

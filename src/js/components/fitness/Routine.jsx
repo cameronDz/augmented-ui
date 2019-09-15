@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import * as _config from '../../../../assets/data/config.json';
 
 class Set extends Component {
-  render() {
+  render () {
     return (
       <tr>
         <td></td>
@@ -14,10 +14,10 @@ class Set extends Component {
 }
 
 class Exercise extends Component {
-  render() {
+  render () {
     const setComponent = this.props.sets.map(setObject => {
-      return (<Set {...setObject} />)
-    })
+      return (<Set {...setObject} />);
+    });
 
     return (
       <tr>
@@ -25,24 +25,23 @@ class Exercise extends Component {
         <td>{setComponent}</td>
         <td>{this.props.note}</td>
       </tr>
-    )
+    );
   }
 }
 
 class Routine extends Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props);
 
     this.state = {
-      name: "",
+      name: '',
       count: 0,
       exercises: [{ sets: [{ reps: 0, percent: 0.0 }] }],
-      note: ""
+      note: ''
     };
   }
 
-  componentDidMount() {
+  componentDidMount () {
     const url = _config.apis.heroku + 'basicRoutine?routineId=1';
     fetch(url)
       .then(response => response.json())
@@ -51,13 +50,13 @@ class Routine extends Component {
         count: data.count,
         exercises: data.exercises,
         note: data.note
-    }));
+      }));
   }
 
-  render() {
+  render () {
     const exerciseComponent = this.state.exercises.map(exerciseObject => {
-      return (<Exercise {...exerciseObject} />)
-    })
+      return (<Exercise {...exerciseObject} />);
+    });
 
     return (
       <div className="Routine">
@@ -76,7 +75,7 @@ class Routine extends Component {
           </tbody>
         </table>
       </div>
-    )
+    );
   }
 }
 

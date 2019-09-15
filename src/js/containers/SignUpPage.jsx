@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 import Card from '../components/bulma/card';
 
 class SignUpPage extends Component {
-  render() {
+  render () {
     const title = 'Sign Up to Augmented';
     const cardTitle = 'Sign Up';
     const cardContent = (<p>Use this page to sign up for application.</p>);

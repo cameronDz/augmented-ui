@@ -1,41 +1,41 @@
 import React, { Component } from 'react';
-import FontAwesome from 'react-fontawesome'
-import onClickOutside from "react-onclickoutside";
+import FontAwesome from 'react-fontawesome';
+import onClickOutside from 'react-onclickoutside';
 
 class Dropdown extends Component {
-  constructor(props) {
-    super(props)
+  constructor (props) {
+    super(props);
     this.state = {
       listOpen: false,
       headerTitle: this.props.title
-    }
+    };
   }
 
-  handleClickOutside(e) {
+  handleClickOutside (e) {
     this.setState({
       listOpen: false
-    })
+    });
   }
 
   selectItem = (title, id, stateKey) => {
     this.setState({
       headerTitle: title,
       listOpen: false
-    }, this.props.resetThenSet(id, stateKey))
+    }, this.props.resetThenSet(id, stateKey));
   }
 
   toggleList = () => {
     this.setState(prevState => ({
       listOpen: !prevState.listOpen
-    }))
+    }));
   }
 
-  render() {
+  render () {
     const { list } = this.props;
     const { listOpen, headerTitle } = this.state;
 
     const renderList = () => {
-      return !! list && list.map((item) => (
+      return !!list && list.map((item) => (
         <a className="dropdown-item" key={item.id} onClick={() => this.selectItem(item.title, item.id, item.key)}>
           {item.title}
           {item.selected && <FontAwesome name="check" />}
@@ -47,7 +47,7 @@ class Dropdown extends Component {
     };
 
     const listAwesomeFontName = () => {
-      const name = !!listOpen ? 'angle-up' : 'angle-down';
+      const name = listOpen ? 'angle-up' : 'angle-down';
       return <FontAwesome name={name} />;
     };
 

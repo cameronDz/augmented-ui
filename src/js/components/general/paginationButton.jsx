@@ -26,8 +26,8 @@ const paginationButton = props => {
 
   const getClassName = () => {
     return (currentPage === pageNumber)
-      ? "pagination-link"
-      : "pagination-link is-current";
+      ? 'pagination-link'
+      : 'pagination-link is-current';
   };
 
   return (<a className={getClassName()} onClick={() => onPaginationClick(pageLink)}>{pageNumber}</a>);

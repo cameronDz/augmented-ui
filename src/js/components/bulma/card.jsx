@@ -2,7 +2,6 @@ import React from 'react';
 import '../../../css/card.css';
 
 const card = ({ child, footer, title }) => {
-
   const renderHeader = () => {
     return (
       <header className="card-header">
@@ -24,7 +23,7 @@ const card = ({ child, footer, title }) => {
       </footer>);
   };
 
-  return !! title && (
+  return !!title && (
     <div className="card">
       {renderHeader()}
       {renderChild()}

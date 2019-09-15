@@ -8,7 +8,6 @@ import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
 import '../../../../css/table.css';
 
 const displayTable = props => {
-
   useEffect(() => {
     props.fetchIntakesIfNeeded();
   }, []);
@@ -24,18 +23,18 @@ const displayTable = props => {
   };
 
   const renderPagination = () => {
-    return (!!props.isFetching)
+    return (props.isFetching)
       ? (<div className='circular-loader'><CircularProgress /></div>)
       : (<Pagination
-          currentPage={props.currentPage}
-          links={props.links}
-          totalPages={props.totalPages}
-        />);
+        currentPage={props.currentPage}
+        links={props.links}
+        totalPages={props.totalPages}
+      />);
   };
 
   const renderTableHeader = () => {
-    const titles = ['Day', 'Time', 'Amount', 'Type', 'User', 'Comments']
-    const renderTitles = titles.map(element => { return <th>{element}</th> });
+    const titles = ['Day', 'Time', 'Amount', 'Type', 'User', 'Comments'];
+    const renderTitles = titles.map(element => { return <th>{element}</th>; });
     return <thead><tr>{renderTitles}</tr></thead>;
   };
 
@@ -51,7 +50,7 @@ const displayTable = props => {
     </React.Fragment>);
 };
 
-const mapStateToProps = state =>  ({
+const mapStateToProps = state => ({
   currentPage: state.caffeineIntakes.currentPage,
   intakes: state.caffeineIntakes.intakes,
   isFetching: state.caffeineIntakes.isFetching,

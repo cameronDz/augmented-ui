@@ -6,7 +6,6 @@ import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/creator.css';
 
 const creator = props => {
-
   const submitButtonId = 'submitNutrientConsumption';
   const [amount, setAmount] = useState(0);
   const [amountType, setAmountType] = useState('');
@@ -24,7 +23,7 @@ const creator = props => {
     event.preventDefault();
     document.getElementById(submitButtonId).disabled = true;
     const url = _config.apis.azure + 'CaffeineNutrientIntakes';
-    const header = { header : { "Content-Type": "application/json" } };
+    const header = { header: { 'Content-Type': 'application/json' } };
     const payload = {
       amount: Number(amount),
       amountType: amountType,
@@ -40,12 +39,12 @@ const creator = props => {
         props.fetchIntakesIfNeeded(url);
       })
       .catch(error => {
-        alert('Something happened.. was unable to save data.')
+        alert('Something happened.. was unable to save data.');
         console.error(error);
       })
       .finally(() => {
         document.getElementById(submitButtonId).disabled = false;
-    });
+      });
   };
 
   return (
@@ -60,7 +59,7 @@ const creator = props => {
             type="number"
             value={amount} />
           <label className="label">Type</label>
-          <select onChange={ event => setAmountType(event.target.value)}  value={amountType}>
+          <select onChange={ event => setAmountType(event.target.value)} value={amountType}>
             <option default value="">--</option>
             <option value="mg">Milligram</option>
             <option value="kg">Kilogram</option>

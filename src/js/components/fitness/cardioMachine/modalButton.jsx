@@ -5,17 +5,16 @@ import '../../../../css/table.css';
 
 const propTypes = {
   modal: PropTypes.object
-}
+};
 const defaultProps = {
   modal: {
-    closeOnBlur: true, 
-    showClose: true, 
+    closeOnBlur: true,
+    showClose: true,
     closeOnEsc: true
   }
 };
 
 const modalButton = props => {
-
   const [show, setShow] = useState(false);
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
@@ -26,7 +25,7 @@ const modalButton = props => {
     setMinutes(Math.floor(props.durationSeconds / 60));
     setSeconds(getTwoDigitValue(props.durationSeconds % 60));
     setDate(props.startTime.split('T')[0]);
-    setTime(props.startTime.split('T')[1].substring(0,5));
+    setTime(props.startTime.split('T')[1].substring(0, 5));
   }, [props]);
 
   const openModal = () => { setShow(true); };

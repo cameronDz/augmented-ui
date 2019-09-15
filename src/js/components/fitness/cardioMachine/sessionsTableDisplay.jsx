@@ -9,7 +9,6 @@ import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/table.css';
 
 const sessionsTableDisplay = props => {
-
   useEffect(() => {
     const apiUrl = _config.apis.azure + 'CardioMachineExercises?pageNumber=1&pageSize=10';
     props.fetchSessionsIfNeeded(apiUrl);
@@ -33,12 +32,12 @@ const sessionsTableDisplay = props => {
   };
 
   const renderPagination = () => {
-    return (!!props.isFetching)
+    return (props.isFetching)
       ? <div className='circular-loader'><CircularProgress /></div>
       : (<TablePagination currentPage={props.currentPage}
-          links={props.links}
-          totalPages={props.totalPages}
-        />);
+        links={props.links}
+        totalPages={props.totalPages}
+      />);
   };
 
   const renderTableHeader = () => {
@@ -59,7 +58,7 @@ const sessionsTableDisplay = props => {
     </React.Fragment>);
 };
 
-const mapStateToProps = state =>  ({
+const mapStateToProps = state => ({
   currentPage: state.cardioMachineSessions.currentPage,
   links: state.cardioMachineSessions.links,
   isFetching: state.cardioMachineSessions.isFetching,

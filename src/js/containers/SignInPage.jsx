@@ -8,6 +8,6 @@ const signIn = () => {
   const cardContent = (<p>Use this page to sign into application.</p>);
   const card = (<Card child={cardContent} title={cardTitle} />);
   return (<Layout children={card} title={title} />);
-}
+};
 
 export default signIn;

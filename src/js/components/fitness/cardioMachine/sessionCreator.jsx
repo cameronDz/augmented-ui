@@ -2,15 +2,14 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Switch from '@material-ui/core/Switch';
 // TODO look into material ui picker
-import DatePicker from "react-datepicker";
+import DatePicker from 'react-datepicker';
 import TimeField from 'react-simple-timefield';
 import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/creator.css';
 
 // TODO convert hook component
 class SessionCreator extends Component {
-
-  constructor(props) {
+  constructor (props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
@@ -29,21 +28,21 @@ class SessionCreator extends Component {
     };
   };
 
-  handleDateChange(date) {
+  handleDateChange (date) {
     this.setState({
       startDate: date,
       useEndTimeStartDate: false
     });
   };
 
-  handleTimeChange(time) {
+  handleTimeChange (time) {
     const durationSeconds = this.calulcateTimingSeconds(time);
     this.setState({
       seconds: durationSeconds,
       timing: time
     });
 
-    if (!!this.state.useEndTimeStartDate) {
+    if (this.state.useEndTimeStartDate) {
       const startTimeMilliseconds = new Date().getTime() - (durationSeconds * 1000);
       const newStartTime = new Date(startTimeMilliseconds);
       this.setState({
@@ -52,7 +51,7 @@ class SessionCreator extends Component {
     }
   };
 
-  handleToggleSwitch() {
+  handleToggleSwitch () {
     if (!this.state.useEndTimeStartDate) {
       const startTimeMilliseconds = new Date().getTime() - (this.state.seconds * 1000);
       const newStartTime = new Date(startTimeMilliseconds);
@@ -65,7 +64,7 @@ class SessionCreator extends Component {
     });
   }
 
-  calulcateTimingSeconds(time) {
+  calulcateTimingSeconds (time) {
     let calculatedSeconds = 0;
     try {
       const timingArray = time.split(':');
@@ -76,9 +75,9 @@ class SessionCreator extends Component {
     return calculatedSeconds;
   };
 
-  handleSubmit(event) {
+  handleSubmit (event) {
     const self = this;
-    document.getElementById("submitCardioBtn").disabled = true;
+    document.getElementById('submitCardioBtn').disabled = true;
     event.preventDefault();
     const url = _config.apis.azure + 'CardioMachineExercises';
 
@@ -105,23 +104,23 @@ class SessionCreator extends Component {
     const xhr = new XMLHttpRequest();
     xhr.open('POST', url, true);
     xhr.setRequestHeader('Content-type', 'application/json');
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
       if (xhr.readyState === 4) {
-        document.getElementById("submitCardioBtn").disabled = false;
+        document.getElementById('submitCardioBtn').disabled = false;
         self.props.dispatchFetchSessions(self.props.links.self);
       }
     };
     xhr.send(payload);
   };
 
-  render() {
+  render () {
     return (
       <form onSubmit={this.handleSubmit}>
         <div className="field is-horizontal">
           <label className="label" htmlFor="machineType">Machine Type &nbsp;</label>
           <input className="input"
             name="machineType"
-            onChange={ event => this.setState({ ...this.state, machineType : event.target.value }) }
+            onChange={ event => this.setState({ ...this.state, machineType: event.target.value }) }
             required
             type="text"
             value={this.state.machineType} />
@@ -143,12 +142,12 @@ class SessionCreator extends Component {
           <TimeField className="time-field"
             onChange={this.handleTimeChange}
             showSeconds={true}
-            style={{width:80, height:25}}
+            style={{ width: 80, height: 25 }}
             value={this.state.timing} />
           <label className="label" htmlFor="distanceMiles">Distance (miles) &nbsp;</label>
           <input className="distance"
             name="distanceMiles"
-            onChange={ event => this.setState({ ...this.state, distanceMiles : event.target.value }) }
+            onChange={ event => this.setState({ ...this.state, distanceMiles: event.target.value }) }
             step="0.01"
             type="number"
             value={this.state.distanceMiles} />
@@ -166,7 +165,7 @@ class SessionCreator extends Component {
           <label className="label" htmlFor="userName">User &nbsp;</label>
           <input className="input"
             name="userName"
-            onChange={ event => this.setState({ ...this.state, userName : event.target.value }) }
+            onChange={ event => this.setState({ ...this.state, userName: event.target.value }) }
             required
             type="text"
             value={this.state.userName} />
@@ -176,7 +175,7 @@ class SessionCreator extends Component {
           <label className="label" htmlFor="comment">Comment &nbsp;</label>
           <textarea className="textarea"
             name="comment"
-            onChange={ event => this.setState({ ...this.state, comment : event.target.value }) }
+            onChange={ event => this.setState({ ...this.state, comment: event.target.value }) }
             type="textarea"
             value={this.state.comment} />
         </div>
@@ -192,5 +191,5 @@ class SessionCreator extends Component {
   };
 }
 
-const mapStateToProps = state =>  ({ links: state.cardioMachineSessions.links });
+const mapStateToProps = state => ({ links: state.cardioMachineSessions.links });
 export default connect(mapStateToProps)(SessionCreator);

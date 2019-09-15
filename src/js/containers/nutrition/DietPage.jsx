@@ -3,7 +3,7 @@ import Layout from '../../components/Layout';
 import Card from '../../components/bulma/card';
 
 class DietPage extends Component {
-  render() {
+  render () {
     const dietTitle = 'Diets';
     const dietChild = (<p>Track diets here.</p>);
     const dietCard = (<Card child={dietChild} title={dietTitle} />);

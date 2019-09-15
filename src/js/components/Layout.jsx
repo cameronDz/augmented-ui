@@ -11,7 +11,6 @@ const propTypes = {
 };
 
 const layout = props => {
-
   const [children, setChildren] = useState();
   const [title, setTitle] = useState('');
 

@@ -1,8 +1,7 @@
 import React from 'react';
 import { splitTextKeyToArray } from '../../../lib/splits';
 
-const tableRow = ({element}) => {
-
+const tableRow = ({ element }) => {
   const getIntakeDay = intakeObject => {
     return splitTextKeyToArray(intakeObject, 'intakeTime', 'T')[0];
   };

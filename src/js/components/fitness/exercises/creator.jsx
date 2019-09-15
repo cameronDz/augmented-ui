@@ -3,8 +3,7 @@ import axios from 'axios';
 import * as _config from '../../../../../assets/data/config.json';
 
 const exerciseCreator = () => {
-
-  const submitButtonId = "exerciseCreatorSubmitButton";
+  const submitButtonId = 'exerciseCreatorSubmitButton';
   const [description, setDescription] = useState('');
   const [name, setName] = useState('');
   const [typeId, setTypeId] = useState('');
@@ -19,8 +18,8 @@ const exerciseCreator = () => {
     event.preventDefault();
     document.getElementById(submitButtonId).disabled = true;
 
-    const header = { header : { "Content-Type": "application/json" } };
-    const payload = { description, name,  typeId };
+    const header = { header: { 'Content-Type': 'application/json' } };
+    const payload = { description, name, typeId };
     const url = _config.apis.azure + 'exercises';
     axios.post(url, payload, header)
       .then(() => {
@@ -32,8 +31,8 @@ const exerciseCreator = () => {
       })
       .finally(() => {
         document.getElementById(submitButtonId).disabled = false;
-    });
-  }
+      });
+  };
 
   return (
     <div>

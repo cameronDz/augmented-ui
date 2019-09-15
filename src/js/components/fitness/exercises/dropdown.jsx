@@ -9,28 +9,28 @@ const exerciseDropdown = props => {
 
   useEffect(() => {
     const url = _config.apis.azure + 'exercises';
-    const propTitle = (!!props.title) ? props.title : "Dropdown";
-    setTitle(propTitle)
+    const propTitle = (props.title) ? props.title : 'Dropdown';
+    setTitle(propTitle);
     // TODO move to redux state and own useEffect method
     fetch(url)
       .then(response => response.json())
       .then(data => {
         setExercises(processExercise(data));
-    });
+      });
   }, []);
 
   const processExercise = data => {
     return (Array.isArray(data))
       ? data.map((item, index) => {
-          const exerciseId = (!!item.exerciseId) ? item.exerciseId : -1;
-          const name = (!!item.name) ? item.name : '';
-          return {
-            'id': exerciseId,
-            'title': name,
-            'key': index,
-            'selected': false
-          };
-        })
+        const exerciseId = (item.exerciseId) ? item.exerciseId : -1;
+        const name = (item.name) ? item.name : '';
+        return {
+          id: exerciseId,
+          title: name,
+          key: index,
+          selected: false
+        };
+      })
       : null;
   };
 
@@ -41,7 +41,7 @@ const exerciseDropdown = props => {
   };
 
   const dropDownTitle = () => {
-    return (!!title)
+    return (title)
       ? (<div><strong>{title}</strong></div>)
       : null;
   };
