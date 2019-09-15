@@ -29,7 +29,7 @@ const caffeine = () => {
           </div>
         </div>
       </React.Fragment>);
-  }
+  };
   return (<Card child={renderSessionContent()} title={'Caffeine Page'} />);
 };
 

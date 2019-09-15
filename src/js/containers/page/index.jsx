@@ -10,6 +10,7 @@ import Footer from '../../components/general/Footer';
 import TabPanel from './tabPanel';
 
 const propTypes = {
+  classes: PropTypes.object,
   tabNames: PropTypes.array.isRequired,
   tabPanels: PropTypes.array.isRequired,
   title: PropTypes.string.isRequired
@@ -20,41 +21,41 @@ const styles = {
   root: { margin: '0 auto', maxWidth: '1280px' }
 };
 
-const page = ({classes, tabNames, tabPanels, title}) => {
-	const [value, setValue] = useState(0);
+const page = ({ classes, tabNames, tabPanels, title }) => {
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-	};
+  };
 
-	const renderTabLabels = () => {
-		return !! Array.isArray(tabNames) && tabNames.map(key => {
-			return <Tab label={key} />;
-		});
-	};
+  const renderTabLabels = () => {
+    return !!Array.isArray(tabNames) && tabNames.map((item, key) => {
+      return <Tab key={key} label={item} />;
+    });
+  };
 
-	const renderTabPanels = () => {
-		return !! Array.isArray(tabPanels) && tabPanels.map((key, index) => {
-			return (<TabPanel value={value} index={index}>{key}</TabPanel>);
-		});
-	};
+  const renderTabPanels = () => {
+    return !!Array.isArray(tabPanels) && tabPanels.map((item, key) => {
+      return (<TabPanel index={key} key={key} value={value}>{item}</TabPanel>);
+    });
+  };
 
   return (
-		<Grid className={classes.root} container>
-			<Grid item xs={12} sm={12} md={1}></Grid>
-			<Grid item xs={12} sm={12} md={10}>
-				<Navbar />
-				<h2 className={classes.hero}>{title}</h2>
-				<AppBar position="static">
-					<Tabs value={value} onChange={handleChange} >
-						{renderTabLabels()}
-					</Tabs>
-				</AppBar>
-				{renderTabPanels()}
-				<Footer />
-			</Grid>
-			<Grid item xs={12} sm={12} md={1}></Grid>
-		</Grid>);
+    <Grid className={classes.root} container>
+      <Grid item xs={12} sm={12} md={1}></Grid>
+      <Grid item xs={12} sm={12} md={10}>
+        <Navbar />
+        <h2 className={classes.hero}>{title}</h2>
+        <AppBar position="static">
+          <Tabs value={value} onChange={handleChange} >
+            {renderTabLabels()}
+          </Tabs>
+        </AppBar>
+        {renderTabPanels()}
+        <Footer />
+      </Grid>
+      <Grid item xs={12} sm={12} md={1}></Grid>
+    </Grid>);
 };
 
 page.propTypes = propTypes;

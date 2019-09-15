@@ -5,7 +5,6 @@ import * as _config from '../../../../../assets/data/config.json';
 import Card from '../../bulma/card';
 
 const session = () => {
-
   const renderCreateSessionCard = () => {
     const child = (<SessionCreator />);
     const url = _config.apis.azure + 'CardioMachineExercises?csv=csv';
@@ -19,7 +18,7 @@ const session = () => {
   };
 
   const renderSessionContent = () => {
-    return(
+    return (
       <React.Fragment>
         <div className="card-content columns is-multiline is-tablet">
           <div className="content column is-two-fifths">

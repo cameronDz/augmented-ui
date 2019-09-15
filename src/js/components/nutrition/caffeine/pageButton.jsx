@@ -6,6 +6,7 @@ import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
 import '../../../../css/table.css';
 
 const propTypes = {
+  fetchIntakesIfNeeded: PropTypes.func,
   pageLink: PropTypes.string.isRequired,
   pageNumber: PropTypes.number.isRequired
 };
@@ -27,8 +28,8 @@ const pageButton = props => {
 
   const getClassName = () => {
     return (currentPage === pageNumber)
-      ? "pagination-link"
-      : "pagination-link is-current";
+      ? 'pagination-link'
+      : 'pagination-link is-current';
   };
 
   return (<a className={getClassName()} onClick={() => onPaginationClick(pageLink)}>{pageNumber}</a>);

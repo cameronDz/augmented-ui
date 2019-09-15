@@ -1,13 +1,14 @@
 import * as types from './types';
+import axios from 'axios';
 import { shouldFetchState } from '../global';
 
 // TODO fix call
 const fetchSessions = sessionApiUrl => {
   return dispatch => {
-    dispatch(requestCardioMachineSessions(sessionApiUrl))
-    return fetch(sessionApiUrl)
-      .then(response => response.json())
-      .then(json => dispatch(recieveCardioMachineSessions(sessionApiUrl, json)))
+    dispatch(requestCardioMachineSessions(sessionApiUrl));
+    const header = { header: { 'Content-Type': 'application/json' } };
+    return axios.get(sessionApiUrl, header)
+      .then(payload => dispatch(recieveCardioMachineSessions(sessionApiUrl, payload)));
   };
 };
 
@@ -22,13 +23,13 @@ export const requestCardioMachineSessions = sessionApiUrl => {
   };
 };
 
-export const recieveCardioMachineSessions = (sessionApiUrl, json) => {
+export const recieveCardioMachineSessions = (sessionApiUrl, payload) => {
   return {
     type: types.RECIEVE_CARDIO_MACHINE_SESSIONS,
     sessionApiUrl,
-    dataPayload: json.data,
-    metaPayload: json.meta,
-    linkPayload: json.links,
+    dataPayload: payload.data.data,
+    metaPayload: payload.data.meta,
+    linkPayload: payload.data.links,
     receivedAt: Date.now()
   };
 };
@@ -36,7 +37,7 @@ export const recieveCardioMachineSessions = (sessionApiUrl, json) => {
 export const fetchSessionsIfNeeded = sessionApiUrl => {
   return (dispatch, getState) => {
     if (shouldFetchSessions(getState())) {
-      return dispatch(fetchSessions(sessionApiUrl))
+      return dispatch(fetchSessions(sessionApiUrl));
     }
   };
 };

@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.0] - 2019-09-15
+### Added
+- ESlint with plugins for best practices with StandardJS
+
+### Changed
+- Converted Routine component to hook to remove old lifecycle methods
+
+### Fixed
+- Updated styling/issues pointed out by linter
+- Passing id to dropdown component for determining which item to change, rather than modifying item in dropdown
+
 ## [0.1.3] - 2019-09-15
 ### Changed
 - Package JSON key order

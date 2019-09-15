@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Layout from '../components/Layout';
 import Card from '../components/bulma/card';
 
 const signIn = () => {
-  const title = 'Sign In to Augmented';
-  const cardTitle = 'Sign In';
   const cardContent = (<p>Use this page to sign into application.</p>);
-  const card = (<Card child={cardContent} title={cardTitle} />);
-  return (<Layout children={card} title={title} />);
-}
+  return (
+    <Layout title='Sign In to Augmented'>
+      <Card child={cardContent} title='Sign In' />
+    </Layout>);
+};
 
 export default signIn;

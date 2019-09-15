@@ -3,11 +3,12 @@ import Layout from '../../components/Layout';
 import Card from '../../components/bulma/card';
 
 class MealPage extends Component {
-  render() {
-    const title = 'Meals';
+  render () {
     const cardContent = (<p>Track Meals here.</p>);
-    const foodCard = (<Card child={cardContent} title={title} />);
-    return (<Layout children={foodCard} title={title} />);
+    return (
+      <Layout title='Meals'>
+        <Card child={cardContent} title='Meals' />
+      </Layout>);
   };
 }
 

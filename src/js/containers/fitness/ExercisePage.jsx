@@ -5,7 +5,7 @@ import ExerciseDropdown from '../../components/fitness/exercises/dropdown';
 import Card from '../../components/bulma/card';
 
 class Exercise extends Component {
-  render() {
+  render () {
     const exerciseCreatorChild = (<ExerciseCreator />);
     const exerciseCreatorTitle = 'Exercise Creator';
     const exerciseDropdownChild = (<ExerciseDropdown />);
@@ -26,12 +26,13 @@ class Exercise extends Component {
       </div>);
   };
 }
-  
+
 class ExercisePage extends Component {
-  render() {
-    const title = 'Exercises';
-    const children = (<Exercise />);
-    return (<Layout children={children} title={title} />);
+  render () {
+    return (
+      <Layout title='Exercises'>
+        <Exercise />
+      </Layout>);
   };
 }
 

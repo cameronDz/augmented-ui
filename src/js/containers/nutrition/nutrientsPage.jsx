@@ -4,10 +4,11 @@ import Card from '../../components/bulma/card';
 import Layout from '../../components/Layout';
 
 const nutrientsPage = () => {
-  const title = 'Nutrients';
   const cardContent = (<Caffeine />);
-  const nutrientCard = (<Card child={cardContent} title={title} />);
-  return (<Layout children={nutrientCard} title={title} />);
+  return (
+    <Layout title='Nutrients'>
+      <Card child={cardContent} title='Nutrients' />
+    </Layout>);
 };
 
 export default nutrientsPage;

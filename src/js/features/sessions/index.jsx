@@ -6,10 +6,10 @@ import SessionsTableDisplay from '../../components/fitness/cardioMachine/session
 const sessions = () => {
   const tabNames = ['Information', 'Record', 'History', 'Data Visualization'];
   const tabPanels = [
-    <p>Information on fitness sessions</p>,
-    <SessionCreator />,
-    <SessionsTableDisplay />,
-    <p>Under construction</p>
+    <p key={1}>Information on fitness sessions</p>,
+    <SessionCreator key={2}/>,
+    <SessionsTableDisplay key={3}/>,
+    <p key={4}>Under construction</p>
   ];
   return <Page title="Sessions" tabNames={tabNames} tabPanels={tabPanels} />;
 };

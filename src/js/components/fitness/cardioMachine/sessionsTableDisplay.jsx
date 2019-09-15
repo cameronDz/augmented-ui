@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ModalButton from './modalButton';
@@ -8,15 +9,23 @@ import { splitTextKeyToArray } from '../../../lib/splits';
 import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/table.css';
 
-const sessionsTableDisplay = props => {
+const propTypes = {
+  currentPage: PropTypes.number,
+  fetchSessionsIfNeeded: PropTypes.func,
+  isFetching: PropTypes.bool,
+  links: PropTypes.object,
+  sessions: PropTypes.array,
+  totalPages: PropTypes.number
+};
 
+const sessionsTableDisplay = props => {
   useEffect(() => {
     const apiUrl = _config.apis.azure + 'CardioMachineExercises?pageNumber=1&pageSize=10';
     props.fetchSessionsIfNeeded(apiUrl);
   }, []);
 
   const renderSessionsData = () => {
-    return (!!props.sessions) && props.sessions.map((element, index) => {
+    return Array.isArray(props.sessions) && props.sessions.map((element, index) => {
       const date = splitTextKeyToArray(element, 'startTime', 'T')[0];
       return (
         <tr key={index}>
@@ -33,17 +42,17 @@ const sessionsTableDisplay = props => {
   };
 
   const renderPagination = () => {
-    return (!!props.isFetching)
+    return (props.isFetching)
       ? <div className='circular-loader'><CircularProgress /></div>
       : (<TablePagination currentPage={props.currentPage}
-          links={props.links}
-          totalPages={props.totalPages}
-        />);
+        links={props.links}
+        totalPages={props.totalPages}
+      />);
   };
 
   const renderTableHeader = () => {
     const titles = ['Date', 'Machine', 'User', 'Details'];
-    const renderTitles = titles.map(item => { return <th>{item}</th>; });
+    const renderTitles = titles.map((item, key) => { return <th key={key}>{item}</th>; });
     return <thead><tr>{renderTitles}</tr></thead>;
   };
 
@@ -59,11 +68,12 @@ const sessionsTableDisplay = props => {
     </React.Fragment>);
 };
 
-const mapStateToProps = state =>  ({
+const mapStateToProps = state => ({
   currentPage: state.cardioMachineSessions.currentPage,
   links: state.cardioMachineSessions.links,
   isFetching: state.cardioMachineSessions.isFetching,
   sessions: state.cardioMachineSessions.sessions,
   totalPages: state.cardioMachineSessions.totalPages
 });
+sessionsTableDisplay.propTypes = propTypes;
 export default connect(mapStateToProps, { fetchSessionsIfNeeded })(sessionsTableDisplay);

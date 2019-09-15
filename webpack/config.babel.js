@@ -1,18 +1,19 @@
 import HtmlWebPackPlugin from 'html-webpack-plugin';
 import { HotModuleReplacementPlugin } from 'webpack';
+import { resolve } from 'path';
 
 module.exports = {
   entry: './src/index.js',
   output: {
     filename: 'bundle.js',
-    path: __dirname + '/../dist',
+    path: resolve(__dirname, '..', './dist'),
     publicPath: '/'
   },
   resolve: {
     extensions: ['*', '.js', '.jsx']
   },
   devServer: {
-    contentBase: './dist',
+    contentBase: resolve(__dirname, '..', './dist'),
     hot: true
   },
   module: {
@@ -34,8 +35,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './src/index.html',
-      filename: './index.html'
+      filename: resolve(__dirname, '..', './dist/index.html'),
+      template: resolve(__dirname, '..', './src/index.html')
     }),
     new HotModuleReplacementPlugin()
   ]

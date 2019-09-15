@@ -1,35 +1,34 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
 class Navbar extends Component {
-
-  componentDidMount() {
+  componentDidMount () {
     // get elements to be dropdowns
     const fitnessButton = document.getElementById('fitnessNavbarButton');
     const nutritionButton = document.getElementById('nutritionNavbarButton');
 
     // create function for deactivating all dropdowns
     const deactivateDropdowns = () => {
-      fitnessButton.nextElementSibling.style.display = "none";
-      nutritionButton.nextElementSibling.style.display = "none";
+      fitnessButton.nextElementSibling.style.display = 'none';
+      nutritionButton.nextElementSibling.style.display = 'none';
     };
 
     // create listener for that shows and hides drop downs
-    function buttonListener(event) {
+    function buttonListener (event) {
       event.preventDefault();
-      this.classList.toggle("active", true);
+      this.classList.toggle('active', true);
       const items = this.nextElementSibling;
-      if(items.style.display === "none") {
+      if (items.style.display === 'none') {
         deactivateDropdowns();
-        items.style.display = "block";
+        items.style.display = 'block';
       } else {
-        items.style.display = "none";
+        items.style.display = 'none';
       }
     };
 
     // add listeners to dropdowns
-    fitnessButton.addEventListener("click", buttonListener);
-    nutritionButton.addEventListener("click", buttonListener);
+    fitnessButton.addEventListener('click', buttonListener);
+    nutritionButton.addEventListener('click', buttonListener);
 
     // deactivate dropdowns on init
     deactivateDropdowns();
@@ -40,7 +39,7 @@ class Navbar extends Component {
     document.querySelector('.navbar-menu').classList.toggle('is-active');
   };
 
-  render() {
+  render () {
     return (
       <nav className="navbar" aria-label="main navigation">
         <div className="navbar-brand">

@@ -5,6 +5,7 @@ import get from 'lodash.get';
 import { fetchSessionsIfNeeded } from '../../state/cardioMachineSessions/actions';
 
 const propTypes = {
+  fetchSessionsIfNeeded: PropTypes.func,
   pageLink: PropTypes.string.isRequired,
   pageNumber: PropTypes.number.isRequired
 };
@@ -26,8 +27,8 @@ const paginationButton = props => {
 
   const getClassName = () => {
     return (currentPage === pageNumber)
-      ? "pagination-link"
-      : "pagination-link is-current";
+      ? 'pagination-link'
+      : 'pagination-link is-current';
   };
 
   return (<a className={getClassName()} onClick={() => onPaginationClick(pageLink)}>{pageNumber}</a>);
