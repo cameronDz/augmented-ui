@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import Dropdown from '../../Dropdown';
@@ -29,37 +29,30 @@ const exerciseDropdown = props => {
   }, []);
 
   const processExercise = data => {
-    return (Array.isArray(data.data))
-      ? data.data.map((item, index) => {
-        const exerciseId = (item.exerciseId) ? item.exerciseId : -1;
-        const name = (item.name) ? item.name : '';
-        return {
-          id: exerciseId,
-          title: name,
-          key: index,
-          selected: false
-        };
-      })
-      : null;
+    return (Array.isArray(data.data)) && data.data.map((item, index) => {
+      const exerciseId = (item.exerciseId) ? item.exerciseId : -1;
+      const name = (item.name) ? item.name : '';
+      return {
+        id: exerciseId,
+        title: name,
+        key: index
+      };
+    });
   };
 
-  const resetThenSet = (id, stateKey) => {
-    exercises.forEach(item => item.selected = false);
-    exercises[stateKey].selected = true;
+  const resetThenSet = id => {
     setSelectedId(id);
   };
 
   const dropDownTitle = () => {
-    return (title)
-      ? (<div><strong>{title}</strong></div>)
-      : null;
+    return !!title && (<div><strong>{title}</strong></div>);
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       {dropDownTitle()}
-      <Dropdown list={exercises} resetThenSet={resetThenSet} title="Exercise Dropdown" />
-    </React.Fragment>);
+      <Dropdown list={exercises} resetThenSet={resetThenSet} selectedId={selectedId} title="Exercise Dropdown" />
+    </Fragment>);
 };
 
 exerciseDropdown.propTypes = propTypes;

@@ -7,7 +7,6 @@ const excercisePropTypes = {
   sets: PropTypes.array
 };
 const exercise = ({ name, note, sets }) => {
-
   const setComponent = sets.map((item, key) => {
     const line = `${item.reps} X ${item.percent * 100} %`;
     const breakLine = key + 1 !== sets.length && <br/>;

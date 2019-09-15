@@ -13,6 +13,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Updated styling/issues pointed out by linter
+- Passing id to dropdown component for determining which item to change, rather than modifying item in dropdown
 
 ## [0.1.3] - 2019-09-15
 ### Changed

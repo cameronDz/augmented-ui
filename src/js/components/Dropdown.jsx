@@ -6,9 +6,9 @@ import onClickOutside from 'react-onclickoutside';
 const propTypes = {
   list: PropTypes.array,
   resetThenSet: PropTypes.func,
+  selectedId: PropTypes.number,
   title: PropTypes.string
 };
-
 class Dropdown extends Component {
   constructor (props) {
     super(props);
@@ -38,14 +38,14 @@ class Dropdown extends Component {
   }
 
   render () {
-    const { list } = this.props;
+    const { list, selectedId } = this.props;
     const { listOpen, headerTitle } = this.state;
 
     const renderList = () => {
       return Array.isArray(list) && list.map((item) => (
         <a className="dropdown-item" key={item.id} onClick={() => this.selectItem(item.title, item.id, item.key)}>
           {item.title}
-          {item.selected && <FontAwesome name="check" />}
+          {item.id === selectedId && <FontAwesome name="check" />}
         </a>));
     };
 

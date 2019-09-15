@@ -4,7 +4,6 @@ import RoutineExercise from './routineExercise';
 import * as _config from '../../../../assets/data/config.json';
 
 const routine = () => {
-
   const [exercises, setExercises] = useState([]);
   const [name, setName] = useState('');
 
