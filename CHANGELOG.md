@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - ESlint with plugins for best practices with StandardJS
 
+### Changed
+- Converted Routine component to hook to remove old lifecycle methods
+
 ### Fixed
 - Updated styling/issues pointed out by linter
 
