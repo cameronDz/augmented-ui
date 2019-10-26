@@ -61,7 +61,8 @@
     "mocha": "^6.2.0",
     "react-test-renderer": "^16.9.0",
     "webpack-cli": "^3.3.4",
-    "webpack-dev-server": "^3.7.1"
+    "webpack-dev-server": "^3.7.1",
+    "webpack-merge": "^4.2.2"
   },
   "homepage": "http://augmented.fit",
   "jest": {
@@ -83,11 +84,12 @@
     "url": "https://github.com/cameronDz/augmented-frontend.git"
   },
   "scripts": {
-    "build": "webpack --config webpack/config.babel.js",
+    "build-dev": "webpack --config webpack/dev.babel.js",
+    "build-prod": "webpack --config webpack/prod.babel.js",
     "deploy": "aws s3 cp --recursive ./dist s3://augmented-frontend",
     "lint": "eslint ./src/js/**/* ./webpack ./test",
     "lint-fix": "eslint --fix ./src/js/**/* ./webpack ./test",
-    "start": "webpack-dev-server --open --config webpack/config.babel.js",
+    "start": "webpack-dev-server --open --config webpack/dev.babel.js",
     "test": "mocha --require @babel/register --require ignore-styles --reqire jsdom-global/register"
   },
   "version": "0.2.0"
