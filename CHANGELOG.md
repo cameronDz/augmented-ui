@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Best practices and formatting changes to code of lib
+- Update latest npm packages in lock file
+- Seperate builds for dev and production
 
 ## [0.2.0] - 2019-09-15
 ### Added
