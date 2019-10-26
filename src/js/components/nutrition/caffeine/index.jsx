@@ -19,17 +19,15 @@ const caffeine = () => {
 
   const renderSessionContent = () => {
     return (
-      <React.Fragment>
-        <div className="card-content columns is-multiline is-tablet">
-          <div className="content column is-two-fifths">
-            {renderIntakeCreatorCard()}
-          </div>
-          <div className="content column is-three-fifths">
-            {renderIntakeDisplayCard()}
-          </div>
+      <div className="card-content columns is-multiline is-tablet">
+        <div className="content column is-two-fifths">
+          {renderIntakeCreatorCard()}
         </div>
-      </React.Fragment>);
-  };
+        <div className="content column is-three-fifths">
+          {renderIntakeDisplayCard()}
+        </div>
+      </div>);
+};
   return (<Card child={renderSessionContent()} title={'Caffeine Page'} />);
 };
 
