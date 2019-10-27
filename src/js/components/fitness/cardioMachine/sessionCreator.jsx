@@ -83,14 +83,14 @@ class SessionCreator extends Component {
     event.preventDefault();
     const url = _config.apis.azure + 'CardioMachineExercises';
 
-    const payload = JSON.stringify({
+    const payload = {
       comment: self.state.comment,
       distanceMiles: self.state.distanceMiles,
       durationSeconds: self.state.seconds,
       machineType: self.state.machineType,
       startTime: self.state.startDate.toGMTString(),
       userName: self.state.userName
-    });
+    };
 
     self.setState({
       comment: '',
