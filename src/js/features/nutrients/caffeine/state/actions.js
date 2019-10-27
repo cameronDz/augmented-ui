@@ -1,7 +1,8 @@
 import * as types from './types';
 import axios from 'axios';
 import { shouldFetchState } from '../../../../state/global';
-import * as _config from '../../../../assets/data/config.json';
+import * as _config from '../../../../../../assets/data/config';
+
 const apiUrl = _config.apis.azure + 'CaffeineNutrientIntakes?pageSize=10&pageNumber=1';
 
 export const invalidateCaffeineIntakes = () => {
