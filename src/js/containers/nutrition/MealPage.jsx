@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Layout from '../../components/Layout';
+import Layout from '../layout';
 import Card from '../../components/bulmaCard';
 
 class MealPage extends Component {

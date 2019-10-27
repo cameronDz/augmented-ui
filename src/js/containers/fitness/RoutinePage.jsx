@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Layout from '../../components/Layout';
+import Layout from '../layout';
 import Routine from '../../components/fitness/Routine';
 import Card from '../../components/bulmaCard';
 
