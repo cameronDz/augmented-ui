@@ -5,6 +5,7 @@ import Switch from '@material-ui/core/Switch';
 // TODO look into material ui picker
 import DatePicker from 'react-datepicker';
 import TimeField from 'react-simple-timefield';
+import { invalidateCardioMachineSession } from '../../../state/cardioMachineSessions/actions';
 import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/creator.css';
 
@@ -105,10 +106,10 @@ class SessionCreator extends Component {
     const header = { header: { 'Content-Type': 'application/json' } };
     axios.post(url, payload, header)
       .then(() => {
-        self.props.dispatchFetchSessions(self.props.links.self);
+        self.props.invalidateCardioMachineSession();
       })
       .catch(error => {
-        // TODO inform user
+        alert('data save was not successful')
         console.error(error);
       })
       .finally(() => {
@@ -195,4 +196,4 @@ class SessionCreator extends Component {
 }
 
 const mapStateToProps = state => ({ links: state.cardioMachineSessions.links });
-export default connect(mapStateToProps)(SessionCreator);
+export default connect(mapStateToProps, { invalidateCardioMachineSession })(SessionCreator);
