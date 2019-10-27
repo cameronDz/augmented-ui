@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Fixed
 - Cardio session data invalidation process, now invalidate date on a 201 response rather than make request for more data
+- Added missing peer dependencies
 
 ## [0.2.0] - 2019-09-15
 ### Added
