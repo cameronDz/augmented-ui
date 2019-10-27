@@ -5,7 +5,7 @@ const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case types.INVALIDATED_CARDIO_MACHINE_SESSIONS:
-      newState = { ...state, didInvalidate: true, isFetching: false };
+      newState = { ...initialState, didInvalidate: true, isFetching: false };
       break;
     case types.REQUEST_CARDIO_MACHINE_SESSIONS:
       newState = { ...state, didInvalidate: false, isFetching: true };

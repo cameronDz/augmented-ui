@@ -15,12 +15,12 @@ export const requestCaffeineIntakes = (url = apiUrl) => {
 
 export const recieveCaffeineIntakes = (payload, url = apiUrl) => {
   return {
-    url,
     dataPayload: payload.data.data,
     linkPayload: payload.data.links,
     metaPayload: payload.data.meta,
     receivedAt: Date.now(),
-    type: types.RECIEVE_CAFFEINE_INTAKE
+    type: types.RECIEVE_CAFFEINE_INTAKE,
+    url
   };
 };
 
@@ -33,7 +33,7 @@ export const fetchIntakesIfNeeded = (url = apiUrl) => {
 };
 
 const shouldFetchIntakes = (state = {}) => {
-  return shouldFetchState(state.cardioMachineSessions);
+  return shouldFetchState(state.caffeineIntakes);
 };
 
 // TODO wtf is this logic???

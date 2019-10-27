@@ -1,9 +1,12 @@
 // shared method for checking if state should be updated
 export const shouldFetchState = state => {
+  let fetch = false;
   if (!state) {
-    return true;
+    fetch = true;
   } else if (state.isFetching) {
-    return false;
+    fetch = false;
+  } else {
+    fetch = !!state.didInvalidate;
   }
-  return (!!state.didInvalidate);
+  return fetch
 };

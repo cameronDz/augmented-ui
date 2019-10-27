@@ -4,15 +4,15 @@ import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Pagination from './pagination';
 import TableRow from './tableRow';
-import { orderIntakesByDate } from '../../../../lib/sorts';
 import { fetchIntakesIfNeeded } from '../state/actions';
+import { orderIntakesByDate } from '../../../../lib/sorts';
 import '../../../../../css/table.css';
 
 const propTypes = {
   currentPage: PropTypes.number,
   fetchIntakesIfNeeded: PropTypes.func,
-  isFetching: PropTypes.bool,
   intakes: PropTypes.array,
+  isFetching: PropTypes.bool,
   links: PropTypes.object,
   totalPages: PropTypes.number
 };

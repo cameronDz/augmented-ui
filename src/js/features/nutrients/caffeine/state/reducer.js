@@ -5,22 +5,22 @@ const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case types.INVALIDATED_CAFFEINE_INTAKE:
-      newState = { ...initialState };
+      newState = { ...initialState, didInvalidate: true, isFetching: false };
       break;
     case types.REQUEST_CAFFEINE_INTAKE:
-      newState = { ...state, isFetching: true };
+      newState = { ...state, didInvalidate: false, isFetching: true };
       break;
     case types.RECIEVE_CAFFEINE_INTAKE:
       newState = {
         ...state,
-        intakes: action.dataPayload,
-        totalRecords: action.metaPayload._totalRecords,
-        totalPages: action.metaPayload._totalPages,
         currentPage: action.metaPayload._currentPage,
-        links: action.linkPayload,
-        isFetching: false,
         didInvalidate: true,
-        lastUpdated: action.receivedAt
+        intakes: action.dataPayload,
+        isFetching: false,
+        lastUpdated: action.receivedAt,
+        links: action.linkPayload,
+        totalPages: action.metaPayload._totalPages,
+        totalRecords: action.metaPayload._totalRecords
       };
       break;
     default:
