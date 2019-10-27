@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Navbar from './Navbar';
+import Navbar from './navbar';
 
 const propTypes = { title: PropTypes.string.isRequired };
 const header = ({ title }) => {
