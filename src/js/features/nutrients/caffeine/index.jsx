@@ -1,6 +1,6 @@
 import React from 'react';
 import IntakeCreator from './creator';
-import IntakeDisplayTable from './displayTable';
+import IntakeTable from './table';
 import Card from '../../../components/bulmaCard';
 import * as _config from '../../../../../assets/data/config.json';
 
@@ -13,7 +13,7 @@ const caffeine = () => {
   };
 
   const renderIntakeDisplayCard = () => {
-    const child = (<IntakeDisplayTable />);
+    const child = (<IntakeTable />);
     return (<Card child={child} title={'Caffeine Intake Display'} />);
   };
 

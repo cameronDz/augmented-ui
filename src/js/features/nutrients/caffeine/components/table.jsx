@@ -5,7 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Pagination from './pagination';
 import TableRow from './tableRow';
 import { orderIntakesByDate } from '../../../../lib/sorts';
-import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
+import { fetchIntakesIfNeeded } from '../state/actions';
 import '../../../../css/table.css';
 
 const propTypes = {
@@ -17,7 +17,7 @@ const propTypes = {
   totalPages: PropTypes.number
 };
 
-const displayTable = props => {
+const table = props => {
   useEffect(() => {
     props.fetchIntakesIfNeeded();
   }, []);
@@ -67,5 +67,5 @@ const mapStateToProps = state => ({
   links: state.caffeineIntakes.links,
   totalPages: state.caffeineIntakes.totalPages
 });
-displayTable.propTypes = propTypes;
-export default connect(mapStateToProps, { fetchIntakesIfNeeded })(displayTable);
+table.propTypes = propTypes;
+export default connect(mapStateToProps, { fetchIntakesIfNeeded })(table);

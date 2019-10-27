@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import axios from 'axios';
-import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
+import { fetchIntakesIfNeeded } from '../state/actions';
 import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/creator.css';
 
