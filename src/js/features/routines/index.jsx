@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import Routine from './components/fullRoutine';
 import Card from '../../components/bulmaCard';
 import Layout from '../../components/layout';
-import Routine from './components/fullRoutine';
 
-class RoutineBase extends Component {
-  render () {
-    const sideBarTitle = 'Routine Side Bar';
-    const sideBarChild = (<p>Side-bar for Routine information.</p>);
-    const routineTitle = 'Latest Routine';
-    const routineChild = (<Routine />);
-    return (
+const routinePage = () => {
+  const sideBarTitle = 'Routine Side Bar';
+  const sideBarChild = (<p>Side-bar for Routine information.</p>);
+  const routineTitle = 'Latest Routine';
+  const routineChild = (<Routine />);
+  return (
+    <Layout title='Routines Page'>
       <div className="card">
         <header className="card-header">
           <p className="card-header-title">Routines Page</p>
@@ -22,17 +22,8 @@ class RoutineBase extends Component {
             <Card child={routineChild} title={routineTitle} />
           </div>
         </div>
-      </div>);
-  };
-}
+      </div>
+    </Layout>);
+};
 
-class RoutinePage extends Component {
-  render () {
-    return (
-      <Layout title='Routines Page'>
-        <RoutineBase />
-      </Layout>);
-  };
-}
-
-export default RoutinePage;
+export default routinePage;
