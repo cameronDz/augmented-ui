@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import axios from 'axios';
@@ -6,10 +6,7 @@ import { fetchIntakesIfNeeded } from '../state/actions';
 import * as _config from '../../../../../../assets/data/config.json';
 import '../../../../../css/creator.css';
 
-const propTypes = {
-  fetchIntakesIfNeeded: PropTypes.func
-};
-
+const propTypes = { fetchIntakesIfNeeded: PropTypes.func };
 const creator = props => {
   const submitButtonId = 'submitNutrientConsumption';
   const [amount, setAmount] = useState(0);
@@ -53,7 +50,7 @@ const creator = props => {
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <form onSubmit={handleSubmit}>
         <div className="field is-horizontal">
           <label className="label">Amount</label>
@@ -93,7 +90,7 @@ const creator = props => {
           <input id={submitButtonId} type="submit" value="Submit" />
         </div>
       </form>
-    </React.Fragment>);
+    </Fragment>);
 };
 
 creator.propTypes = propTypes;

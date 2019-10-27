@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { Fragment, useState } from 'react';
 import axios from 'axios';
 import * as _config from '../../../../../assets/data/config.json';
 
@@ -35,7 +35,7 @@ const exerciseCreator = () => {
   };
 
   return (
-    <div>
+    <Fragment>
       <p><strong>Create a new Exercise</strong></p>
       <form onSubmit={handleSubmit}>
         <div>
@@ -55,7 +55,7 @@ const exerciseCreator = () => {
           <input id={submitButtonId} type="submit" value="Submit" />
         </div>
       </form>
-    </div>);
+    </Fragment>);
 };
 
 export default exerciseCreator;
