@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash.get';
-import Header from './header/Header';
+import Header from './header';
 import Footer from './footer';
 import '../../css/layout.css';
 
