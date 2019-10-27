@@ -5,22 +5,22 @@ const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case types.INVALIDATED_CARDIO_MACHINE_SESSIONS:
-      newState = { ...initialState, didInvalidate: true };
+      newState = { ...state, didInvalidate: true, isFetching: false };
       break;
     case types.REQUEST_CARDIO_MACHINE_SESSIONS:
-      newState = { ...state, isFetching: true };
+      newState = { ...state, didInvalidate: false, isFetching: true };
       break;
     case types.RECIEVE_CARDIO_MACHINE_SESSIONS:
       newState = {
         ...state,
-        sessions: action.dataPayload,
-        totalRecords: action.metaPayload._totalRecords,
-        totalPages: action.metaPayload._totalPages,
         currentPage: action.metaPayload._currentPage,
-        links: action.linkPayload,
-        isFetching: false,
         didInvalidate: false,
-        lastUpdated: action.receivedAt
+        isFetching: false,
+        lastUpdated: action.receivedAt,
+        links: action.linkPayload,
+        sessions: action.dataPayload,
+        totalPages: action.metaPayload._totalPages,
+        totalRecords: action.metaPayload._totalRecords
       };
       break;
     default:
