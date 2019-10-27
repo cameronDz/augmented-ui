@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from './layout';
+import Layout from '../containers/layout';
 import Card from '../components/bulmaCard';
 
 const signUp = () => {

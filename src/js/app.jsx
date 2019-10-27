@@ -1,7 +1,7 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import SignUpPage from './containers/SignUpPage';
-import SignInPage from './containers/SignInPage';
+import SignUpPage from './features/signUp';
+import SignInPage from './features/signIn';
 import ExercisePage from './features/exercises/components/ExercisePage';
 import RoutinePage from './features/routines/components/RoutinePage';
 import DietPage from './containers/nutrition/DietPage';
