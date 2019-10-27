@@ -1,17 +1,17 @@
 const orderIntakesByDate = (a, b) => {
-  let aTime, bTime;
+  let orderValue = 0;
   try {
-    aTime = new Date(a.intakeTime);
-    bTime = new Date(b.intakeTime);
-  } catch {
-    return 0;
+    const aTime = new Date(a.intakeTime);
+    const bTime = new Date(b.intakeTime);
+    if (aTime < bTime) {
+      orderValue = 1;
+    } else if (aTime > bTime) {
+      orderValue = -1;
+    }
+  } catch (err) {
+    console.error('could not properly order intakes due to error:', err);
   }
-  if (aTime < bTime) {
-    return 1;
-  } else if (aTime > bTime) {
-    return -1;
-  }
-  return 0;
+  return orderValue;
 };
 
 export { orderIntakesByDate };

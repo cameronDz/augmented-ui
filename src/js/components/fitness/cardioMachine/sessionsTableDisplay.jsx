@@ -24,6 +24,20 @@ const sessionsTableDisplay = props => {
     props.fetchSessionsIfNeeded(apiUrl);
   }, []);
 
+  const renderDownloadLink = () => {
+    const url = _config.apis.azure + 'CardioMachineExercises?csv=csv';
+    return <a className="card-footer-item" href={url}>Download Intakes as CSV file.</a>;
+  };
+
+  const renderPagination = () => {
+    return (props.isFetching)
+      ? <div className='circular-loader'><CircularProgress /></div>
+      : (<TablePagination currentPage={props.currentPage}
+        links={props.links}
+        totalPages={props.totalPages}
+      />);
+  };
+
   const renderSessionsData = () => {
     return Array.isArray(props.sessions) && props.sessions.map((element, index) => {
       const date = splitTextKeyToArray(element, 'startTime', 'T')[0];
@@ -41,15 +55,6 @@ const sessionsTableDisplay = props => {
     return (!props.isFetching && !!props.sessions) && (<tbody>{renderSessionsData()}</tbody>);
   };
 
-  const renderPagination = () => {
-    return (props.isFetching)
-      ? <div className='circular-loader'><CircularProgress /></div>
-      : (<TablePagination currentPage={props.currentPage}
-        links={props.links}
-        totalPages={props.totalPages}
-      />);
-  };
-
   const renderTableHeader = () => {
     const titles = ['Date', 'Machine', 'User', 'Details'];
     const renderTitles = titles.map((item, key) => { return <th key={key}>{item}</th>; });
@@ -65,6 +70,7 @@ const sessionsTableDisplay = props => {
         </table>
       </div>
       {renderPagination()}
+      {renderDownloadLink()}
     </React.Fragment>);
 };
 

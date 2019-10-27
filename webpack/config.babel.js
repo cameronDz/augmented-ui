@@ -1,5 +1,4 @@
 import HtmlWebPackPlugin from 'html-webpack-plugin';
-import { HotModuleReplacementPlugin } from 'webpack';
 import { resolve } from 'path';
 
 module.exports = {
@@ -11,10 +10,6 @@ module.exports = {
   },
   resolve: {
     extensions: ['*', '.js', '.jsx']
-  },
-  devServer: {
-    contentBase: resolve(__dirname, '..', './dist'),
-    hot: true
   },
   module: {
     rules: [{
@@ -37,7 +32,6 @@ module.exports = {
     new HtmlWebPackPlugin({
       filename: resolve(__dirname, '..', './dist/index.html'),
       template: resolve(__dirname, '..', './src/index.html')
-    }),
-    new HotModuleReplacementPlugin()
+    })
   ]
 };
