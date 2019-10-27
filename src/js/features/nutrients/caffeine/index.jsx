@@ -1,7 +1,7 @@
 import React from 'react';
-import IntakeCreator from '../../nutrition/caffeine/creator';
-import IntakeDisplayTable from '../../nutrition/caffeine/displayTable';
-import Card from '../../bulmaCard';
+import IntakeCreator from './creator';
+import IntakeDisplayTable from './displayTable';
+import Card from '../../../components/bulmaCard';
 import * as _config from '../../../../../assets/data/config.json';
 
 const caffeine = () => {

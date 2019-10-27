@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash.get';
-import Header from '../components/header';
-import Footer from '../components/footer';
+import Header from './header';
+import Footer from './footer';
 import '../../css/layout.css';
 
 const propTypes = {

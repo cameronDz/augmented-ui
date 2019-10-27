@@ -1,5 +1,5 @@
 import React from 'react';
-import Layout from '../containers/layout';
+import Layout from './layout';
 import Card from './bulmaCard';
 
 const constructionPlaceholder = ({ title }) => {

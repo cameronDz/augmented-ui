@@ -5,8 +5,8 @@ import Grid from '@material-ui/core/Grid';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import { withStyles } from '@material-ui/core/styles';
-import Navbar from '../../components/header/navbar';
-import Footer from '../../components/footer';
+import Navbar from '../header/navbar';
+import Footer from '../footer';
 import TabPanel from './tabPanel';
 
 const propTypes = {

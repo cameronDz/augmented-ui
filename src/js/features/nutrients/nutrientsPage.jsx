@@ -1,5 +1,5 @@
 import React from 'react';
-import Caffeine from '../../components/nutrition/caffeine';
+import Caffeine from './caffeine';
 import Card from '../../components/bulmaCard';
 import Layout from '../layout';
 

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Page from '../../containers/page';
+import Page from '../../components/page';
 import SessionCreator from './components/creator';
 import SessionsTableDisplay from './components/table';
 import { fetchSessionsIfNeeded } from './state/actions';
