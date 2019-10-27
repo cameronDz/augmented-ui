@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Card from '../../components/bulmaCard';
 import Layout from '../../components/layout';
 import ExerciseCreator from './components/creator';
 import ExerciseDropdown from './components/dropdown';
 
-class Exercise extends Component {
-  render () {
-    const exerciseCreatorChild = (<ExerciseCreator />);
-    const exerciseCreatorTitle = 'Exercise Creator';
-    const exerciseDropdownChild = (<ExerciseDropdown />);
-    const exerciseDropdownTitle = 'Exercise Dropdown Sample';
-    return (
+const exercisePage = () => {
+  const exerciseCreatorChild = (<ExerciseCreator />);
+  const exerciseCreatorTitle = 'Exercise Creator';
+  const exerciseDropdownChild = (<ExerciseDropdown />);
+  const exerciseDropdownTitle = 'Exercise Dropdown Sample';
+  return (
+    <Layout title='Exercises'>
       <div className="card">
         <header>
           <p className="card-header-title">Exercise Page</p>
@@ -23,17 +23,8 @@ class Exercise extends Component {
             <Card child={exerciseDropdownChild} title={exerciseDropdownTitle} />
           </div>
         </div>
-      </div>);
-  };
-}
+      </div>
+    </Layout>);
+};
 
-class ExercisePage extends Component {
-  render () {
-    return (
-      <Layout title='Exercises'>
-        <Exercise />
-      </Layout>);
-  };
-}
-
-export default ExercisePage;
+export default exercisePage;
