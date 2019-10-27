@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Layout from '../../../containers/layout';
+import Layout from '../../../components/layout';
 import Routine from './Routine';
 import Card from '../../../components/bulmaCard';
 
