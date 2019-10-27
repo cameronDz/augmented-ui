@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import axios from 'axios';
 import RoutineExercise from './routineExercise';
 import * as _config from '../../../../../assets/data/config.json';
@@ -26,7 +26,7 @@ const fullRoutine = () => {
   });
 
   return (
-    <div className="Routine">
+    <Fragment>
       <div><p><strong>Routine</strong></p></div>
       <p>{name}</p>
       <table>
@@ -41,7 +41,7 @@ const fullRoutine = () => {
           {exerciseComponent}
         </tbody>
       </table>
-    </div>);
+    </Fragment>);
 };
 
 export default fullRoutine;
