@@ -109,7 +109,7 @@ class SessionCreator extends Component {
         self.props.invalidateCardioMachineSession();
       })
       .catch(error => {
-        alert('data save was not successful');
+        // TODO create modal alert
         console.error(error);
       })
       .finally(() => {

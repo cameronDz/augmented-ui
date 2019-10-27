@@ -1,11 +1,13 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Page from '../../containers/page';
 import SessionCreator from '../../components/fitness/cardioMachine/sessionCreator';
 import SessionsTableDisplay from '../../components/fitness/cardioMachine/sessionsTableDisplay';
 import { fetchSessionsIfNeeded } from '../../state/cardioMachineSessions/actions';
 import * as _config from '../../../../assets/data/config.json';
 
+const propTypes = { fetchSessionsIfNeeded: PropTypes.func.isRequired };
 const sessions = props => {
   const tabNames = ['Information', 'Record', 'History', 'Data Visualization'];
   const tabPanels = [
@@ -23,4 +25,5 @@ const sessions = props => {
   return <Page title="Sessions" tabNames={tabNames} tabPanels={tabPanels} />;
 };
 
+sessions.propTypes = propTypes;
 export default connect(null, { fetchSessionsIfNeeded })(sessions);
