@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { splitTextKeyToArray } from '../../../lib/splits';
+import { splitTextKeyToArray } from '../../../../lib/splits';
 
 const propTypes = {
   element: PropTypes.shape({

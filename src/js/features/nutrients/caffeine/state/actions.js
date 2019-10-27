@@ -1,6 +1,6 @@
 import * as types from './types';
 import axios from 'axios';
-import { shouldFetchState } from '../global';
+import { shouldFetchState } from '../../../../state/global';
 import * as _config from '../../../../assets/data/config.json';
 const apiUrl = _config.apis.azure + 'CaffeineNutrientIntakes?pageSize=10&pageNumber=1';
 

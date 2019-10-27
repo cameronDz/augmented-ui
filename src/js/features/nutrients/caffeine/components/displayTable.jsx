@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Pagination from './pagination';
 import TableRow from './tableRow';
-import { orderIntakesByDate } from '../../../lib/sorts';
+import { orderIntakesByDate } from '../../../../lib/sorts';
 import { fetchIntakesIfNeeded } from '../../../state/caffeineIntake/actions';
 import '../../../../css/table.css';
 
