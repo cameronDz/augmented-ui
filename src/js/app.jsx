@@ -5,7 +5,7 @@ import SignInPage from './features/signIn';
 import ConstructionPlaceholder from './components/constructionPlaceholder';
 import ExercisePage from './features/exercises/components/ExercisePage';
 import RoutinePage from './features/routines/components/RoutinePage';
-import NutrientPage from './features/nutrients/caffeine';
+import NutrientPage from './features/nutrients/nutrientsPage';
 import Session from './features/sessions';
 import Help from './features/help';
 
