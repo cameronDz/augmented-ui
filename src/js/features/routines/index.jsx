@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Layout from '../../../components/layout';
+import Card from '../../components/bulmaCard';
+import Layout from '../../components/layout';
 import Routine from './components/fullRoutine';
-import Card from '../../../components/bulmaCard';
 
 class RoutineBase extends Component {
   render () {
