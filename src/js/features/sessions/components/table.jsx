@@ -9,6 +9,7 @@ import { splitTextKeyToArray } from '../../../lib/splits';
 import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/table.css';
 
+const apiUrl = _config.apis.azure + 'CardioMachineExercises?pageNumber=1&pageSize=10';
 const propTypes = {
   currentPage: PropTypes.number,
   didInvalidate: PropTypes.bool,
@@ -19,8 +20,7 @@ const propTypes = {
   totalPages: PropTypes.number
 };
 
-const sessionsTableDisplay = props => {
-  const apiUrl = _config.apis.azure + 'CardioMachineExercises?pageNumber=1&pageSize=10';
+const table = props => {
   useEffect(() => {
     props.fetchSessionsIfNeeded(apiUrl);
   }, []);
@@ -81,6 +81,7 @@ const sessionsTableDisplay = props => {
     </React.Fragment>);
 };
 
+table.propTypes = propTypes;
 const mapStateToProps = state => ({
   currentPage: state.cardioMachineSessions.currentPage,
   didInvalidate: state.cardioMachineSessions.didInvalidate,
@@ -89,5 +90,4 @@ const mapStateToProps = state => ({
   sessions: state.cardioMachineSessions.sessions,
   totalPages: state.cardioMachineSessions.totalPages
 });
-sessionsTableDisplay.propTypes = propTypes;
-export default connect(mapStateToProps, { fetchSessionsIfNeeded })(sessionsTableDisplay);
+export default connect(mapStateToProps, { fetchSessionsIfNeeded })(table);
