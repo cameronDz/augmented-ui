@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import cardioMachineSessionsReducer from './cardioMachineSessions/reducer.js';
-import caffeineIntakeReducer from './caffeineIntake/reducer.js';
+import cardioMachineSessionsReducer from '../features/sessions/state/reducer';
+import caffeineIntakeReducer from '../features/nutrients/caffeine/state/reducer';
 
 export default combineReducers({
   caffeineIntakes: caffeineIntakeReducer,

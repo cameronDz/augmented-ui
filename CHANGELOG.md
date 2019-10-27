@@ -6,7 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [0.3.1] - 2019-09-26
+## [0.4.0] - 2019-10-27
+### Added
+- Wireframes for moving all axios calls into state/reducers
+
+### Changed
+- Simplified folder structure
+
+### Removed
+- Unused components and excess folders
+
+## [0.3.1] - 2019-10-26
 ### Changed
 - Invalidate logic listening for successful create post
 - Webpack naming convention
@@ -15,7 +25,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Sending axios post for create as JSON instead of stringified JSON
 - Invalidate state correctly reflecting when data is invalidated in session
 
-## [0.3.0] - 2019-09-26
+## [0.3.0] - 2019-10-26
 ### Added
 - Download csv button to bottom of sessions table
 
