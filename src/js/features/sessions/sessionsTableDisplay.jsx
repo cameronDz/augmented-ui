@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import ModalButton from './modalButton';
-import TablePagination from '../../general/tablePagination';
-import { fetchSessionsIfNeeded } from '../../../state/cardioMachineSessions/actions';
-import { splitTextKeyToArray } from '../../../lib/splits';
+import ModalButton from './components/modalButton';
+import TablePagination from '../../components/general/tablePagination';
+import { fetchSessionsIfNeeded } from '../../state/cardioMachineSessions/actions';
+import { splitTextKeyToArray } from '../../lib/splits';
 import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/table.css';
 

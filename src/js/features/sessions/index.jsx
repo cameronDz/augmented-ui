@@ -2,8 +2,8 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Page from '../../containers/page';
-import SessionCreator from '../../components/fitness/cardioMachine/sessionCreator';
-import SessionsTableDisplay from '../../components/fitness/cardioMachine/sessionsTableDisplay';
+import SessionCreator from './components/sessionCreator';
+import SessionsTableDisplay from './components/sessionsTableDisplay';
 import { fetchSessionsIfNeeded } from '../../state/cardioMachineSessions/actions';
 import * as _config from '../../../../assets/data/config.json';
 
