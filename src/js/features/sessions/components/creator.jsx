@@ -10,7 +10,7 @@ import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/creator.css';
 
 // TODO convert hook component
-class SessionCreator extends Component {
+class Creator extends Component {
   constructor (props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -196,4 +196,4 @@ class SessionCreator extends Component {
 }
 
 const mapStateToProps = state => ({ links: state.cardioMachineSessions.links });
-export default connect(mapStateToProps, { invalidateCardioMachineSession })(SessionCreator);
+export default connect(mapStateToProps, { invalidateCardioMachineSession })(Creator);
