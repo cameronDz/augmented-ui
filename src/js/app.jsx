@@ -10,17 +10,17 @@ import Session from './features/sessions';
 import Help from './features/help';
 
 const app = () => {
-  const dietPage = <ConstructionPlaceholder title='Diet Page' />
-  const foodPage = <ConstructionPlaceholder title='Food Page' />
-  const mealPage = <ConstructionPlaceholder title='Meal Page' />
+  const dietPage = (<ConstructionPlaceholder title='Diet Page' />);
+  const foodPage = (<ConstructionPlaceholder title='Food Page' />);
+  const mealPage = (<ConstructionPlaceholder title='Meal Page' />);
   return (
     <Switch>
       <Route exact path='/' component={Session} />
-      <Route exact path='/diet' component={dietPage} />
+      <Route exact path='/diet' component={() => dietPage} />
       <Route exact path='/exercise' component={ExercisePage} />
-      <Route exact path='/food' component={foodPage} />
+      <Route exact path='/food' component={() => foodPage} />
       <Route exact path='/help' component={Help} />
-      <Route exact path='/meal' component={mealPage} />
+      <Route exact path='/meal' component={() => mealPage} />
       <Route exact path='/nutrient' component={NutrientPage} />
       <Route exact path='/routine' component={RoutinePage} />
       <Route exact path='/session' component={Session} />
