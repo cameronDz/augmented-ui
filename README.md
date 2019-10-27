@@ -25,6 +25,14 @@ augmented-frontend/
     js/
       components/
       features/
+        featOne/
+          components/
+          state/
+          index.js
+        featTwo/
+          components/
+          state/
+          index.js
       lib/
       state/
       app.jsx
