@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Layout from '../../../containers/layout';
+import Layout from '../../../components/layout';
 import ExerciseCreator from './creator';
 import ExerciseDropdown from './dropdown';
 import Card from '../../../components/bulmaCard';
