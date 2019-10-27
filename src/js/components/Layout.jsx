@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash.get';
 import Header from './general/Header';
-import Footer from './general/Footer';
+import Footer from './footer';
 import '../../css/layout.css';
 
 const propTypes = {

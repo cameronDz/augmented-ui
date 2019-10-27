@@ -6,7 +6,7 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import { withStyles } from '@material-ui/core/styles';
 import Navbar from '../../components/general/Navbar';
-import Footer from '../../components/general/Footer';
+import Footer from '../../components/footer';
 import TabPanel from './tabPanel';
 
 const propTypes = {
