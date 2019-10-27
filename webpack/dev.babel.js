@@ -1,7 +1,7 @@
 import merge from 'webpack-merge';
 import { HotModuleReplacementPlugin } from 'webpack';
 import { resolve } from 'path';
-import common from './config.babel';
+import common from './common.babel';
 
 const dev = {
   devServer: {

@@ -11,6 +11,7 @@ import '../../../../css/table.css';
 
 const propTypes = {
   currentPage: PropTypes.number,
+  didInvalidate: PropTypes.bool,
   fetchSessionsIfNeeded: PropTypes.func,
   isFetching: PropTypes.bool,
   links: PropTypes.object,
@@ -19,10 +20,16 @@ const propTypes = {
 };
 
 const sessionsTableDisplay = props => {
+  const apiUrl = _config.apis.azure + 'CardioMachineExercises?pageNumber=1&pageSize=10';
   useEffect(() => {
-    const apiUrl = _config.apis.azure + 'CardioMachineExercises?pageNumber=1&pageSize=10';
     props.fetchSessionsIfNeeded(apiUrl);
   }, []);
+
+  useEffect(() => {
+    if (!!props.didInvalidate) {
+      props.fetchSessionsIfNeeded(apiUrl);
+    }
+  }, [props.didInvalidate]);
 
   const renderDownloadLink = () => {
     const url = _config.apis.azure + 'CardioMachineExercises?csv=csv';
@@ -76,6 +83,7 @@ const sessionsTableDisplay = props => {
 
 const mapStateToProps = state => ({
   currentPage: state.cardioMachineSessions.currentPage,
+  didInvalidate: state.cardioMachineSessions.didInvalidate,
   links: state.cardioMachineSessions.links,
   isFetching: state.cardioMachineSessions.isFetching,
   sessions: state.cardioMachineSessions.sessions,

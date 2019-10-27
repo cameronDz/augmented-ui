@@ -14,7 +14,8 @@ npm install
 The following three commands are used for building, testing, and deploying the application.
 
 ```javascript
-npm run build
+npm run build-dev
+npm run build-prod
 npm run start
 npm run deploy
 ```
@@ -58,3 +59,6 @@ Since Augmented Frontend is a Single Page Application (SPA), routing is done on 
   </RoutingRule>
 </RoutingRules>
 ```
+
+### S3 Authentication/Permissions ###
+In order to push assets to S3, need to set up credentials on local machine. Use following tutorial: [backup to s3](https://aws.amazon.com/getting-started/tutorials/backup-to-s3-cli/).
