@@ -1,6 +1,6 @@
 import * as types from './types';
 import axios from 'axios';
-import { shouldFetchState } from '../global';
+import { shouldFetchState } from '../../../state/global';
 
 // TODO fix call
 const fetchSessions = sessionApiUrl => {
@@ -17,20 +17,17 @@ export const invalidateCardioMachineSession = () => {
 };
 
 export const requestCardioMachineSessions = sessionApiUrl => {
-  return {
-    type: types.REQUEST_CARDIO_MACHINE_SESSIONS,
-    sessionApiUrl
-  };
+  return { sessionApiUrl, type: types.REQUEST_CARDIO_MACHINE_SESSIONS };
 };
 
 export const recieveCardioMachineSessions = (sessionApiUrl, payload) => {
   return {
-    type: types.RECIEVE_CARDIO_MACHINE_SESSIONS,
-    sessionApiUrl,
     dataPayload: payload.data.data,
-    metaPayload: payload.data.meta,
     linkPayload: payload.data.links,
-    receivedAt: Date.now()
+    metaPayload: payload.data.meta,
+    receivedAt: Date.now(),
+    sessionApiUrl,
+    type: types.RECIEVE_CARDIO_MACHINE_SESSIONS
   };
 };
 

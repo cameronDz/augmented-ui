@@ -2,9 +2,9 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Page from '../../containers/page';
-import SessionCreator from './components/sessionCreator';
-import SessionsTableDisplay from './components/sessionsTableDisplay';
-import { fetchSessionsIfNeeded } from '../../state/cardioMachineSessions/actions';
+import SessionCreator from './components/creator';
+import SessionsTableDisplay from './components/table';
+import { fetchSessionsIfNeeded } from './state/actions';
 import * as _config from '../../../../assets/data/config.json';
 
 const propTypes = { fetchSessionsIfNeeded: PropTypes.func.isRequired };

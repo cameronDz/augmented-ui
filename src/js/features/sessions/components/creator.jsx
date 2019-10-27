@@ -5,7 +5,7 @@ import Switch from '@material-ui/core/Switch';
 // TODO look into material ui picker
 import DatePicker from 'react-datepicker';
 import TimeField from 'react-simple-timefield';
-import { invalidateCardioMachineSession } from '../../../state/cardioMachineSessions/actions';
+import { invalidateCardioMachineSession } from '../state/actions';
 import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/creator.css';
 

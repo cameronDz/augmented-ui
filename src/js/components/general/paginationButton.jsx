@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import get from 'lodash.get';
-import { fetchSessionsIfNeeded } from '../../state/cardioMachineSessions/actions';
+import { fetchSessionsIfNeeded } from '../../features/sessions/state/actions';
 
 const propTypes = {
   fetchSessionsIfNeeded: PropTypes.func,
