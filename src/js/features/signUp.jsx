@@ -8,6 +8,6 @@ const signUp = () => {
     <Layout title='Sign Up for Augmented'>
       <Card child={cardContent} title='Sign Up' />
     </Layout>);
-}
+};
 
 export default signUp;

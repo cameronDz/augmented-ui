@@ -8,5 +8,5 @@ export const shouldFetchState = state => {
   } else {
     fetch = !!state.didInvalidate;
   }
-  return fetch
+  return fetch;
 };

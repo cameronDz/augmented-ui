@@ -5,7 +5,7 @@ export const fetchRoutineSets = (requestUrl = '') => {
   return {
     requestUrl,
     type: types.REQUEST_ROUTINES_SETS
-   };
+  };
 };
 
 export const invalidateRoutineSets = () => {
