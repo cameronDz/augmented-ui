@@ -4,13 +4,13 @@ import { resolve } from 'path';
 import common from './config.babel';
 
 const dev = {
-  mode: 'development',
-  devtool: 'inline-source-map',
   devServer: {
     contentBase: resolve(__dirname, '..', './dist'),
     hot: true,
     watchContentBase: true
   },
+  devtool: 'inline-source-map',
+  mode: 'development',
   plugins: [new HotModuleReplacementPlugin()]
 };
 
