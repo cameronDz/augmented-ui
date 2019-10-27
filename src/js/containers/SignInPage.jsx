@@ -1,6 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import Card from '../components/bulma/card';
+import Card from '../components/bulmaCard';
 
 const signIn = () => {
   const cardContent = (<p>Use this page to sign into application.</p>);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Layout from '../../components/Layout';
 import ExerciseCreator from '../../components/fitness/exercises/creator';
 import ExerciseDropdown from '../../components/fitness/exercises/dropdown';
-import Card from '../../components/bulma/card';
+import Card from '../../components/bulmaCard';
 
 class Exercise extends Component {
   render () {

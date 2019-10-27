@@ -2,7 +2,7 @@ import React from 'react';
 import SessionCreator from './sessionCreator';
 import SessionsTableDisplay from './sessionsTableDisplay';
 import * as _config from '../../../../../assets/data/config.json';
-import Card from '../../bulma/card';
+import Card from '../../bulmaCard';
 
 const session = () => {
   const renderCreateSessionCard = () => {

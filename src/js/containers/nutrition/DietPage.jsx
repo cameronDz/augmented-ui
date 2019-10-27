@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../../components/Layout';
-import Card from '../../components/bulma/card';
+import Card from '../../components/bulmaCard';
 
 class DietPage extends Component {
   render () {

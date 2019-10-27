@@ -1,7 +1,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import Card from '../src/js/components/bulma/card';
+import Card from '../src/js/components/bulmaCard';
 import { splitTextKeyToArray } from '../src/js/lib/splits';
 
 describe('initial tests', function () {

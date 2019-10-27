@@ -1,6 +1,6 @@
 import React from 'react';
 import Caffeine from '../../components/nutrition/caffeine';
-import Card from '../../components/bulma/card';
+import Card from '../../components/bulmaCard';
 import Layout from '../../components/Layout';
 
 const nutrientsPage = () => {

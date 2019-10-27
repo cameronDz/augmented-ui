@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ModalButton from './modalButton';
-import TablePagination from '../../../components/general/tablePagination';
+import TablePagination from '../../../components/tablePagination';
 import { fetchSessionsIfNeeded } from '../state/actions';
 import { splitTextKeyToArray } from '../../../lib/splits';
 import * as _config from '../../../../../assets/data/config.json';
