@@ -1,6 +1,6 @@
 import React from 'react';
-import IntakeCreator from './creator';
-import IntakeTable from './table';
+import IntakeCreator from './components/creator';
+import IntakeTable from './components/table';
 import Card from '../../../components/bulmaCard';
 import * as _config from '../../../../../assets/data/config.json';
 

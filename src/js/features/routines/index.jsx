@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Layout from '../../../components/layout';
-import Routine from './Routine';
+import Routine from './components/fullRoutine';
 import Card from '../../../components/bulmaCard';
 
 class RoutineBase extends Component {

@@ -3,7 +3,7 @@ import axios from 'axios';
 import RoutineExercise from './routineExercise';
 import * as _config from '../../../../../assets/data/config.json';
 
-const routine = () => {
+const fullRoutine = () => {
   const [exercises, setExercises] = useState([]);
   const [name, setName] = useState('');
 
@@ -44,4 +44,4 @@ const routine = () => {
     </div>);
 };
 
-export default routine;
+export default fullRoutine;

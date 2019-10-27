@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Layout from '../../../components/layout';
-import ExerciseCreator from './creator';
-import ExerciseDropdown from './dropdown';
+import ExerciseCreator from './components/creator';
+import ExerciseDropdown from './components/dropdown';
 import Card from '../../../components/bulmaCard';
 
 class Exercise extends Component {
