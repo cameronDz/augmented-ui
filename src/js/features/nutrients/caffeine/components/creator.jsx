@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import axios from 'axios';
 import { fetchIntakesIfNeeded } from '../state/actions';
 import * as _config from '../../../../../assets/data/config.json';
-import '../../../../css/creator.css';
+import '../../../../../css/creator.css';
 
 const propTypes = {
   fetchIntakesIfNeeded: PropTypes.func

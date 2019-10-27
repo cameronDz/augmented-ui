@@ -6,7 +6,7 @@ import Pagination from './pagination';
 import TableRow from './tableRow';
 import { orderIntakesByDate } from '../../../../lib/sorts';
 import { fetchIntakesIfNeeded } from '../state/actions';
-import '../../../../css/table.css';
+import '../../../../../css/table.css';
 
 const propTypes = {
   currentPage: PropTypes.number,
