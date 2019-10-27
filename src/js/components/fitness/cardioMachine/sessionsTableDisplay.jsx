@@ -84,8 +84,8 @@ const sessionsTableDisplay = props => {
 const mapStateToProps = state => ({
   currentPage: state.cardioMachineSessions.currentPage,
   didInvalidate: state.cardioMachineSessions.didInvalidate,
-  links: state.cardioMachineSessions.links,
   isFetching: state.cardioMachineSessions.isFetching,
+  links: state.cardioMachineSessions.links,
   sessions: state.cardioMachineSessions.sessions,
   totalPages: state.cardioMachineSessions.totalPages
 });
