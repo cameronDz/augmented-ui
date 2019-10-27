@@ -27,7 +27,7 @@ const caffeine = () => {
           {renderIntakeDisplayCard()}
         </div>
       </div>);
-};
+  };
   return (<Card child={renderSessionContent()} title={'Caffeine Page'} />);
 };
 

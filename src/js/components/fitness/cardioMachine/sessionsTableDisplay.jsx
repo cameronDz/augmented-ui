@@ -27,7 +27,7 @@ const sessionsTableDisplay = props => {
   const renderDownloadLink = () => {
     const url = _config.apis.azure + 'CardioMachineExercises?csv=csv';
     return <a className="card-footer-item" href={url}>Download Intakes as CSV file.</a>;
-  }
+  };
 
   const renderPagination = () => {
     return (props.isFetching)

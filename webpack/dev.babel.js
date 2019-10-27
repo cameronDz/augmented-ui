@@ -11,7 +11,7 @@ const dev = {
     hot: true,
     watchContentBase: true
   },
-  plugins: [ new HotModuleReplacementPlugin() ]
+  plugins: [new HotModuleReplacementPlugin()]
 };
 
 module.exports = merge(common, dev);

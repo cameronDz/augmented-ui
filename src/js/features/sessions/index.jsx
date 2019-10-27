@@ -23,4 +23,4 @@ const sessions = props => {
   return <Page title="Sessions" tabNames={tabNames} tabPanels={tabPanels} />;
 };
 
-export default connect(null, { fetchSessionsIfNeeded})(sessions);
+export default connect(null, { fetchSessionsIfNeeded })(sessions);
