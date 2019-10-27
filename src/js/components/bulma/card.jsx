@@ -17,10 +17,7 @@ const card = ({ child, footer, title }) => {
   };
 
   const renderFooter = () => {
-    return !!footer && (
-      <footer className="card-footer">
-        <div>{footer}</div>
-      </footer>);
+    return !!footer && <footer className="card-footer">{footer}</footer>;
   };
 
   return !!title && (
