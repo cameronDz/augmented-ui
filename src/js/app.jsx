@@ -3,9 +3,9 @@ import { Switch, Route } from 'react-router-dom';
 import SignUpPage from './features/signUp';
 import SignInPage from './features/signIn';
 import ConstructionPlaceholder from './components/constructionPlaceholder';
-import ExercisePage from './features/exercises/components/ExercisePage';
-import RoutinePage from './features/routines/components/RoutinePage';
-import NutrientPage from './features/nutrients/nutrientsPage';
+import ExercisePage from './features/exercises';
+import RoutinePage from './features/routines';
+import NutrientPage from './features/nutrients';
 import Session from './features/sessions';
 import Help from './features/help';
 
