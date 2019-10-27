@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Routine from './components/fullRoutine';
 import Card from '../../components/bulmaCard';
 import Layout from '../../components/layout';
