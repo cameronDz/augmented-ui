@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import RoutineExercise from './routineExercise';
-import * as _config from '../../../../assets/data/config.json';
+import * as _config from '../../../../../assets/data/config.json';
 
 const routine = () => {
   const [exercises, setExercises] = useState([]);

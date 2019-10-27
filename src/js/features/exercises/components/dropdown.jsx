@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import Dropdown from '../../Dropdown';
+import Dropdown from '../../../components/Dropdown';
 import * as _config from '../../../../../assets/data/config.json';
 
 const propTypes = {
