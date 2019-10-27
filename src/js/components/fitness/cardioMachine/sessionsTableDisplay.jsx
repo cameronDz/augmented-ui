@@ -26,7 +26,7 @@ const sessionsTableDisplay = props => {
   }, []);
 
   useEffect(() => {
-    if (!!props.didInvalidate) {
+    if (props.didInvalidate) {
       props.fetchSessionsIfNeeded(apiUrl);
     }
   }, [props.didInvalidate]);
