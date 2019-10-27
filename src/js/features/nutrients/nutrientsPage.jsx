@@ -1,7 +1,7 @@
 import React from 'react';
 import Caffeine from './caffeine';
 import Card from '../../components/bulmaCard';
-import Layout from '../layout';
+import Layout from '../../components/layout';
 
 const nutrientsPage = () => {
   const cardContent = (<Caffeine />);
