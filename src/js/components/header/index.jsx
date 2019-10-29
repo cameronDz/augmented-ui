@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Navbar from './navbar';
 
 const propTypes = { title: PropTypes.string.isRequired };
 const header = ({ title }) => {
   return (
-    <React.Fragment>
+    <Fragment>
       <Navbar />
       <section className="hero">
         <div className="hero-body">
@@ -14,7 +14,7 @@ const header = ({ title }) => {
           </div>
         </div>
       </section>
-    </React.Fragment>);
+    </Fragment>);
 };
 
 header.propTypes = propTypes;

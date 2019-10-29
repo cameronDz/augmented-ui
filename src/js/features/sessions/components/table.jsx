@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
@@ -69,7 +69,7 @@ const table = props => {
   };
 
   return (
-    <React.Fragment>
+    <Fragment>
       <div className="table-wrapper">
         <table className="table is-bordered is-striped is-narrow is-fullwidth">
           {renderTableHeader()}
@@ -78,7 +78,7 @@ const table = props => {
       </div>
       {renderPagination()}
       {renderDownloadLink()}
-    </React.Fragment>);
+    </Fragment>);
 };
 
 table.propTypes = propTypes;

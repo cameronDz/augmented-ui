@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Page from '../components/page';
 
 const help = () => {
@@ -8,18 +8,18 @@ const help = () => {
       third party applications like FitBits or Apple Watches.
     </p>;
   const contact =
-    <React.Fragment>
+    <Fragment>
       <p>Application creator and maintainer: Cameron Dziurgot.</p>
       <p>Email: <a href="mailto:camerondziurgot@gmail.com">camerondziurgot@gmail.com</a></p>
       <p>GitHub: <a href="https://www.github.com/cameronDz/augmented-frontend">Augmented Frontend</a></p>
-    </React.Fragment>;
+    </Fragment>;
   const contribute =
     <p>To contribute to the application code base, create a Pull Request on the
       <a href="https://www.github.com/cameronDz/augmented-frontend">Augmented Frontend GitHub</a>
       page.
     </p>;
   const issue =
-    <React.Fragment>
+    <Fragment>
       <p>There are two ways to report an issue.</p>
       <p>One is through GitHub, by posting a new issue on the
         <a href="https://www.github.com/cameronDz/augmented-frontend/issues">issues page</a>
@@ -28,7 +28,7 @@ const help = () => {
       <p>The other way is through emailing <a href="mailto:camerondziurgot@gmail.com">Cameron Dziurgot</a>
         directly with the issue.
       </p>
-    </React.Fragment>;
+    </Fragment>;
 
   const title = 'Help';
   const tabNames = ['About', 'Contact', 'Contribute', 'Report an issue'];

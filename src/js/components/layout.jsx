@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import get from 'lodash.get';
 import Header from './header';
@@ -20,12 +20,12 @@ const layout = props => {
   }, [props]);
 
   return (
-    <React.Fragment>
+    <Fragment>
       <Header title={title} />
       {children}
       <div className="spacer"></div>
       <Footer />
-    </React.Fragment>);
+    </Fragment>);
 };
 
 layout.propTypes = propTypes;
