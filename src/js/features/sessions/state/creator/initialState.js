@@ -1,7 +1,7 @@
 export default {
   form: {
     comment: '',
-    distanceMiles: 0.0,
+    distanceMiles: '0.0',
     machineType: '',
     seconds: 0,
     startDate: new Date(),
