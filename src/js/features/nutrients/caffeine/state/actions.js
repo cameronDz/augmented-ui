@@ -1,16 +1,16 @@
-import * as types from './types';
 import axios from 'axios';
 import { shouldFetchState } from '../../../../state/global';
+import * as _types from './types';
 import * as _config from '../../../../../../assets/data/config.json';
 
 const apiUrl = _config.apis.azure + 'CaffeineNutrientIntakes?pageSize=10&pageNumber=1';
 
 export const invalidateCaffeineIntakes = () => {
-  return { type: types.INVALIDATED_CAFFEINE_INTAKE };
+  return { type: _types.INVALIDATED_CAFFEINE_INTAKE };
 };
 
 export const requestCaffeineIntakes = (url = apiUrl) => {
-  return { type: types.REQUEST_CAFFEINE_INTAKE, url };
+  return { type: _types.REQUEST_CAFFEINE_INTAKE, url };
 };
 
 export const recieveCaffeineIntakes = (payload, url = apiUrl) => {
@@ -19,7 +19,7 @@ export const recieveCaffeineIntakes = (payload, url = apiUrl) => {
     linkPayload: payload.data.links,
     metaPayload: payload.data.meta,
     receivedAt: Date.now(),
-    type: types.RECIEVE_CAFFEINE_INTAKE,
+    type: _types.RECIEVE_CAFFEINE_INTAKE,
     url
   };
 };
@@ -42,5 +42,38 @@ const fetchIntakes = (url = apiUrl) => {
     const config = { header: { 'Content-Type': 'application/json' } };
     return axios.get(url, config)
       .then(payload => dispatch(recieveCaffeineIntakes(payload)));
+  };
+};
+
+// posting actions
+const recieveSuccessfulCaffeinePostResponse = () => {
+  return { type: _types.RECIEVE_CAFFEINE_RESPONSE };
+};
+
+const recieveSuccessfulCaffeinePostResponse = () => {
+  return { type: _types.RECIEVE_SUCCESSFUL_CAFFEINE_RESPONSE };
+};
+
+const sendCaffienePostRequest = () => {
+  return { type: _types.SEND_CAFFEINE_POST_REQUEST };
+};
+sendCaffienePostRequest
+export const createNewCaffieneConsumption = payload => {
+  const url = _config.apis.azure + 'CaffeineNutrientIntakes';
+  const config = { header: { 'Content-Type': 'application/json' } };
+  return dispatch => {
+    dispatch(sendCaffienePostRequest());
+    axios.post(url, payload, config)
+      .then(() => {
+        dispatch(recieveSuccessfulCaffeinePostResponse());
+        dispatch(invalidateCaffeineIntakes());
+        dispatch(fetchIntakesIfNeeded(url));
+      })
+      .catch(error => {
+        console.error('could not complete post request', error)
+      })
+      .finally(() => {
+        dispatch(recieveSuccessfulCaffeinePostResponse());
+      });
   };
 };
