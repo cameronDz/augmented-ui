@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as _types from '../types';
-import * as _config from '../../../../../assets/data/config.json';
+import * as _config from '../../../../../../assets/data/config.json';
 
 const recieveCardioMachineSessionPostResponse = () => {
   return { type: _types.RECIEVE_CARDIO_MACHINE_SESSION_POST_RESPONSE };

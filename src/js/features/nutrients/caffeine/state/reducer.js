@@ -1,16 +1,16 @@
 import initialState from './initialState';
-import * as types from './types';
+import * as _types from './types';
 
 const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case types.INVALIDATED_CAFFEINE_INTAKE:
+    case _types.INVALIDATED_CAFFEINE_INTAKE:
       newState = { ...initialState, didInvalidate: true, isFetching: false };
       break;
-    case types.REQUEST_CAFFEINE_INTAKE:
+    case _types.REQUEST_CAFFEINE_INTAKE:
       newState = { ...state, didInvalidate: false, isFetching: true };
       break;
-    case types.RECIEVE_CAFFEINE_INTAKE:
+    case _types.RECIEVE_CAFFEINE_INTAKE:
       newState = {
         ...state,
         currentPage: action.metaPayload._currentPage,
