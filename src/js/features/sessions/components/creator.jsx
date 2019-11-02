@@ -66,7 +66,7 @@ const creator = props => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    props.postCardioMachineSession();
+    props.postCardioMachineSession(props.post.form);
   };
 
   return (
