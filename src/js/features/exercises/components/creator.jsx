@@ -1,12 +1,29 @@
-import React, { Fragment, useState } from 'react';
-import axios from 'axios';
-import * as _config from '../../../../../assets/data/config.json';
+import React, { Fragment, useEffect, useState } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { createNewExercisePost } from '../state/actions';
 
-const exerciseCreator = () => {
+const propTypes = {
+  createNewExercisePost: PropTypes.func,
+  posting: PropTypes.bool,
+  successful: PropTypes.bool
+};
+const exerciseCreator = props => {
   const submitButtonId = 'exerciseCreatorSubmitButton';
   const [description, setDescription] = useState('');
   const [name, setName] = useState('');
   const [typeId, setTypeId] = useState('');
+
+  useEffect(() => {
+    if (props.posting) {
+      document.getElementById(submitButtonId).disabled = true;
+    } else {
+      document.getElementById(submitButtonId).disabled = false;
+      if (props.successful) {
+        resetFormValues();
+      }
+    }
+  }, [props.posting]);
 
   const resetFormValues = () => {
     setDescription('');
@@ -16,22 +33,8 @@ const exerciseCreator = () => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    document.getElementById(submitButtonId).disabled = true;
-
-    const header = { header: { 'Content-Type': 'application/json' } };
     const payload = { description, name, typeId };
-    const url = _config.apis.azure + 'exercises';
-    axios.post(url, payload, header)
-      .then(() => {
-        resetFormValues();
-      })
-      .catch(error => {
-        // TODO inform user
-        console.error(error);
-      })
-      .finally(() => {
-        document.getElementById(submitButtonId).disabled = false;
-      });
+    props.createNewExercisePost(payload);
   };
 
   return (
@@ -58,4 +61,9 @@ const exerciseCreator = () => {
     </Fragment>);
 };
 
-export default exerciseCreator;
+const mapStateToProps = state => ({
+  posting: !!state.exercises.posting,
+  successful: !!state.exercises.successfulPost
+});
+exerciseCreator.propTypes = propTypes;
+export default connect(mapStateToProps, { createNewExercisePost })(exerciseCreator);

@@ -29,8 +29,11 @@ const requestExerciseList = () => {
 };
 
 // actions for creating new exercise
-const recieveNewExerciseResponse = payload => {
-  return { exercise: payload, type: _types.RECIEVE_NEW_EXERCISE_RESPONSE };
+const recieveNewExerciseResponse = () => {
+  return { type: _types.RECIEVE_NEW_EXERCISE_RESPONSE };
+};
+const recieveSuccessfulNewExerciseResponse = () => {
+  return { type: _types.RECIEVE_SUCCESSFUL_NEW_EXERCISE_RESPONSE };
 };
 
 const createNewExercisePost = payload => {
@@ -38,9 +41,16 @@ const createNewExercisePost = payload => {
     dispatch({ type: _types.CREATE_NEW_EXERCISE_POST });
     const config = { header: { 'Content-Type': 'application/json' } };
     const url = _config.apis.azure + 'exercises';
-    return axios.post(url, config, payload).then(response => {
-      dispatch(recieveNewExerciseResponse(response));
-    });
+    return axios.post(url, payload, config)
+      .then(() => {
+        dispatch(recieveNewExerciseResponse());
+      })
+      .catch(error => {
+        console.error('posting issue', error);
+      })
+      .finally(() => {
+        dispatch(recieveSuccessfulNewExerciseResponse());
+      });
   };
 };
 

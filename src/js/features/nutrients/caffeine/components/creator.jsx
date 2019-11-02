@@ -1,18 +1,31 @@
-import React, { Fragment, useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { Fragment, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { fetchIntakesIfNeeded } from '../state/actions';
-import * as _config from '../../../../../../assets/data/config.json';
+import PropTypes from 'prop-types';
+import { createNewCaffieneConsumption } from '../state/actions';
 import '../../../../../css/creator.css';
 
-const propTypes = { fetchIntakesIfNeeded: PropTypes.func };
+const propTypes = {
+  createNewCaffieneConsumption: PropTypes.func,
+  posting: PropTypes.bool,
+  successful: PropTypes.bool
+};
 const creator = props => {
   const submitButtonId = 'submitNutrientConsumption';
   const [amount, setAmount] = useState(0);
   const [amountType, setAmountType] = useState('');
   const [comment, setComment] = useState('');
   const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    if (props.posting) {
+      document.getElementById(submitButtonId).disabled = true;
+    } else {
+      document.getElementById(submitButtonId).disabled = false;
+      if (props.successful) {
+        resetFormValues();
+      }
+    }
+  }, [props.posting]);
 
   const resetFormValues = () => {
     setAmount(0);
@@ -23,9 +36,6 @@ const creator = props => {
 
   const handleSubmit = event => {
     event.preventDefault();
-    document.getElementById(submitButtonId).disabled = true;
-    const url = _config.apis.azure + 'CaffeineNutrientIntakes';
-    const header = { header: { 'Content-Type': 'application/json' } };
     const payload = {
       amount: Number(amount),
       amountType: amountType,
@@ -33,20 +43,7 @@ const creator = props => {
       intakeTime: new Date().toJSON(),
       userName: userName
     };
-
-    // TODO move to actions
-    axios.post(url, payload, header)
-      .then(() => {
-        resetFormValues();
-        props.fetchIntakesIfNeeded(url);
-      })
-      .catch(error => {
-        // TOOD inform user
-        console.error(error);
-      })
-      .finally(() => {
-        document.getElementById(submitButtonId).disabled = false;
-      });
+    props.createNewCaffieneConsumption(payload);
   };
 
   return (
@@ -93,5 +90,9 @@ const creator = props => {
     </Fragment>);
 };
 
+const mapStateToProps = state => ({
+  posting: !!state.exercises.posting,
+  successful: !!state.exercises.successfulPost
+});
 creator.propTypes = propTypes;
-export default connect(null, { fetchIntakesIfNeeded })(creator);
+export default connect(mapStateToProps, { createNewCaffieneConsumption })(creator);

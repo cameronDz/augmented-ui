@@ -4,18 +4,11 @@ import * as types from './types';
 const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case types.INVALIDATED_ROUTINES_SETS:
-      newState = { ...initialState, didInvalidate: true, isFetching: false };
-      break;
     case types.RECIEVE_ROUTINES_SETS:
-      newState = {
-        ...state,
-        didInvalidate: false,
-        isFetching: false
-      };
+      newState = { ...state, exercises: action.routine.exercises, name: action.routine.name };
       break;
     case types.REQUEST_ROUTINES_SETS:
-      newState = { ...state, didInvalidate: false, isFetching: true };
+      newState = { ...state };
       break;
     default:
       newState = state;
