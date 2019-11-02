@@ -1,25 +1,25 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import axios from 'axios';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import RoutineExercise from './routineExercise';
-import * as _config from '../../../../../assets/data/config.json';
+import { fetchRoutineSet } from '../state/actions';
 
-const fullRoutine = () => {
+const propTypes = {
+  fetchRoutineSet: PropTypes.func,
+  rountine: PropTypes.object
+};
+const fullRoutine = props => {
   const [exercises, setExercises] = useState([]);
   const [name, setName] = useState('');
 
   useEffect(() => {
-    const url = _config.apis.heroku + 'basicRoutine?routineId=1';
-    const header = { header: { 'Content-Type': 'application/json' } };
-    axios.get(url, header)
-      .then(payload => {
-        setExercises(payload.data.exercises);
-        setName(payload.data.name);
-      })
-      .catch(error => {
-        // TODO inform user
-        console.error(error);
-      });
-  }, []);
+    props.fetchRoutineSet(1);
+  }, [])
+
+  useEffect(() => {
+    setExercises(props.rountine.exercises);
+    setName(prop.rountine.name);
+  }, [props.rountine]);
 
   const exerciseComponent = exercises.map((item, key) => {
     return (<RoutineExercise key={key} {...item} />);
@@ -44,4 +44,6 @@ const fullRoutine = () => {
     </Fragment>);
 };
 
-export default fullRoutine;
+fullRoutine.propTypes = propTypes;
+const mapStateToProps = state => ({ rountine: state.rountine })
+export default connect(mapStateToProps, { fetchRoutineSet })(fullRoutine);
