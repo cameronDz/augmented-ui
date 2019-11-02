@@ -1,10 +1,11 @@
 import React, { Fragment, useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import axios from 'axios';
+import { requestExerciseList } from '../state/actions';
 import Dropdown from '../../../components/Dropdown';
-import * as _config from '../../../../../assets/data/config.json';
 
 const propTypes = {
+  requestExerciseList: PropTypes.func,
   title: PropTypes.string
 };
 const exerciseDropdown = props => {
@@ -13,32 +14,16 @@ const exerciseDropdown = props => {
   const [title, setTitle] = useState('');
 
   useEffect(() => {
-    const url = _config.apis.azure + 'exercises';
-    const propTitle = (props.title) ? props.title : 'Dropdown';
-    setTitle(propTitle);
-    // TODO move to redux state and own useEffect method
-    const header = { header: { 'Content-Type': 'application/json' } };
-    axios.get(url, header)
-      .then(payload => {
-        setExercises(processExercise(payload));
-      })
-      .catch(error => {
-        // TODO inform user
-        console.error(error);
-      });
+    props.requestExerciseList();
   }, []);
 
-  const processExercise = data => {
-    return (Array.isArray(data.data)) && data.data.map((item, index) => {
-      const exerciseId = (item.exerciseId) ? item.exerciseId : -1;
-      const name = (item.name) ? item.name : '';
-      return {
-        id: exerciseId,
-        title: name,
-        key: index
-      };
-    });
-  };
+  useEffect(() => {
+    setTitle(!!props.title ? props.title : 'Dropdown');
+  }, [props.title]);
+
+  useEffect(() => {
+    setExercises(props.exercises);
+  }, [props.exercises]);
 
   const resetThenSet = id => {
     setSelectedId(id);
@@ -56,4 +41,5 @@ const exerciseDropdown = props => {
 };
 
 exerciseDropdown.propTypes = propTypes;
-export default exerciseDropdown;
+const mapStateToProps = state => ({ exercises: state.exercises.list });
+export default connect(mapStateToProps, { requestExerciseList })(exerciseDropdown);
