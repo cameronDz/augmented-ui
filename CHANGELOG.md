@@ -5,6 +5,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.7.0] - 2019-11-02
+### Added
+- Webpack bundle analyzer config and script
+
+### Changed
+- Converted session creator to function component
+- Handling all form data for session creator in redux store
+- Moved all package to dev dependencies as none would be needed on a server
+
+### Fixed
+- Updated react-router-dom package to use latest react lifecylce methods
+
 ## [0.6.0] - 2019-11-02
 ### Added
 - Prop validation for new props coming into session creator class
