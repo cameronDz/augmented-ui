@@ -6,7 +6,7 @@ import { fetchRoutineSet } from '../state/actions';
 
 const propTypes = {
   fetchRoutineSet: PropTypes.func,
-  rountine: PropTypes.object
+  routine: PropTypes.object
 };
 const fullRoutine = props => {
   const [exercises, setExercises] = useState([]);
@@ -17,9 +17,9 @@ const fullRoutine = props => {
   }, []);
 
   useEffect(() => {
-    setExercises(props.rountine.exercises);
-    setName(prop.rountine.name);
-  }, [props.rountine]);
+    setExercises(props.routine.exercises);
+    setName(props.routine.name);
+  }, [props.routine]);
 
   const exerciseComponent = exercises.map((item, key) => {
     return (<RoutineExercise key={key} {...item} />);
@@ -45,5 +45,5 @@ const fullRoutine = props => {
 };
 
 fullRoutine.propTypes = propTypes;
-const mapStateToProps = state => ({ rountine: state.rountine });
+const mapStateToProps = state => ({ routine: state.routine });
 export default connect(mapStateToProps, { fetchRoutineSet })(fullRoutine);

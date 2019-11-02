@@ -1,9 +1,10 @@
 import * as _types from './types';
 import axios from 'axios';
+import * as _config from '../../../../../assets/data/config.json';
 
 const recievedRoutineSet = (payload = {}) => {
   const { data } = payload;
-  return { ...data, _types: types.RECIEVE_ROUTINES_SETS };
+  return { routine: data, type: _types.RECIEVE_ROUTINES_SETS };
 };
 
 const requestRoutineSet = () => {
