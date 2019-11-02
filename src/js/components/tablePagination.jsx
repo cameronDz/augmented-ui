@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropType from 'prop-types';
 import get from 'lodash.get';
 import PaginationButton from './paginationButton';
@@ -34,11 +34,11 @@ const tablePagination = props => {
 
   const displayPrevSelfNextButtons = (prevPage = 0, selfPage = 0, nextPage = 0) => {
     return (
-      <React.Fragment>
+      <Fragment>
         <PaginationButton pageLink={prevLink} pageNumber={prevPage} />
         <PaginationButton pageLink={selfLink} pageNumber={selfPage} />
         <PaginationButton pageLink={nextLink} pageNumber={nextPage} />
-      </React.Fragment>);
+      </Fragment>);
   };
 
   let pager;
@@ -47,10 +47,10 @@ const tablePagination = props => {
   } else if (totalPages === 1) {
     pager = (<PaginationButton pageLink={firstLink} pageNumber={1} />);
   } else if (totalPages === 2) {
-    pager = (<React.Fragment>
+    pager = (<Fragment>
       <PaginationButton pageLink={firstLink} pageNumber={1} />
       <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
-    </React.Fragment>);
+    </Fragment>);
   } else if (totalPages === 3) {
     if (currentPage === 2) {
       pager = displayPrevSelfNextButtons(1, 2, 3);
@@ -58,77 +58,77 @@ const tablePagination = props => {
     const linkTwo = (currentPage === 1)
       ? nextLink
       : prevLink;
-    pager = (<React.Fragment>
+    pager = (<Fragment>
       <PaginationButton pageLink={firstLink} pageNumber={1} />
       <PaginationButton pageLink={linkTwo} pageNumber={2} />
       <PaginationButton pageLink={lastLink} pageNumber={3} />
-    </React.Fragment>);
+    </Fragment>);
   } else if (totalPages >= 4 && currentPage === 1) {
-    pager = (<React.Fragment>
+    pager = (<Fragment>
       <PaginationButton pageLink={firstLink} pageNumber={1} />
       <PaginationButton pageLink={nextLink} pageNumber={2} />
       {renderPageEllipsis()}
       <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
-    </React.Fragment>);
+    </Fragment>);
   } else if (totalPages >= 4 && currentPage === totalPages) {
-    pager = (<React.Fragment>
+    pager = (<Fragment>
       <PaginationButton pageLink={firstLink} pageNumber={1} />
       {renderPageEllipsis()}
       <PaginationButton pageLink={prevLink} pageNumber={totalPages - 1} />
       <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
-    </React.Fragment>);
+    </Fragment>);
   } else if (totalPages === 4) {
     if (currentPage === 2) {
-      pager = (<React.Fragment>
+      pager = (<Fragment>
         {displayPrevSelfNextButtons(1, 2, 3)}
         <PaginationButton pageLink={lastLink} pageNumber={4} />
-      </React.Fragment>);
+      </Fragment>);
     } else {
-      pager = (<React.Fragment>
+      pager = (<Fragment>
         <PaginationButton pageLink={firstLink} pageNumber={1} />
         {displayPrevSelfNextButtons(2, 3, 4)}
-      </React.Fragment>);
+      </Fragment>);
     }
   } else if (totalPages >= 5 && currentPage === 2) {
-    pager = (<React.Fragment>
+    pager = (<Fragment>
       {displayPrevSelfNextButtons(1, 2, 3)}
       {renderPageEllipsis()}
       <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
-    </React.Fragment>);
+    </Fragment>);
   } else if (totalPages >= 5 && currentPage === totalPages - 1) {
-    pager = (<React.Fragment>
+    pager = (<Fragment>
       <PaginationButton pageLink={firstLink} pageNumber={1} />
       {renderPageEllipsis()}
       {displayPrevSelfNextButtons(totalPages - 2, totalPages - 1, totalPages)}
-    </React.Fragment>);
+    </Fragment>);
   } else if (totalPages === 5) {
-    pager = (<React.Fragment>
+    pager = (<Fragment>
       <PaginationButton pageLink={firstLink} pageNumber={1} />
       {displayPrevSelfNextButtons(2, 3, 4)}
       <PaginationButton pageLink={lastLink} pageNumber={5} />
-    </React.Fragment>);
+    </Fragment>);
   } else if (currentPage === 3) {
-    pager = (<React.Fragment>
+    pager = (<Fragment>
       <PaginationButton pageLink={firstLink} pageNumber={1} />
       {displayPrevSelfNextButtons(2, 3, 4)}
       {renderPageEllipsis()}
       <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
-    </React.Fragment>);
+    </Fragment>);
   } else if (currentPage === totalPages - 2) {
-    pager = (<React.Fragment>
+    pager = (<Fragment>
       <PaginationButton pageLink={firstLink} pageNumber={1} />
       {renderPageEllipsis()}
       {displayPrevSelfNextButtons(totalPages - 3, totalPages - 2, totalPages - 1)}
       <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
-    </React.Fragment>);
+    </Fragment>);
   } else {
-    pager = (<React.Fragment>
+    pager = (<Fragment>
       <PaginationButton pageLink={firstLink} pageNumber={1} />
       {renderPageEllipsis()}
       {displayPrevSelfNextButtons(currentPage - 1, currentPage, currentPage + 1)}
       {renderPageEllipsis()}
       <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
-    </React.Fragment>);
+    </Fragment>);
   }
   return (<div className="table-pagination" aria-label="pagination">{pager}</div>);
 };
