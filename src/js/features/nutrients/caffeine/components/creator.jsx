@@ -5,7 +5,7 @@ import { createNewCaffieneConsumption } from '../state/actions';
 import '../../../../../css/creator.css';
 
 const propTypes = {
-  fetchIntakesIfNeeded: PropTypes.func,
+  createNewCaffieneConsumption: PropTypes.func,
   posting: PropTypes.bool,
   successful: PropTypes.bool
 };
