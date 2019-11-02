@@ -9,7 +9,6 @@ const reducer = (state = initialState, action) => {
       break;
     case _types.RECIEVE_EXERCISE_LIST:
       newState = { ...state, list: action.data };
-      console.log('newState', newState);
       break;
     case _types.CREATE_NEW_EXERCISE_POST:
       newState = { ...state };

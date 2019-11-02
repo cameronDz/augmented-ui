@@ -23,7 +23,6 @@ const requestExerciseList = () => {
     const config = { header: { 'Content-Type': 'application/json' } };
     const url = _config.apis.azure + 'exercises';
     return axios.get(url, config).then(payload => {
-      console.log('payload', payload);
       dispatch(recieveExerciseList(payload));
     });
   };
