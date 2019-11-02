@@ -1,16 +1,16 @@
 import initialState from './initialState';
-import * as types from './types';
+import * as _types from './types';
 
 const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case types.INVALIDATED_CARDIO_MACHINE_SESSIONS:
+    case _types.INVALIDATED_CARDIO_MACHINE_SESSIONS:
       newState = { ...initialState, didInvalidate: true, isFetching: false };
       break;
-    case types.REQUEST_CARDIO_MACHINE_SESSIONS:
+    case _types.REQUEST_CARDIO_MACHINE_SESSIONS:
       newState = { ...state, didInvalidate: false, isFetching: true };
       break;
-    case types.RECIEVE_CARDIO_MACHINE_SESSIONS:
+    case _types.RECIEVE_CARDIO_MACHINE_SESSIONS:
       newState = {
         ...state,
         currentPage: action.metaPayload._currentPage,
@@ -23,8 +23,17 @@ const reducer = (state = initialState, action) => {
         totalRecords: action.metaPayload._totalRecords
       };
       break;
+    case _types.RECIEVE_CARDIO_MACHINE_SESSIONS:
+      newState = { ...state };
+      break
+    case _types.RECIEVE_SUCCESSFUL_CARDIO_MACHINE_SESSION_POST_RESPONSE:
+      newState = { ...state };
+      break
+    case _types.SEND_CAFFEINE_POST_REQUEST:
+      newState = { ...state };
+      break
     default:
-      newState = state;
+      newState = { ...state };
   }
   return newState;
 };

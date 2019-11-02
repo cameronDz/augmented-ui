@@ -5,7 +5,6 @@ import Page from '../../components/page';
 import SessionCreator from './components/creator';
 import SessionsTableDisplay from './components/table';
 import { fetchSessionsIfNeeded } from './state/actions';
-import * as _config from '../../../../assets/data/config.json';
 
 const propTypes = { fetchSessionsIfNeeded: PropTypes.func.isRequired };
 const sessions = props => {
@@ -18,8 +17,7 @@ const sessions = props => {
   ];
 
   useEffect(() => {
-    const apiUrl = _config.apis.azure + 'CardioMachineExercises?pageNumber=1&pageSize=10';
-    props.fetchSessionsIfNeeded(apiUrl);
+    props.fetchSessionsIfNeeded();
   }, []);
 
   return <Page title="Sessions" tabNames={tabNames} tabPanels={tabPanels} />;
