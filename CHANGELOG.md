@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.5.0] - 2019-11-01
+### Changed
+- Moved exercise list request into redux state
+
+### Removed
+- Uninstalled canvas with current issue causing install to hang
+
 ## [0.4.0] - 2019-10-27
 ### Added
 - Wireframes for moving all axios calls into state/reducers
