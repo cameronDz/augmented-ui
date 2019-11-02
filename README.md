@@ -2,7 +2,7 @@
 Application used for tracking various fitness and nutritional activities. Currently live at [http://www.augmented.fit](http://www.augmented.fit). Site is forward masking to the deployed S3 bucket, [here](http://augmented-frontend.s3-website-us-east-1.amazonaws.com). The AWS S3 bucket is a static page. This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app), and later used the command ```npm run eject``` to customize project into current state.
 
 ## npm - Commands for Application ##
-The following three commands are used for building, testing, and deploying the application.
+The following commands are used for building, testing, and deploying the application.
 
 ```javascript
 npm run build-dev // build unminified bundle
