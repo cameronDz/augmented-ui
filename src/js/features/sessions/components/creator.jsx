@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import Switch from '@material-ui/core/Switch';
 // TODO look into material ui picker
 import DatePicker from 'react-datepicker';
 import TimeField from 'react-simple-timefield';
-import { invalidateCardioMachineSession } from '../state/actions';
+import { postCardioMachineSession } from '../state/creator/actions';
 import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/creator.css';
 
@@ -29,6 +28,25 @@ class Creator extends Component {
       userName: ''
     };
   };
+
+  componentWillReceiveProps(nextProps){
+    if (nextProps.post.posting !== this.props.post.posting) {
+      const disabledButton = !!nextProps.post.posting;
+      document.getElementById('submitCardioBtn').disabled = disabledButton;
+      if (nextProps.post.successfulPost === true) {
+        this.setState({
+          comment: '',
+          distanceMiles: 0.0,
+          machineType: '',
+          seconds: 0,
+          startDate: new Date(),
+          timing: '00:00:00',
+          useEndTimeStartDate: true,
+          userName: ''
+        });
+      }
+    }
+  }
 
   handleDateChange (date) {
     this.setState({
@@ -57,13 +75,9 @@ class Creator extends Component {
     if (!this.state.useEndTimeStartDate) {
       const startTimeMilliseconds = new Date().getTime() - (this.state.seconds * 1000);
       const newStartTime = new Date(startTimeMilliseconds);
-      this.setState({
-        startDate: newStartTime
-      });
+      this.setState({ startDate: newStartTime });
     }
-    this.setState({
-      useEndTimeStartDate: !this.state.useEndTimeStartDate
-    });
+    this.setState({ useEndTimeStartDate: !this.state.useEndTimeStartDate });
   }
 
   calulcateTimingSeconds (time) {
@@ -79,10 +93,7 @@ class Creator extends Component {
 
   handleSubmit (event) {
     const self = this;
-    document.getElementById('submitCardioBtn').disabled = true;
     event.preventDefault();
-    const url = _config.apis.azure + 'CardioMachineExercises';
-
     const payload = {
       comment: self.state.comment,
       distanceMiles: self.state.distanceMiles,
@@ -91,30 +102,7 @@ class Creator extends Component {
       startTime: self.state.startDate.toGMTString(),
       userName: self.state.userName
     };
-
-    self.setState({
-      comment: '',
-      distanceMiles: 0.0,
-      machineType: '',
-      seconds: 0,
-      startDate: new Date(),
-      timing: '00:00:00',
-      userName: ''
-    });
-
-    // TODO move to middleware
-    const header = { header: { 'Content-Type': 'application/json' } };
-    axios.post(url, payload, header)
-      .then(() => {
-        self.props.invalidateCardioMachineSession();
-      })
-      .catch(error => {
-        // TODO create modal alert
-        console.error(error);
-      })
-      .finally(() => {
-        document.getElementById('submitCardioBtn').disabled = false;
-      });
+    self.props.postCardioMachineSession(payload);
   };
 
   render () {
@@ -183,17 +171,15 @@ class Creator extends Component {
             type="textarea"
             value={this.state.comment} />
         </div>
-        <div className="field">
-          <div className="control">
-            <input className="input"
-              id="submitCardioBtn"
-              type="submit"
-              value="Submit" />
-          </div>
+        <div className="field control">
+          <input className="input" id="submitCardioBtn" type="submit" value="Submit" />
         </div>
       </form>);
   };
 }
 
-const mapStateToProps = state => ({ links: state.cardioMachineSessions.links });
-export default connect(mapStateToProps, { invalidateCardioMachineSession })(Creator);
+const mapStateToProps = state => ({
+  links: state.cardioMachineSessions.links,
+  post: state.cardioMachineSessionPost
+});
+export default connect(mapStateToProps, { postCardioMachineSession })(Creator);
