@@ -2,12 +2,11 @@ import * as types from './types';
 import axios from 'axios';
 import { shouldFetchState } from '../../../state/global';
 
-// TODO fix call
 const fetchSessions = sessionApiUrl => {
   return dispatch => {
     dispatch(requestCardioMachineSessions(sessionApiUrl));
-    const header = { header: { 'Content-Type': 'application/json' } };
-    return axios.get(sessionApiUrl, header)
+    const config = { header: { 'Content-Type': 'application/json' } };
+    return axios.get(sessionApiUrl, config)
       .then(payload => dispatch(recieveCardioMachineSessions(sessionApiUrl, payload)));
   };
 };
