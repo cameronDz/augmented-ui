@@ -23,15 +23,15 @@ const reducer = (state = initialState, action) => {
         totalRecords: action.metaPayload._totalRecords
       };
       break;
-    case _types.RECIEVE_CARDIO_MACHINE_SESSIONS:
-      newState = { ...state };
+    case _types.RECIEVE_CARDIO_MACHINE_SESSION_POST_RESPONSE:
+      newState = { ...state, posting: false };
       break
     case _types.RECIEVE_SUCCESSFUL_CARDIO_MACHINE_SESSION_POST_RESPONSE:
-      newState = { ...state };
+      newState = { ...state, successfulPost: true };
       break
-    case _types.SEND_CAFFEINE_POST_REQUEST:
-      newState = { ...state };
-      break
+    case _types.SEND_CARDIO_MACHINE_SESSION_POST_REQUEST:
+      newState = { ...state, posting: true, successfulPost: false };
+      break;
     default:
       newState = { ...state };
   }

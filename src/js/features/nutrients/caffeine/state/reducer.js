@@ -23,6 +23,15 @@ const reducer = (state = initialState, action) => {
         totalRecords: action.metaPayload._totalRecords
       };
       break;
+    case _types.SEND_CAFFEINE_POST_REQUEST:
+      newState = { ...state, posting: true, successfulPost: false };
+      break;
+    case _types.RECIEVE_CAFFEINE_RESPONSE:
+      newState = { ...state, posting: false };
+      break;
+    case _types.RECIEVE_SUCCESSFUL_CAFFEINE_RESPONSE:
+      newState = { ...state, successfulPost: true };
+        break;
     default:
       newState = state;
   }
