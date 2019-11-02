@@ -29,7 +29,7 @@ class Creator extends Component {
     };
   };
 
-  componentWillReceiveProps(nextProps){
+  componentWillReceiveProps (nextProps) {
     if (nextProps.post.posting !== this.props.post.posting) {
       const disabledButton = !!nextProps.post.posting;
       document.getElementById('submitCardioBtn').disabled = disabledButton;

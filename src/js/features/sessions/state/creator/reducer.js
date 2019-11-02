@@ -6,13 +6,13 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case _types.UPDATE_CARDIO_MACHINE_SESSION_POST_REQUEST:
       newState = { ...state, posting: false, request: { ...state.request, ...update } };
-      break
+      break;
     case _types.RECIEVE_CARDIO_MACHINE_SESSION_POST_RESPONSE:
       newState = { ...state, posting: false };
-      break
+      break;
     case _types.RECIEVE_SUCCESSFUL_CARDIO_MACHINE_SESSION_POST_RESPONSE:
       newState = { ...initialState, posting: false, successfulPost: true };
-      break
+      break;
     case _types.SEND_CARDIO_MACHINE_SESSION_POST_REQUEST:
       newState = { ...state, posting: true, successfulPost: false };
       break;

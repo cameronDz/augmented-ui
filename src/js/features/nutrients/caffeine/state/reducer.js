@@ -31,7 +31,7 @@ const reducer = (state = initialState, action) => {
       break;
     case _types.RECIEVE_SUCCESSFUL_CAFFEINE_RESPONSE:
       newState = { ...state, successfulPost: true };
-        break;
+      break;
     default:
       newState = state;
   }
