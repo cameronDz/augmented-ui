@@ -41,7 +41,7 @@ const createNewExercisePost = payload => {
     dispatch({ type: _types.CREATE_NEW_EXERCISE_POST });
     const config = { header: { 'Content-Type': 'application/json' } };
     const url = _config.apis.azure + 'exercises';
-    return axios.post(url, config, payload)
+    return axios.post(url, payload, config)
       .then(() => {
         dispatch(recieveNewExerciseResponse());
       })
