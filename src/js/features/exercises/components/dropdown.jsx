@@ -5,6 +5,7 @@ import { requestExerciseList } from '../state/actions';
 import Dropdown from '../../../components/Dropdown';
 
 const propTypes = {
+  exercises: PropTypes.array,
   requestExerciseList: PropTypes.func,
   title: PropTypes.string
 };
