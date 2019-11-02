@@ -5,7 +5,7 @@ const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case _types.UPDATE_CARDIO_MACHINE_SESSION_POST_REQUEST:
-      newState = { ...state, posting: false, request: { ...state.request, ...action.update } };
+      newState = { ...state, posting: false, form: { ...state.form, ...action.update } };
       break;
     case _types.RECIEVE_CARDIO_MACHINE_SESSION_POST_RESPONSE:
       newState = { ...state, posting: false };

@@ -1,5 +1,5 @@
 export default {
-  request: {
+  form: {
     comment: '',
     distanceMiles: 0.0,
     machineType: '',
