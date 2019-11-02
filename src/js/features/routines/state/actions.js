@@ -1,20 +1,23 @@
-import * as types from './types';
-// import axios from 'axios';
+import * as _types from './types';
+import axios from 'axios';
 
-export const fetchRoutineSets = (requestUrl = '') => {
-  return {
-    requestUrl,
-    type: types.REQUEST_ROUTINES_SETS
-  };
+const recievedRoutineSet = (payload = {}) => {
+  const { data } = payload;
+  return { ...data, _types: types.RECIEVE_ROUTINES_SETS };
 };
 
-export const invalidateRoutineSets = () => {
-  return { type: types.INVALIDATED_CARDIO_MACHINE_SESSIONS };
+const requestRoutineSet = () => {
+  return { type: _types.REQUEST_ROUTINES_SETS };
 };
 
-export const recieveCardioMachineSessions = (payload = {}) => {
-  return {
-    ...payload,
-    type: types.RECIEVE_CARDIO_MACHINE_SESSIONS
+export const fetchRoutineSet = (routineId = 1) => {
+  const url = _config.apis.heroku + 'basicRoutine?routineId=' + routineId;
+  const header = { header: { 'Content-Type': 'application/json' } };
+  return dispatch => {
+    dispatch(requestRoutineSet());
+    return axios.get(url, header)
+      .then(payload => {
+        return dispatch(recievedRoutineSet(payload));
+      });
   };
 };
