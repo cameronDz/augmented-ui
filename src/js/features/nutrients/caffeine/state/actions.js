@@ -36,12 +36,11 @@ const shouldFetchIntakes = (state = {}) => {
   return shouldFetchState(state.caffeineIntakes);
 };
 
-// TODO wtf is this logic???
 const fetchIntakes = (url = apiUrl) => {
   return dispatch => {
     dispatch(requestCaffeineIntakes());
-    const header = { header: { 'Content-Type': 'application/json' } };
-    return axios.get(url, header)
+    const config = { header: { 'Content-Type': 'application/json' } };
+    return axios.get(url, config)
       .then(payload => dispatch(recieveCaffeineIntakes(payload)));
   };
 };
