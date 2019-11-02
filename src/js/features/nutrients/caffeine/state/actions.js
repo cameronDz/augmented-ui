@@ -46,7 +46,7 @@ const fetchIntakes = (url = apiUrl) => {
 };
 
 // posting actions
-const recieveSuccessfulCaffeinePostResponse = () => {
+const recieveCaffeinePostResponse = () => {
   return { type: _types.RECIEVE_CAFFEINE_RESPONSE };
 };
 
@@ -57,7 +57,7 @@ const recieveSuccessfulCaffeinePostResponse = () => {
 const sendCaffienePostRequest = () => {
   return { type: _types.SEND_CAFFEINE_POST_REQUEST };
 };
-sendCaffienePostRequest
+
 export const createNewCaffieneConsumption = payload => {
   const url = _config.apis.azure + 'CaffeineNutrientIntakes';
   const config = { header: { 'Content-Type': 'application/json' } };
@@ -70,10 +70,10 @@ export const createNewCaffieneConsumption = payload => {
         dispatch(fetchIntakesIfNeeded(url));
       })
       .catch(error => {
-        console.error('could not complete post request', error)
+        console.error('could not complete post request', error);
       })
       .finally(() => {
-        dispatch(recieveSuccessfulCaffeinePostResponse());
+        dispatch(recieveCaffeinePostResponse());
       });
   };
 };
