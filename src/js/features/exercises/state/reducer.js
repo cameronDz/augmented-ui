@@ -4,29 +4,21 @@ import * as _types from './types';
 const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case types.INVALIDATED_ROUTINES_SETS:
-        newState = { ...state };
+    case _types.REQUESTING_EXERCISE_LIST:
+      newState = { ...state };
       break;
-    case types.LOADING_EXERCISE_LIST:
-        newState = { ...state };
+    case _types.RECIEVE_EXERCISE_LIST:
+      newState = { ...state, list: action.data };
+      console.log('newState', newState);
       break;
-    case types.RECIEVE_EXERCISE_LIST:
-        newState = { ...state };
+    case _types.CREATE_NEW_EXERCISE_POST:
+      newState = { ...state };
       break;
-    case types.REQUEST_EXERCISE_LIST:
-        newState = { ...state };
-        break;
-    case types.CREATE_NEW_EXERCISE_POST:
-        newState = { ...state };
-        break;
-    case types.INVALIDATED_ROUTINES_SETS:
-        newState = { ...state };
-        break;
-    case types.INVALIDATED_ROUTINES_SETS:
-        newState = { ...state };
-        break;
+    case _types.RECIEVE_NEW_EXERCISE_RESPONSE:
+      newState = { ...state };
+      break;
     default:
-        newState = { ...state };
+      newState = { ...state };
   }
   return newState;
 };
