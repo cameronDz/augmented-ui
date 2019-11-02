@@ -11,10 +11,13 @@ const reducer = (state = initialState, action) => {
       newState = { ...state, list: action.data };
       break;
     case _types.CREATE_NEW_EXERCISE_POST:
-      newState = { ...state };
+      newState = { ...state, posting: true, successfulPost: false };
       break;
     case _types.RECIEVE_NEW_EXERCISE_RESPONSE:
-      newState = { ...state };
+      newState = { ...state, posting: false };
+      break;
+    case _types.RECIEVE_SUCCESSFUL_NEW_EXERCISE_RESPONSE:
+      newState = { ...state, successfulPost: true };
       break;
     default:
       newState = { ...state };
