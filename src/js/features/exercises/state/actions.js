@@ -14,7 +14,7 @@ const recieveExerciseList = data => {
 };
 
 const loadExerciseList = () => {
-  return { type:  _types.REQUESTING_EXERCISE_LIST };
+  return { type: _types.REQUESTING_EXERCISE_LIST };
 };
 
 const requestExerciseList = () => {
@@ -35,12 +35,14 @@ const recieveNewExerciseResponse = payload => {
 };
 
 const createNewExercisePost = payload => {
-  dispatch({ type: _types.CREATE_NEW_EXERCISE_POST });
-  const config = { header: { 'Content-Type': 'application/json' } };
-  const url = _config.apis.azure + 'exercises';
-  return axios.post(url, config, payload).then(response => {
-    dispatch(recieveNewExerciseResponse(response));
-  });
+  return dispatch => {
+    dispatch({ type: _types.CREATE_NEW_EXERCISE_POST });
+    const config = { header: { 'Content-Type': 'application/json' } };
+    const url = _config.apis.azure + 'exercises';
+    return axios.post(url, config, payload).then(response => {
+      dispatch(recieveNewExerciseResponse(response));
+    });
+  };
 };
 
 export { createNewExercisePost, requestExerciseList };

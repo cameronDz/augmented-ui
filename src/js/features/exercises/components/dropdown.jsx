@@ -19,7 +19,7 @@ const exerciseDropdown = props => {
   }, []);
 
   useEffect(() => {
-    setTitle(!!props.title ? props.title : 'Dropdown');
+    setTitle(props.title ? props.title : 'Dropdown');
   }, [props.title]);
 
   useEffect(() => {
