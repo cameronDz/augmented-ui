@@ -21,9 +21,10 @@ const propTypes = {
       timing: PropTypes.string,
       userName: PropTypes.string
     }),
-    posting: PropTypes.bool,
-    successfulPost: PropTypes.bool
-  })
+    posting: PropTypes.bool
+  }),
+  postCardioMachineSession: PropTypes.func,
+  updateCardioMachineSessionPostRequest: PropTypes.func
 };
 const creator = props => {
   const [isCurrentTimeStartTime, setIsCurrentTimeStartTime] = useState(true);
@@ -43,7 +44,9 @@ const creator = props => {
     const durationSeconds = calulcateTimingSeconds(time);
     const update = { seconds: durationSeconds, timing: time };
     if (isCurrentTimeStartTime) {
-      update = { ...update, startDate: newStartTime };
+      const startTimeMilliseconds = new Date().getTime() - (durationSeconds * 1000);
+      const newStartTime = new Date(startTimeMilliseconds);
+      update.startDate = newStartTime;
     }
     props.updateCardioMachineSessionPostRequest(update);
   };
@@ -138,9 +141,6 @@ const creator = props => {
 };
 
 const mapDispatchToProps = { postCardioMachineSession, updateCardioMachineSessionPostRequest };
-const mapStateToProps = state => ({
-  links: state.cardioMachineSessions.links,
-  post: state.cardioMachineSessionPost
-});
+const mapStateToProps = state => ({ post: state.cardioMachineSessionPost });
 creator.propTypes = propTypes;
 export default connect(mapStateToProps, mapDispatchToProps)(creator);
