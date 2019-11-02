@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { invalidateCardioMachineSession } from '../actions';
 import * as _types from '../types';
 import * as _config from '../../../../../../assets/data/config.json';
 

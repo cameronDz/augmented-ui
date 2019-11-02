@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Switch from '@material-ui/core/Switch';
 // TODO look into material ui picker
 import DatePicker from 'react-datepicker';
 import TimeField from 'react-simple-timefield';
 import { postCardioMachineSession } from '../state/creator/actions';
-import * as _config from '../../../../../assets/data/config.json';
 import '../../../../css/creator.css';
 
 // TODO convert hook component
+const propTypes = {
+  post: PropTypes.shape({
+    posting: PropTypes.bool,
+    successfulPost: PropTypes.bool
+  })
+};
 class Creator extends Component {
   constructor (props) {
     super(props);
@@ -29,7 +35,7 @@ class Creator extends Component {
     };
   };
 
-  componentWillReceiveProps (nextProps) {
+  UNSAFE_componentWillReceiveProps (nextProps) {
     if (nextProps.post.posting !== this.props.post.posting) {
       const disabledButton = !!nextProps.post.posting;
       document.getElementById('submitCardioBtn').disabled = disabledButton;
@@ -182,4 +188,5 @@ const mapStateToProps = state => ({
   links: state.cardioMachineSessions.links,
   post: state.cardioMachineSessionPost
 });
+Creator.propTypes = propTypes;
 export default connect(mapStateToProps, { postCardioMachineSession })(Creator);
