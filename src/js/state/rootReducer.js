@@ -8,5 +8,5 @@ export default combineReducers({
   caffeineIntakes: caffeineIntakeReducer,
   cardioMachineSessions: cardioMachineSessionsReducer,
   exercises: exerciseListReducer,
-  routine: rountineReducer,
+  routine: rountineReducer
 });

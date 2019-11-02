@@ -14,7 +14,7 @@ const fullRoutine = props => {
 
   useEffect(() => {
     props.fetchRoutineSet(1);
-  }, [])
+  }, []);
 
   useEffect(() => {
     setExercises(props.rountine.exercises);
@@ -45,5 +45,5 @@ const fullRoutine = props => {
 };
 
 fullRoutine.propTypes = propTypes;
-const mapStateToProps = state => ({ rountine: state.rountine })
+const mapStateToProps = state => ({ rountine: state.rountine });
 export default connect(mapStateToProps, { fetchRoutineSet })(fullRoutine);

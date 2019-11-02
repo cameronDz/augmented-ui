@@ -5,7 +5,7 @@ const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case types.RECIEVE_ROUTINES_SETS:
-      newState = { ...state, exercises: action.exercises, name: action.name  };
+      newState = { ...state, exercises: action.exercises, name: action.name };
       break;
     case types.REQUEST_ROUTINES_SETS:
       newState = { ...state };
