@@ -43,5 +43,3 @@ export const fetchSessionsIfNeeded = (url = defaultFetchUrl) => {
     }
   };
 };
-
-// post session actions
