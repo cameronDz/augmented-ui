@@ -1,12 +1,17 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import RoutineExercise from './routineExercise';
 import { fetchRoutineSet } from '../state/actions';
 
 const propTypes = {
   fetchRoutineSet: PropTypes.func,
-  routine: PropTypes.object
+  routine: PropTypes.shape({
+    exercises: PropTypes.array,
+    isFetching: PropTypes.bool,
+    name: PropTypes.string
+  })
 };
 const fullRoutine = props => {
   const [exercises, setExercises] = useState([]);
@@ -25,8 +30,9 @@ const fullRoutine = props => {
     return (<RoutineExercise key={key} {...item} />);
   });
 
-  return (
-    <Fragment>
+  return (props.routine.isFetching)
+    ? <div className='circular-loader'><CircularProgress /></div>
+    : (<Fragment>
       <div><p><strong>Routine</strong></p></div>
       <p>{name}</p>
       <table>

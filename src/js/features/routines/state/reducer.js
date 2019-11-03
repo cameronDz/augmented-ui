@@ -5,13 +5,13 @@ const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case types.RECIEVE_ROUTINES_SETS:
-      newState = { ...state, exercises: action.routine.exercises, name: action.routine.name };
+      newState = { ...state, exercises: action.routine.exercises, isFetching: false, name: action.routine.name };
       break;
     case types.REQUEST_ROUTINES_SETS:
-      newState = { ...state };
+      newState = { ...state, isFetching: true };
       break;
     default:
-      newState = state;
+      newState = { ...state };
   }
   return newState;
 };
