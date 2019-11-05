@@ -3,7 +3,7 @@ Application used for tracking various fitness and nutritional activities. Curren
 
 ## TODO list ##
 - [ ] Remove Bulma component and bulma package
-- [ ] Find smaller date picker (MUI picker)
+- [x] Find smaller date picker (MUI picker)
 - [ ] Replace time picker for one that uses modern React lifecyle methods
 - [ ] Convert base dropdown and nav bar from class to functional components
 - [ ] Create #/ routing system
