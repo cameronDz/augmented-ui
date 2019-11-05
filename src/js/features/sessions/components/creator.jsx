@@ -3,8 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import get from 'lodash.get';
 import Switch from '@material-ui/core/Switch';
-// TODO look into material ui picker
-import DatePicker from 'react-datepicker';
+import { DateTimePicker } from '@material-ui/pickers';
 import TimeField from 'react-simple-timefield';
 import { postCardioMachineSession, updateCardioMachineSessionPostForm } from '../state/creator/actions';
 import { calulcateTimingSeconds } from '../lib/utility';
@@ -83,13 +82,12 @@ const creator = props => {
 
       <div className="field is-horizontal">
         <label className="label" htmlFor="startDate">Date &nbsp;</label>
-        <DatePicker dateFormat="MMMM d, yyyy h:mm aa"
+        <DateTimePicker
+          ampm={false}
+          autoOk
           onChange={handleDateChange}
-          selected={getFormData('startDate')}
-          showTimeSelect
-          timeCaption="time"
-          timeFormat="HH:mm"
-          timeIntervals={5} />
+          value={getFormData('startDate')}
+        />
       </div>
 
       <div className="field is-horizontal">
