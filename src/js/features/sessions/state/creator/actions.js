@@ -29,8 +29,14 @@ export const postCardioMachineSession = formData => {
   return dispatch => {
     const config = { header: { 'Content-Type': 'application/json' } };
     const url = _config.apis.azure + 'CardioMachineExercises';
-    const { timing, ...validFormData } = formData;
-    const payload = { ...validFormData, startDate: new Date(validFormData.startDate).toGMTString() };
+    const payload = {
+      comment: formData.comment,
+      distanceMiles: formData.distanceMiles,
+      durationSeconds: formData.seconds,
+      machineType: formData.machineType,
+      startTime: formData.startDate.toGMTString(),
+      userName: formData.userName
+    };
     dispatch(sendCardioMachineSessionPostRequest());
     axios.post(url, payload, config)
       .then(() => {
