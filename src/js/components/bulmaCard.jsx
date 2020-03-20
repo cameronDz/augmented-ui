@@ -1,6 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import '../../css/card.css';
 
+const propTypes = {
+  child: PropTypes.any,
+  footer: PropTypes.any,
+  title: PropTypes.string
+};
 const card = ({ child, footer, title }) => {
   const renderHeader = () => {
     return (
@@ -28,4 +34,5 @@ const card = ({ child, footer, title }) => {
     </div>);
 };
 
+card.propTypes = propTypes;
 export default card;
