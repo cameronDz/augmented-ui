@@ -10,6 +10,7 @@ Application used for tracking various fitness and nutritional activities. Curren
 - [ ] Switch from bulma to material ui for styling
 - [ ] Convert css to global jss
 - [ ] Remove all css imports from html index page
+- [ ] Set footer to be sticky
 
 ## npm - Commands for Application ##
 The following commands are used for building, testing, and deploying the application.
