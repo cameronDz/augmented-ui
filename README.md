@@ -24,13 +24,15 @@ npm run start // build unminified bundle and server through webpack server
 npm run test // run unit tests
 ```
 
+### General Notes ###
+Augmented logo is generated through all CAPS "dosis-bold" font.
+
 ## Folder Structure ##
 ```
 augmented-frontend/
-  assets/
-    data/
-    images/
   src/
+    assets/
+      images/
     css/
     js/
       components/
