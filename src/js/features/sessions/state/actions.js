@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as types from './types';
 import { shouldFetchState } from '../../../state/global';
-import * as _config from '../../../../../assets/data/config.json';
+import * as _config from '../../../../assets/config.json';
 const defaultFetchUrl = _config.apis.azure + 'CardioMachineExercises?pageNumber=1&pageSize=10';
 
 // get session actions

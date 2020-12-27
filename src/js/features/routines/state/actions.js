@@ -1,6 +1,6 @@
 import * as _types from './types';
 import axios from 'axios';
-import * as _config from '../../../../../assets/data/config.json';
+import * as _config from '../../../../assets/config.json';
 
 const recievedRoutineSet = (payload = {}) => {
   const { data } = payload;

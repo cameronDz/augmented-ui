@@ -5,8 +5,18 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Webpack Copy module for moving images and favicon
+- Generated Augmented logo and favicon
+
+### Changed
+- Logo from Bulma's logo to custom Augmented Logo
+- Moved assets directory into src to match conventions
+
 ### Fixed
 - Vulnerable dependency package versions: handlebars, http-proxy, node-forge, serialize-javascript, yargs-parser
+- Outdated browserslist issue
+- Broken deep dependency for compat-data
 
 ## [0.9.0] - 2020-03-19
 ### Changed

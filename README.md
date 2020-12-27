@@ -10,6 +10,7 @@ Application used for tracking various fitness and nutritional activities. Curren
 - [ ] Switch from bulma to material ui for styling
 - [ ] Convert css to global jss
 - [ ] Remove all css imports from html index page
+- [ ] Set footer to be sticky
 
 ## npm - Commands for Application ##
 The following commands are used for building, testing, and deploying the application.
@@ -24,13 +25,15 @@ npm run start // build unminified bundle and server through webpack server
 npm run test // run unit tests
 ```
 
+### General Notes ###
+Augmented logo is generated through all CAPS "dosis-bold" font.
+
 ## Folder Structure ##
 ```
 augmented-frontend/
-  assets/
-    data/
-    images/
   src/
+    assets/
+      images/
     css/
     js/
       components/

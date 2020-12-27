@@ -1,5 +1,5 @@
 import axios from 'axios';
-import * as _config from '../../../../../assets/data/config.json';
+import * as _config from '../../../../assets/config.json';
 import * as _types from './types';
 
 const recieveExerciseList = data => {
