@@ -44,7 +44,7 @@ class Navbar extends Component {
       <nav className="navbar" aria-label="main navigation">
         <div className="navbar-brand">
           <div className="navbar-item">
-            <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" alt="bulma-logo" />
+            <img alt="augmented-logo" height="28px" src="images/aug-logo.png"/>
           </div>
           <div role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="basicNavbar" onClick={this.handleBurgerClick}>
             <span aria-hidden="true"></span>
