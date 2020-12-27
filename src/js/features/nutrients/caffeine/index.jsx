@@ -2,7 +2,7 @@ import React from 'react';
 import IntakeCreator from './components/creator';
 import IntakeTable from './components/table';
 import Card from '../../../components/bulmaCard';
-import * as _config from '../../../../../assets/data/config.json';
+import * as _config from '../../../../assets/config.json';
 
 const caffeine = () => {
   const renderIntakeCreatorCard = () => {

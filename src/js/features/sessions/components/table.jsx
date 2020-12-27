@@ -6,7 +6,7 @@ import ModalButton from './modalButton';
 import TablePagination from '../../../components/tablePagination';
 import { fetchSessionsIfNeeded } from '../state/actions';
 import { splitTextKeyToArray } from '../../../lib/splits';
-import * as _config from '../../../../../assets/data/config.json';
+import * as _config from '../../../../assets/config.json';
 import '../../../../css/table.css';
 
 const apiUrl = _config.apis.azure + 'CardioMachineExercises?pageNumber=1&pageSize=10';
