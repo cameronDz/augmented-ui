@@ -1,5 +1,5 @@
 export default {
-  exercises: [],
-  isFetching: false,
-  name: ''
+  isFetchingRountines: false,
+  routineError: null,
+  routineList: null
 };

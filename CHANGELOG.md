@@ -6,10 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- List of Routines to from new storage API
 - Webpack Copy module for moving images and favicon
 - Generated Augmented logo and favicon
 
 ### Changed
+- Decomissioned Heroku App routines API for new Heroku S3 Storage api for fetching Routine
 - Logo from Bulma's logo to custom Augmented Logo
 - Moved assets directory into src to match conventions
 

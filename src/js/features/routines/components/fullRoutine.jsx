@@ -1,40 +1,40 @@
 import React, { Fragment, useEffect, useState } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import RoutineExercise from './routineExercise';
-import { fetchRoutineSet } from '../state/actions';
 
 const propTypes = {
-  fetchRoutineSet: PropTypes.func,
-  routine: PropTypes.shape({
+  currentRoutine: PropTypes.shape({
     exercises: PropTypes.array,
-    isFetching: PropTypes.bool,
-    name: PropTypes.string
-  })
+    id: PropTypes.string,
+    name: PropTypes.string,
+    note: PropTypes.string
+  }),
+  isFetching: PropTypes.bool
 };
-const fullRoutine = props => {
+
+const fullRoutine = ({ currentRoutine, isFetching }) => {
   const [exercises, setExercises] = useState([]);
   const [name, setName] = useState('');
 
   useEffect(() => {
-    props.fetchRoutineSet(1);
-  }, []);
-
-  useEffect(() => {
-    setExercises(props.routine.exercises);
-    setName(props.routine.name);
-  }, [props.routine]);
+    setExercises(((currentRoutine) && (Array.isArray(currentRoutine.exercises))) ? currentRoutine.exercises : []);
+    setName(currentRoutine ? currentRoutine.name : '');
+  }, [currentRoutine]);
 
   const exerciseComponent = exercises.map((item, key) => {
     return (<RoutineExercise key={key} {...item} />);
   });
 
-  return (props.routine.isFetching)
+  return (isFetching)
     ? <div className='circular-loader'><CircularProgress /></div>
     : (<Fragment>
-      <div><p><strong>Routine</strong></p></div>
-      <p>{name}</p>
+      <div>
+        <p>
+          <strong>Routine: </strong>
+          {name}
+        </p>
+      </div>
       <table>
         <thead>
           <tr>
@@ -51,5 +51,4 @@ const fullRoutine = props => {
 };
 
 fullRoutine.propTypes = propTypes;
-const mapStateToProps = state => ({ routine: state.routine });
-export default connect(mapStateToProps, { fetchRoutineSet })(fullRoutine);
+export default fullRoutine;

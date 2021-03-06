@@ -1,6 +1,6 @@
 {
     "apis": {
         "azure": "https://augmentedaspnetbackend.azurewebsites.net/v0.4/api/",
-        "heroku": "https://desolate-caverns-35920.herokuapp.com/v0.1/"
+        "heroku": "https://nssd-augmented-storage.herokuapp.com/"
     }
 }

@@ -8,7 +8,17 @@ const excercisePropTypes = {
 };
 const exercise = ({ name, note, sets }) => {
   const setComponent = sets.map((item, key) => {
-    const line = `${item.reps} X ${item.percent * 100} %`;
+    let byAmount = '';
+    let reps = '';
+    if (item) {
+      reps = item.reps + '';
+      if (item.percent !== null) {
+        byAmount = 'x ' + (item.percent * 100) + '%';
+      } else if (item.pounds) {
+        byAmount = 'x ' + (item.pounds) + '#';
+      }
+    }
+    const line = reps + ' ' + byAmount;
     const breakLine = key + 1 !== sets.length && <br/>;
     return (
       <Fragment key={key}>
