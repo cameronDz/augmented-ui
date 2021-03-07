@@ -15,7 +15,7 @@ const app = () => {
   const mealPage = (<ConstructionPlaceholder title='Meal Page' />);
   return (
     <Switch>
-      <Route exact path='/' component={Session} />
+      <Route exact path='/' component={RoutinePage} />
       <Route exact path='/diet' component={() => dietPage} />
       <Route exact path='/exercise' component={ExercisePage} />
       <Route exact path='/food' component={() => foodPage} />

@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.10.1] -2021-03-07
+### Added
+- Load indicator on Routine sidebar card
+
+### Changed
+- Made Routines selectable/changeable in sidebar
+
+### Fixed
+- Routine API route
+
 ## [0.10.0] -2021-03-06
 ### Added
 - List of Routines to from new storage API

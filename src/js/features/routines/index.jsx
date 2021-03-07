@@ -20,7 +20,7 @@ const routinePage = ({ fetchRoutineList, routine }) => {
   const sideBarTitle = 'Routine List';
   const routineTitle = 'Latest Routine';
 
-  const [currentIndex, setCurrentIndex] = useState(-1);
+  const [currentId, setCurrentId] = useState('');
   const [currentRoutine, setCurrentRoutine] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
   const [routineList, setRoutineList] = useState(null);
@@ -40,21 +40,46 @@ const routinePage = ({ fetchRoutineList, routine }) => {
 
   useEffect(() => {
     const current = ((Array.isArray(routineList)) && (routineList.length > 0)) ? routineList[0] : null;
-    setCurrentIndex(0);
+    const id = current ? current.id : '';
+    setCurrentId(id);
     setCurrentRoutine(current);
   }, [routineList]);
+
+  const getRoutineStyle = (id = '') => {
+    const style = { cursor: 'pointer' };
+    if (id === currentId) {
+      style.backgroundColor = 'lightgray';
+      style.cursor = 'default';
+    }
+    return style;
+  };
+
+  const handleRoutineClick = (event) => {
+    const id = ((!!event) && (!!event.currentTarget) && (!!event.currentTarget.dataset)) ? event.currentTarget.dataset.id : -1;
+    if ((!!id) && (id !== currentId)) {
+      const current = Array.isArray(routineList) && routineList.find((item) => ((!!item) && (item.id === id)));
+      if (current) {
+        setCurrentId(id);
+        setCurrentRoutine(current);
+      }
+    }
+  };
 
   const getRoutineSideBarChild = () => {
     return (isFetching)
       ? <p style={{ fontStyle: 'italic' }}>Loading...</p>
-      : <ul>
+      : <Fragment>
+        <ul>
           {
             Array.isArray(routineList) && routineList.map((item, key) => {
-              const style = (key === currentIndex) ? { backgroundColor: 'lightgray' } : {};
-              return ((!!item) && (!!item.name)) && (<li key={key} style={style}>{item.name}</li>);
+              return ((!!item) && (!!item.id) && (!!item.name)) && (
+                <li onClick={handleRoutineClick} data-id={item.id} key={key} style={getRoutineStyle(item.id)}>
+                  {item.name}
+                </li>);
             })
           }
-        </ul>);
+        </ul>
+      </Fragment>;
   };
 
   const getRoutineChild = () => {
@@ -68,7 +93,7 @@ const routinePage = ({ fetchRoutineList, routine }) => {
           <p className="card-header-title">Routines Page</p>
         </header>
         <div className="card-content columns is-tablet">
-          <div className="content column is-one-fifth" style={{ cursor: 'not-allowed' }}>
+          <div className="content column is-one-fifth">
             <Card child={getRoutineSideBarChild()} title={sideBarTitle} />
           </div>
           <div className="content column is-four-fifths">
