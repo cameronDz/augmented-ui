@@ -45,18 +45,16 @@ const routinePage = ({ fetchRoutineList, routine }) => {
   }, [routineList]);
 
   const getRoutineSideBarChild = () => {
-    return (
-      <Fragment>
-        <p>Routines</p>
-        <ul>
+    return (isFetching)
+      ? <p style={{ fontStyle: 'italic' }}>Loading...</p>
+      : <ul>
           {
             Array.isArray(routineList) && routineList.map((item, key) => {
               const style = (key === currentIndex) ? { backgroundColor: 'lightgray' } : {};
               return ((!!item) && (!!item.name)) && (<li key={key} style={style}>{item.name}</li>);
             })
           }
-        </ul>
-      </Fragment>);
+        </ul>);
   };
 
   const getRoutineChild = () => {

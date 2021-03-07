@@ -3,7 +3,7 @@ import axios from 'axios';
 import * as _config from '../../../../assets/config.json';
 
 const httpHeader = { header: { 'Content-Type': 'application/json' } };
-const rountinesPath = 'json/object/rountines';
+const rountinesPath = 'json/object/routines';
 
 const emitDispatch = (type, actions = {}) => {
   return { type, ...actions };
