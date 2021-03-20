@@ -7,7 +7,7 @@ const propTypes = {
 };
 const exerciseDropdown = ({ exercises }) => {
   const [processedExercises, setProcessedExercises] = useState([]);
-  const [selectedId, setSelectedId] = useState(-1);
+  const [selectedId, setSelectedId] = useState('');
 
   useEffect(() => {
     const temp = [];
@@ -15,7 +15,7 @@ const exerciseDropdown = ({ exercises }) => {
     for (let idx = 0; idx < length; idx++) {
       if ((exercises[idx]) && (exercises[idx].id) && (exercises[idx].name)) {
         const { id, name } = exercises[idx];
-        temp.push({ id, key: id, title: name });
+        temp.push({ id: id + '', key: id + '', title: name });
       }
     }
     setProcessedExercises(temp);

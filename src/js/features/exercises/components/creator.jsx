@@ -13,7 +13,7 @@ const propTypes = {
 };
 const exerciseCreator = ({ exercises, getExerciseList, isLoading, isProcessing, putExercise, successfulPut }) => {
   const [description, setDescription] = useState('');
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(true);
+  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
   const [name, setName] = useState('');
   const [typeId, setTypeId] = useState('');
 
@@ -48,24 +48,22 @@ const exerciseCreator = ({ exercises, getExerciseList, isLoading, isProcessing, 
   return (
     <Fragment>
       <p><strong>Create a new Exercise</strong></p>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label forhtml="name">Name</label><br/>
-          <input name="name" onChange={event => setName(event.target.value) } type="text" value={name} />
-        </div>
-        <div>
-          <label forhtml="description">Description</label><br/>
-          <textarea name="description" onChange={event => setDescription(event.target.value)} value={description}>
-          </textarea>
-        </div>
-        <div>
-          <label forhtml="typeId">Type</label><br/>
-          <input name="typeId" onChange={event => setTypeId(Number(event.target.value)) } type="number" value={typeId} />
-        </div>
-        <div>
-          <input disabled={isSubmitDisabled} type="submit" value="Submit" />
-        </div>
-      </form>
+      <div>
+        <label forhtml="name">Name</label><br/>
+        <input name="name" onChange={event => setName(event.target.value) } type="text" value={name} />
+      </div>
+      <div>
+        <label forhtml="description">Description</label><br/>
+        <textarea name="description" onChange={event => setDescription(event.target.value)} value={description}>
+        </textarea>
+      </div>
+      <div>
+        <label forhtml="typeId">Type</label><br/>
+        <input name="typeId" onChange={event => setTypeId(Number(event.target.value)) } type="number" value={typeId} />
+      </div>
+      <div>
+        <button disabled={isSubmitDisabled} role="button" onClick={handleSubmit}>Submit</button>
+      </div>
     </Fragment>);
 };
 

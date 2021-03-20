@@ -6,7 +6,7 @@ import onClickOutside from 'react-onclickoutside';
 const propTypes = {
   list: PropTypes.array,
   resetThenSet: PropTypes.func,
-  selectedId: PropTypes.number,
+  selectedId: PropTypes.string,
   title: PropTypes.string
 };
 class Dropdown extends Component {
