@@ -2,56 +2,52 @@ import axios from 'axios';
 import * as _config from '../../../../assets/config.json';
 import * as _types from './types';
 
-const recieveExerciseList = data => {
-  const processResponseExercise = response => {
-    return (Array.isArray(response.data)) && response.data.map((item, index) => {
-      const id = (item.exerciseId) ? item.exerciseId : -1;
-      const title = (item.name) ? item.name : '';
-      return { id, title, key: index };
-    });
-  };
-  return { data: processResponseExercise(data), type: _types.RECIEVE_EXERCISE_LIST };
+const httpHeader = { header: { 'Content-Type': 'application/json' } };
+const exercisesGetPath = 'json/object/exercises';
+const exercisesPutPath = 'json/update/exercises';
+
+const emitDispatch = (type, actions = {}) => {
+  return { type, ...actions };
 };
 
-const loadExerciseList = () => {
-  return { type: _types.REQUESTING_EXERCISE_LIST };
-};
-
-const requestExerciseList = () => {
-  return dispatch => {
-    dispatch(loadExerciseList());
-    const config = { header: { 'Content-Type': 'application/json' } };
-    const url = _config.apis.azure + 'exercises';
-    return axios.get(url, config).then(payload => {
-      dispatch(recieveExerciseList(payload));
-    });
-  };
-};
-
-// actions for creating new exercise
-const recieveNewExerciseResponse = () => {
-  return { type: _types.RECIEVE_NEW_EXERCISE_RESPONSE };
-};
-const recieveSuccessfulNewExerciseResponse = () => {
-  return { type: _types.RECIEVE_SUCCESSFUL_NEW_EXERCISE_RESPONSE };
-};
-
-const createNewExercisePost = payload => {
-  return dispatch => {
-    dispatch({ type: _types.CREATE_NEW_EXERCISE_POST });
-    const config = { header: { 'Content-Type': 'application/json' } };
-    const url = _config.apis.azure + 'exercises';
-    return axios.post(url, payload, config)
-      .then(() => {
-        dispatch(recieveNewExerciseResponse());
+const getExerciseList = () => {
+  return (dispatch) => {
+    const url = _config.apis.heroku + exercisesGetPath;
+    dispatch(emitDispatch(_types.GET_REQUEST_EXERCISE_LIST_START));
+    return axios.get(url, httpHeader)
+      .then((response) => {
+        const exercises = !!response && !!response.data && response.data.payload && Array.isArray(response.data.payload.exercises) ? response.data.payload.exercises : [];
+        return dispatch(emitDispatch(_types.GET_REQUEST_EXERCISE_LIST_SUCCESS, { data: exercises }));
       })
-      .catch(error => {
-        console.error('posting issue', error);
+      .catch((error) => {
+        return dispatch(emitDispatch(_types.GET_REQUEST_EXERCISE_LIST_ERROR, { error }));
       })
       .finally(() => {
-        dispatch(recieveSuccessfulNewExerciseResponse());
+        return dispatch(emitDispatch(_types.GET_REQUEST_EXERCISE_LIST_COMPLETED));
       });
   };
 };
 
-export { createNewExercisePost, requestExerciseList };
+const putExercise = payload => {
+  return (dispatch) => {
+    const url = _config.apis.heroku + exercisesPutPath;
+    dispatch(emitDispatch(_types.PUT_REQUEST_EXERCISE_ITEM_START));
+    return axios.put(url, payload, httpHeader)
+      .then((response) => {
+        const type = !!response && !!response.data ? _types.PUT_REQUEST_EXERCISE_ITEM_SUCCESS : _types.PUT_REQUEST_EXERCISE_ITEM_ERROR;
+        const payload = {
+          data: !!response && !!response.data ? response.data : null,
+          error: 'No data in response.'
+        };
+        return dispatch(emitDispatch(type, payload));
+      })
+      .catch((error) => {
+        return dispatch(emitDispatch(_types.PUT_REQUEST_EXERCISE_ITEM_ERROR, { error }));
+      })
+      .finally(() => {
+        return dispatch(emitDispatch(_types.PUT_REQUEST_EXERCISE_ITEM_COMPLETED));
+      });
+  };
+};
+
+export { getExerciseList, putExercise };
