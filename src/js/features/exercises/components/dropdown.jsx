@@ -1,46 +1,38 @@
-import React, { Fragment, useEffect, useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { requestExerciseList } from '../state/actions';
 import Dropdown from '../../../components/Dropdown';
 
 const propTypes = {
-  exercises: PropTypes.array,
-  requestExerciseList: PropTypes.func,
-  title: PropTypes.string
+  exercises: PropTypes.array
 };
-const exerciseDropdown = props => {
-  const [exercises, setExercises] = useState();
+const exerciseDropdown = ({ exercises }) => {
+  const [processedExercises, setProcessedExercises] = useState([]);
   const [selectedId, setSelectedId] = useState(-1);
-  const [title, setTitle] = useState('');
 
   useEffect(() => {
-    props.requestExerciseList();
-  }, []);
-
-  useEffect(() => {
-    setTitle(props.title ? props.title : 'Dropdown');
-  }, [props.title]);
-
-  useEffect(() => {
-    setExercises(props.exercises);
-  }, [props.exercises]);
+    const temp = [];
+    const length = Array.isArray(exercises) ? exercises.length : 0;
+    for (let idx = 0; idx < length; idx++) {
+      if ((exercises[idx]) && (exercises[idx].id) && (exercises[idx].name)) {
+        const { id, name } = exercises[idx];
+        temp.push({ id, key: id, title: name });
+      }
+    }
+    setProcessedExercises(temp);
+  }, [exercises]);
 
   const resetThenSet = id => {
     setSelectedId(id);
   };
 
-  const dropDownTitle = () => {
-    return !!title && (<div><strong>{title}</strong></div>);
-  };
-
   return (
-    <Fragment>
-      {dropDownTitle()}
-      <Dropdown list={exercises} resetThenSet={resetThenSet} selectedId={selectedId} title="Exercise Dropdown" />
-    </Fragment>);
+    <Dropdown
+      list={processedExercises}
+      resetThenSet={resetThenSet}
+      selectedId={selectedId}
+      title="Exercise Dropdown">
+    </Dropdown>);
 };
 
 exerciseDropdown.propTypes = propTypes;
-const mapStateToProps = state => ({ exercises: state.exercises.list });
-export default connect(mapStateToProps, { requestExerciseList })(exerciseDropdown);
+export default exerciseDropdown;
