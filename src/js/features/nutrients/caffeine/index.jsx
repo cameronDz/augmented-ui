@@ -7,8 +7,8 @@ import * as _config from '../../../../assets/config.json';
 const caffeine = () => {
   const renderIntakeCreatorCard = () => {
     const child = (<IntakeCreator />);
-    const url = _config.apis.azure + 'CaffeineNutrientIntakes?csv=csv';
-    const footerLink = (<a className="card-footer-item" href={url}>Download Intakes as CSV file.</a>);
+    const url = _config.apis.heroku + 'json/object/caffeine';
+    const footerLink = (<a className="card-footer-item" href={url} style={{ paddingLeft: '4px' }} target="_"> Download Intakes in JSON file.</a>);
     return (<Card child={child} footer={footerLink} title={'Caffeine Intake Creator'} />);
   };
 

@@ -1,45 +1,30 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import Pagination from './pagination';
+import { connect } from 'react-redux';
 import TableRow from './tableRow';
-import { fetchIntakesIfNeeded } from '../state/actions';
+import { getCaffeineList } from '../state/actions';
 import { orderIntakesByDate } from '../../../../lib/sorts';
 import '../../../../../css/table.css';
 
 const propTypes = {
-  currentPage: PropTypes.number,
-  fetchIntakesIfNeeded: PropTypes.func,
-  intakes: PropTypes.array,
-  isFetching: PropTypes.bool,
-  links: PropTypes.object,
-  totalPages: PropTypes.number
+  caffeine: PropTypes.array,
+  getCaffeineList: PropTypes.func,
+  isLoadingCaffeine: PropTypes.bool
 };
-
-const table = props => {
+const table = ({ caffeine, getCaffeineList, isLoadingCaffeine }) => {
   useEffect(() => {
-    props.fetchIntakesIfNeeded();
+    getCaffeineList();
   }, []);
 
   const renderIntakesData = () => {
-    return Array.isArray(props.intakes) && props.intakes.sort(orderIntakesByDate).map((item, key) => {
+    return Array.isArray(caffeine) && caffeine.sort(orderIntakesByDate).map((item, key) => {
       return <TableRow element={item} key={key}/>;
     });
   };
 
   const renderTableRows = () => {
-    return (!props.isFetching && !!props.intakes) && (<tbody>{renderIntakesData()}</tbody>);
-  };
-
-  const renderPagination = () => {
-    return (props.isFetching)
-      ? (<div className='circular-loader'><CircularProgress /></div>)
-      : (<Pagination
-        currentPage={props.currentPage}
-        links={props.links}
-        totalPages={props.totalPages}
-      />);
+    return (!isLoadingCaffeine && !!caffeine) && (<tbody>{renderIntakesData()}</tbody>);
   };
 
   const renderTableHeader = () => {
@@ -49,23 +34,18 @@ const table = props => {
   };
 
   return (
-    <Fragment>
-      <div className="table-wrapper">
-        <table className="table is-bordered is-striped is-narrow is-fullwidth">
-          {renderTableHeader()}
-          {renderTableRows()}
-        </table>
-      </div>
-      {renderPagination()}
-    </Fragment>);
+    <div className="table-wrapper">
+      <table className="table is-bordered is-striped is-narrow is-fullwidth">
+        {renderTableHeader()}
+        {renderTableRows()}
+      </table>
+      {isLoadingCaffeine && <div className='circular-loader'><CircularProgress /></div>}
+    </div>);
 };
 
 const mapStateToProps = state => ({
-  currentPage: state.caffeineIntakes.currentPage,
-  intakes: state.caffeineIntakes.intakes,
-  isFetching: state.caffeineIntakes.isFetching,
-  links: state.caffeineIntakes.links,
-  totalPages: state.caffeineIntakes.totalPages
+  caffeine: state.caffeineIntakes.caffeineGetPayload,
+  isLoadingCaffeine: state.caffeineIntakes.isLoadingCaffeine
 });
 table.propTypes = propTypes;
-export default connect(mapStateToProps, { fetchIntakesIfNeeded })(table);
+export default connect(mapStateToProps, { getCaffeineList })(table);

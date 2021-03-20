@@ -1,79 +1,53 @@
 import axios from 'axios';
-import { shouldFetchState } from '../../../../state/global';
 import * as _types from './types';
 import * as _config from '../../../../../assets/config.json';
 
-const apiUrl = _config.apis.azure + 'CaffeineNutrientIntakes?pageSize=10&pageNumber=1';
+const httpHeader = { header: { 'Content-Type': 'application/json' } };
+const caffeineGetPath = 'json/object/caffeine';
+const caffeinePutPath = 'json/update/caffeine';
 
-export const invalidateCaffeineIntakes = () => {
-  return { type: _types.INVALIDATED_CAFFEINE_INTAKE };
+const emitDispatch = (type, actions = {}) => {
+  return { type, ...actions };
 };
 
-export const requestCaffeineIntakes = (url = apiUrl) => {
-  return { type: _types.REQUEST_CAFFEINE_INTAKE, url };
-};
-
-export const recieveCaffeineIntakes = (payload, url = apiUrl) => {
-  return {
-    dataPayload: payload.data.data,
-    linkPayload: payload.data.links,
-    metaPayload: payload.data.meta,
-    receivedAt: Date.now(),
-    type: _types.RECIEVE_CAFFEINE_INTAKE,
-    url
-  };
-};
-
-export const fetchIntakesIfNeeded = (url = apiUrl) => {
-  return (dispatch, getState) => {
-    if (shouldFetchIntakes(getState())) {
-      return dispatch(fetchIntakes(url));
-    }
-  };
-};
-
-const shouldFetchIntakes = (state = {}) => {
-  return shouldFetchState(state.caffeineIntakes);
-};
-
-const fetchIntakes = (url = apiUrl) => {
-  return dispatch => {
-    dispatch(requestCaffeineIntakes());
-    const config = { header: { 'Content-Type': 'application/json' } };
-    return axios.get(url, config)
-      .then(payload => dispatch(recieveCaffeineIntakes(payload)));
-  };
-};
-
-// posting actions
-const recieveCaffeinePostResponse = () => {
-  return { type: _types.RECIEVE_CAFFEINE_RESPONSE };
-};
-
-const recieveSuccessfulCaffeinePostResponse = () => {
-  return { type: _types.RECIEVE_SUCCESSFUL_CAFFEINE_RESPONSE };
-};
-
-const sendCaffienePostRequest = () => {
-  return { type: _types.SEND_CAFFEINE_POST_REQUEST };
-};
-
-export const createNewCaffieneConsumption = payload => {
-  const url = _config.apis.azure + 'CaffeineNutrientIntakes';
-  const config = { header: { 'Content-Type': 'application/json' } };
-  return dispatch => {
-    dispatch(sendCaffienePostRequest());
-    axios.post(url, payload, config)
-      .then(() => {
-        dispatch(recieveSuccessfulCaffeinePostResponse());
-        dispatch(invalidateCaffeineIntakes());
-        dispatch(fetchIntakesIfNeeded(url));
+const getCaffeineList = () => {
+  return (dispatch) => {
+    const url = _config.apis.heroku + caffeineGetPath;
+    dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_START));
+    return axios.get(url, httpHeader)
+      .then((response) => {
+        const caffeine = !!response && !!response.data && response.data.payload && Array.isArray(response.data.payload.caffeine) ? response.data.payload.caffeine : [];
+        return dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_SUCCESS, { data: caffeine }));
       })
-      .catch(error => {
-        console.error('could not complete post request', error);
+      .catch((error) => {
+        return dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_ERROR, { error }));
       })
       .finally(() => {
-        dispatch(recieveCaffeinePostResponse());
+        return dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_COMPLETED));
       });
   };
 };
+
+const putCaffeine = payload => {
+  return (dispatch) => {
+    const url = _config.apis.heroku + caffeinePutPath;
+    dispatch(emitDispatch(_types.PUT_REQUEST_CAFFEINE_ITEM_START));
+    return axios.put(url, payload, httpHeader)
+      .then((response) => {
+        const type = !!response && !!response.data ? _types.PUT_REQUEST_CAFFEINE_ITEM_SUCCESS : _types.PUT_REQUEST_CAFFEINE_ITEM_ERROR;
+        const payload = {
+          data: !!response && !!response.data ? response.data : null,
+          error: 'No data in response.'
+        };
+        return dispatch(emitDispatch(type, payload));
+      })
+      .catch((error) => {
+        return dispatch(emitDispatch(_types.PUT_REQUEST_CAFFEINE_ITEM_ERROR, { error }));
+      })
+      .finally(() => {
+        return dispatch(emitDispatch(_types.PUT_REQUEST_CAFFEINE_ITEM_COMPLETED));
+      });
+  };
+};
+
+export { getCaffeineList, putCaffeine };
