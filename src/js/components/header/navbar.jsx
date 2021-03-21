@@ -66,9 +66,9 @@ class Navbar extends Component {
             <div className="navbar-item has-dropdown is-hoverable">
               <div id="nutritionNavbarButton" className="navbar-link" data-targets="nutritionNavbar">Nutrition</div>
               <div id="nutritionNavbarItems" className="navbar-dropdown">
-                <div className="navbar-item"><Link to="/diet">Diets</Link></div>
+                {/* <div className="navbar-item"><Link to="/diet">Diets</Link></div>
                 <div className="navbar-item"><Link to="/meal">Meals</Link></div>
-                <div className="navbar-item"><Link to='/food'>Foods</Link></div>
+                <div className="navbar-item"><Link to='/food'>Foods</Link></div> */}
                 <div className="navbar-item"><Link to='/nutrient'>Caffeine</Link></div>
               </div>
             </div>
@@ -77,8 +77,8 @@ class Navbar extends Component {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="buttons">
-                <div className="button is-light"><Link to="/signup"><strong>Sign up</strong></Link></div>
-                <div className="button is-light"><Link to="/signin"><strong>Sign In</strong></Link></div>
+                {/* <div className="button is-light"><Link to="/signup"><strong>Sign up</strong></Link></div>
+                <div className="button is-light"><Link to="/signin"><strong>Sign In</strong></Link></div> */}
               </div>
             </div>
           </div>
