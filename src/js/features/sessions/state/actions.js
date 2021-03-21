@@ -1,8 +1,6 @@
 import axios from 'axios';
 import * as types from './types';
 import { shouldFetchState } from '../../../state/global';
-import * as _config from '../../../../assets/config.json';
-const defaultFetchUrl = _config.apis.azure + 'CardioMachineExercises?pageNumber=1&pageSize=10';
 
 // get session actions
 const fetchSessions = url => {
@@ -36,7 +34,10 @@ export const invalidateCardioMachineSession = () => {
   return { type: types.INVALIDATED_CARDIO_MACHINE_SESSIONS };
 };
 
-export const fetchSessionsIfNeeded = (url = defaultFetchUrl) => {
+export const fetchSessionsIfNeeded = (url = '') => {
+  if (!url) {
+    throw new Error('no URL to fetch');
+  }
   return (dispatch, getState) => {
     if (shouldFetchSessions(getState())) {
       return dispatch(fetchSessions(url));

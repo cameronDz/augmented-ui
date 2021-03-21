@@ -6,5 +6,11 @@ export default {
   sessions: [],
   totalPages: 0,
   totalRecords: 0,
-  lastUpdated: null
+  lastUpdated: null,
+  cardioSessionGetError: null,
+  cardioSessionGetPayload: null,
+  cardioSessionPutError: null,
+  cardioSessionPutPayload: null,
+  isLoadingCardioSession: false,
+  isProcessingCardioSession: false
 };
