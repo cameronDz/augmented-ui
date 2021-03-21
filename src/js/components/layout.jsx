@@ -7,24 +7,26 @@ import '../../css/layout.css';
 
 const propTypes = {
   children: PropTypes.object.isRequired,
+  isFooterHidden: PropTypes.bool,
+  isHeaderHidden: PropTypes.bool,
   title: PropTypes.string.isRequired
 };
 
-const layout = props => {
+const layout = ({ isFooterHidden, isHeaderHidden, ...otherProps }) => {
   const [children, setChildren] = useState();
   const [title, setTitle] = useState('');
 
   useEffect(() => {
-    setChildren(get(props, 'children', null));
-    setTitle(get(props, 'title', ''));
-  }, [props]);
+    setChildren(get(otherProps, 'children', null));
+    setTitle(get(otherProps, 'title', ''));
+  }, [otherProps]);
 
   return (
     <Fragment>
-      <Header title={title} />
+      {isHeaderHidden ? null : <Header title={title} />}
       {children}
       <div className="spacer"></div>
-      <Footer />
+      {isFooterHidden ? null : <Footer />}
     </Fragment>);
 };
 

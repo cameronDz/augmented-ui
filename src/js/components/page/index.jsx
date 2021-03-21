@@ -47,7 +47,7 @@ const page = ({ classes, tabNames, tabPanels, title }) => {
         <Navbar />
         <h2 className={classes.hero}>{title}</h2>
         <AppBar position="static">
-          <Tabs value={value} onChange={handleChange} >
+          <Tabs centered={true} value={value} onChange={handleChange} >
             {renderTabLabels()}
           </Tabs>
         </AppBar>

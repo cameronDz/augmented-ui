@@ -1,14 +1,16 @@
 import React from 'react';
 import Caffeine from './caffeine';
-import Card from '../../components/bulmaCard';
 import Layout from '../../components/layout';
+import Page from '../../components/page';
 
 const nutrientsPage = () => {
-  const cardContent = (<Caffeine />);
-  return (
-    <Layout title='Nutrients'>
-      <Card child={cardContent} title='Nutrients' />
-    </Layout>);
+  const createTab = () => {
+    return (
+      <Layout isFooterHidden={true} isHeaderHidden={true} title='Nutrients'>
+        <Caffeine />
+      </Layout>);
+  };
+  return <Page tabNames={['Caffeine']} tabPanels={[createTab()]} />;
 };
 
 export default nutrientsPage;
