@@ -139,6 +139,8 @@ const creator = props => {
 };
 
 const mapDispatchToProps = { postCardioMachineSession, updateCardioMachineSessionPostForm };
-const mapStateToProps = state => ({ post: state.cardioMachineSessionPost });
+const mapStateToProps = state => ({
+  post: state.cardioMachineSessionPost
+});
 creator.propTypes = propTypes;
 export default connect(mapStateToProps, mapDispatchToProps)(creator);
