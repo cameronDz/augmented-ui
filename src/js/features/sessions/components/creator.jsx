@@ -1,37 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import get from 'lodash.get';
 import Switch from '@material-ui/core/Switch';
 import { DateTimePicker } from '@material-ui/pickers';
 import TimeField from 'react-simple-timefield';
-import { postCardioMachineSession, updateCardioMachineSessionPostForm } from '../state/creator/actions';
+import { getCardioSessionList, putCardioSession } from '../state/actions';
+import { updateCardioMachineSessionPostForm } from '../state/creator/actions';
 import { calulcateTimingSeconds } from '../lib/utility';
 import '../../../../css/creator.css';
 
 const propTypes = {
-  post: PropTypes.shape({
-    form: PropTypes.shape({
-      comment: PropTypes.string,
-      distanceMiles: PropTypes.string,
-      machineType: PropTypes.string,
-      seconds: PropTypes.number,
-      startDate: PropTypes.instanceOf(Date),
-      timing: PropTypes.string,
-      userName: PropTypes.string
-    }),
-    posting: PropTypes.bool
+  form: PropTypes.shape({
+    comment: PropTypes.string,
+    distanceMiles: PropTypes.string,
+    machineType: PropTypes.string,
+    seconds: PropTypes.number,
+    startDate: PropTypes.instanceOf(Date),
+    timing: PropTypes.string,
+    userName: PropTypes.string
   }),
-  postCardioMachineSession: PropTypes.func,
+  getCardioSessionList: PropTypes.func,
+  hasUpdated: PropTypes.bool,
+  isProcessing: PropTypes.bool,
+  putCardioSession: PropTypes.func,
+  sessions: PropTypes.array,
   updateCardioMachineSessionPostForm: PropTypes.func
 };
-const creator = ({ post, postCardioMachineSession, updateCardioMachineSessionPostForm }) => {
+const creator = ({ form, getCardioSessionList, hasUpdated, isProcessing, putCardioSession, sessions, updateCardioMachineSessionPostForm }) => {
   const [isCurrentTimeStartTime, setIsCurrentTimeStartTime] = useState(true);
 
   useEffect(() => {
-    const disabledButton = !!post.posting;
-    document.getElementById('submitCardioBtn').disabled = disabledButton;
-  }, [post]);
+    if (hasUpdated) {
+      getCardioSessionList();
+    }
+  }, [hasUpdated]);
 
   const handleDateChange = date => {
     const update = { startDate: date };
@@ -52,24 +54,24 @@ const creator = ({ post, postCardioMachineSession, updateCardioMachineSessionPos
 
   const handleToggleSwitch = () => {
     if (!isCurrentTimeStartTime) {
-      const startTimeMilliseconds = new Date().getTime() - (post.form.seconds * 1000);
+      const startTimeMilliseconds = new Date().getTime() - (form.seconds * 1000);
       const update = { startDate: new Date(startTimeMilliseconds) };
       updateCardioMachineSessionPostForm(update);
     }
     setIsCurrentTimeStartTime(!isCurrentTimeStartTime);
   };
 
-  const getFormData = field => {
-    return get(post, `form.${field}`, '');
+  const getFormData = (field) => {
+    return !!form && !!form[field] ? form[field] : '';
   };
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    postCardioMachineSession(post.form);
+  const handleSubmit = () => {
+    const id = 'se-id-' + new Date().getTime();
+    putCardioSession([...sessions, { ...form, id }]);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Fragment>
       <div className="field is-horizontal">
         <label className="label" htmlFor="machineType">Machine Type &nbsp;</label>
         <input className="input"
@@ -133,14 +135,21 @@ const creator = ({ post, postCardioMachineSession, updateCardioMachineSessionPos
           value={getFormData('comment')} />
       </div>
       <div className="field control">
-        <input className="input" id="submitCardioBtn" type="submit" value="Submit" />
+        <button className="input" disabled={isProcessing} onClick={handleSubmit} role="button">Submit</button>
       </div>
-    </form>);
+    </Fragment>);
 };
 
-const mapDispatchToProps = { postCardioMachineSession, updateCardioMachineSessionPostForm };
+const mapDispatchToProps = {
+  getCardioSessionList,
+  putCardioSession,
+  updateCardioMachineSessionPostForm
+};
 const mapStateToProps = state => ({
-  post: state.cardioMachineSessionPost
+  form: state.cardioMachineSessionPost.form,
+  isProcessing: state.cardioMachineSessions.isProcessingCardioSession,
+  hasUpdated: !!state.cardioMachineSessions.cardioSessionPutPayload,
+  sessions: state.cardioMachineSessions.cardioSessionGetPayload
 });
 creator.propTypes = propTypes;
 export default connect(mapStateToProps, mapDispatchToProps)(creator);

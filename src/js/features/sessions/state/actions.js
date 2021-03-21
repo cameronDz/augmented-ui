@@ -1,55 +1,13 @@
 import axios from 'axios';
 import * as _types from './types';
 import * as _config from '../../../../assets/config.json';
-import { shouldFetchState } from '../../../state/global';
 
 const httpHeader = { header: { 'Content-Type': 'application/json' } };
 const cardioSessionGetPath = 'json/object/cardio';
 const cardioSessionPutPath = 'json/update/cardio';
-const defaultFetchUrl = _config.apis.azure + 'CardioMachineExercises?pageNumber=1&pageSize=10';
 
 const emitDispatch = (type, actions = {}) => {
   return { type, ...actions };
-};
-
-// get session actions
-const fetchSessions = url => {
-  return dispatch => {
-    dispatch(requestCardioMachineSessions(url));
-    const config = { header: { 'Content-Type': 'application/json' } };
-    return axios.get(url, config)
-      .then(payload => dispatch(recieveCardioMachineSessions(payload)));
-  };
-};
-
-const requestCardioMachineSessions = sessionApiUrl => {
-  return { sessionApiUrl, type: _types.REQUEST_CARDIO_MACHINE_SESSIONS };
-};
-
-const recieveCardioMachineSessions = payload => {
-  return {
-    dataPayload: payload.data.data,
-    linkPayload: payload.data.links,
-    metaPayload: payload.data.meta,
-    receivedAt: Date.now(),
-    type: _types.RECIEVE_CARDIO_MACHINE_SESSIONS
-  };
-};
-
-const shouldFetchSessions = (state = {}) => {
-  return shouldFetchState(state.cardioMachineSessions);
-};
-
-export const invalidateCardioMachineSession = () => {
-  return { type: _types.INVALIDATED_CARDIO_MACHINE_SESSIONS };
-};
-
-export const fetchSessionsIfNeeded = (url = defaultFetchUrl) => {
-  return (dispatch, getState) => {
-    if (shouldFetchSessions(getState())) {
-      return dispatch(fetchSessions(url));
-    }
-  };
 };
 
 const getCardioSessionList = () => {

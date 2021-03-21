@@ -1,32 +1,32 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import ModalButton from './modalButton';
-import { fetchSessionsIfNeeded } from '../state/actions';
+import { getCardioSessionList } from '../state/actions';
 import { splitTextKeyToArray } from '../../../lib/splits';
 import * as _config from '../../../../assets/config.json';
 import '../../../../css/table.css';
 
-const cardioSessionGetPath = 'json/object/cardio';
-const apiUrl = _config.apis.azure + 'CardioMachineExercises?pageNumber=1&pageSize=10';
 const propTypes = {
-  didInvalidate: PropTypes.bool,
-  fetchSessionsIfNeeded: PropTypes.func,
-  isFetching: PropTypes.bool,
+  getCardioSessionList: PropTypes.func,
+  isLoadingSession: PropTypes.bool,
+  isProcessingSession: PropTypes.bool,
   sessions: PropTypes.array
 };
-const table = ({ didInvalidate, fetchSessionsIfNeeded, isFetching, sessions }) => {
+const table = ({ getCardioSessionList, isLoadingSession, isProcessingSession, sessions }) => {
+  const cardioSessionGetPath = 'json/object/cardio';
   const downloadText = 'Download Session in JSON file.';
+
+  const [isLoading, setIsLoading] = useState(false);
+
   useEffect(() => {
-    fetchSessionsIfNeeded(apiUrl);
+    getCardioSessionList();
   }, []);
 
   useEffect(() => {
-    if (didInvalidate) {
-      fetchSessionsIfNeeded(apiUrl);
-    }
-  }, [didInvalidate]);
+    setIsLoading(isLoadingSession || isProcessingSession);
+  }, [isLoadingSession, isProcessingSession]);
 
   const renderSessionsData = () => {
     return Array.isArray(sessions) && sessions.map((element, index) => {
@@ -42,7 +42,7 @@ const table = ({ didInvalidate, fetchSessionsIfNeeded, isFetching, sessions }) =
   };
 
   const renderTableRows = () => {
-    return (!isFetching && !!sessions) && (<tbody>{renderSessionsData()}</tbody>);
+    return (!isLoading && !!sessions) && (<tbody>{renderSessionsData()}</tbody>);
   };
 
   const renderTableHeader = () => {
@@ -60,14 +60,14 @@ const table = ({ didInvalidate, fetchSessionsIfNeeded, isFetching, sessions }) =
         </table>
       </div>
       <a className="card-footer-item" href={_config.apis.heroku + cardioSessionGetPath} target="_">{downloadText}</a>
-      {isFetching && <div className='circular-loader'><CircularProgress /></div>}
+      {isLoading && <div className='circular-loader'><CircularProgress /></div>}
     </Fragment>);
 };
 
 table.propTypes = propTypes;
 const mapStateToProps = state => ({
-  didInvalidate: state.cardioMachineSessions.didInvalidate,
-  isFetching: state.cardioMachineSessions.isFetching,
-  sessions: state.cardioMachineSessions.sessions
+  isLoadingSession: state.cardioMachineSessions.isLoadingCardioSessions,
+  isProcessingSession: state.cardioMachineSessions.isProcessingCardioSession,
+  sessions: state.cardioMachineSessions.cardioSessionGetPayload
 });
-export default connect(mapStateToProps, { fetchSessionsIfNeeded })(table);
+export default connect(mapStateToProps, { getCardioSessionList })(table);

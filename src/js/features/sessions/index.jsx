@@ -4,13 +4,10 @@ import PropTypes from 'prop-types';
 import Page from '../../components/page';
 import SessionCreator from './components/creator';
 import SessionsTableDisplay from './components/table';
-import { fetchSessionsIfNeeded, getCardioSessionList } from './state/actions';
+import { getCardioSessionList } from './state/actions';
 
-const propTypes = {
-  fetchSessionsIfNeeded: PropTypes.func,
-  getCardioSessionList: PropTypes.func
-};
-const sessions = ({ fetchSessionsIfNeeded, getCardioSessionList }) => {
+const propTypes = { getCardioSessionList: PropTypes.func };
+const sessions = ({ getCardioSessionList }) => {
   const tabNames = ['Information', 'Record', 'History', 'Data Visualization'];
   const tabPanels = [
     <p key={1}>Information on fitness sessions</p>,
@@ -20,7 +17,6 @@ const sessions = ({ fetchSessionsIfNeeded, getCardioSessionList }) => {
   ];
 
   useEffect(() => {
-    fetchSessionsIfNeeded();
     getCardioSessionList();
   }, []);
 
@@ -28,4 +24,4 @@ const sessions = ({ fetchSessionsIfNeeded, getCardioSessionList }) => {
 };
 
 sessions.propTypes = propTypes;
-export default connect(null, { fetchSessionsIfNeeded, getCardioSessionList })(sessions);
+export default connect(null, { getCardioSessionList })(sessions);
