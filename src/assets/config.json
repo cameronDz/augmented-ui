@@ -1,6 +1,5 @@
 {
     "apis": {
-        "azure": "https://augmentedaspnetbackend.azurewebsites.net/v0.4/api/",
         "heroku": "https://nssd-augmented-storage.herokuapp.com/"
     }
 }

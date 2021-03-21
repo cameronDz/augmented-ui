@@ -6,10 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ## Changed
-- Caffeine and Exercises list and create API using S3 storage API
+- Caffeine, Cardio Session, and Exercises list and create API using S3 storage API
 
 ## Removed
-- Pagination on Caffeine table
+- Pagination on Caffeine and Cardio Session tables
+- Azure API URL from application
 
 ## [0.10.1] -2021-03-07
 ### Added

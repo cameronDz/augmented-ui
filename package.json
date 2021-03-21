@@ -83,12 +83,6 @@
   "license": "MIT",
   "name": "augmented-frontend",
   "private": true,
-  "proxy": {
-    "/v0.4/api": {
-      "target": "https://augmentedaspnetbackend.azurewebsites.net/",
-      "ws": true
-    }
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/cameronDz/augmented-frontend.git"
