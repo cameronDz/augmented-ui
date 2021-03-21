@@ -2,15 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import get from 'lodash.get';
-import { fetchSessionsIfNeeded } from '../features/sessions/state/actions';
 
 const propTypes = {
-  fetchSessionsIfNeeded: PropTypes.func,
   pageLink: PropTypes.string.isRequired,
   pageNumber: PropTypes.number.isRequired
 };
 
-const paginationButton = props => {
+const paginationButton = (props) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [pageLink, setPageLink] = useState('');
   const [pageNumber, setPageNumber] = useState(0);
@@ -22,18 +20,16 @@ const paginationButton = props => {
   }, [props]);
 
   const onPaginationClick = link => {
-    props.fetchSessionsIfNeeded(link);
+    console.log('onPaginationClick - line: ', link);
   };
 
-  const getClassName = () => {
-    return (currentPage === pageNumber)
-      ? 'pagination-link'
-      : 'pagination-link is-current';
-  };
-
-  return (<a className={getClassName()} onClick={() => onPaginationClick(pageLink)}>{pageNumber}</a>);
+  return (
+    <a className={'pagination-link' + (currentPage === pageNumber) ? ' is-current' : ''}
+      onClick={() => onPaginationClick(pageLink)}>
+      {pageNumber}
+    </a>);
 };
 
 paginationButton.propTypes = propTypes;
 const mapStateToProps = state => ({ sessions: state.cardioMachineSessions });
-export default connect(mapStateToProps, { fetchSessionsIfNeeded })(paginationButton);
+export default connect(mapStateToProps)(paginationButton);
