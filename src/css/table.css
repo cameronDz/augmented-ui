@@ -16,6 +16,7 @@ td.detail-column {
 }
 
 div.circular-loader {
+    margin-bottom: 2px;
     padding-top: 15px;
     text-align: center;
 }

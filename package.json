@@ -83,12 +83,6 @@
   "license": "MIT",
   "name": "augmented-frontend",
   "private": true,
-  "proxy": {
-    "/v0.4/api": {
-      "target": "https://augmentedaspnetbackend.azurewebsites.net/",
-      "ws": true
-    }
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/cameronDz/augmented-frontend.git"
@@ -103,5 +97,5 @@
     "start": "webpack-dev-server --open --config webpack/dev.babel.js",
     "test": "mocha --require @babel/register --require ignore-styles --reqire jsdom-global/register"
   },
-  "version": "0.10.1"
+  "version": "0.11.0"
 }

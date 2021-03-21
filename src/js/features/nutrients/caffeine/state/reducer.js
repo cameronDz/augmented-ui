@@ -4,33 +4,31 @@ import * as _types from './types';
 const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case _types.INVALIDATED_CAFFEINE_INTAKE:
-      newState = { ...initialState, didInvalidate: true, isFetching: false };
+    // actions for getting caffeines list
+    case _types.GET_REQUEST_CAFFEINE_LIST_START:
+      newState = { ...state, caffeineGetError: null, isLoadingCaffeine: true };
       break;
-    case _types.REQUEST_CAFFEINE_INTAKE:
-      newState = { ...state, didInvalidate: false, isFetching: true };
+    case _types.GET_REQUEST_CAFFEINE_LIST_SUCCESS:
+      newState = { ...state, caffeineGetError: null, caffeineGetPayload: action.data };
       break;
-    case _types.RECIEVE_CAFFEINE_INTAKE:
-      newState = {
-        ...state,
-        currentPage: action.metaPayload._currentPage,
-        didInvalidate: true,
-        intakes: action.dataPayload,
-        isFetching: false,
-        lastUpdated: action.receivedAt,
-        links: action.linkPayload,
-        totalPages: action.metaPayload._totalPages,
-        totalRecords: action.metaPayload._totalRecords
-      };
+    case _types.GET_REQUEST_CAFFEINE_LIST_ERROR:
+      newState = { ...state, caffeineGetError: action.error };
       break;
-    case _types.SEND_CAFFEINE_POST_REQUEST:
-      newState = { ...state, posting: true, successfulPost: false };
+    case _types.GET_REQUEST_CAFFEINE_LIST_COMPLETED:
+      newState = { ...state, isLoadingCaffeine: false };
       break;
-    case _types.RECIEVE_CAFFEINE_RESPONSE:
-      newState = { ...state, posting: false };
+    // actions for puting a new caffeine
+    case _types.PUT_REQUEST_CAFFEINE_ITEM_START:
+      newState = { ...state, caffeinePostError: null, caffeinePostPayload: null, isProcessingCaffeine: true };
       break;
-    case _types.RECIEVE_SUCCESSFUL_CAFFEINE_RESPONSE:
-      newState = { ...state, successfulPost: true };
+    case _types.PUT_REQUEST_CAFFEINE_ITEM_SUCCESS:
+      newState = { ...state, caffeinePostError: null, caffeinePostPayload: action.data };
+      break;
+    case _types.PUT_REQUEST_CAFFEINE_ITEM_ERROR:
+      newState = { ...state, caffeinePostError: action.error, caffeinePostPayload: null };
+      break;
+    case _types.PUT_REQUEST_CAFFEINE_ITEM_COMPLETED:
+      newState = { ...state, isProcessingCaffeine: false };
       break;
     default:
       newState = state;

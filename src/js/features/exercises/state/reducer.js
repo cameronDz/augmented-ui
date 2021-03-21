@@ -4,20 +4,31 @@ import * as _types from './types';
 const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
-    case _types.REQUESTING_EXERCISE_LIST:
-      newState = { ...state };
+    // actions for getting exercise list
+    case _types.GET_REQUEST_EXERCISE_LIST_START:
+      newState = { ...state, exerciseGetError: null, isLoadingExercises: true };
       break;
-    case _types.RECIEVE_EXERCISE_LIST:
-      newState = { ...state, list: action.data };
+    case _types.GET_REQUEST_EXERCISE_LIST_SUCCESS:
+      newState = { ...state, exerciseGetError: null, exerciseGetPayload: action.data };
       break;
-    case _types.CREATE_NEW_EXERCISE_POST:
-      newState = { ...state, posting: true, successfulPost: false };
+    case _types.GET_REQUEST_EXERCISE_LIST_ERROR:
+      newState = { ...state, exerciseGetError: action.error };
       break;
-    case _types.RECIEVE_NEW_EXERCISE_RESPONSE:
-      newState = { ...state, posting: false };
+    case _types.GET_REQUEST_EXERCISE_LIST_COMPLETED:
+      newState = { ...state, isLoadingExercises: false };
       break;
-    case _types.RECIEVE_SUCCESSFUL_NEW_EXERCISE_RESPONSE:
-      newState = { ...state, successfulPost: true };
+    // actions for puting a new exercise
+    case _types.PUT_REQUEST_EXERCISE_ITEM_START:
+      newState = { ...state, exercisePostError: null, exercisePostPayload: null, isProcessingExercise: true };
+      break;
+    case _types.PUT_REQUEST_EXERCISE_ITEM_SUCCESS:
+      newState = { ...state, exercisePostError: null, exercisePostPayload: action.data };
+      break;
+    case _types.PUT_REQUEST_EXERCISE_ITEM_ERROR:
+      newState = { ...state, exercisePostError: action.error, exercisePostPayload: null };
+      break;
+    case _types.PUT_REQUEST_EXERCISE_ITEM_COMPLETED:
+      newState = { ...state, isProcessingExercise: false };
       break;
     default:
       newState = { ...state };
