@@ -67,7 +67,9 @@ const creator = ({ form, getCardioSessionList, hasUpdated, isProcessing, putCard
 
   const handleSubmit = () => {
     const id = 'se-id-' + new Date().getTime();
-    putCardioSession([...sessions, { ...form, id }]);
+    const startTime = !!form && form.startDate ? form.startDate.toJSON() : '';
+    const item = { ...form, id, startTime };
+    putCardioSession({ cardio: [...sessions, item] });
   };
 
   return (

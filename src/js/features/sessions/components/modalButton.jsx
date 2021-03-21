@@ -28,10 +28,17 @@ const modalButton = props => {
   const [time, setTime] = useState(0);
 
   useEffect(() => {
-    setMinutes(Math.floor(props.durationSeconds / 60));
-    setSeconds(getTwoDigitValue(props.durationSeconds % 60));
-    setDate(props.startTime.split('T')[0]);
-    setTime(props.startTime.split('T')[1].substring(0, 5));
+    if (props) {
+      const { durationSeconds, startTime } = props;
+      if (startTime) {
+        setDate(startTime.split('T')[0]);
+        setTime(startTime.split('T')[1].substring(0, 5));
+      }
+      if (durationSeconds) {
+        setMinutes(Math.floor(durationSeconds / 60));
+        setSeconds(getTwoDigitValue(durationSeconds % 60));
+      }
+    }
   }, [props]);
 
   const openModal = () => { setShow(true); };
