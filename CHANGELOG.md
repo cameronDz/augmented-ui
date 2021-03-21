@@ -8,6 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Added
 - Version to footer
 
+## Changed
+- Center tabs on tab bar
+- Set Routines to be within Page, with max-width
+
 ## Removed
 - Unused sections of app; Sign Up/In buttons, pages with no data
 

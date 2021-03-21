@@ -2,9 +2,10 @@ import React, { useEffect, useState, Fragment } from 'react';
 import PropType from 'prop-types';
 import { connect } from 'react-redux';
 
-import Routine from './components/fullRoutine';
 import Card from '../../components/bulmaCard';
 import Layout from '../../components/layout';
+import Page from '../../components/page';
+import Routine from './components/fullRoutine';
 import { fetchRoutineList } from './state/actions';
 
 const propTypes = {
@@ -86,22 +87,26 @@ const routinePage = ({ fetchRoutineList, routine }) => {
     return <Routine currentRoutine={currentRoutine} isFetching={isFetching} />;
   };
 
-  return (
-    <Layout title='Routines Page'>
-      <div className="card">
-        <header className="card-header">
-          <p className="card-header-title">Routines Page</p>
-        </header>
-        <div className="card-content columns is-tablet">
-          <div className="content column is-one-fifth">
-            <Card child={getRoutineSideBarChild()} title={sideBarTitle} />
-          </div>
-          <div className="content column is-four-fifths">
-            <Card child={getRoutineChild()} title={routineTitle} />
+  const createTab = () => {
+    return (
+      <Layout isFooterHidden={true} isHeaderHidden={true} title='Routines Page'>
+        <div className="card">
+          <header className="card-header">
+            <p className="card-header-title">Routines Page</p>
+          </header>
+          <div className="card-content columns is-tablet">
+            <div className="content column is-one-third">
+              <Card child={getRoutineSideBarChild()} title={sideBarTitle} />
+            </div>
+            <div className="content column is-two-thirds">
+              <Card child={getRoutineChild()} title={routineTitle} />
+            </div>
           </div>
         </div>
-      </div>
-    </Layout>);
+      </Layout>);
+  };
+
+  return <Page tabNames={['Overview']} tabPanels={[createTab()]} />;
 };
 
 routinePage.propTypes = propTypes;
