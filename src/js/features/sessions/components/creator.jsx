@@ -25,18 +25,18 @@ const propTypes = {
   postCardioMachineSession: PropTypes.func,
   updateCardioMachineSessionPostForm: PropTypes.func
 };
-const creator = props => {
+const creator = ({ post, postCardioMachineSession, updateCardioMachineSessionPostForm }) => {
   const [isCurrentTimeStartTime, setIsCurrentTimeStartTime] = useState(true);
 
   useEffect(() => {
-    const disabledButton = !!props.post.posting;
+    const disabledButton = !!post.posting;
     document.getElementById('submitCardioBtn').disabled = disabledButton;
-  }, [props.post]);
+  }, [post]);
 
   const handleDateChange = date => {
     const update = { startDate: date };
     setIsCurrentTimeStartTime(false);
-    props.updateCardioMachineSessionPostForm(update);
+    updateCardioMachineSessionPostForm(update);
   };
 
   const handleTimeChange = time => {
@@ -47,25 +47,25 @@ const creator = props => {
       const newStartTime = new Date(startTimeMilliseconds);
       update.startDate = newStartTime;
     }
-    props.updateCardioMachineSessionPostForm(update);
+    updateCardioMachineSessionPostForm(update);
   };
 
   const handleToggleSwitch = () => {
     if (!isCurrentTimeStartTime) {
-      const startTimeMilliseconds = new Date().getTime() - (props.post.form.seconds * 1000);
+      const startTimeMilliseconds = new Date().getTime() - (post.form.seconds * 1000);
       const update = { startDate: new Date(startTimeMilliseconds) };
-      props.updateCardioMachineSessionPostForm(update);
+      updateCardioMachineSessionPostForm(update);
     }
     setIsCurrentTimeStartTime(!isCurrentTimeStartTime);
   };
 
   const getFormData = field => {
-    return get(props, `post.form.${field}`, '');
+    return get(post, `form.${field}`, '');
   };
 
-  const handleSubmit = event => {
+  const handleSubmit = (event) => {
     event.preventDefault();
-    props.postCardioMachineSession(props.post.form);
+    postCardioMachineSession(post.form);
   };
 
   return (
@@ -74,7 +74,7 @@ const creator = props => {
         <label className="label" htmlFor="machineType">Machine Type &nbsp;</label>
         <input className="input"
           name="machineType"
-          onChange={ event => props.updateCardioMachineSessionPostForm({ machineType: event.target.value })}
+          onChange={ event => updateCardioMachineSessionPostForm({ machineType: event.target.value })}
           required
           type="text"
           value={getFormData('machineType')} />
@@ -100,7 +100,7 @@ const creator = props => {
         <label className="label" htmlFor="distanceMiles">Distance (miles) &nbsp;</label>
         <input className="distance"
           name="distanceMiles"
-          onChange={ event => props.updateCardioMachineSessionPostForm({ distanceMiles: event.target.value })}
+          onChange={ event => updateCardioMachineSessionPostForm({ distanceMiles: event.target.value })}
           step="0.01"
           type="number"
           value={getFormData('distanceMiles')} />
@@ -118,7 +118,7 @@ const creator = props => {
         <label className="label" htmlFor="userName">User &nbsp;</label>
         <input className="input"
           name="userName"
-          onChange={ event => props.updateCardioMachineSessionPostForm({ userName: event.target.value })}
+          onChange={ event => updateCardioMachineSessionPostForm({ userName: event.target.value })}
           required
           type="text"
           value={getFormData('userName')} />
@@ -128,7 +128,7 @@ const creator = props => {
         <label className="label" htmlFor="comment">Comment &nbsp;</label>
         <textarea className="textarea"
           name="comment"
-          onChange={event => props.updateCardioMachineSessionPostForm({ comment: event.target.value })}
+          onChange={event => updateCardioMachineSessionPostForm({ comment: event.target.value })}
           type="textarea"
           value={getFormData('comment')} />
       </div>
