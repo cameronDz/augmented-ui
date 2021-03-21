@@ -1,11 +1,12 @@
 import axios from 'axios';
 import * as _types from './types';
-import * as _config from '../../../../../assets/config.json';
+import * as _config from '../../../../assets/config.json';
 import { shouldFetchState } from '../../../state/global';
 
 const httpHeader = { header: { 'Content-Type': 'application/json' } };
 const cardioSessionGetPath = 'json/object/cardio';
 const cardioSessionPutPath = 'json/update/cardio';
+const defaultFetchUrl = _config.apis.azure + 'CardioMachineExercises?pageNumber=1&pageSize=10';
 
 const emitDispatch = (type, actions = {}) => {
   return { type, ...actions };
@@ -43,10 +44,7 @@ export const invalidateCardioMachineSession = () => {
   return { type: _types.INVALIDATED_CARDIO_MACHINE_SESSIONS };
 };
 
-export const fetchSessionsIfNeeded = (url = '') => {
-  if (!url) {
-    throw new Error('no URL to fetch');
-  }
+export const fetchSessionsIfNeeded = (url = defaultFetchUrl) => {
   return (dispatch, getState) => {
     if (shouldFetchSessions(getState())) {
       return dispatch(fetchSessions(url));
