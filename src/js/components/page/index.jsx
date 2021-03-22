@@ -6,7 +6,6 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import { withStyles } from '@material-ui/core/styles';
 import Navbar from '../header/navbar';
-import Footer from '../footer';
 import TabPanel from './tabPanel';
 
 const propTypes = {
@@ -52,7 +51,6 @@ const page = ({ classes, tabNames, tabPanels, title }) => {
           </Tabs>
         </AppBar>
         {renderTabPanels()}
-        <Footer />
       </Grid>
       <Grid item xs={12} sm={12} md={1}></Grid>
     </Grid>);

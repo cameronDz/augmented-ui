@@ -1,32 +1,26 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Switch, Route } from 'react-router-dom';
-import SignUpPage from './features/signUp';
-import SignInPage from './features/signIn';
-import ConstructionPlaceholder from './components/constructionPlaceholder';
+
 import ExercisePage from './features/exercises';
-import RoutinePage from './features/routines';
-import NutrientPage from './features/nutrients';
-import Session from './features/sessions';
+import Footer from './components/footer';
 import Help from './features/help';
+import NutrientPage from './features/nutrients';
+import RoutinePage from './features/routines';
+import Session from './features/sessions';
 
 const app = () => {
-  const dietPage = (<ConstructionPlaceholder title='Diet Page' />);
-  const foodPage = (<ConstructionPlaceholder title='Food Page' />);
-  const mealPage = (<ConstructionPlaceholder title='Meal Page' />);
   return (
-    <Switch>
-      <Route exact path='/' component={Session} />
-      <Route exact path='/diet' component={() => dietPage} />
-      <Route exact path='/exercise' component={ExercisePage} />
-      <Route exact path='/food' component={() => foodPage} />
-      <Route exact path='/help' component={Help} />
-      <Route exact path='/meal' component={() => mealPage} />
-      <Route exact path='/nutrient' component={NutrientPage} />
-      <Route exact path='/routine' component={RoutinePage} />
-      <Route exact path='/session' component={Session} />
-      <Route exact path='/signin' component={SignInPage} />
-      <Route exact path='/signup' component={SignUpPage} />
-    </Switch>);
+    <Fragment>
+      <Switch>
+        <Route exact path='/' component={Session} />
+        <Route exact path='/exercise' component={ExercisePage} />
+        <Route exact path='/help' component={Help} />
+        <Route exact path='/nutrient' component={NutrientPage} />
+        <Route exact path='/routine' component={RoutinePage} />
+        <Route exact path='/session' component={Session} />
+      </Switch>
+      <Footer />
+    </Fragment>);
 };
 
 export default app;

@@ -11,9 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## Changed
 - Center tabs on tab bar
 - Set Caffeine, Exercises, and Routines to be within Page, with max-width
+- Footer color stretched full page width
+- Footer URL pointing to homepage instead of github.io page
 
 ## Removed
 - Unused sections of app; Sign Up/In buttons, pages with no data
+- Removed margin on page body
 
 ## [0.11.0] -2021-03-20
 ## Changed
