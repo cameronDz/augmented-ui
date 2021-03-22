@@ -5,15 +5,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.12.0] -2021-03-21
 ## Added
 - Version to footer
 
 ## Changed
+- Footer set to be sticky at bottom of page and color stretched full page width
 - Center tabs on tab bar
 - Set Caffeine, Exercises, and Routines to be within Page, with max-width
+- Footer URL pointing to homepage instead of github.io page
 
 ## Removed
 - Unused sections of app; Sign Up/In buttons, pages with no data
+- Removed margin on page body
 
 ## [0.11.0] -2021-03-20
 ## Changed
