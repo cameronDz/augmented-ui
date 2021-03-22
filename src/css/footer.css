@@ -1,15 +1,14 @@
-footer.footer.is-slim {
-  margin-top: 16px;
-  padding-top: 16px;
-  padding-bottom: 24px;
-}
-
-.footer .footer-container {
+.footer.footer-container {
+  bottom: 0;
   margin: auto;
+  margin-top: -36px;
+  max-height: 36px;
+  min-height: 36px;
   max-width: 1280px;
+  padding: 4px 0;
   text-align: center;
 }
 
-.footer .footer-container .app-title {
+.footer.footer-container .app-title {
   font-weight: 700;
 }

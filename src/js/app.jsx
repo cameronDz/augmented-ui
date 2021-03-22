@@ -11,15 +11,17 @@ import Session from './features/sessions';
 const app = () => {
   return (
     <Fragment>
-      <Switch>
-        <Route exact path='/' component={Session} />
-        <Route exact path='/exercise' component={ExercisePage} />
-        <Route exact path='/help' component={Help} />
-        <Route exact path='/nutrient' component={NutrientPage} />
-        <Route exact path='/routine' component={RoutinePage} />
-        <Route exact path='/session' component={Session} />
-      </Switch>
-      <Footer />
+      <div className="app-root app-switch-container">
+        <Switch>
+          <Route exact path='/' component={Session} />
+          <Route exact path='/exercise' component={ExercisePage} />
+          <Route exact path='/help' component={Help} />
+          <Route exact path='/nutrient' component={NutrientPage} />
+          <Route exact path='/routine' component={RoutinePage} />
+          <Route exact path='/session' component={Session} />
+        </Switch>
+      </div>
+      <Footer className="app-root-footer" />
     </Fragment>);
 };
 

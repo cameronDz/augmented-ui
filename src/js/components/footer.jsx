@@ -10,15 +10,15 @@ const footer = () => {
   const title = 'Augmented';
 
   return (
-    <footer className="footer is-slim">
-      <div className="footer-container">
+    <footer className="footer footer-container is-slim">
+      <p>
         <span className="app-title">{title}{displayVersion}</span>
         . Created by
         <a href={homepageUrl}> Cam Dziurgot</a>
         . Repository on
         <a href={repositoryUrl}> GitHub</a>
         .
-      </div>
+      </p>
     </footer>);
 };
 
