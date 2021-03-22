@@ -9,9 +9,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Version to footer
 
 ## Changed
+- Footer set to be sticky at bottom of page and color stretched full page width
 - Center tabs on tab bar
 - Set Caffeine, Exercises, and Routines to be within Page, with max-width
-- Footer color stretched full page width
 - Footer URL pointing to homepage instead of github.io page
 
 ## Removed
