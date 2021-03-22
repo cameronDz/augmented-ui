@@ -6,12 +6,12 @@ const footer = () => {
   const homepageUrl = 'https://www.camdziurgot.io';
   const repositoryUrl = 'https://github.com/cameronDz/augmented-frontend';
   const packageVersion = !!_package && _package.version ? _package.version : '';
-  const displayVersion = packageVersion ? ', v' + packageVersion : '';
+  const displayVersion = packageVersion ? ' v' + packageVersion : '';
   const title = 'Augmented';
 
   return (
     <footer className="footer footer-container is-slim">
-      <p>
+      <p className="footer-verbiage">
         <span className="app-title">{title}{displayVersion}</span>
         . Created by
         <a href={homepageUrl}> Cam Dziurgot</a>

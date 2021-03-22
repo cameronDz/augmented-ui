@@ -6,25 +6,29 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.12.1] -2021-03-21
+### Fixed
+- Footer full width on color for text beyond the content max width
+
 ## [0.12.0] -2021-03-21
-## Added
+### Added
 - Version to footer
 
-## Changed
+### Changed
 - Footer set to be sticky at bottom of page and color stretched full page width
 - Center tabs on tab bar
 - Set Caffeine, Exercises, and Routines to be within Page, with max-width
 - Footer URL pointing to homepage instead of github.io page
 
-## Removed
+### Removed
 - Unused sections of app; Sign Up/In buttons, pages with no data
 - Removed margin on page body
 
 ## [0.11.0] -2021-03-20
-## Changed
+### Changed
 - Caffeine, Cardio Session, and Exercises list and create API using S3 storage API
 
-## Removed
+### Removed
 - Pagination on Caffeine and Cardio Session tables
 - Azure API URL from application
 
