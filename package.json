@@ -84,17 +84,16 @@
     ]
   },
   "license": "MIT",
-  "name": "augmented-frontend",
+  "name": "augmented-ui",
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/cameronDz/augmented-frontend.git"
+    "url": "https://github.com/cameronDz/augmented-ui.git"
   },
   "scripts": {
     "analyzer": "webpack --config webpack/analyzer.babel.js",
     "build-dev": "webpack --config webpack/dev.babel.js",
     "build-prod": "webpack --config webpack/prod.babel.js",
-    "deploy": "aws s3 cp --recursive ./dist s3://augmented-frontend",
     "lint": "eslint ./src/js/**/* ./webpack ./test",
     "lint-fix": "eslint --fix ./src/js/**/* ./webpack ./test",
     "start": "webpack-dev-server --open --config webpack/dev.babel.js",

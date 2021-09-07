@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Naming updated
+
+### Fixed
+
+- Security dependency updates
+
 ## [0.12.1] -2021-03-21
 ### Fixed
 - Footer full width on color for text beyond the content max width
