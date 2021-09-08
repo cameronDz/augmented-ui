@@ -6,21 +6,20 @@ Application used for tracking various fitness and nutritional activities. Curren
 - [x] Find smaller date picker (MUI picker)
 - [ ] Replace time picker for one that uses modern React lifecyle methods
 - [ ] Convert base dropdown and nav bar from class to functional components
-- [ ] Create #/ routing system
+- [x] Create #/ routing system
 - [ ] Switch from bulma to material ui for styling
 - [ ] Convert css to global jss
 - [ ] Remove all css imports from html index page
-- [ ] Set footer to be sticky
+- [x] Set footer to be sticky
 
 ## npm - Commands for Application ##
 The following commands are used for building, testing, and deploying the application.
 
 ```javascript
-npm run build-dev // build unminified bundle
-npm run build-prod // build minified bundle for prod
-npm run deploy // send build and html in dist folder to S3 (if system has configs for S3)
+npm run build:dev // build unminified bundle
+npm run build:prod // build minified bundle for prod
 npm run lint // run linter against src/js, test, and webpack directories
-npm run lint-fix // run linter and fix any issues that linter can corrects
+npm run lint:fix // run linter and fix any issues that linter can corrects
 npm run start // build unminified bundle and server through webpack server
 npm run test // run unit tests
 ```

@@ -92,10 +92,10 @@
   },
   "scripts": {
     "analyzer": "webpack --config webpack/analyzer.babel.js",
-    "build-dev": "webpack --config webpack/dev.babel.js",
-    "build-prod": "webpack --config webpack/prod.babel.js",
+    "build:dev": "webpack --config webpack/dev.babel.js",
+    "build:prod": "webpack --config webpack/prod.babel.js",
     "lint": "eslint ./src/js/**/* ./webpack ./test",
-    "lint-fix": "eslint --fix ./src/js/**/* ./webpack ./test",
+    "lint:fix": "eslint --fix ./src/js/**/* ./webpack ./test",
     "start": "webpack-dev-server --open --config webpack/dev.babel.js",
     "test": "mocha --require @babel/register --require ignore-styles --reqire jsdom-global/register"
   },
