@@ -1,5 +1,5 @@
 {
     "apis": {
-        "heroku": "https://nssd-augmented-storage.herokuapp.com/"
+        "heroku": "https://augmented-storage-api.herokuapp.com/"
     }
 }
