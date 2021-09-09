@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.14.1] -2021-09-09
+
+### Added
+
+- Base tag in index html file for routing
+
 ## [0.14.0] -2021-09-09
 
 ### Changed
