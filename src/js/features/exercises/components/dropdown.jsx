@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import Dropdown from '../../../components/Dropdown';
+import SimpleDropdown from '../../../components/simpleDropdown';
 
 const propTypes = {
   exercises: PropTypes.array
@@ -26,12 +26,12 @@ const exerciseDropdown = ({ exercises }) => {
   };
 
   return (
-    <Dropdown
+    <SimpleDropdown
       list={processedExercises}
       resetThenSet={resetThenSet}
       selectedId={selectedId}
       title="Exercise Dropdown">
-    </Dropdown>);
+    </SimpleDropdown>);
 };
 
 exerciseDropdown.propTypes = propTypes;
