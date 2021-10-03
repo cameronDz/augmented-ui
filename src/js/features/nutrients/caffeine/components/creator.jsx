@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { getCaffeineList, putCaffeine } from '../state/actions';
 import '../../../../../css/creator.css';
 
+const authWarning = '* must authenticate to submit exercise';
 const propTypes = {
   caffeine: PropTypes.array,
   getCaffeines: PropTypes.func,
@@ -57,6 +58,7 @@ const creator = ({ caffeine, getCaffeines, isLoadingCaffeine, isProcessingCaffei
   return (
     <Fragment>
       <div className="field is-horizontal">
+        {!isUserSecured && <div><p style={{ color: 'red' }}>{authWarning}</p></div>}
         <label className="label">Amount</label>
         <input className="input input-amount"
           disabled={isDisabled}
