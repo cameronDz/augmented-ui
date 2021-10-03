@@ -5,7 +5,7 @@ import '../../../../css/table.css';
 
 const propTypes = {
   comment: PropTypes.string,
-  distanceMiles: PropTypes.number,
+  distanceMiles: PropTypes.string,
   durationSeconds: PropTypes.number,
   machineType: PropTypes.string,
   modal: PropTypes.object,
@@ -65,7 +65,7 @@ const modalButton = props => {
             <div>Time: {time}</div>
             <div>Machine: {props.machineType}</div>
             <div>Duration: {minutes}m {seconds}s</div>
-            <div>Distance: {props.distanceMiles} miles</div>
+            <div>Distance: {parseFloat(props.distanceMiles)} miles</div>
             <div>User: {props.userName}</div>
             <div>Comment: {props.comment}</div>
           </Modal.Card.Body>

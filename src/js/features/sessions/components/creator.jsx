@@ -19,26 +19,26 @@ const propTypes = {
     timing: PropTypes.string,
     userName: PropTypes.string
   }),
-  getCardioSessionList: PropTypes.func,
+  getCardioSessions: PropTypes.func,
   hasUpdated: PropTypes.bool,
   isProcessing: PropTypes.bool,
-  putCardioSession: PropTypes.func,
+  saveCardioSession: PropTypes.func,
   sessions: PropTypes.array,
-  updateCardioMachineSessionPostForm: PropTypes.func
+  updateCardioSessionForm: PropTypes.func
 };
-const creator = ({ form, getCardioSessionList, hasUpdated, isProcessing, putCardioSession, sessions, updateCardioMachineSessionPostForm }) => {
+const creator = ({ form, getCardioSessions, hasUpdated, isProcessing, saveCardioSession, sessions, updateCardioSessionForm }) => {
   const [isCurrentTimeStartTime, setIsCurrentTimeStartTime] = useState(true);
 
   useEffect(() => {
     if (hasUpdated) {
-      getCardioSessionList();
+      getCardioSessions();
     }
   }, [hasUpdated]);
 
   const handleDateChange = date => {
     const update = { startDate: date };
     setIsCurrentTimeStartTime(false);
-    updateCardioMachineSessionPostForm(update);
+    updateCardioSessionForm(update);
   };
 
   const handleTimeChange = time => {
@@ -49,14 +49,14 @@ const creator = ({ form, getCardioSessionList, hasUpdated, isProcessing, putCard
       const newStartTime = new Date(startTimeMilliseconds);
       update.startDate = newStartTime;
     }
-    updateCardioMachineSessionPostForm(update);
+    updateCardioSessionForm(update);
   };
 
   const handleToggleSwitch = () => {
     if (!isCurrentTimeStartTime) {
       const startTimeMilliseconds = new Date().getTime() - (form.seconds * 1000);
       const update = { startDate: new Date(startTimeMilliseconds) };
-      updateCardioMachineSessionPostForm(update);
+      updateCardioSessionForm(update);
     }
     setIsCurrentTimeStartTime(!isCurrentTimeStartTime);
   };
@@ -69,7 +69,7 @@ const creator = ({ form, getCardioSessionList, hasUpdated, isProcessing, putCard
     const id = 'se-id-' + new Date().getTime();
     const startTime = !!form && form.startDate ? form.startDate.toJSON() : '';
     const item = { ...form, id, startTime };
-    putCardioSession({ cardio: [...sessions, item] });
+    saveCardioSession({ cardio: [...sessions, item] });
   };
 
   return (
@@ -78,7 +78,7 @@ const creator = ({ form, getCardioSessionList, hasUpdated, isProcessing, putCard
         <label className="label" htmlFor="machineType">Machine Type &nbsp;</label>
         <input className="input"
           name="machineType"
-          onChange={ event => updateCardioMachineSessionPostForm({ machineType: event.target.value })}
+          onChange={ event => updateCardioSessionForm({ machineType: event.target.value })}
           required
           type="text"
           value={getFormData('machineType')} />
@@ -104,7 +104,7 @@ const creator = ({ form, getCardioSessionList, hasUpdated, isProcessing, putCard
         <label className="label" htmlFor="distanceMiles">Distance (miles) &nbsp;</label>
         <input className="distance"
           name="distanceMiles"
-          onChange={ event => updateCardioMachineSessionPostForm({ distanceMiles: event.target.value })}
+          onChange={ event => updateCardioSessionForm({ distanceMiles: event.target.value })}
           step="0.01"
           type="number"
           value={getFormData('distanceMiles')} />
@@ -122,7 +122,7 @@ const creator = ({ form, getCardioSessionList, hasUpdated, isProcessing, putCard
         <label className="label" htmlFor="userName">User &nbsp;</label>
         <input className="input"
           name="userName"
-          onChange={ event => updateCardioMachineSessionPostForm({ userName: event.target.value })}
+          onChange={ event => updateCardioSessionForm({ userName: event.target.value })}
           required
           type="text"
           value={getFormData('userName')} />
@@ -132,7 +132,7 @@ const creator = ({ form, getCardioSessionList, hasUpdated, isProcessing, putCard
         <label className="label" htmlFor="comment">Comment &nbsp;</label>
         <textarea className="textarea"
           name="comment"
-          onChange={event => updateCardioMachineSessionPostForm({ comment: event.target.value })}
+          onChange={event => updateCardioSessionForm({ comment: event.target.value })}
           type="textarea"
           value={getFormData('comment')} />
       </div>
@@ -143,9 +143,9 @@ const creator = ({ form, getCardioSessionList, hasUpdated, isProcessing, putCard
 };
 
 const mapDispatchToProps = {
-  getCardioSessionList,
-  putCardioSession,
-  updateCardioMachineSessionPostForm
+  getCardioSessions: getCardioSessionList,
+  saveCardioSession: putCardioSession,
+  updateCardioSessionForm: updateCardioMachineSessionPostForm
 };
 const mapStateToProps = state => ({
   form: state.cardioMachineSessionPost.form,
