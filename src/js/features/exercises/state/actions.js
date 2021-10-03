@@ -8,7 +8,7 @@ const emitDispatch = (type, actions = {}) => {
 
 const getExerciseList = () => {
   return (dispatch) => {
-    const url = `${_config.baseApiUrl}/object/exercise`;
+    const url = `${_config.baseApiUrl}/object/exercises`;
     dispatch(emitDispatch(_types.GET_REQUEST_EXERCISE_LIST_START));
     return axios.get(url, _config.baseApiConfig)
       .then((response) => {
@@ -26,7 +26,7 @@ const getExerciseList = () => {
 
 const putExercise = payload => {
   return (dispatch) => {
-    const url = `${_config.baseApiUrl}/update/exercise`;
+    const url = `${_config.baseApiUrl}/update/exercises`;
     dispatch(emitDispatch(_types.PUT_REQUEST_EXERCISE_ITEM_START));
     return axios.put(url, payload, _config.baseApiConfig)
       .then((response) => {

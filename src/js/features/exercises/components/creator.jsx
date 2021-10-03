@@ -3,17 +3,27 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getExerciseList, putExercise } from '../state/actions';
 
+const authWarning = '* must authenticate to submit exercise';
 const propTypes = {
   exercises: PropTypes.array,
-  getExerciseList: PropTypes.func,
+  getExercises: PropTypes.func,
   isLoading: PropTypes.bool,
   isProcessing: PropTypes.bool,
-  putExercise: PropTypes.func,
+  isUserSecured: PropTypes.bool,
+  saveExercise: PropTypes.func,
   successfulPut: PropTypes.bool
 };
-const exerciseCreator = ({ exercises, getExerciseList, isLoading, isProcessing, putExercise, successfulPut }) => {
+const ExerciseCreator = ({
+  exercises,
+  getExercises,
+  isLoading,
+  isProcessing,
+  isUserSecured,
+  saveExercise,
+  successfulPut
+}) => {
   const [description, setDescription] = useState('');
-  const [isSubmitDisabled, setIsSubmitDisabled] = useState(false);
+  const [isDisabled, setDisabled] = useState(false);
   const [name, setName] = useState('');
   const [typeId, setTypeId] = useState('');
 
@@ -22,12 +32,12 @@ const exerciseCreator = ({ exercises, getExerciseList, isLoading, isProcessing, 
   }, []);
 
   useEffect(() => {
-    setIsSubmitDisabled(isLoading || isProcessing);
-  }, [isLoading, isProcessing]);
+    setDisabled(isLoading || isProcessing || !isUserSecured);
+  }, [isLoading, isProcessing, isUserSecured]);
 
   useEffect(() => {
     if (successfulPut) {
-      getExerciseList();
+      getExercises();
       resetFormValues();
     }
   }, [successfulPut]);
@@ -42,36 +52,38 @@ const exerciseCreator = ({ exercises, getExerciseList, isLoading, isProcessing, 
     const id = 'ex-id-' + new Date().getTime();
     const item = { description, id, name, typeId };
     const payload = { exercises: [item, ...exercises] };
-    putExercise(payload);
+    saveExercise(payload);
   };
 
   return (
     <Fragment>
       <p><strong>Create a new Exercise</strong></p>
+      {!isUserSecured && <p style={{ color: 'red' }}>{authWarning}</p>}
       <div>
         <label forhtml="name">Name</label><br/>
-        <input name="name" onChange={event => setName(event.target.value) } type="text" value={name} />
+        <input disabled={isDisabled} name="name" onChange={event => setName(event.target.value) } type="text" value={name} />
       </div>
       <div>
         <label forhtml="description">Description</label><br/>
-        <textarea name="description" onChange={event => setDescription(event.target.value)} value={description}>
+        <textarea disabled={isDisabled} name="description" onChange={event => setDescription(event.target.value)} value={description}>
         </textarea>
       </div>
       <div>
         <label forhtml="typeId">Type</label><br/>
-        <input name="typeId" onChange={event => setTypeId(Number(event.target.value)) } type="number" value={typeId} />
+        <input disabled={isDisabled} name="typeId" onChange={event => setTypeId(Number(event.target.value)) } type="number" value={typeId} />
       </div>
       <div>
-        <button disabled={isSubmitDisabled} role="button" onClick={handleSubmit}>Submit</button>
+        <button disabled={isDisabled} role="button" onClick={handleSubmit}>Submit</button>
       </div>
     </Fragment>);
 };
 
+ExerciseCreator.propTypes = propTypes;
 const mapStateToProps = state => ({
   exercises: state.exercises.exerciseGetPayload,
   isLoading: state.exercises.isLoadingExercises,
   isProcessing: state.exercises.isProcessingExercise,
+  isUserSecured: !!state.auth.token,
   successfulPut: !!state.exercises.exercisePostPayload
 });
-exerciseCreator.propTypes = propTypes;
-export default connect(mapStateToProps, { getExerciseList, putExercise })(exerciseCreator);
+export default connect(mapStateToProps, { getExercises: getExerciseList, saveExercise: putExercise })(ExerciseCreator);
