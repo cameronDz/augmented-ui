@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropType from 'prop-types';
 import {
   Button,
   CircularProgress,
-  Dialog,
-  DialogActions,
-  DialogContent,
   DialogContentText,
-  DialogTitle,
   TextField
 } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { SimpleDialog } from '../components/simpleDialog';
 import {
   clearError,
   clearToken,
@@ -95,10 +92,12 @@ const RequestTokenDialog = ({
   };
 
   return (
-    <Dialog onClose={handleClose} open={isOpen}>
-      <div className={classes?.dialogContainer}>
-        <DialogTitle>{title}</DialogTitle>
-        <DialogContent>
+    <SimpleDialog
+      isOpen={isOpen}
+      onClose={handleClose}
+      contentHeader={title}
+      contentBody={
+        <Fragment>
           <div className={classes?.dialogContentContainer}>
             {isProcessingRequest ? (
               <CircularProgress />
@@ -106,7 +105,6 @@ const RequestTokenDialog = ({
               <DialogContentText>{getText()}</DialogContentText>
             )}
           </div>
-
           <TextField
             autoFocus
             disabled={isProcessingRequest || !!token}
@@ -132,8 +130,10 @@ const RequestTokenDialog = ({
             value={password}
             variant="standard"
           />
-        </DialogContent>
-        <DialogActions>
+        </Fragment>
+      }
+      contentFooter={
+        <Fragment>
           <Button disabled={isProcessingRequest} onClick={handleClose}>
             {token ? 'Close' : 'Cancel'}
           </Button>
@@ -149,9 +149,9 @@ const RequestTokenDialog = ({
               Signin
             </Button>
           )}
-        </DialogActions>
-      </div>
-    </Dialog>
+        </Fragment>
+      }
+    />
   );
 };
 
