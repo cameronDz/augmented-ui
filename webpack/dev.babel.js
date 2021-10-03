@@ -5,9 +5,10 @@ import common from './common.babel';
 
 const dev = {
   devServer: {
-    contentBase: resolve(__dirname, '..', './dist'),
-    hot: true,
-    watchContentBase: true
+    static: {
+      directory: resolve(__dirname, 'dist')
+    },
+    hot: true
   },
   devtool: 'inline-source-map',
   mode: 'development',

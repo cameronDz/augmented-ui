@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Webpack bundle depenedencies upgraded to latest major version - v4 to v5
+
 ## [0.15.1] -2021-10-03
 
 ### Fixed
