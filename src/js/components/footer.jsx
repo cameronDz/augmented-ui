@@ -1,6 +1,6 @@
 import React from 'react';
 import '../../css/footer.css';
-import * as _package from '../../../package.json';
+import _package from '../../../package.json';
 
 const footer = () => {
   const homepageUrl = 'https://www.camdziurgot.io';

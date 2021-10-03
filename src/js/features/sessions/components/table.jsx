@@ -5,7 +5,7 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import ModalButton from './modalButton';
 import { getCardioSessionList } from '../state/actions';
 import { splitTextKeyToArray } from '../../../lib/splits';
-import * as _config from '../../../../assets/config.json';
+import _config from '../../../../assets/config.json';
 import '../../../../css/table.css';
 
 const downloadText = 'Download Session in JSON file.';

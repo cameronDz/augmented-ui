@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as _types from './types';
-import * as _config from '../../../../../assets/config.json';
+import _config from '../../../../../assets/config.json';
 
 const emitDispatch = (type, actions = {}) => {
   return { type, ...actions };
