@@ -10,7 +10,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Using shared Material UI dialog for all modals
 - React outsideclick listener replaced with Mui clickaway listener
+- Upgraded Timefield selector to latest version
 - JSON imports all using single namespace instead of all star
+
+### Fixed
+
+- Save Request issue not passing payload for sessions
 
 ### Removed
 

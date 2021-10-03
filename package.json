@@ -56,7 +56,7 @@
     "react-fontawesome": "^1.7.1",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.1.2",
-    "react-simple-timefield": "^2.0.3",
+    "react-simple-timefield": "^3.2.3",
     "react-test-renderer": "^16.13.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
