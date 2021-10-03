@@ -6,8 +6,8 @@ import SessionCreator from './components/creator';
 import SessionsTableDisplay from './components/table';
 import { getCardioSessionList } from './state/actions';
 
-const propTypes = { getCardioSessionList: PropTypes.func };
-const sessions = ({ getCardioSessionList }) => {
+const propTypes = { getCardioSessions: PropTypes.func };
+const sessions = ({ getCardioSessions }) => {
   const tabNames = ['Information', 'Record', 'History', 'Data Visualization'];
   const tabPanels = [
     <p key={1}>Information on fitness sessions</p>,
@@ -17,11 +17,11 @@ const sessions = ({ getCardioSessionList }) => {
   ];
 
   useEffect(() => {
-    getCardioSessionList();
+    getCardioSessions();
   }, []);
 
   return <Page title="Sessions" tabNames={tabNames} tabPanels={tabPanels} />;
 };
 
 sessions.propTypes = propTypes;
-export default connect(null, { getCardioSessionList })(sessions);
+export default connect(null, { getCardioSessions: getCardioSessionList })(sessions);
