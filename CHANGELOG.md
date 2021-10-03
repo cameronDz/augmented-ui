@@ -8,7 +8,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Using shared Material UI dialog for all modals
 - JSON imports all using single namespace instead of all star
+
+### Removed
+
+- Bulma Modal component from app and replaced with Mui component - shrunk bundle ~160Kb
 
 ## [0.15.1] -2021-10-03
 
