@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- JSON imports all using single namespace instead of all star
+
 ## [0.15.1] -2021-10-03
 
 ### Fixed
