@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Navbar clickaway listener to navbar for menu and dropdown clickaway
+
 ### Changed
 
 - Using shared Material UI dialog for all modals
