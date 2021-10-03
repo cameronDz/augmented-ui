@@ -1,35 +1,38 @@
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { ClickAwayListener } from '@material-ui/core';
 import { RequestTokenDialog } from '../../auth';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isToggleOpen, setIsToggleOpen] = useState(false);
 
-  useEffect(() => {
-    // get elements to be dropdowns
+  // create function for deactivating all dropdowns
+  const deactivateDropdowns = () => {
     const fitnessButton = document.getElementById('fitnessNavbarButton');
     const nutritionButton = document.getElementById('nutritionNavbarButton');
+    fitnessButton.nextElementSibling.style.display = 'none';
+    nutritionButton.nextElementSibling.style.display = 'none';
+  };
 
-    // create function for deactivating all dropdowns
-    const deactivateDropdowns = () => {
-      fitnessButton.nextElementSibling.style.display = 'none';
-      nutritionButton.nextElementSibling.style.display = 'none';
-    };
-
+  useEffect(() => {
     // create listener for that shows and hides drop downs
     function buttonListener (event) {
       event.preventDefault();
       this.classList.toggle('active', true);
       const items = this.nextElementSibling;
-      if (items.style.display === 'none') {
+      const isOpeningMenu = items.style.display === 'none';
+      if (isOpeningMenu) {
         deactivateDropdowns();
-        items.style.display = 'block';
-      } else {
-        items.style.display = 'none';
       }
-    };
+      items.style.display = isOpeningMenu ? 'block' : 'none';
+      setIsMenuOpen(isOpeningMenu);
+    }
 
     // add listeners to dropdowns
+    const fitnessButton = document.getElementById('fitnessNavbarButton');
+    const nutritionButton = document.getElementById('nutritionNavbarButton');
     fitnessButton.addEventListener('click', buttonListener);
     nutritionButton.addEventListener('click', buttonListener);
 
@@ -37,21 +40,36 @@ const Navbar = () => {
     deactivateDropdowns();
   }, []);
 
+  const toggleHamburger = () => {
+    document.querySelector('.navbar-menu').classList.toggle('is-active');
+    setIsToggleOpen((prev) => { return !prev; });
+  };
+
   // Click handler for main burger menu.
   const handleBurgerClick = () => {
-    document.querySelector('.navbar-menu').classList.toggle('is-active');
+    toggleHamburger();
   };
 
   const handleAuthClick = () => {
-    setIsOpen(true);
+    setIsAuthOpen(true);
   };
 
   const handleAuthClose = () => {
-    setIsOpen(false);
+    setIsAuthOpen(false);
+  };
+
+  const handleClickAway = (_event) => {
+    if (isToggleOpen) {
+      toggleHamburger();
+    }
+    if (isMenuOpen) {
+      deactivateDropdowns();
+      setIsMenuOpen(false);
+    }
   };
 
   return (
-    <Fragment>
+    <ClickAwayListener onClickAway={handleClickAway}>
       <nav className="navbar" aria-label="main navigation">
         <div className="navbar-brand">
           <div className="navbar-item">
@@ -95,9 +113,9 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-        <RequestTokenDialog isOpen={isOpen} onClose={handleAuthClose} />
+        <RequestTokenDialog isOpen={isAuthOpen} onClose={handleAuthClose} />
       </nav>
-    </Fragment>
+    </ClickAwayListener>
   );
 };
 
