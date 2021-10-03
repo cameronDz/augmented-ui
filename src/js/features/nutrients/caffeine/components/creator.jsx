@@ -57,8 +57,8 @@ const creator = ({ caffeine, getCaffeines, isLoadingCaffeine, isProcessingCaffei
 
   return (
     <Fragment>
+      {!isUserSecured && <div><p style={{ color: 'red' }}>{authWarning}</p></div>}
       <div className="field is-horizontal">
-        {!isUserSecured && <div><p style={{ color: 'red' }}>{authWarning}</p></div>}
         <label className="label">Amount</label>
         <input className="input input-amount"
           disabled={isDisabled}
