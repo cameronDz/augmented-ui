@@ -9,6 +9,7 @@ import { updateCardioMachineSessionPostForm } from '../state/creator/actions';
 import { calulcateTimingSeconds } from '../lib/utility';
 import '../../../../css/creator.css';
 
+const authWarning = '* must authenticate to submit exercise';
 const propTypes = {
   form: PropTypes.shape({
     comment: PropTypes.string,
@@ -22,18 +23,33 @@ const propTypes = {
   getCardioSessions: PropTypes.func,
   hasUpdated: PropTypes.bool,
   isProcessing: PropTypes.bool,
+  isUserSecured: PropTypes.bool,
   saveCardioSession: PropTypes.func,
   sessions: PropTypes.array,
   updateCardioSessionForm: PropTypes.func
 };
-const creator = ({ form, getCardioSessions, hasUpdated, isProcessing, saveCardioSession, sessions, updateCardioSessionForm }) => {
+const creator = ({
+  form,
+  getCardioSessions,
+  hasUpdated,
+  isProcessing,
+  isUserSecured,
+  saveCardioSession,
+  sessions,
+  updateCardioSessionForm
+}) => {
   const [isCurrentTimeStartTime, setIsCurrentTimeStartTime] = useState(true);
+  const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
     if (hasUpdated) {
       getCardioSessions();
     }
   }, [hasUpdated]);
+
+  useEffect(() => {
+    setIsDisabled(isProcessing || !isUserSecured);
+  }, [isProcessing, isUserSecured]);
 
   const handleDateChange = date => {
     const update = { startDate: date };
@@ -74,9 +90,11 @@ const creator = ({ form, getCardioSessions, hasUpdated, isProcessing, saveCardio
 
   return (
     <Fragment>
+      {!isUserSecured && <div><p style={{ color: 'red' }}>{authWarning}</p></div>}
       <div className="field is-horizontal">
         <label className="label" htmlFor="machineType">Machine Type &nbsp;</label>
         <input className="input"
+          disabled={isDisabled}
           name="machineType"
           onChange={ event => updateCardioSessionForm({ machineType: event.target.value })}
           required
@@ -89,6 +107,7 @@ const creator = ({ form, getCardioSessions, hasUpdated, isProcessing, saveCardio
         <DateTimePicker
           ampm={false}
           autoOk
+          disabled={isDisabled}
           onChange={handleDateChange}
           value={getFormData('startDate')}
         />
@@ -97,12 +116,14 @@ const creator = ({ form, getCardioSessions, hasUpdated, isProcessing, saveCardio
       <div className="field is-horizontal">
         <label className="label">Duration &nbsp;</label>
         <TimeField className="time-field"
+          disabled={isDisabled}
           onChange={handleTimeChange}
           showSeconds={true}
           style={{ width: 80, height: 25 }}
           value={getFormData('timing')} />
         <label className="label" htmlFor="distanceMiles">Distance (miles) &nbsp;</label>
         <input className="distance"
+          disabled={isDisabled}
           name="distanceMiles"
           onChange={ event => updateCardioSessionForm({ distanceMiles: event.target.value })}
           step="0.01"
@@ -114,6 +135,7 @@ const creator = ({ form, getCardioSessions, hasUpdated, isProcessing, saveCardio
         <label className="label toggle-label" htmlFor="useEndTimeStartDate">Session Just End &nbsp;</label>
         <Switch checked={isCurrentTimeStartTime}
           color="primary"
+          disabled={isDisabled}
           onChange={handleToggleSwitch}
           value={isCurrentTimeStartTime} />
       </div>
@@ -121,6 +143,7 @@ const creator = ({ form, getCardioSessions, hasUpdated, isProcessing, saveCardio
       <div className="field is-horizontal">
         <label className="label" htmlFor="userName">User &nbsp;</label>
         <input className="input"
+          disabled={isDisabled}
           name="userName"
           onChange={ event => updateCardioSessionForm({ userName: event.target.value })}
           required
@@ -131,13 +154,14 @@ const creator = ({ form, getCardioSessions, hasUpdated, isProcessing, saveCardio
       <div className="field">
         <label className="label" htmlFor="comment">Comment &nbsp;</label>
         <textarea className="textarea"
+          disabled={isDisabled}
           name="comment"
           onChange={event => updateCardioSessionForm({ comment: event.target.value })}
           type="textarea"
           value={getFormData('comment')} />
       </div>
       <div className="field control">
-        <button className="input" disabled={isProcessing} onClick={handleSubmit} role="button">Submit</button>
+        <button className="input" disabled={isDisabled} onClick={handleSubmit} role="button">Submit</button>
       </div>
     </Fragment>);
 };
@@ -149,8 +173,9 @@ const mapDispatchToProps = {
 };
 const mapStateToProps = state => ({
   form: state.cardioMachineSessionPost.form,
-  isProcessing: state.cardioMachineSessions.isProcessingCardioSession,
   hasUpdated: !!state.cardioMachineSessions.cardioSessionPutPayload,
+  isProcessing: state.cardioMachineSessions.isProcessingCardioSession,
+  isUserSecured: !!state.auth.token,
   sessions: state.cardioMachineSessions.cardioSessionGetPayload
 });
 creator.propTypes = propTypes;
