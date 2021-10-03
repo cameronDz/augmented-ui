@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.1] -2021-10-03
+
+### Fixed
+
+- Webpack configuration for public path for bundled app
+
 ## [0.15.0] -2021-10-03
 
 ### Added
