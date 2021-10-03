@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Navbar from './navbar';
 
-const propTypes = { title: PropTypes.string.isRequired };
+const propTypes = { title: PropTypes.string };
 const header = ({ title }) => {
   return (
     <Fragment>

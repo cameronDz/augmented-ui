@@ -9,7 +9,7 @@ const propTypes = {
   children: PropTypes.object.isRequired,
   isFooterHidden: PropTypes.bool,
   isHeaderHidden: PropTypes.bool,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string
 };
 
 const layout = ({ isFooterHidden, isHeaderHidden, ...otherProps }) => {

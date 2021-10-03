@@ -12,7 +12,7 @@ const propTypes = {
   classes: PropTypes.object,
   tabNames: PropTypes.array.isRequired,
   tabPanels: PropTypes.array.isRequired,
-  title: PropTypes.string.isRequired
+  title: PropTypes.string
 };
 
 const styles = {
