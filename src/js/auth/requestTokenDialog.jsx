@@ -18,7 +18,7 @@ import {
   fetchToken,
   livenessCheck
 } from './state/actions';
-import { handleFunction } from '../lib/eventUtil';
+import { handleFunction } from '../lib/eventHandler';
 import { requestTokenDialogStyles as styles } from './styles';
 
 const title = 'Sign in with credentials';
@@ -85,7 +85,7 @@ const RequestTokenDialog = ({
   };
 
   const getText = () => {
-    let text = 'To create new journal notes, please log in with valid credentials.';
+    let text = 'To create new Augmented sessions and logs, please log in with valid credentials.';
     if (token) {
       text = 'You\'re credentials are valid.';
     } else if (error) {

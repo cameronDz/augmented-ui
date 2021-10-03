@@ -1,8 +1,11 @@
-import React, { Component } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import { RequestTokenDialog } from '../../auth';
 
-class Navbar extends Component {
-  componentDidMount () {
+const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
     // get elements to be dropdowns
     const fitnessButton = document.getElementById('fitnessNavbarButton');
     const nutritionButton = document.getElementById('nutritionNavbarButton');
@@ -32,21 +35,29 @@ class Navbar extends Component {
 
     // deactivate dropdowns on init
     deactivateDropdowns();
-  };
+  }, []);
 
   // Click handler for main burger menu.
-  handleBurgerClick = () => {
+  const handleBurgerClick = () => {
     document.querySelector('.navbar-menu').classList.toggle('is-active');
   };
 
-  render () {
-    return (
+  const handleAuthClick = () => {
+    setIsOpen(true);
+  };
+
+  const handleAuthClose = () => {
+    setIsOpen(false);
+  };
+
+  return (
+    <Fragment>
       <nav className="navbar" aria-label="main navigation">
         <div className="navbar-brand">
           <div className="navbar-item">
             <img alt="augmented-logo" height="28px" src="images/aug-logo.png"/>
           </div>
-          <div role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="basicNavbar" onClick={this.handleBurgerClick}>
+          <div role="button" className="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="basicNavbar" onClick={handleBurgerClick}>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -79,12 +90,15 @@ class Navbar extends Component {
               <div className="buttons">
                 {/* <div className="button is-light"><Link to="/signup"><strong>Sign up</strong></Link></div>
                 <div className="button is-light"><Link to="/signin"><strong>Sign In</strong></Link></div> */}
+                <div className="button is-light" onClick={handleAuthClick}><strong>Sign In</strong></div>
               </div>
             </div>
           </div>
         </div>
-      </nav>);
-  };
-}
+        <RequestTokenDialog isOpen={isOpen} onClose={handleAuthClose} />
+      </nav>
+    </Fragment>
+  );
+};
 
 export default Navbar;

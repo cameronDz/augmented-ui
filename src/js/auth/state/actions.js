@@ -2,7 +2,7 @@ import axios from 'axios';
 import * as _types from './types';
 import _config from '../../../assets/config.json';
 
-const authApiUrl = _config.authApiBaseUrl;
+const authApiUrl = _config.authBaseUrl;
 const endpointLiveness = _config.authApiEndpointLiveness;
 const endpointToken = _config.authApiEndpointToken;
 const config = _config.baseApiConfig;
