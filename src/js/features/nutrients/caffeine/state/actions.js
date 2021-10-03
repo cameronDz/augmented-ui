@@ -2,19 +2,15 @@ import axios from 'axios';
 import * as _types from './types';
 import * as _config from '../../../../../assets/config.json';
 
-const httpHeader = { header: { 'Content-Type': 'application/json' } };
-const caffeineGetPath = 'json/object/caffeine';
-const caffeinePutPath = 'json/update/caffeine';
-
 const emitDispatch = (type, actions = {}) => {
   return { type, ...actions };
 };
 
 const getCaffeineList = () => {
   return (dispatch) => {
-    const url = _config.apis.heroku + caffeineGetPath;
+    const url = `${_config.baseApiUrl}/object/caffeine`;
     dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_START));
-    return axios.get(url, httpHeader)
+    return axios.get(url, _config.baseApiConfig)
       .then((response) => {
         const caffeine = !!response && !!response.data && response.data.payload && Array.isArray(response.data.payload.caffeine) ? response.data.payload.caffeine : [];
         return dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_SUCCESS, { data: caffeine }));
@@ -30,16 +26,16 @@ const getCaffeineList = () => {
 
 const putCaffeine = payload => {
   return (dispatch) => {
-    const url = _config.apis.heroku + caffeinePutPath;
+    const url = `${_config.baseApiUrl}/update/caffeine`;
     dispatch(emitDispatch(_types.PUT_REQUEST_CAFFEINE_ITEM_START));
-    return axios.put(url, payload, httpHeader)
+    return axios.put(url, payload, _config.baseApiConfig)
       .then((response) => {
         const type = !!response && !!response.data ? _types.PUT_REQUEST_CAFFEINE_ITEM_SUCCESS : _types.PUT_REQUEST_CAFFEINE_ITEM_ERROR;
-        const payload = {
+        const responsePayload = {
           data: !!response && !!response.data ? response.data : null,
           error: 'No data in response.'
         };
-        return dispatch(emitDispatch(type, payload));
+        return dispatch(emitDispatch(type, responsePayload));
       })
       .catch((error) => {
         return dispatch(emitDispatch(_types.PUT_REQUEST_CAFFEINE_ITEM_ERROR, { error }));

@@ -8,20 +8,18 @@ import { splitTextKeyToArray } from '../../../lib/splits';
 import * as _config from '../../../../assets/config.json';
 import '../../../../css/table.css';
 
+const downloadText = 'Download Session in JSON file.';
 const propTypes = {
-  getCardioSessionList: PropTypes.func,
+  getCardioSessions: PropTypes.func,
   isLoadingSession: PropTypes.bool,
   isProcessingSession: PropTypes.bool,
   sessions: PropTypes.array
 };
-const table = ({ getCardioSessionList, isLoadingSession, isProcessingSession, sessions }) => {
-  const cardioSessionGetPath = 'json/object/cardio';
-  const downloadText = 'Download Session in JSON file.';
-
+const table = ({ getCardioSessions, isLoadingSession, isProcessingSession, sessions }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    getCardioSessionList();
+    getCardioSessions();
   }, []);
 
   useEffect(() => {
@@ -59,7 +57,7 @@ const table = ({ getCardioSessionList, isLoadingSession, isProcessingSession, se
           {renderTableRows()}
         </table>
       </div>
-      <a className="card-footer-item" href={_config.apis.heroku + cardioSessionGetPath} target="_">{downloadText}</a>
+      <a className="card-footer-item" href={`${_config.baseApiUrl}/object/cardio`} target="_">{downloadText}</a>
       {isLoading && <div className='circular-loader'><CircularProgress /></div>}
     </Fragment>);
 };
@@ -70,4 +68,4 @@ const mapStateToProps = state => ({
   isProcessingSession: state.cardioMachineSessions.isProcessingCardioSession,
   sessions: state.cardioMachineSessions.cardioSessionGetPayload
 });
-export default connect(mapStateToProps, { getCardioSessionList })(table);
+export default connect(mapStateToProps, { getCardioSessions: getCardioSessionList })(table);
