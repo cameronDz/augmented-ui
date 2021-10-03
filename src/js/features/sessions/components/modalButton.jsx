@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
-import { Modal } from 'react-bulma-components';
+import { SimpleDialog } from '../../../components/simpleDialog';
 import '../../../../css/table.css';
 
 const propTypes = {
@@ -11,13 +11,6 @@ const propTypes = {
   modal: PropTypes.object,
   startTime: PropTypes.string,
   userName: PropTypes.string
-};
-const defaultProps = {
-  modal: {
-    closeOnBlur: true,
-    showClose: true,
-    closeOnEsc: true
-  }
 };
 
 const modalButton = props => {
@@ -41,26 +34,23 @@ const modalButton = props => {
     }
   }, [props]);
 
-  const openModal = () => { setShow(true); };
-  const closeModal = () => { setShow(false); };
-
-  const getTwoDigitValue = (time = '') => {
-    return (time.toString().length === 1)
-      ? '0' + time.toString()
-      : time.toString();
+  const getTwoDigitValue = (value = '') => {
+    return (!value || value.toString().length === 1)
+      ? '0' + value.toString()
+      : value.toString();
   };
 
   return (
     <td className="detail-column">
-      <button className="button" onClick={openModal}>
+      <button className="button" onClick={() => setShow(true)}>
         <i className="fas fa-info-circle"></i>
       </button>
-      <Modal {...props.modal} show={show} onClose={closeModal}>
-        <Modal.Card>
-          <header className="modal-card-head">
-            <Modal.Card.Title>{props.machineType} - {date}</Modal.Card.Title>
-          </header>
-          <Modal.Card.Body>
+      <SimpleDialog
+        isOpen={show}
+        onClose={() => setShow(false)}
+        contentHeader={`${props.machineType} - ${date}`}
+        contentBody={
+          <Fragment>
             <div>Date: {date}</div>
             <div>Time: {time}</div>
             <div>Machine: {props.machineType}</div>
@@ -68,14 +58,11 @@ const modalButton = props => {
             <div>Distance: {parseFloat(props.distanceMiles)} miles</div>
             <div>User: {props.userName}</div>
             <div>Comment: {props.comment}</div>
-          </Modal.Card.Body>
-          <Modal.Card.Foot style={{ alignItems: 'center', justifyContent: 'center' }}>
-          </Modal.Card.Foot>
-        </Modal.Card>
-      </Modal>
+          </Fragment>
+        }
+      />
     </td>);
 };
 
-modalButton.defaultProps = defaultProps;
 modalButton.propTypes = propTypes;
 export default modalButton;
