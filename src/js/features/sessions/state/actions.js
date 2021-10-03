@@ -28,7 +28,7 @@ const putCardioSession = payload => {
   return (dispatch) => {
     const url = `${_config.baseApiUrl}/update/cardio`;
     dispatch(emitDispatch(_types.PUT_REQUEST_CARDIO_SESSION_ITEM_START));
-    return axios.put(url, _config.baseApiConfig)
+    return axios.put(url, payload, _config.baseApiConfig)
       .then((response) => {
         const type = !!response && !!response.data ? _types.PUT_REQUEST_CARDIO_SESSION_ITEM_SUCCESS : _types.PUT_REQUEST_CARDIO_SESSION_ITEM_ERROR;
         const responsePayload = {

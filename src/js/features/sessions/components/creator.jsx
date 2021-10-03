@@ -57,7 +57,7 @@ const creator = ({
     updateCardioSessionForm(update);
   };
 
-  const handleTimeChange = time => {
+  const handleTimeChange = (_event, time) => {
     const durationSeconds = calulcateTimingSeconds(time);
     const update = { seconds: durationSeconds, timing: time };
     if (isCurrentTimeStartTime) {
