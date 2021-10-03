@@ -3,9 +3,7 @@ export const shouldFetchState = state => {
   let fetch = false;
   if (!state) {
     fetch = true;
-  } else if (state.isFetching) {
-    fetch = false;
-  } else {
+  } else if (!state.isFetching) {
     fetch = !!state.didInvalidate;
   }
   return fetch;
