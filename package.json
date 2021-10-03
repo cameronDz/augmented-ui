@@ -54,7 +54,6 @@
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-fontawesome": "^1.7.1",
-    "react-onclickoutside": "^6.9.0",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.1.2",
     "react-simple-timefield": "^2.0.3",

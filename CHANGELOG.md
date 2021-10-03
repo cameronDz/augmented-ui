@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Using shared Material UI dialog for all modals
+- React outsideclick listener replaced with Mui clickaway listener
 - JSON imports all using single namespace instead of all star
 
 ### Removed
