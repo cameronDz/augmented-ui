@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Authentication dialog on Sign In button on navbar, with connection to jwt-auth-api
 
+### Changed
+
+- Creator for sessions, exercises, and nutrients require user to be authenticated
+
 ## [0.14.1] -2021-09-09
 
 ### Added
