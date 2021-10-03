@@ -6,6 +6,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.15.0] -2021-10-03
+
 ### Added
 
 - Authentication dialog on Sign In button on navbar, with connection to jwt-auth-api
