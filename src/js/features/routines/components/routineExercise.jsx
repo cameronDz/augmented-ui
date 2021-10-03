@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 
-const excercisePropTypes = {
+const propTypes = {
   name: PropTypes.string,
   note: PropTypes.string,
   sets: PropTypes.array
 };
-const exercise = ({ name, note, sets }) => {
+const RoutineExercise = ({ name, note, sets }) => {
   const setComponent = sets.map((item, key) => {
     let byAmount = '';
     let reps = '';
@@ -34,5 +34,5 @@ const exercise = ({ name, note, sets }) => {
     </tr>);
 };
 
-exercise.propTypes = excercisePropTypes;
-export default exercise;
+RoutineExercise.propTypes = propTypes;
+export default RoutineExercise;
