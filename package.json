@@ -16,7 +16,7 @@
     "@material-ui/pickers": "^3.2.10",
     "acorn": "^7.1.1",
     "ajv": "^6.12.0",
-    "axios": "^0.21.1",
+    "axios": "^0.21.4",
     "babel-eslint": "^10.1.0",
     "babel-loader": "^8.0.6",
     "chai": "^4.2.0",
@@ -98,5 +98,5 @@
     "start": "webpack-dev-server --open --config webpack/dev.babel.js",
     "test": "mocha --require @babel/register --require ignore-styles --reqire jsdom-global/register"
   },
-  "version": "0.16.0"
+  "version": "0.16.1"
 }
