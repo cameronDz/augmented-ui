@@ -10,6 +10,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles';
 import { SimpleDialog } from '../components/simpleDialog';
 import {
+  cancelToken,
   clearError,
   clearToken,
   fetchToken,
@@ -20,6 +21,7 @@ import { requestTokenDialogStyles as styles } from './styles';
 
 const title = 'Sign in with credentials';
 const propTypes = {
+  cancelTokenFetch: PropType.func,
   clearTokenError: PropType.func,
   clearTokenUser: PropType.func,
   error: PropType.any,
@@ -29,10 +31,12 @@ const propTypes = {
   isProcessingRequest: PropType.bool,
   livenessTokenCheck: PropType.func,
   onClose: PropType.func,
+  securedUser: PropType.string,
   token: PropType.any
 };
 const useStyles = makeStyles(() => styles);
 const RequestTokenDialog = ({
+  cancelTokenFetch,
   clearTokenError,
   clearTokenUser,
   error,
@@ -42,11 +46,16 @@ const RequestTokenDialog = ({
   isProcessingRequest,
   livenessTokenCheck,
   onClose,
+  securedUser,
   token
 }) => {
   const classes = useStyles();
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
+
+  useEffect(() => {
+    setPassword('');
+  }, [securedUser]);
 
   useEffect(() => {
     if (isOpen) {
@@ -56,9 +65,9 @@ const RequestTokenDialog = ({
     } else {
       handleFunction(clearTokenError);
       setPassword('');
-      setUsername('');
     }
-  }, [clearTokenError, isAuthLive, isOpen, livenessTokenCheck]);
+    setUsername(securedUser || '');
+  }, [clearTokenError, isAuthLive, isOpen, livenessTokenCheck, securedUser]);
 
   const handleActionClick = () => {
     if (token) {
@@ -72,6 +81,8 @@ const RequestTokenDialog = ({
   const handleClose = () => {
     if (!isProcessingRequest) {
       handleFunction(onClose);
+    } else {
+      handleFunction(cancelTokenFetch);
     }
   };
 
@@ -134,9 +145,7 @@ const RequestTokenDialog = ({
       }
       contentFooter={
         <Fragment>
-          <Button disabled={isProcessingRequest} onClick={handleClose}>
-            {token ? 'Close' : 'Cancel'}
-          </Button>
+          <Button onClick={handleClose}>{token ? 'Close' : 'Cancel'}</Button>
           {token ? (
             <Button disabled={isProcessingRequest} onClick={handleActionClick}>
               Clear Credentials
@@ -160,9 +169,11 @@ const mapStateToProps = (state) => ({
   error: state.auth.error,
   isAuthLive: state.auth.isLive,
   isProcessingRequest: state.auth.isFetching,
+  securedUser: state.auth.username,
   token: state.auth.token
 });
 const mapDispatchToProps = {
+  cancelTokenFetch: cancelToken,
   clearTokenError: clearError,
   clearTokenUser: clearToken,
   fetchUserToken: fetchToken,
