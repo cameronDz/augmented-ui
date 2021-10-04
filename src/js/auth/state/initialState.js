@@ -3,7 +3,8 @@ const initialState = {
   isFetching: false,
   isLive: false,
   error: null,
-  token: null
+  token: null,
+  username: null
 };
 
 export { initialState };

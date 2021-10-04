@@ -54,20 +54,21 @@ const RequestTokenDialog = ({
   const [username, setUsername] = useState('');
 
   useEffect(() => {
-    setPassword('');
-  }, [securedUser]);
-
-  useEffect(() => {
-    if (isOpen) {
-      if (!isAuthLive) {
-        handleFunction(livenessTokenCheck);
-      }
-    } else {
+    if (!isOpen) {
       handleFunction(clearTokenError);
       setPassword('');
     }
+    if (securedUser) {
+      setPassword('');
+    }
     setUsername(securedUser || '');
-  }, [clearTokenError, isAuthLive, isOpen, livenessTokenCheck, securedUser]);
+  }, [clearTokenError, isOpen, securedUser]);
+
+  useEffect(() => {
+    if (isOpen && !isAuthLive) {
+      handleFunction(livenessTokenCheck);
+    }
+  }, [isAuthLive, isOpen, livenessTokenCheck]);
 
   const handleActionClick = () => {
     if (token) {
