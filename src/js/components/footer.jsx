@@ -3,21 +3,21 @@ import '../../css/footer.css';
 import _package from '../../../package.json';
 
 const footer = () => {
-  const homepageUrl = 'https://www.camdziurgot.io';
-  const repositoryUrl = 'https://github.com/cameronDz/augmented-frontend';
-  const packageVersion = !!_package && _package.version ? _package.version : '';
-  const displayVersion = packageVersion ? ' v' + packageVersion : '';
+  const homepageUrl = _package.author.url;
+  const repositoryUrl = _package.repository.url;
+  const displayVersion = `v${_package.version}`;
+  const name = _package.author.name;
   const title = 'Augmented';
 
   return (
     <footer className="footer footer-container is-slim">
       <p className="footer-verbiage">
         <span className="app-title">{title}{displayVersion}</span>
-        . Created by
-        <a href={homepageUrl}> Cam Dziurgot</a>
-        . Repository on
-        <a href={repositoryUrl}> GitHub</a>
-        .
+        <span>. Created by </span>
+        <a href={homepageUrl} target="_">{name}</a>
+        <span>. Repository on </span>
+        <a href={repositoryUrl} target="_">GitHub</a>
+        <span>.</span>
       </p>
     </footer>);
 };

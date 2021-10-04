@@ -76,7 +76,7 @@
     "y18n": ">=4.0.1",
     "yargs-parser": "^13.1.2"
   },
-  "homepage": "http://augmented.fit",
+  "homepage": "http://www.camdziurgot.io/augmented/",
   "jest": {
     "setupFiles": [
       "test/setup.js"
@@ -98,5 +98,5 @@
     "start": "webpack-dev-server --open --config webpack/dev.babel.js",
     "test": "mocha --require @babel/register --require ignore-styles --reqire jsdom-global/register"
   },
-  "version": "0.16.1"
+  "version": "0.16.2"
 }
