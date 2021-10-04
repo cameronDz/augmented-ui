@@ -9,7 +9,12 @@ const requestTokenDialogStyles = {
     }
   },
   dialogContentContainer: {
-    minHeight: '100px'
+    alignItems: 'center',
+    display: 'flex',
+    minHeight: '100px',
+    '& .MuiCircularProgress-root': {
+      margin: 'auto'
+    }
   }
 };
 
