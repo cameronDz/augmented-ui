@@ -52,7 +52,14 @@ const ExerciseCreator = ({
   };
 
   const handleSubmit = () => {
-    const item = { createdDate: new Date(), description, id: uuidv4(), name, typeId, username };
+    const item = {
+      createdDate: new Date().toJSON(),
+      id: uuidv4(),
+      description,
+      name,
+      typeId,
+      username
+    };
     const payload = { exercises: [item, ...exercises] };
     saveExercise(payload);
   };

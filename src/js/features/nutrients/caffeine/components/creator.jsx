@@ -1,6 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import { getCaffeineList, putCaffeine } from '../state/actions';
 import '../../../../../css/creator.css';
 
@@ -12,14 +13,23 @@ const propTypes = {
   isProcessingCaffeine: PropTypes.bool,
   isUserSecured: PropTypes.bool,
   isSuccessfulPut: PropTypes.bool,
-  saveCaffeine: PropTypes.func
+  saveCaffeine: PropTypes.func,
+  username: PropTypes.string
 };
-const creator = ({ caffeine, getCaffeines, isLoadingCaffeine, isProcessingCaffeine, isSuccessfulPut, isUserSecured, saveCaffeine }) => {
+const creator = ({
+  caffeine,
+  getCaffeines,
+  isLoadingCaffeine,
+  isProcessingCaffeine,
+  isSuccessfulPut,
+  isUserSecured,
+  saveCaffeine,
+  username
+}) => {
   const [amount, setAmount] = useState(0);
   const [amountType, setAmountType] = useState('');
   const [comment, setComment] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);
-  const [userName, setUserName] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -41,16 +51,16 @@ const creator = ({ caffeine, getCaffeines, isLoadingCaffeine, isProcessingCaffei
     setAmount(0);
     setAmountType('');
     setComment('');
-    setUserName('');
   };
 
   const handleSubmit = () => {
     const payload = {
       amount: Number(amount),
+      id: uuidv4(),
+      intakeTime: new Date().toJSON(),
       amountType: amountType,
       comment: comment,
-      intakeTime: new Date().toJSON(),
-      userName: userName
+      userName: username
     };
     saveCaffeine({ caffeine: [payload, ...caffeine] });
   };
@@ -76,16 +86,6 @@ const creator = ({ caffeine, getCaffeines, isLoadingCaffeine, isProcessingCaffei
           <option value="ounce">Ounce</option>
         </select>
       </div>
-      <div className="field is-horizontal">
-        <label className="label">User</label>
-        <input className="input"
-          disabled={isDisabled}
-          name="userName"
-          onChange={ event => setUserName(event.target.value) }
-          required
-          type="text"
-          value={userName} />
-      </div>
       <div className="field">
         <label className="label">Comment</label>
         <textarea className="textarea"
@@ -106,7 +106,8 @@ const mapStateToProps = state => ({
   isLoadingCaffeine: state.caffeineIntakes.isLoadingCaffeine,
   isProcessingCaffeine: state.caffeineIntakes.isProcessingCaffeine,
   isSuccessfulPut: !!state.caffeineIntakes.caffeinePostPayload,
-  isUserSecured: !!state.auth.token
+  isUserSecured: !!state.auth.token,
+  username: state.auth.username
 });
 creator.propTypes = propTypes;
 export default connect(mapStateToProps, { getCaffeines: getCaffeineList, saveCaffeine: putCaffeine })(creator);
