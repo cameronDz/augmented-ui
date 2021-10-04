@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { connect } from 'react-redux';
 import PropType from 'prop-types';
+import { connect } from 'react-redux';
 import {
   makeStyles,
   Button,

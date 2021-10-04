@@ -1,15 +1,19 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
-import Grid from '@material-ui/core/Grid';
-import Tab from '@material-ui/core/Tab';
-import Tabs from '@material-ui/core/Tabs';
-import { withStyles } from '@material-ui/core/styles';
+import { connect } from 'react-redux';
+import {
+  AppBar,
+  Grid,
+  Tab,
+  Tabs,
+  withStyles
+} from '@material-ui/core';
 import Navbar from '../header/navbar';
 import TabPanel from './tabPanel';
 
 const propTypes = {
   classes: PropTypes.object,
+  isSecuredUser: PropTypes.bool,
   tabNames: PropTypes.array.isRequired,
   tabPanels: PropTypes.array.isRequired,
   title: PropTypes.string
@@ -20,7 +24,7 @@ const styles = {
   root: { margin: '0 auto', maxWidth: '1280px' }
 };
 
-const page = ({ classes, tabNames, tabPanels, title }) => {
+const page = ({ classes, isSecuredUser, tabNames, tabPanels, title }) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
@@ -43,7 +47,7 @@ const page = ({ classes, tabNames, tabPanels, title }) => {
     <Grid className={classes.root} container>
       <Grid item xs={12} sm={12} md={1}></Grid>
       <Grid item xs={12} sm={12} md={10}>
-        <Navbar />
+        <Navbar isSecuredUser={isSecuredUser} />
         <h2 className={classes.hero}>{title}</h2>
         <AppBar position="static">
           <Tabs centered={true} value={value} onChange={handleChange} >
@@ -57,4 +61,5 @@ const page = ({ classes, tabNames, tabPanels, title }) => {
 };
 
 page.propTypes = propTypes;
-export default withStyles(styles)(page);
+const mapStateToProps = (state) => ({ isSecuredUser: !!state.auth.token });
+export default withStyles(styles)(connect(mapStateToProps)(page));

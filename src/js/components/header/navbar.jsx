@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { ClickAwayListener } from '@material-ui/core';
 import { RequestTokenDialog } from '../../auth';
 
-const Navbar = () => {
+const propTypes = { isSecuredUser: PropTypes.bool };
+const Navbar = ({ isSecuredUser }) => {
   const [isAuthOpen, setIsAuthOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isToggleOpen, setIsToggleOpen] = useState(false);
@@ -108,7 +110,9 @@ const Navbar = () => {
               <div className="buttons">
                 {/* <div className="button is-light"><Link to="/signup"><strong>Sign up</strong></Link></div>
                 <div className="button is-light"><Link to="/signin"><strong>Sign In</strong></Link></div> */}
-                <div className="button is-light" onClick={handleAuthClick}><strong>Sign In</strong></div>
+                <div className="button is-light" onClick={handleAuthClick}><strong>
+                  {isSecuredUser ? 'Sign out' : 'Sign in'}
+                </strong></div>
               </div>
             </div>
           </div>
@@ -119,4 +123,5 @@ const Navbar = () => {
   );
 };
 
+Navbar.propTypes = propTypes;
 export default Navbar;
