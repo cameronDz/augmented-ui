@@ -2,12 +2,12 @@ import React, { useEffect, useState, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropType from 'prop-types';
 import {
+  makeStyles,
   Button,
   CircularProgress,
   DialogContentText,
   TextField
 } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
 import { SimpleDialog } from '../components/simpleDialog';
 import {
   cancelToken,

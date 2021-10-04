@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- All record creation username values come from global auth state instead of form input
 - Using shared Material UI dialog for all modals
 - React outsideclick listener replaced with Mui clickaway listener
 - Upgraded Timefield selector to latest version
