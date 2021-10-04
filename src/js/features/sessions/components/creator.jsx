@@ -1,7 +1,8 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Switch from '@material-ui/core/Switch';
+import { v4 as uuidv4 } from 'uuid';
+import { connect } from 'react-redux';
+import { Switch } from '@material-ui/core';
 import { DateTimePicker } from '@material-ui/pickers';
 import TimeField from 'react-simple-timefield';
 import { getCardioSessionList, putCardioSession } from '../state/actions';
@@ -17,8 +18,7 @@ const propTypes = {
     machineType: PropTypes.string,
     seconds: PropTypes.number,
     startDate: PropTypes.instanceOf(Date),
-    timing: PropTypes.string,
-    userName: PropTypes.string
+    timing: PropTypes.string
   }),
   getCardioSessions: PropTypes.func,
   hasUpdated: PropTypes.bool,
@@ -26,7 +26,8 @@ const propTypes = {
   isUserSecured: PropTypes.bool,
   saveCardioSession: PropTypes.func,
   sessions: PropTypes.array,
-  updateCardioSessionForm: PropTypes.func
+  updateCardioSessionForm: PropTypes.func,
+  username: PropTypes.string
 };
 const creator = ({
   form,
@@ -36,7 +37,8 @@ const creator = ({
   isUserSecured,
   saveCardioSession,
   sessions,
-  updateCardioSessionForm
+  updateCardioSessionForm,
+  username
 }) => {
   const [isCurrentTimeStartTime, setIsCurrentTimeStartTime] = useState(true);
   const [isDisabled, setIsDisabled] = useState(true);
@@ -82,9 +84,13 @@ const creator = ({
   };
 
   const handleSubmit = () => {
-    const id = 'se-id-' + new Date().getTime();
     const startTime = !!form && form.startDate ? form.startDate.toJSON() : '';
-    const item = { ...form, id, startTime };
+    const item = {
+      ...form,
+      id: uuidv4(),
+      userName: username,
+      startTime
+    };
     saveCardioSession({ cardio: [...sessions, item] });
   };
 
@@ -140,17 +146,6 @@ const creator = ({
           value={isCurrentTimeStartTime} />
       </div>
 
-      <div className="field is-horizontal">
-        <label className="label" htmlFor="userName">User &nbsp;</label>
-        <input className="input"
-          disabled={isDisabled}
-          name="userName"
-          onChange={ event => updateCardioSessionForm({ userName: event.target.value })}
-          required
-          type="text"
-          value={getFormData('userName')} />
-      </div>
-
       <div className="field">
         <label className="label" htmlFor="comment">Comment &nbsp;</label>
         <textarea className="textarea"
@@ -176,7 +171,8 @@ const mapStateToProps = state => ({
   hasUpdated: !!state.cardioMachineSessions.cardioSessionPutPayload,
   isProcessing: state.cardioMachineSessions.isProcessingCardioSession,
   isUserSecured: !!state.auth.token,
-  sessions: state.cardioMachineSessions.cardioSessionGetPayload
+  sessions: state.cardioMachineSessions.cardioSessionGetPayload,
+  username: state.auth.username
 });
 creator.propTypes = propTypes;
 export default connect(mapStateToProps, mapDispatchToProps)(creator);

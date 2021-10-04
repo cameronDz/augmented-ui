@@ -5,7 +5,6 @@ export default {
     machineType: '',
     seconds: 0,
     startDate: new Date(),
-    timing: '00:00:00',
-    userName: ''
+    timing: '00:00:00'
   }
 };
