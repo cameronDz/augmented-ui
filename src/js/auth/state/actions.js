@@ -15,6 +15,12 @@ const startRequest = () => {
   return { type: _types.GET_TOKEN_START };
 };
 
+const cancelToken = () => {
+  return (dispatch) => {
+    return dispatch({ type: _types.GET_TOKEN_CANCELLED });
+  };
+};
+
 const clearError = () => {
   return (dispatch) => {
     return dispatch({ type: _types.CLEAR_ERROR });
@@ -35,7 +41,7 @@ const fetchToken = (credentials) => {
       .post(url, credentials, config)
       .then((payload) => {
         const type = _types.GET_TOKEN_SUCCESS;
-        return dispatch({ data: payload?.data, type });
+        return dispatch({ data: payload?.data, username: credentials.username, type });
       })
       .catch((error) => {
         const type = _types.GET_TOKEN_ERROR;
@@ -55,4 +61,4 @@ const livenessCheck = () => {
   };
 };
 
-export { clearError, clearToken, fetchToken, livenessCheck };
+export { cancelToken, clearError, clearToken, fetchToken, livenessCheck };

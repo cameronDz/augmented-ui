@@ -8,29 +8,43 @@ const reducer = (state = initialState, action = null) => {
       newState = { ...state, error: null };
       break;
     case _types.CLEAR_TOKEN:
-      newState = { ...state, token: null };
+      newState = { ...state, token: null, username: null };
+      break;
+    case _types.GET_TOKEN_CANCELLED:
+      newState = { ...state, isCancelled: true, isFetching: false };
       break;
     case _types.GET_TOKEN_COMPLETED:
-      newState = { ...state, isFetching: false };
+      newState = { ...state, isCancelled: false, isFetching: false };
       break;
     case _types.GET_TOKEN_ERROR:
       newState = {
         ...state,
-        error: action.error,
+        error: state.isCancelled ? null : action.error,
+        isCancelled: false,
         isFetching: false,
-        token: null
+        token: null,
+        username: null
       };
       break;
     case _types.GET_TOKEN_SUCCESS:
       newState = {
         ...state,
         error: null,
+        isCancelled: false,
         isFetching: false,
-        token: action.data
+        token: state.isCancelled ? null : action.data,
+        username: state.isCancelled ? null : action.username
       };
       break;
     case _types.GET_TOKEN_START:
-      newState = { ...state, error: null, isFetching: true, token: null };
+      newState = {
+        ...state,
+        error: null,
+        isCancelled: false,
+        isFetching: true,
+        token: null,
+        username: null
+      };
       break;
     case _types.LIVENESS_PROBE:
       newState = { ...state, isLive: true };
