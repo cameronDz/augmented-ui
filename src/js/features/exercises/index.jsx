@@ -11,11 +11,11 @@ import Page from '../../components/page';
 
 const propTypes = {
   exercises: PropTypes.array,
-  getExerciseList: PropTypes.func
+  getExercises: PropTypes.func
 };
-const exercisePage = ({ exercises, getExerciseList }) => {
+const exercisePage = ({ exercises, getExercises }) => {
   useEffect(() => {
-    getExerciseList();
+    getExercises();
   }, []);
 
   const createTab = () => {
@@ -41,4 +41,4 @@ const exercisePage = ({ exercises, getExerciseList }) => {
 };
 exercisePage.propTypes = propTypes;
 const mapStateToProps = state => ({ exercises: state.exercises.exerciseGetPayload });
-export default connect(mapStateToProps, { getExerciseList })(exercisePage);
+export default connect(mapStateToProps, { getExercises: getExerciseList })(exercisePage);

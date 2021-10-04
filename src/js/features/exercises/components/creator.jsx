@@ -1,5 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
+import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 import { getExerciseList, putExercise } from '../state/actions';
 
@@ -11,7 +12,8 @@ const propTypes = {
   isProcessing: PropTypes.bool,
   isUserSecured: PropTypes.bool,
   saveExercise: PropTypes.func,
-  successfulPut: PropTypes.bool
+  successfulPut: PropTypes.bool,
+  username: PropTypes.string
 };
 const ExerciseCreator = ({
   exercises,
@@ -20,7 +22,8 @@ const ExerciseCreator = ({
   isProcessing,
   isUserSecured,
   saveExercise,
-  successfulPut
+  successfulPut,
+  username
 }) => {
   const [description, setDescription] = useState('');
   const [isDisabled, setDisabled] = useState(false);
@@ -49,8 +52,7 @@ const ExerciseCreator = ({
   };
 
   const handleSubmit = () => {
-    const id = 'ex-id-' + new Date().getTime();
-    const item = { description, id, name, typeId };
+    const item = { createdDate: new Date(), description, id: uuidv4(), name, typeId, username };
     const payload = { exercises: [item, ...exercises] };
     saveExercise(payload);
   };
@@ -61,7 +63,7 @@ const ExerciseCreator = ({
       {!isUserSecured && <p style={{ color: 'red' }}>{authWarning}</p>}
       <div>
         <label forhtml="name">Name</label><br/>
-        <input disabled={isDisabled} name="name" onChange={event => setName(event.target.value) } type="text" value={name} />
+        <input disabled={isDisabled} name="name" onChange={event => setName(event.target.value)} type="text" value={name} />
       </div>
       <div>
         <label forhtml="description">Description</label><br/>
@@ -84,6 +86,7 @@ const mapStateToProps = state => ({
   isLoading: state.exercises.isLoadingExercises,
   isProcessing: state.exercises.isProcessingExercise,
   isUserSecured: !!state.auth.token,
-  successfulPut: !!state.exercises.exercisePostPayload
+  successfulPut: !!state.exercises.exercisePostPayload,
+  username: state.auth.username
 });
 export default connect(mapStateToProps, { getExercises: getExerciseList, saveExercise: putExercise })(ExerciseCreator);
