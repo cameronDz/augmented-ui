@@ -8,14 +8,6 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isToggleOpen, setIsToggleOpen] = useState(false);
 
-  // create function for deactivating all dropdowns
-  const deactivateDropdowns = () => {
-    const fitnessButton = document.getElementById('fitnessNavbarButton');
-    const nutritionButton = document.getElementById('nutritionNavbarButton');
-    fitnessButton.nextElementSibling.style.display = 'none';
-    nutritionButton.nextElementSibling.style.display = 'none';
-  };
-
   useEffect(() => {
     // create listener for that shows and hides drop downs
     function buttonListener (event) {
@@ -40,9 +32,12 @@ const Navbar = () => {
     deactivateDropdowns();
   }, []);
 
-  const toggleHamburger = () => {
-    document.querySelector('.navbar-menu').classList.toggle('is-active');
-    setIsToggleOpen((prev) => { return !prev; });
+  // create function for deactivating all dropdowns
+  const deactivateDropdowns = () => {
+    const fitnessButton = document.getElementById('fitnessNavbarButton');
+    const nutritionButton = document.getElementById('nutritionNavbarButton');
+    fitnessButton.nextElementSibling.style.display = 'none';
+    nutritionButton.nextElementSibling.style.display = 'none';
   };
 
   // Click handler for main burger menu.
@@ -66,6 +61,11 @@ const Navbar = () => {
       deactivateDropdowns();
       setIsMenuOpen(false);
     }
+  };
+
+  const toggleHamburger = () => {
+    document.querySelector('.navbar-menu').classList.toggle('is-active');
+    setIsToggleOpen((prev) => { return !prev; });
   };
 
   return (

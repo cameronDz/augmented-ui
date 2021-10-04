@@ -2,12 +2,12 @@
 Application used for tracking various fitness and nutritional activities. Currently live at [http://www.augmented.fit](http://www.augmented.fit). Site is forward masking to the deployed S3 bucket, [here](http://augmented-frontend.s3-website-us-east-1.amazonaws.com). The AWS S3 bucket is a static page. This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app), and later used the command ```npm run eject``` to customize project into current state.
 
 ## TODO list ##
-- [ ] Remove Bulma component and bulma package
-- [ ] Replace time picker for one that uses modern React lifecyle methods
-- [ ] Convert base dropdown and nav bar from class to functional components
 - [ ] Switch from bulma to material ui for styling
 - [ ] Convert css to global jss
 - [ ] Remove all css imports from html index page
+- [x] Replace time picker for one that uses modern React lifecyle methods
+- [x] Convert base dropdown and nav bar from class to functional components
+- [x] Remove Bulma component and bulma package
 - [x] Find smaller date picker (MUI picker)
 - [x] Create #/ routing system
 - [x] Set footer to be sticky
