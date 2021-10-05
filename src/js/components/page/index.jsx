@@ -8,7 +8,7 @@ import {
   Tabs,
   withStyles
 } from '@material-ui/core';
-import SimpleNavbar from '../header/simpleNavbar';
+import SimpleNavbar from '../simpleNavbar';
 import TabPanel from './tabPanel';
 
 const propTypes = {
