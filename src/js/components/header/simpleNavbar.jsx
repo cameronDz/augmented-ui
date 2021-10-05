@@ -14,16 +14,26 @@ const SimpleNavbar = ({ isSecuredUser }) => {
   const classes = useStyles();
   return (
     <div className={classNames(classes.simpleNavWrapper)}>
-      <AppBar position="static">
+      <AppBar elevation={0} position="static">
         <Toolbar>
-          <div className={classNames(classes.navImageLogo)}>
+          <div className={classNames(classes.navItem, classes.navImageLogo)}>
             <img alt="augmented-logo" src="images/aug-logo.png"/>
           </div>
-          <Link to="/">Home</Link>
-          <NavMenuItems links={fitnessLinks} title="Fitness" />
-          <NavMenuItems links={nutrientsLinks} title="Nutrients" />
-          <Link to="/help">Help</Link>
-          <AuthenticateButton isSecuredUser={isSecuredUser} />
+          <div className={classNames(classes.navItem)}>
+            <Link to="/">Home</Link>
+          </div>
+          <div className={classNames(classes.navItem)}>
+            <NavMenuItems links={fitnessLinks} title="Fitness" />
+          </div>
+          <div className={classNames(classes.navItem)}>
+            <NavMenuItems links={nutrientsLinks} title="Nutrients" />
+          </div>
+          <div className={classNames(classes.navItem)}>
+            <Link to="/help">Help</Link>
+          </div>
+          <div className={classNames(classes.navItemEnd)}>
+            <AuthenticateButton isSecuredUser={isSecuredUser} />
+          </div>
         </Toolbar>
       </AppBar>
     </div>
