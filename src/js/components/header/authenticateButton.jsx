@@ -1,22 +1,16 @@
 import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import { Button } from '@material-ui/core';
 import { RequestTokenDialog } from '../../auth';
 
-const propTypes = {
-  handleAuthClick: PropTypes.func,
-  isSecuredUser: PropTypes.bool
-};
+const propTypes = { isSecuredUser: PropTypes.bool };
 const AuthenticateButton = ({ isSecuredUser }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <Fragment>
-      <div className="buttons">
-        <div className="button is-light" onClick={() => setIsOpen(true)}>
-          <strong>
-            {isSecuredUser ? 'Sign out' : 'Sign in'}
-          </strong>
-        </div>
-      </div>
+      <Button onClick={() => setIsOpen(true)} variant="outlined">
+        {isSecuredUser ? 'Sign out' : 'Sign in'}
+      </Button>
       <RequestTokenDialog isOpen={isOpen} onClose={() => setIsOpen(false)} />
     </Fragment>
   );
