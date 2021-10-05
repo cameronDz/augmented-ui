@@ -8,10 +8,21 @@ const simpleNavbarStyles = {
   navImageLogo: {
     '& img': {
       height: '28px'
+    },
+    '&$navItem:hover': {
+      backgroundColor: 'unset',
+      paddingBottom: '0',
+      paddingTop: '0'
     }
   },
   navItem: {
-    marginRight: '12px'
+    paddingLeft: '8px',
+    paddingRight: '8px',
+    '&:hover': {
+      backgroundColor: '#fafafa',
+      paddingBottom: '8px',
+      paddingTop: '8px'
+    }
   },
   navItemEnd: {
     marginLeft: 'auto',
