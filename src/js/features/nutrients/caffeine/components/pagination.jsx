@@ -1,32 +1,27 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropType from 'prop-types';
-import get from 'lodash.get';
 import PageButton from './pageButton';
 
 const propTypes = {
+  currentPage: PropType.number.isRequired,
   links: PropType.object.isRequired,
-  totalPages: PropType.number.isRequired,
-  currentPage: PropType.number.isRequired
+  totalPages: PropType.number.isRequired
 };
 
-const pagination = props => {
-  const [currentPage, setCurrentPage] = useState(0);
+const pagination = ({ currentPage = 0, links = null, totalPages = 0 }) => {
   const [firstLink, setFirstLink] = useState('');
   const [lastLink, setLastLink] = useState('');
   const [nextLink, setNextLink] = useState('');
   const [prevLink, setPrevLink] = useState('');
   const [selfLink, setSelfLink] = useState('');
-  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    setSelfLink(get(props, 'links.self', ''));
-    setCurrentPage(get(props, 'currentPage', 0));
-    setFirstLink(get(props, 'links.first', ''));
-    setLastLink(get(props, 'links.last', ''));
-    setNextLink(get(props, 'links.next', ''));
-    setPrevLink(get(props, 'links.prev', ''));
-    setTotalPages(get(props, 'totalPages', 0));
-  }, [props]);
+    setSelfLink(links?.self || '');
+    setFirstLink(links?.first || '');
+    setLastLink(links?.last || '');
+    setNextLink(links?.next || '');
+    setPrevLink(links?.prev || '');
+  }, [links]);
 
   const renderPageEllipsis = () => {
     return (<span className="pagination-ellipsis">&hellip;</span>);

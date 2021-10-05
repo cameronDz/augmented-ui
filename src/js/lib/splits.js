@@ -1,9 +1,6 @@
-import get from 'lodash.get';
-
 const splitTextKeyToArray = (element = {}, path = '', splitByChar = '') => {
-  const keyToSplit = get(element, path, '');
-  const canSplitKeyIntoArray = (!!keyToSplit && typeof keyToSplit.split === 'function');
-  return canSplitKeyIntoArray ? keyToSplit.split(splitByChar) : [];
+  const isSplittable = typeof element?.[path]?.split === 'function';
+  return isSplittable ? element[path].split(splitByChar) : [];
 };
 
 export { splitTextKeyToArray };

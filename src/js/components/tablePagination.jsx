@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropType from 'prop-types';
-import get from 'lodash.get';
 import PaginationButton from './paginationButton';
 
 const propTypes = {
@@ -9,24 +8,20 @@ const propTypes = {
   currentPage: PropType.number.isRequired
 };
 
-const tablePagination = props => {
-  const [currentPage, setCurrentPage] = useState(0);
+const tablePagination = ({ currentPage = 0, links = null, totalPages = 0 }) => {
   const [firstLink, setFirstLink] = useState('');
   const [lastLink, setLastLink] = useState('');
   const [nextLink, setNextLink] = useState('');
   const [prevLink, setPrevLink] = useState('');
   const [selfLink, setSelfLink] = useState('');
-  const [totalPages, setTotalPages] = useState(0);
 
   useEffect(() => {
-    setSelfLink(get(props, 'links.self', ''));
-    setCurrentPage(get(props, 'currentPage', 0));
-    setFirstLink(get(props, 'links.first', ''));
-    setLastLink(get(props, 'links.last', ''));
-    setNextLink(get(props, 'links.next', ''));
-    setPrevLink(get(props, 'links.prev', ''));
-    setTotalPages(get(props, 'totalPages', 0));
-  }, [props]);
+    setSelfLink(links?.self || '');
+    setFirstLink(links?.first || '');
+    setLastLink(links?.last || '');
+    setNextLink(links?.next || '');
+    setPrevLink(links?.prev || '');
+  }, [links]);
 
   const renderPageEllipsis = () => {
     return (<span className="pagination-ellipsis">&hellip;</span>);
@@ -54,15 +49,16 @@ const tablePagination = props => {
   } else if (totalPages === 3) {
     if (currentPage === 2) {
       pager = displayPrevSelfNextButtons(1, 2, 3);
-    } else {}
-    const linkTwo = (currentPage === 1)
-      ? nextLink
-      : prevLink;
-    pager = (<Fragment>
-      <PaginationButton pageLink={firstLink} pageNumber={1} />
-      <PaginationButton pageLink={linkTwo} pageNumber={2} />
-      <PaginationButton pageLink={lastLink} pageNumber={3} />
-    </Fragment>);
+    } else {
+      const linkTwo = (currentPage === 1)
+        ? nextLink
+        : prevLink;
+      pager = (<Fragment>
+        <PaginationButton pageLink={firstLink} pageNumber={1} />
+        <PaginationButton pageLink={linkTwo} pageNumber={2} />
+        <PaginationButton pageLink={lastLink} pageNumber={3} />
+      </Fragment>);
+    }
   } else if (totalPages >= 4 && currentPage === 1) {
     pager = (<Fragment>
       <PaginationButton pageLink={firstLink} pageNumber={1} />

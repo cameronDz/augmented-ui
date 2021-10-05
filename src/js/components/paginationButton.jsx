@@ -1,23 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import get from 'lodash.get';
 
 const propTypes = {
   pageLink: PropTypes.string.isRequired,
-  pageNumber: PropTypes.number.isRequired
+  pageNumber: PropTypes.number.isRequired,
+  sessions: PropTypes.object
 };
 
-const paginationButton = (props) => {
+const paginationButton = ({ pageLink = '', pageNumber = 0, sessions = null }) => {
   const [currentPage, setCurrentPage] = useState(0);
-  const [pageLink, setPageLink] = useState('');
-  const [pageNumber, setPageNumber] = useState(0);
 
   useEffect(() => {
-    setCurrentPage(get(props, 'sessions.currentPage', 0));
-    setPageLink(get(props, 'pageLink', ''));
-    setPageNumber(get(props, 'pageNumber', 0));
-  }, [props]);
+    setCurrentPage(sessions?.currentPage || 0);
+  }, [sessions]);
 
   const onPaginationClick = link => {
     console.log('onPaginationClick - line: ', link);
