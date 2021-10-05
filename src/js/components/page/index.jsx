@@ -8,7 +8,7 @@ import {
   Tabs,
   withStyles
 } from '@material-ui/core';
-import Navbar from '../header/navbar';
+import SimpleNavbar from '../header/simpleNavbar';
 import TabPanel from './tabPanel';
 
 const propTypes = {
@@ -47,7 +47,7 @@ const page = ({ classes, isSecuredUser, tabNames, tabPanels, title }) => {
     <Grid className={classes.root} container>
       <Grid item xs={12} sm={12} md={1}></Grid>
       <Grid item xs={12} sm={12} md={10}>
-        <Navbar isSecuredUser={isSecuredUser} />
+        <SimpleNavbar isSecuredUser={isSecuredUser} />
         <h2 className={classes.hero}>{title}</h2>
         <AppBar position="static">
           <Tabs centered={true} value={value} onChange={handleChange} >

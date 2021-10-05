@@ -1,32 +1,25 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import get from 'lodash.get';
-import Header from './header';
 import Footer from './footer';
 import '../../css/layout.css';
 
 const propTypes = {
   children: PropTypes.object.isRequired,
-  isFooterHidden: PropTypes.bool,
-  isHeaderHidden: PropTypes.bool,
-  title: PropTypes.string
+  isFooterHidden: PropTypes.bool
 };
 
-const layout = ({ isFooterHidden, isHeaderHidden, ...otherProps }) => {
+const layout = ({ isFooterHidden, ...otherProps }) => {
   const [children, setChildren] = useState();
-  const [title, setTitle] = useState('');
 
   useEffect(() => {
-    setChildren(get(otherProps, 'children', null));
-    setTitle(get(otherProps, 'title', ''));
+    setChildren(otherProps?.children || null);
   }, [otherProps]);
 
   return (
     <Fragment>
-      {isHeaderHidden ? null : <Header title={title} />}
       {children}
       <div className="spacer"></div>
-      {isFooterHidden ? null : <Footer />}
+      {!isFooterHidden && <Footer />}
     </Fragment>);
 };
 

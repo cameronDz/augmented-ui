@@ -89,7 +89,7 @@ const routinePage = ({ fetchRoutineList, routine }) => {
 
   const createTab = () => {
     return (
-      <Layout isFooterHidden={true} isHeaderHidden={true} title='Routines Page'>
+      <Layout isFooterHidden={true}>
         <div className="card">
           <header className="card-header">
             <p className="card-header-title">Routines Page</p>

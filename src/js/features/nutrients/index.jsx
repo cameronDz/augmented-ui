@@ -6,7 +6,7 @@ import Page from '../../components/page';
 const nutrientsPage = () => {
   const createTab = () => {
     return (
-      <Layout isFooterHidden={true} isHeaderHidden={true} title='Nutrients'>
+      <Layout isFooterHidden={true}>
         <Caffeine />
       </Layout>);
   };
