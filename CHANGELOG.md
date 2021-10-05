@@ -6,6 +6,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.17.0] 2021-10-05
+
+### Changed
+
+- Navbar header replaced with Mui components from direct DOM manipulated component; small style tweaks in header
+
+### Removed
+
+- Hamburger responsiveness from header navbar
+- Unused page components
+
 ## [0.16.2] 2021-10-04
 
 ### Changed
