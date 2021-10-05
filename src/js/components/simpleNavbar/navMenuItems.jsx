@@ -7,10 +7,10 @@ import { navbarItemsStyles as styles } from './styles';
 
 const propTypes = {
   links: PropTypes.array,
-  title: PropTypes.bool
+  title: PropTypes.string
 };
 const useStyles = makeStyles(() => styles);
-const NavMenuItems = ({ links, title }) => {
+const NavMenuItems = ({ links, title = '' }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const isOpen = Boolean(anchorEl);
   const id = `menu-${title}-appbar`;
