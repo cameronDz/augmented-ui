@@ -20,7 +20,7 @@ const exercisePage = ({ exercises, getExercises }) => {
 
   const createTab = () => {
     return (
-      <Layout isFooterHidden={true} isHeaderHidden={true} title='Exercises'>
+      <Layout isFooterHidden={true}>
         <div className="card">
           <header>
             <p className="card-header-title">Exercise Page</p>

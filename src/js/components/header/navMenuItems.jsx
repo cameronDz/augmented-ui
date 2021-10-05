@@ -2,6 +2,7 @@ import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Menu, MenuItem } from '@material-ui/core';
+import { KeyboardArrowDown } from '@material-ui/icons';
 
 const propTypes = {
   links: PropTypes.array,
@@ -30,6 +31,7 @@ const NavMenuItems = ({ links, title }) => {
         color="inherit"
       >
         {title}
+        <KeyboardArrowDown />
       </div>
       <Menu
         anchorEl={anchorEl}
