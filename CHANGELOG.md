@@ -6,6 +6,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.18.1] 2021-10-05
+
+### Changed
+
+- Table icon for displaying row details, display for nutrient table
+
+### Fixed
+
+- Table sort order on both nutrient and sessions table
 ## [0.18.0] 2021-10-05
 
 ### Changed
