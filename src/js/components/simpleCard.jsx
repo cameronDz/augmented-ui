@@ -1,13 +1,17 @@
 import React from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import '../../css/card.css';
+import { makeStyles } from '@material-ui/core';
+import { cardStyles as styles } from './styles';
 
 const propTypes = {
   child: PropTypes.any,
   footer: PropTypes.any,
   title: PropTypes.string
 };
-const card = ({ child, footer, title }) => {
+const useStyles = makeStyles(() => styles);
+const SimpleCard = ({ child, footer, title }) => {
+  const classes = useStyles();
   const renderHeader = () => {
     return (
       <header className="card-header">
@@ -17,7 +21,7 @@ const card = ({ child, footer, title }) => {
 
   const renderChild = () => {
     return (
-      <div className="card-content">
+      <div className={classNames('card-content', classes.cardContent)}>
         <div className="content">{child}</div>
       </div>);
   };
@@ -27,12 +31,12 @@ const card = ({ child, footer, title }) => {
   };
 
   return !!title && (
-    <div className="card">
+    <div className={classNames('card', classes.cardContainer)}>
       {renderHeader()}
       {renderChild()}
       {renderFooter()}
     </div>);
 };
 
-card.propTypes = propTypes;
-export default card;
+SimpleCard.propTypes = propTypes;
+export default SimpleCard;
