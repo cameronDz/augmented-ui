@@ -35,7 +35,7 @@ const SimpleTable = ({
   return (
     <Fragment>
       <div className={classNames(classes.simpleTableWrapper, 'nssd-table-wrapper')}>
-        <table>
+        <table className={classNames(classes.tableSelector)}>
           <TableHeader columnNames={columns} includeDetails={includeDetails} titles={titles} />
           <TableContent
             columnNames={columns}

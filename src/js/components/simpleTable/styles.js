@@ -2,6 +2,9 @@ const simpleTableStles = {
   simpleTableWrapper: {
     overflowX: 'auto'
   },
+  tableSelector: {
+    width: '100%'
+  },
   tableFooterItem: {
     alignItems: 'normal',
     justifyContent: 'normal',
