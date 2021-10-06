@@ -1,71 +1,80 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import ModalButton from './modalButton';
+import SimpleTable from '../../../components/simpleTable';
 import { getCardioSessionList } from '../state/actions';
 import { splitTextKeyToArray } from '../../../lib/splits';
-import _config from '../../../../assets/config.json';
-import '../../../../css/table.css';
+import { formatMiles, formatSeconds } from '../../../lib/format';
 
+const columns = ['date', 'machineType', 'userName'];
+const details = ['date', 'time', 'machineType', 'duration', 'distance', 'userName', 'comment'];
+const titles = {
+  date: 'Date',
+  time: 'Time',
+  machineType: 'Machine',
+  duration: 'Duration',
+  distance: 'Distance',
+  userName: 'User',
+  comment: 'Comment'
+};
+const downloadEndpoint = 'object/cardio';
 const downloadText = 'Download Session in JSON file.';
+const title = 'Session details';
+
 const propTypes = {
-  getCardioSessions: PropTypes.func,
-  isLoadingSession: PropTypes.bool,
-  isProcessingSession: PropTypes.bool,
+  getData: PropTypes.func,
+  isLoading: PropTypes.bool,
+  isProcessing: PropTypes.bool,
   sessions: PropTypes.array
 };
-const table = ({ getCardioSessions, isLoadingSession, isProcessingSession, sessions }) => {
-  const [isLoading, setIsLoading] = useState(false);
+const table = ({ getData, isLoading, isProcessing, sessions }) => {
+  const [processedData, setProcessedData] = useState(null);
 
   useEffect(() => {
-    getCardioSessions();
-  }, []);
+    getData();
+  }, [getData]);
 
   useEffect(() => {
-    setIsLoading(isLoadingSession || isProcessingSession);
-  }, [isLoadingSession, isProcessingSession]);
-
-  const renderSessionsData = () => {
-    return Array.isArray(sessions) && sessions.map((element, index) => {
-      const date = splitTextKeyToArray(element, 'startTime', 'T')[0];
-      return (
-        <tr key={index}>
-          <td>{date}</td>
-          <td>{element.machineType}</td>
-          <td>{element.userName}</td>
-          <ModalButton {...element} />
-        </tr>);
-    });
-  };
-
-  const renderTableRows = () => {
-    return (!isLoading && !!sessions) && (<tbody>{renderSessionsData()}</tbody>);
-  };
-
-  const renderTableHeader = () => {
-    const titles = ['Date', 'Machine', 'User', 'Details'];
-    const renderTitles = titles.map((item, key) => { return <th key={key}>{item}</th>; });
-    return <thead><tr>{renderTitles}</tr></thead>;
-  };
+    if (Array.isArray(sessions)) {
+      const arr = [];
+      const length = sessions.length;
+      for (let idx = 0; idx < length; idx++) {
+        if (typeof sessions[idx] === 'object') {
+          const { distanceMiles, seconds, ...other } = sessions[idx];
+          const splitTime = splitTextKeyToArray(sessions[idx], 'startTime', 'T');
+          const obj = {
+            date: splitTime[0],
+            time: splitTime[1] ? splitTime[1].substring(0, 5) : '',
+            duration: formatSeconds(seconds),
+            distance: formatMiles(distanceMiles),
+            ...other
+          };
+          arr.push(obj);
+        }
+      }
+      setProcessedData(arr);
+    }
+  }, [sessions]);
 
   return (
-    <Fragment>
-      <div className="table-wrapper">
-        <table className="table is-bordered is-striped is-narrow is-fullwidth">
-          {renderTableHeader()}
-          {renderTableRows()}
-        </table>
-      </div>
-      <a className="card-footer-item" href={`${_config.baseApiUrl}/object/cardio`} target="_">{downloadText}</a>
-      {isLoading && <div className='circular-loader'><CircularProgress /></div>}
-    </Fragment>);
+    <SimpleTable
+      columns={columns}
+      details={details}
+      detailsTitle={title}
+      downloadEndpoint={downloadEndpoint}
+      downloadText={downloadText}
+      includeDetails={true}
+      isLoading={isLoading || isProcessing}
+      rowsData={processedData}
+      titles={titles}
+    />
+  );
 };
 
 table.propTypes = propTypes;
 const mapStateToProps = state => ({
-  isLoadingSession: state.cardioMachineSessions.isLoadingCardioSessions,
-  isProcessingSession: state.cardioMachineSessions.isProcessingCardioSession,
+  isLoading: state.cardioMachineSessions.isLoadingCardioSessions,
+  isProcessing: state.cardioMachineSessions.isProcessingCardioSession,
   sessions: state.cardioMachineSessions.cardioSessionGetPayload
 });
-export default connect(mapStateToProps, { getCardioSessions: getCardioSessionList })(table);
+export default connect(mapStateToProps, { getData: getCardioSessionList })(table);
