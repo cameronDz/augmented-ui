@@ -5,10 +5,10 @@ import { connect } from 'react-redux';
 import { Switch } from '@material-ui/core';
 import { DateTimePicker } from '@material-ui/pickers';
 import TimeField from 'react-simple-timefield';
+import { InputLabel } from '../../../components/inputs';
 import { getCardioSessionList, putCardioSession } from '../state/actions';
 import { updateCardioMachineSessionPostForm } from '../state/creator/actions';
 import { calulcateTimingSeconds } from '../lib/utility';
-import '../../../../css/creator.css';
 
 const authWarning = '* must authenticate to submit exercise';
 const propTypes = {
@@ -98,7 +98,7 @@ const creator = ({
     <Fragment>
       {!isUserSecured && <div><p style={{ color: 'red' }}>{authWarning}</p></div>}
       <div className="field is-horizontal">
-        <label className="label" htmlFor="machineType">Machine Type &nbsp;</label>
+        <InputLabel label="Machine Type" name="machineType" />
         <input className="input"
           disabled={isDisabled}
           name="machineType"
@@ -109,7 +109,7 @@ const creator = ({
       </div>
 
       <div className="field is-horizontal">
-        <label className="label" htmlFor="startDate">Date &nbsp;</label>
+        <InputLabel label="Date" name="startDate" />
         <DateTimePicker
           ampm={false}
           autoOk
@@ -120,25 +120,26 @@ const creator = ({
       </div>
 
       <div className="field is-horizontal">
-        <label className="label">Duration &nbsp;</label>
-        <TimeField className="time-field"
+        <InputLabel label="Duration" />
+        <TimeField
           disabled={isDisabled}
           onChange={handleTimeChange}
           showSeconds={true}
-          style={{ width: 80, height: 25 }}
+          style={{ height: '25px', marginRight: '15px', width: '80px' }}
           value={getFormData('timing')} />
-        <label className="label" htmlFor="distanceMiles">Distance (miles) &nbsp;</label>
-        <input className="distance"
+        <InputLabel label="Distance (miles)" name="distanceMiles" />
+        <input
           disabled={isDisabled}
           name="distanceMiles"
           onChange={ event => updateCardioSessionForm({ distanceMiles: event.target.value })}
           step="0.01"
+          style={{ height: '30px', width: '80px' }}
           type="number"
           value={getFormData('distanceMiles')} />
       </div>
 
       <div className="field is-horizontal">
-        <label className="label toggle-label" htmlFor="useEndTimeStartDate">Session Just End &nbsp;</label>
+        <InputLabel label="Session Just End" name="useEndTimeStartDate" />
         <Switch checked={isCurrentTimeStartTime}
           color="primary"
           disabled={isDisabled}
@@ -147,7 +148,7 @@ const creator = ({
       </div>
 
       <div className="field">
-        <label className="label" htmlFor="comment">Comment &nbsp;</label>
+        <InputLabel label="Comment" name="comment" />
         <textarea className="textarea"
           disabled={isDisabled}
           name="comment"

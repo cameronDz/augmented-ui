@@ -2,8 +2,8 @@ import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import { InputLabel } from '../../../../components/inputs';
 import { getCaffeineList, putCaffeine } from '../state/actions';
-import '../../../../../css/creator.css';
 
 const authWarning = '* must authenticate to submit exercise';
 const propTypes = {
@@ -69,15 +69,16 @@ const creator = ({
     <Fragment>
       {!isUserSecured && <div><p style={{ color: 'red' }}>{authWarning}</p></div>}
       <div className="field is-horizontal">
-        <label className="label">Amount</label>
+        <InputLabel label="Amount" />
         <input className="input input-amount"
           disabled={isDisabled}
           name="amount"
           onChange={ e => setAmount(e.target.value) }
           required
+          style={{ height: '30px', width: '80px' }}
           type="number"
           value={amount} />
-        <label className="label">Type</label>
+        <InputLabel label="Type" />
         <select disabled={isDisabled} onChange={ event => setAmountType(event.target.value)} value={amountType}>
           <option default value="">--</option>
           <option value="mg">Milligram</option>
@@ -87,7 +88,7 @@ const creator = ({
         </select>
       </div>
       <div className="field">
-        <label className="label">Comment</label>
+        <InputLabel label="Comment" />
         <textarea className="textarea"
           disabled={isDisabled}
           name="comment"

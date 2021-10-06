@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
+import { InputLabel } from '../../../components/inputs';
 import { getExerciseList, putExercise } from '../state/actions';
 
 const authWarning = '* must authenticate to submit exercise';
@@ -69,16 +70,16 @@ const ExerciseCreator = ({
       <p><strong>Create a new Exercise</strong></p>
       {!isUserSecured && <p style={{ color: 'red' }}>{authWarning}</p>}
       <div>
-        <label forhtml="name">Name</label><br/>
+        <InputLabel label="Name"name="name" /><br/>
         <input disabled={isDisabled} name="name" onChange={event => setName(event.target.value)} type="text" value={name} />
       </div>
       <div>
-        <label forhtml="description">Description</label><br/>
+        <InputLabel label="Description"name="description" /><br/>
         <textarea disabled={isDisabled} name="description" onChange={event => setDescription(event.target.value)} value={description}>
         </textarea>
       </div>
       <div>
-        <label forhtml="typeId">Type</label><br/>
+        <InputLabel label="Type"name="typeId" /><br/>
         <input disabled={isDisabled} name="typeId" onChange={event => setTypeId(Number(event.target.value)) } type="number" value={typeId} />
       </div>
       <div>
