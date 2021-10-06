@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SimpleTable from '../../../components/simpleTable';
 import { getCardioSessionList } from '../state/actions';
+import { orderByDateKey } from '../../../lib/sorts';
 import { splitTextKeyToArray } from '../../../lib/splits';
 import { formatMiles, formatSeconds } from '../../../lib/format';
 
@@ -52,7 +53,7 @@ const table = ({ getData, isLoading, isProcessing, sessions }) => {
           arr.push(obj);
         }
       }
-      setProcessedData(arr);
+      setProcessedData(arr.sort((a, b) => orderByDateKey(a, b, 'startTime')));
     }
   }, [sessions]);
 

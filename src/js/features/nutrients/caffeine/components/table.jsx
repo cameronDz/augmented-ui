@@ -3,17 +3,18 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SimpleTable from '../../../../components/simpleTable';
 import { getCaffeineList } from '../state/actions';
-import { orderIntakesByDate } from '../../../../lib/sorts';
+import { orderByDateKey } from '../../../../lib/sorts';
 import { splitTextKeyToArray } from '../../../../lib/splits';
 import { handleFunction } from '../../../../lib/eventHandler';
 
-const columns = ['day', 'amount', 'amountType', 'userName'];
+const columns = ['day', 'amountDisplay', 'userName'];
 const details = ['day', 'time', 'amount', 'amountType', 'userName', 'comment'];
 const title = 'Caffiene dose details';
 const titles = {
   day: 'Day',
   time: 'Time',
   amount: 'Amt',
+  amountDisplay: 'Amount',
   amountType: 'Type',
   userName: 'User',
   comments: 'Comments'
@@ -37,17 +38,17 @@ const table = ({ caffeine = null, getData = null, isLoading = false }) => {
       const length = caffeine.length;
       for (let idx = 0; idx < length; idx++) {
         if (typeof caffeine[idx] === 'object') {
-          const { intakeTime, ...other } = caffeine[idx];
           const splitTime = splitTextKeyToArray(caffeine[idx], 'intakeTime', 'T');
           const obj = {
+            amountDisplay: `${caffeine[idx]?.amount} ${caffeine[idx]?.amountType}`,
             day: splitTime[0],
             time: splitTime[1] ? splitTime[1].substring(0, 5) : '',
-            ...other
+            ...caffeine[idx]
           };
           arr.push(obj);
         }
       }
-      setProcessedData(arr.sort(orderIntakesByDate));
+      setProcessedData(arr.sort((a, b) => orderByDateKey(a, b, 'intakeTime')));
     }
   }, [caffeine]);
 
