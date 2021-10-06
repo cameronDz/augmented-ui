@@ -3,7 +3,13 @@ const simpleTableStles = {
     overflowX: 'auto'
   },
   tableSelector: {
-    width: '100%'
+    width: '100%',
+    '& thead tr': {
+      borderBottom: '2px grey solid'
+    },
+    '& tbody tr:nth-child(even)': {
+      backgroundColor: 'lightgrey'
+    }
   },
   tableFooterItem: {
     alignItems: 'normal',
