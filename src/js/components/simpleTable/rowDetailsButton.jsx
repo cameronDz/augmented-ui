@@ -1,7 +1,7 @@
 import React, { useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
+import ErrorOutlineIcon from '@material-ui/icons/ErrorOutline';
 import { IconButton } from '@material-ui/core';
-import WarningIcon from '@material-ui/icons/Warning';
 import { SimpleDialog } from '../simpleDialog';
 
 const propTypes = {
@@ -17,7 +17,7 @@ const RowDetailsButton = ({ data, details = null, title = '', titles }) => {
   return (
     <td style={{ textAlign: 'center' }}>
       <IconButton onClick={() => setIsOpen(true)}>
-        <WarningIcon />
+        <ErrorOutlineIcon />
       </IconButton>
       <SimpleDialog
         isOpen={isOpen}

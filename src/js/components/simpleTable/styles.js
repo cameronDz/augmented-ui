@@ -8,7 +8,7 @@ const simpleTableStles = {
       borderBottom: '2px grey solid'
     },
     '& tbody tr:nth-child(even)': {
-      backgroundColor: 'lightgrey'
+      backgroundColor: '#f5f5f5'
     }
   },
   tableFooterItem: {
