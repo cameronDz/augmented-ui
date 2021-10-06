@@ -2,7 +2,7 @@ import React, { useEffect, useState, Fragment } from 'react';
 import PropType from 'prop-types';
 import { connect } from 'react-redux';
 
-import Card from '../../components/bulmaCard';
+import SimpleCard from '../../components/simpleCard';
 import Layout from '../../components/layout';
 import Page from '../../components/page';
 import Routine from './components/fullRoutine';
@@ -14,10 +14,10 @@ const propTypes = {
     rountineError: PropType.any,
     routineList: PropType.array
   }),
-  fetchRoutineList: PropType.func
+  fetchRoutines: PropType.func
 };
 
-const routinePage = ({ fetchRoutineList, routine }) => {
+const routinePage = ({ fetchRoutines, routine }) => {
   const sideBarTitle = 'Routine List';
   const routineTitle = 'Latest Routine';
 
@@ -27,7 +27,7 @@ const routinePage = ({ fetchRoutineList, routine }) => {
   const [routineList, setRoutineList] = useState(null);
 
   useEffect(() => {
-    fetchRoutineList();
+    fetchRoutines();
   }, []);
 
   useEffect(() => {
@@ -96,10 +96,10 @@ const routinePage = ({ fetchRoutineList, routine }) => {
           </header>
           <div className="card-content columns is-tablet">
             <div className="content column is-one-third">
-              <Card child={getRoutineSideBarChild()} title={sideBarTitle} />
+              <SimpleCard child={getRoutineSideBarChild()} title={sideBarTitle} />
             </div>
             <div className="content column is-two-thirds">
-              <Card child={getRoutineChild()} title={routineTitle} />
+              <SimpleCard child={getRoutineChild()} title={routineTitle} />
             </div>
           </div>
         </div>
@@ -111,4 +111,4 @@ const routinePage = ({ fetchRoutineList, routine }) => {
 
 routinePage.propTypes = propTypes;
 const mapStateToProps = state => ({ routine: state.routine });
-export default connect(mapStateToProps, { fetchRoutineList })(routinePage);
+export default connect(mapStateToProps, { fetchRoutines: fetchRoutineList })(routinePage);

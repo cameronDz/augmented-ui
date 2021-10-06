@@ -1,7 +1,7 @@
 import React from 'react';
 import IntakeCreator from './components/creator';
 import IntakeTable from './components/table';
-import Card from '../../../components/bulmaCard';
+import SimpleCard from '../../../components/simpleCard';
 import _config from '../../../../assets/config.json';
 
 const caffeine = () => {
@@ -9,12 +9,12 @@ const caffeine = () => {
     const child = (<IntakeCreator />);
     const url = `${_config.baseApiUrl}/object/caffeine`;
     const footerLink = (<a className="card-footer-item" href={url} style={{ paddingLeft: '4px' }} target="_"> Download Intakes in JSON file.</a>);
-    return (<Card child={child} footer={footerLink} title={'Caffeine Intake Creator'} />);
+    return (<SimpleCard child={child} footer={footerLink} title={'Caffeine Intake Creator'} />);
   };
 
   const renderIntakeDisplayCard = () => {
     const child = (<IntakeTable />);
-    return (<Card child={child} title={'Caffeine Intake Display'} />);
+    return (<SimpleCard child={child} title={'Caffeine Intake Display'} />);
   };
 
   const renderSessionContent = () => {
@@ -28,7 +28,7 @@ const caffeine = () => {
         </div>
       </div>);
   };
-  return (<Card child={renderSessionContent()} title={'Caffeine Page'} />);
+  return (<SimpleCard child={renderSessionContent()} title={'Caffeine Page'} />);
 };
 
 export default caffeine;

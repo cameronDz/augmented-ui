@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getExerciseList } from './state/actions';
 
-import Card from '../../components/bulmaCard';
+import SimpleCard from '../../components/simpleCard';
 import ExerciseCreator from './components/creator';
 import ExerciseDropdown from './components/dropdown';
 import Layout from '../../components/layout';
@@ -27,10 +27,10 @@ const exercisePage = ({ exercises, getExercises }) => {
           </header>
           <div className="card-content columns is-tablet">
             <div className="content column is-one-half">
-              <Card child={<ExerciseCreator />} title="Exercise Creator" />
+              <SimpleCard child={<ExerciseCreator />} title="Exercise Creator" />
             </div>
             <div className="content column is-one-half">
-              <Card child={<ExerciseDropdown exercises={exercises} />} title="Exercise Dropdown Sample" />
+              <SimpleCard child={<ExerciseDropdown exercises={exercises} />} title="Exercise Dropdown Sample" />
             </div>
           </div>
         </div>
