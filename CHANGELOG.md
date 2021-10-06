@@ -6,6 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.18.2] 2021-10-06
+
+### Removed
+
+- Css and css related configurations and packages, replaced with JSS and inline styling
+- FontAwesome inline JS from base HTML index - no longer downloading on page load
+
 ## [0.18.1] 2021-10-05
 
 ### Changed

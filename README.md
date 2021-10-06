@@ -4,10 +4,10 @@ Application used for tracking various fitness and nutritional activities. Curren
 ## TODO list ##
 - [ ] Set time values to be based off GMT
 - [ ] upgrade React to v17, Webpack v5, Mui v5, and Babel v8
-- [ ] Convert css to global jss
 - [ ] Switch from bulma to material ui for styling
-- [ ] Remove all css imports from html index page
 - [ ] setup prettier file for formatting with linter
+- [x] Convert css to global jss
+- [x] Remove all css imports from html index page
 - [x] replace Lodash with optional chaining
 - [x] Replace time picker for one that uses modern React lifecyle methods
 - [x] Convert base dropdown and nav bar from class to functional components
