@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.18.0] 2021-10-05
+
+### Changed
+
+- Tables no longer user css or Bulma - using Mui components and JSS instead
+
+### Removed
+
+- Lodash.get package and replaced with optional chaining
+
 ## [0.17.0] 2021-10-05
 
 ### Changed
