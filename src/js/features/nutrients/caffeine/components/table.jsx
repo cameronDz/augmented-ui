@@ -1,51 +1,72 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import { connect } from 'react-redux';
-import TableRow from './tableRow';
+import SimpleTable from '../../../../components/simpleTable';
 import { getCaffeineList } from '../state/actions';
 import { orderIntakesByDate } from '../../../../lib/sorts';
-import '../../../../../css/table.css';
+import { splitTextKeyToArray } from '../../../../lib/splits';
+import { handleFunction } from '../../../../lib/eventHandler';
+
+const columns = ['day', 'amount', 'amountType', 'userName'];
+const details = ['day', 'time', 'amount', 'amountType', 'userName', 'comment'];
+const title = 'Caffiene dose details';
+const titles = {
+  day: 'Day',
+  time: 'Time',
+  amount: 'Amt',
+  amountType: 'Type',
+  userName: 'User',
+  comments: 'Comments'
+};
 
 const propTypes = {
   caffeine: PropTypes.array,
-  getCaffeineList: PropTypes.func,
-  isLoadingCaffeine: PropTypes.bool
+  getData: PropTypes.func,
+  isLoading: PropTypes.bool
 };
-const table = ({ caffeine, getCaffeineList, isLoadingCaffeine }) => {
+const table = ({ caffeine = null, getData = null, isLoading = false }) => {
+  const [processedData, setProcessedData] = useState(null);
+
   useEffect(() => {
-    getCaffeineList();
-  }, []);
+    handleFunction(getData);
+  }, [getData]);
 
-  const renderIntakesData = () => {
-    return Array.isArray(caffeine) && caffeine.sort(orderIntakesByDate).map((item, key) => {
-      return <TableRow element={item} key={key}/>;
-    });
-  };
-
-  const renderTableRows = () => {
-    return (!isLoadingCaffeine && !!caffeine) && (<tbody>{renderIntakesData()}</tbody>);
-  };
-
-  const renderTableHeader = () => {
-    const titles = ['Day', 'Time', 'Amount', 'Type', 'User', 'Comments'];
-    const renderTitles = titles.map((item, key) => { return <th key={key}>{item}</th>; });
-    return <thead><tr>{renderTitles}</tr></thead>;
-  };
+  useEffect(() => {
+    if (Array.isArray(caffeine)) {
+      const arr = [];
+      const length = caffeine.length;
+      for (let idx = 0; idx < length; idx++) {
+        if (typeof caffeine[idx] === 'object') {
+          const { intakeTime, ...other } = caffeine[idx];
+          const splitTime = splitTextKeyToArray(caffeine[idx], 'intakeTime', 'T');
+          const obj = {
+            day: splitTime[0],
+            time: splitTime[1] ? splitTime[1].substring(0, 5) : '',
+            ...other
+          };
+          arr.push(obj);
+        }
+      }
+      setProcessedData(arr.sort(orderIntakesByDate));
+    }
+  }, [caffeine]);
 
   return (
-    <div className="table-wrapper">
-      <table className="table is-bordered is-striped is-narrow is-fullwidth">
-        {renderTableHeader()}
-        {renderTableRows()}
-      </table>
-      {isLoadingCaffeine && <div className='circular-loader'><CircularProgress /></div>}
-    </div>);
+    <SimpleTable
+      columns={columns}
+      details={details}
+      detailsTitle={title}
+      includeDetails={true}
+      isLoading={isLoading}
+      rowsData={processedData}
+      titles={titles}
+    />
+  );
 };
 
 const mapStateToProps = state => ({
   caffeine: state.caffeineIntakes.caffeineGetPayload,
-  isLoadingCaffeine: state.caffeineIntakes.isLoadingCaffeine
+  isLoading: state.caffeineIntakes.isLoadingCaffeine
 });
 table.propTypes = propTypes;
-export default connect(mapStateToProps, { getCaffeineList })(table);
+export default connect(mapStateToProps, { getData: getCaffeineList })(table);
