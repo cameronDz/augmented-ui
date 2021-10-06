@@ -1,5 +1,6 @@
 const greyBackground = '#f5f5f5';
 const greyBorder = '#dbdbdb';
+
 const simpleDialogStyles = {
   dialogContainer: {
     width: '580px'
@@ -19,4 +20,23 @@ const simpleDialogStyles = {
   }
 };
 
-export { simpleDialogStyles };
+const footerStyles = {
+  footerContainer: {
+    bottom: '0',
+    marginTop: '-36px',
+    maxHeight: '36px',
+    minHeight: '36px',
+    maxWidth: '100%',
+    padding: '4px 0',
+    textAlign: 'center'
+  },
+  footerVerbiage: {
+    margin: 'auto',
+    maxWidth: '1280px'
+  },
+  appTitle: {
+    fontWeight: '700'
+  }
+};
+
+export { footerStyles, simpleDialogStyles };

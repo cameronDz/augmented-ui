@@ -1,18 +1,22 @@
 import React from 'react';
-import '../../css/footer.css';
+import classNames from 'classnames';
+import { makeStyles } from '@material-ui/core';
+import { footerStyles as styles } from './styles';
 import _package from '../../../package.json';
 
+const useStyles = makeStyles(() => styles);
 const footer = () => {
   const homepageUrl = _package.author.url;
-  const repositoryUrl = _package.repository.url;
-  const displayVersion = `v${_package.version}`;
   const name = _package.author.name;
-  const title = 'Augmented';
+  const repositoryUrl = _package.repository.url;
 
+  const classes = useStyles();
   return (
-    <footer className="footer footer-container is-slim">
-      <p className="footer-verbiage">
-        <span className="app-title">{title}{displayVersion}</span>
+    <footer className={classNames('nssd-footer-container', classes.footerContainer)}>
+      <p className={classNames(classes.footerVerbiage)}>
+        <span className={classNames(classes.appTitle)}>
+          {`Augmented @v${_package.version}`}
+        </span>
         <span>. Created by </span>
         <a href={homepageUrl} target="_">{name}</a>
         <span>. Repository on </span>
