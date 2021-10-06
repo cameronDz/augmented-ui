@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import Footer from './footer';
-import '../../css/layout.css';
 
 const propTypes = {
   children: PropTypes.object.isRequired,
@@ -18,7 +17,7 @@ const layout = ({ isFooterHidden, ...otherProps }) => {
   return (
     <Fragment>
       {children}
-      <div className="spacer"></div>
+      <div style={{ margin: '5px', padding: '5px' }}></div>
       {!isFooterHidden && <Footer />}
     </Fragment>);
 };
