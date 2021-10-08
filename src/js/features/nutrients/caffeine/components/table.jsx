@@ -57,6 +57,8 @@ const table = ({ caffeine = null, getData = null, isLoading = false }) => {
       columns={columns}
       details={details}
       detailsTitle={title}
+      downloadEndpoint={'object/caffeine'}
+      downloadText={'Download Intakes in JSON file.'}
       includeDetails={true}
       isLoading={isLoading}
       rowsData={processedData}
