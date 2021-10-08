@@ -14,6 +14,7 @@ const simpleTableStles = {
   tableFooterItem: {
     alignItems: 'normal',
     justifyContent: 'normal',
+    marginTop: '8px',
     paddingLeft: 0
   },
   tableLoader: {

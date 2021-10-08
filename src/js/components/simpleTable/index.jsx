@@ -47,14 +47,14 @@ const SimpleTable = ({
           />
         </table>
       </div>
-      {downloadText && downloadEndpoint && (
-        <a className={classNames(classes.tableFooterItem)} href={`${_config.baseApiUrl}/${downloadEndpoint}`} target="_">
-          {downloadText}
-        </a>
-      )}
       {isLoading && (
         <div className={classNames(classes.tableLoader)}>
           <CircularProgress />
+        </div>
+      )}
+      {!isLoading && downloadText && downloadEndpoint && (
+        <div className={classNames(classes.tableFooterItem)}>
+          <a href={`${_config.baseApiUrl}/${downloadEndpoint}`} target="_">{downloadText}</a>
         </div>
       )}
     </Fragment>
