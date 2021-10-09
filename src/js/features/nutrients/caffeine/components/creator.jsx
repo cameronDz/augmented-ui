@@ -2,8 +2,8 @@ import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import { Button, FormControl, MenuItem, Select, TextField } from '@material-ui/core';
 import { UnsecuredUserAlert } from '../../../../auth';
-import { InputLabel } from '../../../../components/inputs';
 import { clearPutSuccess, putCaffeine } from '../state/actions';
 
 const propTypes = {
@@ -22,8 +22,8 @@ const creator = ({
   isUserSecured,
   saveCaffeine
 }) => {
-  const [amount, setAmount] = useState(0);
-  const [amountType, setAmountType] = useState('');
+  const [amount, setAmount] = useState('');
+  const [amountType, setAmountType] = useState('mg');
   const [comment, setComment] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -44,8 +44,8 @@ const creator = ({
   }, [isSuccessfulPut]);
 
   const resetFormValues = () => {
-    setAmount(0);
-    setAmountType('');
+    setAmount('');
+    setAmountType('mg');
     setComment('');
   };
 
@@ -63,40 +63,48 @@ const creator = ({
   return (
     <Fragment>
       <UnsecuredUserAlert isSecured={isUserSecured} />
-      <div className="field is-horizontal">
-        <InputLabel label="Amount" name="amount" />
-        <input className="input input-amount"
+      <div>
+        <TextField
           disabled={isDisabled}
+          InputProps={{ min: 0 }}
+          label="Amount"
           name="amount"
-          onChange={ e => setAmount(e.target.value) }
-          required
-          style={{ height: '30px', width: '80px' }}
+          onChange={event => setAmount(event.target?.value || 0)}
           type="number"
-          value={amount} />
-        <select
-          disabled={isDisabled}
-          onChange={ event => setAmountType(event.target?.value || '')}
-          title="units"
-          value={amountType}
-        >
-          <option default value="mg">mg</option>
-          <option value="kg">kg</option>
-          <option value="pound">lb</option>
-          <option value="ounce">oz</option>
-          <option value="">--</option>
-        </select>
-      </div>
-      <div className="field">
-        <InputLabel label="Comment" />
-        <textarea className="textarea"
-          disabled={isDisabled}
-          name="comment"
-          onChange={ event => setComment(event.target.value) }
-          type="textarea"
-          value={comment} />
+          value={amount}
+          variant="outlined"
+        />
+        <FormControl className="aug-mrg-left-12" variant="outlined">
+          <Select
+            disabled={isDisabled}
+            onChange={event => setAmountType(event.target?.value || '')}
+            title="units"
+            value={amountType}
+          >
+            <MenuItem value=""><em>- -</em></MenuItem>
+            <MenuItem value="mg">mg</MenuItem>
+            <MenuItem value="kg">kg</MenuItem>
+            <MenuItem value="pound">lb</MenuItem>
+            <MenuItem value="ounce">oz</MenuItem>
+          </Select>
+        </FormControl>
       </div>
       <div>
-        <button disabled={isDisabled} role="button" onClick={handleSubmit}>Submit</button>
+        <TextField
+          disabled={isDisabled}
+          fullWidth={true}
+          label="Description"
+          minRows={isDisabled ? 1 : 3}
+          multiline={!isDisabled}
+          name="comment"
+          onChange={event => setComment(event.target?.value || '')}
+          value={comment}
+          variant="outlined"
+        />
+      </div>
+      <div>
+        <Button disabled={isDisabled} onClick={resetFormValues} variant="contained">Clear</Button>
+        <Button color="primary" disabled={isDisabled} onClick={handleSubmit} variant="contained">Submit</Button>
       </div>
     </Fragment>);
 };
