@@ -3,7 +3,6 @@ import PropType from 'prop-types';
 import { connect } from 'react-redux';
 import { TabbedPage } from '../../components/pages';
 import SimpleCard from '../../components/simpleCard';
-import Layout from '../../components/layout';
 import Routine from './components/fullRoutine';
 import { fetchRoutineList } from './state/actions';
 
@@ -88,21 +87,19 @@ const routinePage = ({ fetchRoutines, routine }) => {
 
   const createTab = () => {
     return (
-      <Layout isFooterHidden={true}>
-        <div className="card">
-          <header className="card-header">
-            <p className="card-header-title">Routines Page</p>
-          </header>
-          <div className="card-content columns is-tablet">
-            <div className="content column is-one-third">
-              <SimpleCard child={getRoutineSideBarChild()} title={sideBarTitle} />
-            </div>
-            <div className="content column is-two-thirds">
-              <SimpleCard child={getRoutineChild()} title={routineTitle} />
-            </div>
+      <div className="card">
+        <header className="card-header">
+          <p className="card-header-title">Routines Page</p>
+        </header>
+        <div className="card-content columns is-tablet">
+          <div className="content column is-one-third">
+            <SimpleCard child={getRoutineSideBarChild()} title={sideBarTitle} />
+          </div>
+          <div className="content column is-two-thirds">
+            <SimpleCard child={getRoutineChild()} title={routineTitle} />
           </div>
         </div>
-      </Layout>);
+      </div>);
   };
 
   return <TabbedPage tabNames={['Overview']} tabPanels={[createTab()]} />;
