@@ -8,7 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Mui Alert for unauthorized users on creator cards
+- Mui Alert for unauthorized users on creator cards and in auth dialog
+- Exercise creator clear button to clear out fields
 - Mui lab package to use experimental components currently in v5 of core package
 
 ### Changed
