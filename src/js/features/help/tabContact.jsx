@@ -7,11 +7,11 @@ const TabContact = () => {
     <Fragment>
       <p>Application creator and maintainer: {_package.author.name || ''}.</p>
       <p>
-        <spane>Email: </spane>
+        <span>Email: </span>
         <a href={`mailto:${email}`} target="_">{email}</a>
       </p>
       <p>
-        <spane>GitHub: </spane>
+        <span>GitHub: </span>
         <a href={_package.repository.url || ''} target="_">Augmented Frontend</a>
       </p>
     </Fragment>);
