@@ -18,7 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Time field input using Mui and react-mask comp with Mui styling, replacing 3rd party input
 - Exerecise and Cardio session creator inputs now Mui styled
-- Exercise page now has multiple tabs, inputs using Mui styling/components
+- Exercise and Caffeine page now has multiple tabs, inputs using Mui styling/components
 - Table does not show download text while loading
 
 ### Removed
