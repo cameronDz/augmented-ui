@@ -6,14 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.19.0] 2021-10-09
+
 ### Added
 
 - Mui Alert for unauthorized users on creator cards and in auth dialog
-- Exercise creator clear button to clear out fields
+- Exercise and Cardio session creator clear button to clear out fields
 - Mui lab package to use experimental components currently in v5 of core package
 
 ### Changed
 
+- Time field input using Mui and react-mask comp with Mui styling, replacing 3rd party input
+- Exerecise and Cardio session creator inputs now Mui styled
 - Exercise page now has multiple tabs, inputs using Mui styling/components
 - Table does not show download text while loading
 
