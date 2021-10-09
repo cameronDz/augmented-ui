@@ -1,3 +1,4 @@
-import CaffeinePanel from './caffeinePanel';
+import creator from './components/creator';
+import table from './components/table';
 
-export { CaffeinePanel };
+export { creator as CaffeineCreator, table as CaffeineTable };
