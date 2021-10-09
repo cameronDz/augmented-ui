@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Exercise page now has multiple tabs
 - Table does not show download text while loading
 
 ### Removed
