@@ -96,7 +96,7 @@ const creator = ({
   return (
     <Fragment>
       <UnsecuredUserAlert isSecured={isUserSecured} />
-      <div className="field is-horizontal">
+      <div className="is-horizontal">
         <TextField
           disabled={isDisabled}
           label="Machine type"
@@ -108,7 +108,7 @@ const creator = ({
         />
       </div>
 
-      <div className="field is-horizontal">
+      <div className="is-horizontal">
         <TimeField
           isDisabled={isDisabled}
           label="Duration (hh:mm:ss)"
@@ -118,7 +118,7 @@ const creator = ({
         />
       </div>
 
-      <div className="field is-horizontal">
+      <div className="is-horizontal">
         <DateTimePicker
           ampm={false}
           autoOk
@@ -130,7 +130,7 @@ const creator = ({
         />
       </div>
 
-      <div className="field is-horizontal">
+      <div className="is-horizontal">
         <FormControlLabel
           control={
             <Switch
@@ -144,7 +144,7 @@ const creator = ({
         />
       </div>
 
-      <div className="field is-horizontal">
+      <div className="is-horizontal">
         <TextField
           disabled={isDisabled}
           InputProps={{ step: '0.01' }}
@@ -156,12 +156,7 @@ const creator = ({
           variant="outlined"
         />
       </div>
-
-      <div className="field">
-
-      </div>
-
-      <div className="field">
+      <div>
         <TextField
           disabled={isDisabled}
           fullWidth={true}
@@ -174,7 +169,7 @@ const creator = ({
           variant="outlined"
         />
       </div>
-      <div className="field control">
+      <div className="control">
         <Button
           disabled={isDisabled}
           onClick={resetForm}
