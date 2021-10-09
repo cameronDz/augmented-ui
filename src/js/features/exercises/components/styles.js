@@ -1,8 +1,6 @@
 const creatorStyles = {
   exerciseCreatorRoot: {},
-  exerciseInputContainer: {
-    marginTop: '12px'
-  }
+  exerciseInputContainer: {}
 };
 
 export { creatorStyles };
