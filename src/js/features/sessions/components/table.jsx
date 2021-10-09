@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SimpleTable from '../../../components/simpleTable';
-import { getCardioSessionList } from '../state/actions';
 import { orderByDateKey } from '../../../lib/sorts';
 import { splitTextKeyToArray } from '../../../lib/splits';
 import { formatMiles, formatSeconds } from '../../../lib/format';
@@ -23,17 +22,12 @@ const downloadText = 'Download Session in JSON file.';
 const title = 'Session details';
 
 const propTypes = {
-  getData: PropTypes.func,
   isLoading: PropTypes.bool,
   isProcessing: PropTypes.bool,
   sessions: PropTypes.array
 };
-const table = ({ getData, isLoading, isProcessing, sessions }) => {
+const table = ({ isLoading, isProcessing, sessions }) => {
   const [processedData, setProcessedData] = useState(null);
-
-  useEffect(() => {
-    getData();
-  }, [getData]);
 
   useEffect(() => {
     if (Array.isArray(sessions)) {
@@ -78,4 +72,4 @@ const mapStateToProps = state => ({
   isProcessing: state.cardioMachineSessions.isProcessingCardioSession,
   sessions: state.cardioMachineSessions.cardioSessionGetPayload
 });
-export default connect(mapStateToProps, { getData: getCardioSessionList })(table);
+export default connect(mapStateToProps)(table);
