@@ -7,10 +7,10 @@ import SimpleCard from '../../components/simpleCard';
 import ExerciseCreator from './components/creator';
 import ExerciseDropdown from './components/dropdown';
 
-const tabNames = ['Creator', 'Dropdown Sample'];
+const tabNames = ['Dropdown Sample', 'Creator'];
 const tabPanels = [
-  <SimpleCard key="creator" child={<ExerciseCreator />} title="Exercise Creator" />,
-  <SimpleCard key="dropdown" child={<ExerciseDropdown />} title="Exercise Dropdown Sample" />
+  <SimpleCard key="dropdown" child={<ExerciseDropdown />} title="Exercise Dropdown Sample" />,
+  <SimpleCard key="creator" child={<ExerciseCreator />} title="Exercise Creator" />
 ];
 const propTypes = { getExercises: PropTypes.func };
 const exercisePage = ({ getExercises }) => {
