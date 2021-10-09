@@ -58,7 +58,6 @@
     "react-number-format": "^4.7.3",
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.1.2",
-    "react-simple-timefield": "^3.2.3",
     "react-test-renderer": "^16.13.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
@@ -99,5 +98,5 @@
     "start": "webpack-dev-server --open --config webpack/dev.babel.js",
     "test": "mocha --require @babel/register --require ignore-styles --reqire jsdom-global/register"
   },
-  "version": "0.19.0"
+  "version": "0.20.0"
 }

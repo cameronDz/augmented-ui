@@ -24,6 +24,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 - Help page contribution tab
+- Bulma field styling classes
+- Timefield package from 3rd party
 
 ## [0.18.2] 2021-10-06
 
