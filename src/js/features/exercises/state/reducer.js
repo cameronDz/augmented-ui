@@ -1,7 +1,7 @@
 import initialState from './initialState';
 import * as _types from './types';
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action = null) => {
   let newState;
   switch (action.type) {
     // actions for getting exercise list
@@ -29,6 +29,9 @@ const reducer = (state = initialState, action) => {
       break;
     case _types.PUT_REQUEST_EXERCISE_ITEM_COMPLETED:
       newState = { ...state, isProcessingExercise: false };
+      break;
+    case _types.PUT_REQUEST_EXERCISE_ITEM_CLEAR_SUCCESS_FLAG:
+      newState = { ...state, exercisePostPayload: null };
       break;
     default:
       newState = { ...state };

@@ -7,7 +7,7 @@ const emitDispatch = (type, actions = {}) => {
 };
 
 const getExerciseList = () => {
-  return (dispatch) => {
+  return (dispatch, _getState) => {
     const url = `${_config.baseApiUrl}/object/exercises`;
     dispatch(emitDispatch(_types.GET_REQUEST_EXERCISE_LIST_START));
     return axios.get(url, _config.baseApiConfig)
@@ -24,26 +24,37 @@ const getExerciseList = () => {
   };
 };
 
-const putExercise = payload => {
-  return (dispatch) => {
+const putExercise = item => {
+  return (dispatch, getState) => {
     const url = `${_config.baseApiUrl}/update/exercises`;
+    const exercises = getState().exercises.exerciseGetPayload || [];
+    const username = getState().auth.username || 'UNKNOWN';
+    const newExercise = { ...(item || {}), username };
+    const payload = { exercises: [...exercises, newExercise] };
     dispatch(emitDispatch(_types.PUT_REQUEST_EXERCISE_ITEM_START));
     return axios.put(url, payload, _config.baseApiConfig)
       .then((response) => {
-        const type = !!response && !!response.data ? _types.PUT_REQUEST_EXERCISE_ITEM_SUCCESS : _types.PUT_REQUEST_EXERCISE_ITEM_ERROR;
-        const responsePayload = {
-          data: !!response && !!response.data ? response.data : null,
-          error: 'No data in response.'
-        };
-        return dispatch(emitDispatch(type, responsePayload));
+        const isValidResponse = !!response?.data;
+        const responsePayload = { data: !!response?.data, error: 'No data in response.' };
+        const type = isValidResponse ? _types.PUT_REQUEST_EXERCISE_ITEM_SUCCESS : _types.PUT_REQUEST_EXERCISE_ITEM_ERROR;
+        dispatch(emitDispatch(type, responsePayload));
+        if (isValidResponse) {
+          dispatch(getExerciseList());
+        }
       })
       .catch((error) => {
-        return dispatch(emitDispatch(_types.PUT_REQUEST_EXERCISE_ITEM_ERROR, { error }));
+        dispatch(emitDispatch(_types.PUT_REQUEST_EXERCISE_ITEM_ERROR, { error }));
       })
       .finally(() => {
-        return dispatch(emitDispatch(_types.PUT_REQUEST_EXERCISE_ITEM_COMPLETED));
+        dispatch(emitDispatch(_types.PUT_REQUEST_EXERCISE_ITEM_COMPLETED));
       });
   };
 };
 
-export { getExerciseList, putExercise };
+const clearSuccessSaveFlag = () => {
+  return (dispatch, _getState) => {
+    dispatch(emitDispatch(_types.PUT_REQUEST_EXERCISE_ITEM_CLEAR_SUCCESS_FLAG));
+  };
+};
+
+export { clearSuccessSaveFlag, getExerciseList, putExercise };
