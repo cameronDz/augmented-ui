@@ -2,178 +2,199 @@ import React, { useEffect, useState, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { connect } from 'react-redux';
-import { Switch } from '@material-ui/core';
+import { Button, FormControlLabel, Switch, TextField } from '@material-ui/core';
 import { DateTimePicker } from '@material-ui/pickers';
-import TimeField from 'react-simple-timefield';
-import { InputLabel } from '../../../components/inputs';
+import { TimeField } from '../../../components/inputs';
 import { UnsecuredUserAlert } from '../../../auth';
-import { getCardioSessionList, putCardioSession } from '../state/actions';
-import { updateCardioMachineSessionPostForm } from '../state/creator/actions';
+import { clearSuccessPutCardioSession, putCardioSession } from '../state/actions';
 import { calulcateTimingSeconds } from '../lib/utility';
 
+const defaultForm = {
+  comment: '',
+  distanceMiles: '',
+  machineType: '',
+  seconds: 0,
+  startDate: new Date(),
+  timing: '00:00:00'
+};
+
 const propTypes = {
-  form: PropTypes.shape({
-    comment: PropTypes.string,
-    distanceMiles: PropTypes.string,
-    machineType: PropTypes.string,
-    seconds: PropTypes.number,
-    startDate: PropTypes.instanceOf(Date),
-    timing: PropTypes.string
-  }),
-  getCardioSessions: PropTypes.func,
-  hasUpdated: PropTypes.bool,
+  formClear: PropTypes.func,
+  formSave: PropTypes.func,
   isProcessing: PropTypes.bool,
-  isUserSecured: PropTypes.bool,
-  saveCardioSession: PropTypes.func,
-  sessions: PropTypes.array,
-  updateCardioSessionForm: PropTypes.func,
-  username: PropTypes.string
+  isSaveSuccessful: PropTypes.bool,
+  isUserSecured: PropTypes.bool
 };
 const creator = ({
-  form,
-  getCardioSessions,
-  hasUpdated,
+  formClear,
+  formSave,
   isProcessing,
-  isUserSecured,
-  saveCardioSession,
-  sessions,
-  updateCardioSessionForm,
-  username
+  isSaveSuccessful,
+  isUserSecured
 }) => {
+  const [form, setForm] = useState(() => defaultForm);
   const [isCurrentTimeStartTime, setIsCurrentTimeStartTime] = useState(true);
   const [isDisabled, setIsDisabled] = useState(true);
 
   useEffect(() => {
-    if (hasUpdated) {
-      getCardioSessions();
+    if (isSaveSuccessful) {
+      resetForm();
+      formClear();
     }
-  }, [hasUpdated]);
+  }, [isSaveSuccessful]);
 
   useEffect(() => {
     setIsDisabled(isProcessing || !isUserSecured);
   }, [isProcessing, isUserSecured]);
 
+  const resetForm = () => {
+    setForm(defaultForm);
+  };
+
+  const updateForm = (update = {}) => {
+    setForm((prev) => {
+      return { ...prev, ...update };
+    });
+  };
+
   const handleDateChange = date => {
     const update = { startDate: date };
     setIsCurrentTimeStartTime(false);
-    updateCardioSessionForm(update);
+    updateForm(update);
   };
 
-  const handleTimeChange = (_event, time) => {
-    const durationSeconds = calulcateTimingSeconds(time);
-    const update = { seconds: durationSeconds, timing: time };
+  const handleTimeChange = (event) => {
+    const value = event?.target?.value || '00:00:00';
+    const durationSeconds = calulcateTimingSeconds(value);
+    const update = { seconds: durationSeconds, timing: value };
     if (isCurrentTimeStartTime) {
       const startTimeMilliseconds = new Date().getTime() - (durationSeconds * 1000);
       const newStartTime = new Date(startTimeMilliseconds);
       update.startDate = newStartTime;
     }
-    updateCardioSessionForm(update);
+    updateForm(update);
   };
 
   const handleToggleSwitch = () => {
     if (!isCurrentTimeStartTime) {
       const startTimeMilliseconds = new Date().getTime() - (form.seconds * 1000);
       const update = { startDate: new Date(startTimeMilliseconds) };
-      updateCardioSessionForm(update);
+      updateForm(update);
     }
     setIsCurrentTimeStartTime(!isCurrentTimeStartTime);
   };
 
-  const getFormData = (field) => {
-    return !!form && !!form[field] ? form[field] : '';
-  };
-
   const handleSubmit = () => {
-    const startTime = !!form && form.startDate ? form.startDate.toJSON() : '';
     const item = {
       ...form,
       id: uuidv4(),
-      userName: username,
-      startTime
+      startTime: form?.startDate?.toJSON() || ''
     };
-    saveCardioSession({ cardio: [...sessions, item] });
+    formSave(item);
   };
 
   return (
     <Fragment>
       <UnsecuredUserAlert isSecured={isUserSecured} />
       <div className="field is-horizontal">
-        <InputLabel label="Machine Type" name="machineType" />
-        <input className="input"
+        <TextField
           disabled={isDisabled}
+          label="Machine type"
           name="machineType"
-          onChange={ event => updateCardioSessionForm({ machineType: event.target.value })}
-          required
-          type="text"
-          value={getFormData('machineType')} />
-      </div>
-
-      <div className="field is-horizontal">
-        <InputLabel label="Date" name="startDate" />
-        <DateTimePicker
-          ampm={false}
-          autoOk
-          disabled={isDisabled}
-          onChange={handleDateChange}
-          value={getFormData('startDate')}
+          onChange={(event) => updateForm({ machineType: event.target?.value || '' })}
+          required={true}
+          value={form.machineType || ''}
+          variant="outlined"
         />
       </div>
 
       <div className="field is-horizontal">
-        <InputLabel label="Duration" />
         <TimeField
-          disabled={isDisabled}
+          isDisabled={isDisabled}
+          label="Duration (hh:mm:ss)"
+          name="duration"
           onChange={handleTimeChange}
-          showSeconds={true}
-          style={{ height: '25px', marginRight: '15px', width: '80px' }}
-          value={getFormData('timing')} />
-        <InputLabel label="Distance (miles)" name="distanceMiles" />
-        <input
-          disabled={isDisabled}
-          name="distanceMiles"
-          onChange={ event => updateCardioSessionForm({ distanceMiles: event.target.value })}
-          step="0.01"
-          style={{ height: '30px', width: '80px' }}
-          type="number"
-          value={getFormData('distanceMiles')} />
+          value={(form.timing || '').replace(/:/g, '')}
+        />
       </div>
 
       <div className="field is-horizontal">
-        <InputLabel label="Session Just End" name="useEndTimeStartDate" />
-        <Switch checked={isCurrentTimeStartTime}
-          color="primary"
+        <DateTimePicker
+          ampm={false}
+          autoOk
           disabled={isDisabled}
-          onChange={handleToggleSwitch}
-          value={isCurrentTimeStartTime} />
+          inputVariant="outlined"
+          label="Date"
+          onChange={handleDateChange}
+          value={form.startDate || ''}
+        />
+      </div>
+
+      <div className="field is-horizontal">
+        <FormControlLabel
+          control={
+            <Switch
+              checked={isCurrentTimeStartTime}
+              color="primary"
+              disabled={isDisabled}
+              onChange={handleToggleSwitch}
+            />
+          }
+          label="Session Just Ended"
+        />
+      </div>
+
+      <div className="field is-horizontal">
+        <TextField
+          disabled={isDisabled}
+          InputProps={{ step: '0.01' }}
+          name="distanceMiles"
+          label="Distance (miles)"
+          onChange={ event => updateForm({ distanceMiles: event.target.value })}
+          type="number"
+          value={form.distanceMiles || ''}
+          variant="outlined"
+        />
       </div>
 
       <div className="field">
-        <InputLabel label="Comment" name="comment" />
-        <textarea className="textarea"
+
+      </div>
+
+      <div className="field">
+        <TextField
           disabled={isDisabled}
+          fullWidth={true}
+          label="Session comment"
+          minRows={2}
+          multiline={true}
           name="comment"
-          onChange={event => updateCardioSessionForm({ comment: event.target.value })}
-          type="textarea"
-          value={getFormData('comment')} />
+          onChange={event => updateForm({ comment: event.target?.value || '' })}
+          value={form.comment || ''}
+          variant="outlined"
+        />
       </div>
       <div className="field control">
-        <button className="input" disabled={isDisabled} onClick={handleSubmit} role="button">Submit</button>
+        <Button
+          disabled={isDisabled}
+          onClick={resetForm}
+          variant="contained"
+        >
+          Clear
+        </Button>
+        <Button color="primary" disabled={isDisabled} onClick={handleSubmit} variant="contained">Submit</Button>
       </div>
     </Fragment>);
 };
 
 const mapDispatchToProps = {
-  getCardioSessions: getCardioSessionList,
-  saveCardioSession: putCardioSession,
-  updateCardioSessionForm: updateCardioMachineSessionPostForm
+  formClear: clearSuccessPutCardioSession,
+  formSave: putCardioSession
 };
 const mapStateToProps = state => ({
-  form: state.cardioMachineSessionPost.form,
-  hasUpdated: !!state.cardioMachineSessions.cardioSessionPutPayload,
-  isProcessing: state.cardioMachineSessions.isProcessingCardioSession,
-  isUserSecured: !!state.auth.token,
-  sessions: state.cardioMachineSessions.cardioSessionGetPayload,
-  username: state.auth.username
+  isProcessing: !!state.cardioMachineSessions.isProcessingCardioSession,
+  isSaveSuccessful: !!state.cardioMachineSessions.cardioSessionPutPayload,
+  isUserSecured: !!state.auth.token
 });
 creator.propTypes = propTypes;
 export default connect(mapStateToProps, mapDispatchToProps)(creator);

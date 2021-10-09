@@ -1,9 +1,9 @@
 import initialState from './initialState';
 import * as _types from './types';
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action = null) => {
   let newState;
-  switch (action.type) {
+  switch (action?.type) {
     // actions for getting cardio sessions list
     case _types.GET_REQUEST_CARDIO_SESSION_LIST_START:
       newState = { ...state, cardioSessionGetError: null, isLoadingCardioSessions: true };
@@ -29,6 +29,9 @@ const reducer = (state = initialState, action) => {
       break;
     case _types.PUT_REQUEST_CARDIO_SESSION_ITEM_COMPLETED:
       newState = { ...state, isProcessingCardioSession: false };
+      break;
+    case _types.CLEAR_PUT_REQUEST_CARDIO_SESSION_STATUS:
+      newState = { ...state, cardioSessionPutError: null, cardioSessionPutPayload: null };
       break;
     default:
       newState = { ...state };

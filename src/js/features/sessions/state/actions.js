@@ -6,8 +6,14 @@ const emitDispatch = (type, actions = {}) => {
   return { type, ...actions };
 };
 
+const clearSuccessPutCardioSession = () => {
+  return (dispatch, _getState) => {
+    dispatch(emitDispatch(_types.CLEAR_PUT_REQUEST_CARDIO_SESSION_STATUS));
+  };
+};
+
 const getCardioSessionList = () => {
-  return (dispatch) => {
+  return (dispatch, _getState) => {
     const url = `${_config.baseApiUrl}/object/cardio`;
     dispatch(emitDispatch(_types.GET_REQUEST_CARDIO_SESSION_LIST_START));
     return axios.get(url, _config.baseApiConfig)
@@ -24,26 +30,33 @@ const getCardioSessionList = () => {
   };
 };
 
-const putCardioSession = payload => {
-  return (dispatch) => {
+const putCardioSession = item => {
+  return (dispatch, getState) => {
     const url = `${_config.baseApiUrl}/update/cardio`;
+    const sessions = getState().cardioMachineSessions.cardioSessionGetPayload;
+    const userName = getState().auth.username || 'UNKNOWN';
+    const newSession = { ...(item || {}), userName };
+    const payload = { cardio: [...sessions, newSession] };
     dispatch(emitDispatch(_types.PUT_REQUEST_CARDIO_SESSION_ITEM_START));
     return axios.put(url, payload, _config.baseApiConfig)
       .then((response) => {
-        const type = !!response && !!response.data ? _types.PUT_REQUEST_CARDIO_SESSION_ITEM_SUCCESS : _types.PUT_REQUEST_CARDIO_SESSION_ITEM_ERROR;
-        const responsePayload = {
-          data: !!response && !!response.data ? response.data : null,
-          error: 'No data in response.'
-        };
-        return dispatch(emitDispatch(type, responsePayload));
+        const isValidResponse = !!response?.data;
+        const responsePayload = { data: !!response?.data, error: 'No data in response.' };
+        const type = isValidResponse
+          ? _types.PUT_REQUEST_CARDIO_SESSION_ITEM_SUCCESS
+          : _types.PUT_REQUEST_CARDIO_SESSION_ITEM_ERROR;
+        dispatch(emitDispatch(type, responsePayload));
+        if (isValidResponse) {
+          dispatch(getCardioSessionList());
+        }
       })
       .catch((error) => {
-        return dispatch(emitDispatch(_types.PUT_REQUEST_CARDIO_SESSION_ITEM_ERROR, { error }));
+        dispatch(emitDispatch(_types.PUT_REQUEST_CARDIO_SESSION_ITEM_ERROR, { error }));
       })
       .finally(() => {
-        return dispatch(emitDispatch(_types.PUT_REQUEST_CARDIO_SESSION_ITEM_COMPLETED));
+        dispatch(emitDispatch(_types.PUT_REQUEST_CARDIO_SESSION_ITEM_COMPLETED));
       });
   };
 };
 
-export { getCardioSessionList, putCardioSession };
+export { clearSuccessPutCardioSession, getCardioSessionList, putCardioSession };
