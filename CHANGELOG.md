@@ -10,6 +10,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Table does not show download text while loading
 
+### Removed
+
+- Help page contribution tab
+
 ## [0.18.2] 2021-10-06
 
 ### Removed
