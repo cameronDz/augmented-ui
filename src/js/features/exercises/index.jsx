@@ -7,34 +7,19 @@ import SimpleCard from '../../components/simpleCard';
 import ExerciseCreator from './components/creator';
 import ExerciseDropdown from './components/dropdown';
 
-const propTypes = {
-  exercises: PropTypes.array,
-  getExercises: PropTypes.func
-};
-const exercisePage = ({ exercises, getExercises }) => {
+const tabNames = ['Creator', 'Dropdown Sample'];
+const tabPanels = [
+  <SimpleCard key="creator" child={<ExerciseCreator />} title="Exercise Creator" />,
+  <SimpleCard key="dropdown" child={<ExerciseDropdown />} title="Exercise Dropdown Sample" />
+];
+const propTypes = { getExercises: PropTypes.func };
+const exercisePage = ({ getExercises }) => {
   useEffect(() => {
     getExercises();
   }, []);
 
-  const createTab = () => {
-    return (
-      <div className="card">
-        <header>
-          <p className="card-header-title">Exercise Page</p>
-        </header>
-        <div className="card-content columns is-tablet">
-          <div className="content column is-one-half">
-            <SimpleCard child={<ExerciseCreator />} title="Exercise Creator" />
-          </div>
-          <div className="content column is-one-half">
-            <SimpleCard child={<ExerciseDropdown exercises={exercises} />} title="Exercise Dropdown Sample" />
-          </div>
-        </div>
-      </div>);
-  };
-  return <TabbedPage tabNames={['Overview']} tabPanels={[createTab()]} />;
+  return <TabbedPage tabNames={tabNames} tabPanels={tabPanels} />;
 };
 
 exercisePage.propTypes = propTypes;
-const mapStateToProps = state => ({ exercises: state.exercises.exerciseGetPayload });
-export default connect(mapStateToProps, { getExercises: getExerciseList })(exercisePage);
+export default connect(null, { getExercises: getExerciseList })(exercisePage);

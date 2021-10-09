@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import SimpleDropdown from '../../../components/simpleDropdown';
 
 const propTypes = {
   exercises: PropTypes.array
 };
-const exerciseDropdown = ({ exercises }) => {
+const ExerciseDropdown = ({ exercises }) => {
   const [processedExercises, setProcessedExercises] = useState([]);
   const [selectedId, setSelectedId] = useState('');
 
@@ -34,5 +35,6 @@ const exerciseDropdown = ({ exercises }) => {
     </SimpleDropdown>);
 };
 
-exerciseDropdown.propTypes = propTypes;
-export default exerciseDropdown;
+ExerciseDropdown.propTypes = propTypes;
+const mapStateToProps = state => ({ exercises: state.exercises.exerciseGetPayload });
+export default connect(mapStateToProps)(ExerciseDropdown);
