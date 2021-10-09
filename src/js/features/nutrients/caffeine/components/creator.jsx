@@ -2,10 +2,10 @@ import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
+import { UnsecuredUserAlert } from '../../../../auth';
 import { InputLabel } from '../../../../components/inputs';
 import { getCaffeineList, putCaffeine } from '../state/actions';
 
-const authWarning = '* must authenticate to submit exercise';
 const propTypes = {
   caffeine: PropTypes.array,
   getCaffeines: PropTypes.func,
@@ -67,7 +67,7 @@ const creator = ({
 
   return (
     <Fragment>
-      {!isUserSecured && <div><p style={{ color: 'red' }}>{authWarning}</p></div>}
+      <UnsecuredUserAlert isSecured={isUserSecured} />
       <div className="field is-horizontal">
         <InputLabel label="Amount" name="amount" />
         <input className="input input-amount"

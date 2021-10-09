@@ -6,11 +6,11 @@ import { Switch } from '@material-ui/core';
 import { DateTimePicker } from '@material-ui/pickers';
 import TimeField from 'react-simple-timefield';
 import { InputLabel } from '../../../components/inputs';
+import { UnsecuredUserAlert } from '../../../auth';
 import { getCardioSessionList, putCardioSession } from '../state/actions';
 import { updateCardioMachineSessionPostForm } from '../state/creator/actions';
 import { calulcateTimingSeconds } from '../lib/utility';
 
-const authWarning = '* must authenticate to submit exercise';
 const propTypes = {
   form: PropTypes.shape({
     comment: PropTypes.string,
@@ -96,7 +96,7 @@ const creator = ({
 
   return (
     <Fragment>
-      {!isUserSecured && <div><p style={{ color: 'red' }}>{authWarning}</p></div>}
+      <UnsecuredUserAlert isSecured={isUserSecured} />
       <div className="field is-horizontal">
         <InputLabel label="Machine Type" name="machineType" />
         <input className="input"

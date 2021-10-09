@@ -8,7 +8,6 @@ import { UnsecuredUserAlert } from '../../../auth';
 import { clearSuccessSaveFlag, putExercise } from '../state/actions';
 import { creatorStyles as styles } from './styles';
 
-const authWarning = '* ';
 const propTypes = {
   clearSave: PropTypes.func,
   isLoading: PropTypes.bool,
