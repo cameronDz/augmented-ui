@@ -1,8 +1,9 @@
 const initialState = {
+  error: null,
   isCancelled: false,
   isFetching: false,
   isLive: false,
-  error: null,
+  success: false,
   token: null,
   username: null
 };

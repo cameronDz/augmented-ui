@@ -8,10 +8,11 @@ import {
   DialogContentText,
   TextField
 } from '@material-ui/core';
+import { Alert } from '@material-ui/lab';
 import { SimpleDialog } from '../components/simpleDialog';
 import {
   cancelToken,
-  clearError,
+  clearStatus,
   clearToken,
   fetchToken,
   livenessCheck
@@ -22,7 +23,7 @@ import { requestTokenDialogStyles as styles } from './styles';
 const title = 'Sign in with credentials';
 const propTypes = {
   cancelTokenFetch: PropType.func,
-  clearTokenError: PropType.func,
+  clearTokenStatus: PropType.func,
   clearTokenUser: PropType.func,
   error: PropType.any,
   fetchUserToken: PropType.func,
@@ -32,12 +33,13 @@ const propTypes = {
   livenessTokenCheck: PropType.func,
   onClose: PropType.func,
   securedUser: PropType.string,
+  success: PropType.bool,
   token: PropType.any
 };
 const useStyles = makeStyles(() => styles);
 const RequestTokenDialog = ({
   cancelTokenFetch,
-  clearTokenError,
+  clearTokenStatus,
   clearTokenUser,
   error,
   fetchUserToken,
@@ -47,6 +49,7 @@ const RequestTokenDialog = ({
   livenessTokenCheck,
   onClose,
   securedUser,
+  success,
   token
 }) => {
   const classes = useStyles();
@@ -55,14 +58,14 @@ const RequestTokenDialog = ({
 
   useEffect(() => {
     if (!isOpen) {
-      handleFunction(clearTokenError);
+      handleFunction(clearTokenStatus);
       setPassword('');
     }
     if (securedUser) {
       setPassword('');
     }
     setUsername(securedUser || '');
-  }, [clearTokenError, isOpen, securedUser]);
+  }, [clearTokenStatus, isOpen, securedUser]);
 
   useEffect(() => {
     if (isOpen && !isAuthLive) {
@@ -94,13 +97,9 @@ const RequestTokenDialog = ({
   };
 
   const getText = () => {
-    let text = 'To create new Augmented sessions and logs, please log in with valid credentials.';
-    if (token) {
-      text = 'You\'re credentials are valid.';
-    } else if (error) {
-      text = 'Unable to verify credentials. Please, try again.';
-    }
-    return text;
+    return token
+      ? 'You\'re credentials are valid.'
+      : 'To create new Augmented sessions and logs, please log in with valid credentials.';
   };
 
   return (
@@ -114,7 +113,11 @@ const RequestTokenDialog = ({
             {isProcessingRequest ? (
               <CircularProgress />
             ) : (
-              <DialogContentText>{getText()}</DialogContentText>
+              <Fragment>
+                {error && <Alert severity="error">Unable to validate credentials. Please try again!</Alert>}
+                {success && <Alert severity="success">Successfully validated credentials!</Alert>}
+                {!error && !success && <DialogContentText>{getText()}</DialogContentText>}
+              </Fragment>
             )}
           </div>
           <TextField
@@ -171,11 +174,12 @@ const mapStateToProps = (state) => ({
   isAuthLive: state.auth.isLive,
   isProcessingRequest: state.auth.isFetching,
   securedUser: state.auth.username,
+  success: state.auth.success,
   token: state.auth.token
 });
 const mapDispatchToProps = {
   cancelTokenFetch: cancelToken,
-  clearTokenError: clearError,
+  clearTokenStatus: clearStatus,
   clearTokenUser: clearToken,
   fetchUserToken: fetchToken,
   livenessTokenCheck: livenessCheck

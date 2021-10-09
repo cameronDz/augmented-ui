@@ -4,11 +4,11 @@ import { initialState } from './initialState';
 const reducer = (state = initialState, action = null) => {
   let newState;
   switch (action?.type) {
-    case _types.CLEAR_ERROR:
-      newState = { ...state, error: null };
+    case _types.CLEAR_STATUS:
+      newState = { ...state, error: null, success: false };
       break;
     case _types.CLEAR_TOKEN:
-      newState = { ...state, token: null, username: null };
+      newState = { ...state, error: null, success: false, token: null, username: null };
       break;
     case _types.GET_TOKEN_CANCELLED:
       newState = { ...state, isCancelled: true, isFetching: false };
@@ -32,6 +32,7 @@ const reducer = (state = initialState, action = null) => {
         error: null,
         isCancelled: false,
         isFetching: false,
+        success: !state.isCancelled,
         token: state.isCancelled ? null : action.data,
         username: state.isCancelled ? null : action.username
       };

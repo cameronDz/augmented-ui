@@ -14,6 +14,9 @@ const requestTokenDialogStyles = {
     minHeight: '100px',
     '& .MuiCircularProgress-root': {
       margin: 'auto'
+    },
+    '& .MuiAlert-root': {
+      width: '100%'
     }
   }
 };

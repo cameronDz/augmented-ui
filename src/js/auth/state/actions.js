@@ -21,9 +21,9 @@ const cancelToken = () => {
   };
 };
 
-const clearError = () => {
+const clearStatus = () => {
   return (dispatch) => {
-    return dispatch({ type: _types.CLEAR_ERROR });
+    return dispatch({ type: _types.CLEAR_STATUS });
   };
 };
 
@@ -61,4 +61,4 @@ const livenessCheck = () => {
   };
 };
 
-export { cancelToken, clearError, clearToken, fetchToken, livenessCheck };
+export { cancelToken, clearStatus, clearToken, fetchToken, livenessCheck };

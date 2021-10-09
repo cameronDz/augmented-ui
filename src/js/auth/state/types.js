@@ -1,4 +1,4 @@
-export const CLEAR_ERROR = 'CLEAR_ERROR';
+export const CLEAR_STATUS = 'CLEAR_STATUS';
 export const CLEAR_TOKEN = 'CLEAR_TOKEN';
 
 export const GET_TOKEN_CANCELLED = 'GET_TOKEN_CANCELLED';
