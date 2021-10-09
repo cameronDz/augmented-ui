@@ -13,6 +13,12 @@ const appStyles = {
       height: '100%',
       margin: 0,
       padding: 0
+    },
+    '.MuiButtonBase-root.MuiButton-root.MuiButton-contained': {
+      marginRight: '12px'
+    },
+    '.MuiTextField-root': {
+      marginTop: '12px'
     }
   }
 };

@@ -87,7 +87,7 @@ const ExerciseCreator = ({
           disabled={isDisabled}
           fullWidth={true}
           label="Exercise description"
-          multiline={true}
+          multiline={!isDisabled}
           name="description"
           onChange={event => setDescription(event.target.value || '')}
           value={description}

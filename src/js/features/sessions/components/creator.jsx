@@ -166,8 +166,8 @@ const creator = ({
           disabled={isDisabled}
           fullWidth={true}
           label="Session comment"
-          minRows={2}
-          multiline={true}
+          minRows={isDisabled ? 1 : 2}
+          multiline={!isDisabled}
           name="comment"
           onChange={event => updateForm({ comment: event.target?.value || '' })}
           value={form.comment || ''}
@@ -182,7 +182,14 @@ const creator = ({
         >
           Clear
         </Button>
-        <Button color="primary" disabled={isDisabled} onClick={handleSubmit} variant="contained">Submit</Button>
+        <Button
+          color="primary"
+          disabled={isDisabled || !form?.machineType}
+          onClick={handleSubmit}
+          variant="contained"
+        >
+          Submit
+        </Button>
       </div>
     </Fragment>);
 };
