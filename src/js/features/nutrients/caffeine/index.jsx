@@ -3,7 +3,7 @@ import IntakeCreator from './components/creator';
 import IntakeTable from './components/table';
 import SimpleCard from '../../../components/simpleCard';
 
-const caffeine = () => {
+const CaffeinePanel = () => {
   const renderIntakeCreatorCard = () => {
     const child = (<IntakeCreator />);
     return (<SimpleCard child={child} title={'Caffeine Intake Creator'} />);
@@ -28,4 +28,4 @@ const caffeine = () => {
   return (<SimpleCard child={renderSessionContent()} title={'Caffeine Page'} />);
 };
 
-export default caffeine;
+export { CaffeinePanel };
