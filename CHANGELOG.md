@@ -6,9 +6,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Mui lab package to use experimental components currently in v5 of core package
+
 ### Changed
 
-- Exercise page now has multiple tabs
+- Exercise page now has multiple tabs, inputs using Mui styling/components
 - Table does not show download text while loading
 
 ### Removed
