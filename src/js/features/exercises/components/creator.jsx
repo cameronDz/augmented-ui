@@ -4,10 +4,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { makeStyles, Button, TextField } from '@material-ui/core';
+import { UnsecuredUserAlert } from '../../../auth';
 import { clearSuccessSaveFlag, putExercise } from '../state/actions';
 import { creatorStyles as styles } from './styles';
 
-const authWarning = '* must authenticate to submit exercise';
+const authWarning = '* ';
 const propTypes = {
   clearSave: PropTypes.func,
   isLoading: PropTypes.bool,
@@ -65,7 +66,7 @@ const ExerciseCreator = ({
   const classes = useStyles();
   return (
     <div className={classNames(classes.exerciseCreatorRoot)}>
-      {!isUserSecured && <p style={{ color: 'red' }}>{authWarning}</p>}
+      <UnsecuredUserAlert isSecured={isUserSecured} />
       <div className={classes.exerciseInputContainer}>
         <TextField
           disabled={isDisabled}
