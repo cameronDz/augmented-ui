@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import Page from '../components/page';
+import { TabbedPage } from '../components/page';
 import _package from '../../../package.json';
 
 const help = () => {
@@ -43,7 +43,7 @@ const help = () => {
   const tabNames = ['About', 'Contact', 'Contribute', 'Report an issue'];
   const tabPanels = [about, contact, contribute, issue];
   return (
-    <Page tabNames={tabNames}
+    <TabbedPage tabNames={tabNames}
       tabPanels={tabPanels}
       title={title}
     />);

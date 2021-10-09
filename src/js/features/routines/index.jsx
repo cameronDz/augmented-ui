@@ -1,10 +1,9 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import PropType from 'prop-types';
 import { connect } from 'react-redux';
-
+import { TabbedPage } from '../components/page';
 import SimpleCard from '../../components/simpleCard';
 import Layout from '../../components/layout';
-import Page from '../../components/page';
 import Routine from './components/fullRoutine';
 import { fetchRoutineList } from './state/actions';
 
@@ -106,7 +105,7 @@ const routinePage = ({ fetchRoutines, routine }) => {
       </Layout>);
   };
 
-  return <Page tabNames={['Overview']} tabPanels={[createTab()]} />;
+  return <TabbedPage tabNames={['Overview']} tabPanels={[createTab()]} />;
 };
 
 routinePage.propTypes = propTypes;

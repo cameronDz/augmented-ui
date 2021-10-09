@@ -1,7 +1,7 @@
 import React from 'react';
+import { TabbedPage } from '../components/page';
 import Caffeine from './caffeine';
 import Layout from '../../components/layout';
-import Page from '../../components/page';
 
 const nutrientsPage = () => {
   const createTab = () => {
@@ -10,7 +10,7 @@ const nutrientsPage = () => {
         <Caffeine />
       </Layout>);
   };
-  return <Page tabNames={['Caffeine']} tabPanels={[createTab()]} />;
+  return <TabbedPage tabNames={['Caffeine']} tabPanels={[createTab()]} />;
 };
 
 export default nutrientsPage;

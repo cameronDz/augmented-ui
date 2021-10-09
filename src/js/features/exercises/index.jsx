@@ -2,12 +2,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { getExerciseList } from './state/actions';
-
+import { TabbedPage } from '../components/page';
 import SimpleCard from '../../components/simpleCard';
 import ExerciseCreator from './components/creator';
 import ExerciseDropdown from './components/dropdown';
 import Layout from '../../components/layout';
-import Page from '../../components/page';
 
 const propTypes = {
   exercises: PropTypes.array,
@@ -37,7 +36,7 @@ const exercisePage = ({ exercises, getExercises }) => {
       </Layout>);
   };
 
-  return <Page tabNames={['Overview']} tabPanels={[createTab()]} />;
+  return <TabbedPage tabNames={['Overview']} tabPanels={[createTab()]} />;
 };
 exercisePage.propTypes = propTypes;
 const mapStateToProps = state => ({ exercises: state.exercises.exerciseGetPayload });

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Page from '../../components/page';
+import { TabbedPage } from '../components/page';
 import SessionCreator from './components/creator';
 import SessionsTableDisplay from './components/table';
 import { getCardioSessionList } from './state/actions';
@@ -20,7 +20,7 @@ const sessions = ({ getCardioSessions }) => {
     getCardioSessions();
   }, []);
 
-  return <Page title="Sessions" tabNames={tabNames} tabPanels={tabPanels} />;
+  return <TabbedPage title="Sessions" tabNames={tabNames} tabPanels={tabPanels} />;
 };
 
 sessions.propTypes = propTypes;
