@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { TabbedPage } from '../components/page';
+import { TabbedPage } from '../../components/pages';
 import SessionCreator from './components/creator';
 import SessionsTableDisplay from './components/table';
 import { getCardioSessionList } from './state/actions';

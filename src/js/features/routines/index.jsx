@@ -1,7 +1,7 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import PropType from 'prop-types';
 import { connect } from 'react-redux';
-import { TabbedPage } from '../components/page';
+import { TabbedPage } from '../../components/pages';
 import SimpleCard from '../../components/simpleCard';
 import Layout from '../../components/layout';
 import Routine from './components/fullRoutine';

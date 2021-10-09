@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { TabbedPage } from '../components/page';
+import { TabbedPage } from '../components/pages';
 import _package from '../../../package.json';
 
 const help = () => {
