@@ -69,7 +69,7 @@ const creator = ({
     <Fragment>
       {!isUserSecured && <div><p style={{ color: 'red' }}>{authWarning}</p></div>}
       <div className="field is-horizontal">
-        <InputLabel label="Amount" />
+        <InputLabel label="Amount" name="amount" />
         <input className="input input-amount"
           disabled={isDisabled}
           name="amount"
@@ -78,13 +78,17 @@ const creator = ({
           style={{ height: '30px', width: '80px' }}
           type="number"
           value={amount} />
-        <InputLabel label="Type" />
-        <select disabled={isDisabled} onChange={ event => setAmountType(event.target.value)} value={amountType}>
-          <option default value="">--</option>
-          <option value="mg">Milligram</option>
-          <option value="kg">Kilogram</option>
-          <option value="pound">Pound</option>
-          <option value="ounce">Ounce</option>
+        <select
+          disabled={isDisabled}
+          onChange={ event => setAmountType(event.target?.value || '')}
+          title="units"
+          value={amountType}
+        >
+          <option default value="mg">mg</option>
+          <option value="kg">kg</option>
+          <option value="pound">lb</option>
+          <option value="ounce">oz</option>
+          <option value="">--</option>
         </select>
       </div>
       <div className="field">
