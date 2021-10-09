@@ -4,7 +4,7 @@ import { HashRouter, Route, Switch as RouterSwtich } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import ExercisePage from './features/exercises';
 import Footer from './components/footer';
-import Help from './features/help';
+import HelpPage from './features/help';
 import NutrientPage from './features/nutrients';
 import RoutinePage from './features/routines';
 import Session from './features/sessions';
@@ -20,7 +20,7 @@ const app = () => {
           <RouterSwtich>
             <Route exact path='/' component={Session} />
             <Route exact path='/exercise' component={ExercisePage} />
-            <Route exact path='/help' component={Help} />
+            <Route exact path='/help' component={HelpPage} />
             <Route exact path='/nutrient' component={NutrientPage} />
             <Route exact path='/routine' component={RoutinePage} />
             <Route exact path='/session' component={Session} />
