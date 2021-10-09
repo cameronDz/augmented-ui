@@ -28,11 +28,7 @@ const ExerciseCreator = ({
   const [description, setDescription] = useState('');
   const [isDisabled, setDisabled] = useState(false);
   const [name, setName] = useState('');
-  const [typeId, setTypeId] = useState('');
-
-  useEffect(() => {
-    resetFormValues();
-  }, []);
+  const [type, setType] = useState('');
 
   useEffect(() => {
     setDisabled(isLoading || isProcessing || !isUserSecured);
@@ -48,7 +44,7 @@ const ExerciseCreator = ({
   const resetFormValues = () => {
     setDescription('');
     setName('');
-    setTypeId('');
+    setType('');
   };
 
   const handleSubmit = () => {
@@ -57,7 +53,7 @@ const ExerciseCreator = ({
       id: uuidv4(),
       description,
       name,
-      typeId
+      type
     };
     saveExercise(item);
   };
@@ -80,9 +76,9 @@ const ExerciseCreator = ({
         <TextField
           disabled={isDisabled}
           label="Exercise type"
-          name="typeId"
-          onChange={event => setTypeId(event.target?.value || '')}
-          value={typeId}
+          name="type"
+          onChange={event => setType(event.target?.value || '')}
+          value={type}
           variant="outlined"
         />
       </div>
@@ -99,6 +95,13 @@ const ExerciseCreator = ({
         />
       </div>
       <div className={classNames(classes.exerciseInputContainer)}>
+        <Button
+          disabled={isDisabled || (!name && !type && !description)}
+          onClick={resetFormValues}
+          variant="contained"
+        >
+          Clear
+        </Button>
         <Button color="primary" disabled={isDisabled || !name} onClick={handleSubmit} variant="contained">Submit</Button>
       </div>
     </div>);
