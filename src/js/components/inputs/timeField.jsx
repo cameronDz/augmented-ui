@@ -5,13 +5,14 @@ import { handleFunction } from '../../lib/eventHandler';
 import TimeFieldMask from './timeFieldMask';
 
 const propTypes = {
+  isDisabled: PropTypes.bool,
   label: PropTypes.string,
   name: PropTypes.string,
   onBlur: PropTypes.func,
   onChange: PropTypes.func,
   value: PropTypes.any
 };
-const TimeField = ({ label, name, onBlur, onChange, value }) => {
+const TimeField = ({ isDisabled, label, name, onBlur, onChange, value }) => {
   const [currentValue, setCurrentValue] = useState(() => value || '');
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const TimeField = ({ label, name, onBlur, onChange, value }) => {
 
   return (
     <TextField
+      disabled={isDisabled}
       InputProps={{ inputComponent: TimeFieldMask }}
       label={label}
       name={name}
