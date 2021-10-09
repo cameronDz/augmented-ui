@@ -30,6 +30,9 @@ const reducer = (state = initialState, action) => {
     case _types.PUT_REQUEST_CAFFEINE_ITEM_COMPLETED:
       newState = { ...state, isProcessingCaffeine: false };
       break;
+    case _types.CLEAR_PUT_REQUEST_CAFFEINE_ITEM_SUCCESS:
+      newState = { ...state, caffeinePostError: null, caffeinePostPayload: null };
+      break;
     default:
       newState = state;
   }

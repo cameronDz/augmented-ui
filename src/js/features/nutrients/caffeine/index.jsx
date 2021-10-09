@@ -1,31 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import IntakeCreator from './components/creator';
 import IntakeTable from './components/table';
 import SimpleCard from '../../../components/simpleCard';
+import { getCaffeineList } from '../state/actions';
+import { handleFunction } from '../../../../lib/eventHandler';
 
-const CaffeinePanel = () => {
-  const renderIntakeCreatorCard = () => {
-    const child = (<IntakeCreator />);
-    return (<SimpleCard child={child} title={'Caffeine Intake Creator'} />);
-  };
-
-  const renderIntakeDisplayCard = () => {
-    const child = (<IntakeTable />);
-    return (<SimpleCard child={child} title={'Caffeine Intake Display'} />);
-  };
+const propTypes = { getData: PropTypes.func };
+const CaffeinePanel = ({ getData }) => {
+  useEffect(() => {
+    handleFunction(getData);
+  }, [getData]);
 
   const renderSessionContent = () => {
     return (
       <div className="card-content columns is-multiline is-tablet">
         <div className="content column is-two-fifths">
-          {renderIntakeCreatorCard()}
+          <SimpleCard child={<IntakeCreator />} title={'Caffeine Intake Creator'} />
         </div>
         <div className="content column is-three-fifths">
-          {renderIntakeDisplayCard()}
+          <SimpleCard child={<IntakeTable />} title={'Caffeine Intake Display'} />
         </div>
       </div>);
   };
   return (<SimpleCard child={renderSessionContent()} title={'Caffeine Page'} />);
 };
 
-export { CaffeinePanel };
+CaffeinePanel.propTypes = propTypes;
+const mapStateToProps = null;
+const mapDispatchToProps = { getData: getCaffeineList };
+export default connect(mapStateToProps, mapDispatchToProps)(CaffeinePanel);

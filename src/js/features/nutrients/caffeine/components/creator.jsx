@@ -4,27 +4,23 @@ import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { UnsecuredUserAlert } from '../../../../auth';
 import { InputLabel } from '../../../../components/inputs';
-import { getCaffeineList, putCaffeine } from '../state/actions';
+import { clearPutSuccess, putCaffeine } from '../state/actions';
 
 const propTypes = {
-  caffeine: PropTypes.array,
-  getCaffeines: PropTypes.func,
+  clearSuccessSave: PropTypes.func,
   isLoadingCaffeine: PropTypes.bool,
   isProcessingCaffeine: PropTypes.bool,
   isUserSecured: PropTypes.bool,
   isSuccessfulPut: PropTypes.bool,
-  saveCaffeine: PropTypes.func,
-  username: PropTypes.string
+  saveCaffeine: PropTypes.func
 };
 const creator = ({
-  caffeine,
-  getCaffeines,
+  clearSuccessSave,
   isLoadingCaffeine,
   isProcessingCaffeine,
   isSuccessfulPut,
   isUserSecured,
-  saveCaffeine,
-  username
+  saveCaffeine
 }) => {
   const [amount, setAmount] = useState(0);
   const [amountType, setAmountType] = useState('');
@@ -43,7 +39,7 @@ const creator = ({
   useEffect(() => {
     if (isSuccessfulPut) {
       resetFormValues();
-      getCaffeines();
+      clearSuccessSave();
     }
   }, [isSuccessfulPut]);
 
@@ -59,10 +55,9 @@ const creator = ({
       id: uuidv4(),
       intakeTime: new Date().toJSON(),
       amountType: amountType,
-      comment: comment,
-      userName: username
+      comment: comment
     };
-    saveCaffeine({ caffeine: [payload, ...caffeine] });
+    saveCaffeine(payload);
   };
 
   return (
@@ -106,13 +101,12 @@ const creator = ({
     </Fragment>);
 };
 
+creator.propTypes = propTypes;
 const mapStateToProps = state => ({
-  caffeine: state.caffeineIntakes.caffeineGetPayload,
   isLoadingCaffeine: state.caffeineIntakes.isLoadingCaffeine,
   isProcessingCaffeine: state.caffeineIntakes.isProcessingCaffeine,
   isSuccessfulPut: !!state.caffeineIntakes.caffeinePostPayload,
-  isUserSecured: !!state.auth.token,
-  username: state.auth.username
+  isUserSecured: !!state.auth.token
 });
-creator.propTypes = propTypes;
-export default connect(mapStateToProps, { getCaffeines: getCaffeineList, saveCaffeine: putCaffeine })(creator);
+const mapDispatchToProps = { clearSuccessSave: clearPutSuccess, saveCaffeine: putCaffeine };
+export default connect(mapStateToProps, mapDispatchToProps)(creator);

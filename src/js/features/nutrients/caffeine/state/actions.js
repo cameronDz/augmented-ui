@@ -7,7 +7,7 @@ const emitDispatch = (type, actions = {}) => {
 };
 
 const getCaffeineList = () => {
-  return (dispatch) => {
+  return (dispatch, _getDispatch) => {
     const url = `${_config.baseApiUrl}/object/caffeine`;
     dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_START));
     return axios.get(url, _config.baseApiConfig)
@@ -16,34 +16,45 @@ const getCaffeineList = () => {
         return dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_SUCCESS, { data: caffeine }));
       })
       .catch((error) => {
-        return dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_ERROR, { error }));
+        dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_ERROR, { error }));
       })
       .finally(() => {
-        return dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_COMPLETED));
+        dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_COMPLETED));
       });
   };
 };
 
-const putCaffeine = payload => {
-  return (dispatch) => {
+const clearPutSuccess = () => {
+  return (dispatch, _getState) => {
+    dispatch(emitDispatch(_types.CLEAR_PUT_REQUEST_CAFFEINE_ITEM_SUCCESS));
+  };
+};
+
+const putCaffeine = item => {
+  return (dispatch, getState) => {
     const url = `${_config.baseApiUrl}/update/caffeine`;
+    const userName = getState().auth.username || 'UNKNOWN';
+    const caffeines = getState().caffeineIntakes.caffeineGetPayload || [];
+    const newCaffeine = { ...(item || {}), userName };
+    const payload = [...caffeines, newCaffeine];
     dispatch(emitDispatch(_types.PUT_REQUEST_CAFFEINE_ITEM_START));
     return axios.put(url, payload, _config.baseApiConfig)
       .then((response) => {
-        const type = !!response && !!response.data ? _types.PUT_REQUEST_CAFFEINE_ITEM_SUCCESS : _types.PUT_REQUEST_CAFFEINE_ITEM_ERROR;
-        const responsePayload = {
-          data: !!response && !!response.data ? response.data : null,
-          error: 'No data in response.'
-        };
-        return dispatch(emitDispatch(type, responsePayload));
+        const isSuccessful = !!response?.data;
+        const type = isSuccessful ? _types.PUT_REQUEST_CAFFEINE_ITEM_SUCCESS : _types.PUT_REQUEST_CAFFEINE_ITEM_ERROR;
+        const responsePayload = { data: response?.data || null, error: 'No data in response.' };
+        dispatch(emitDispatch(type, responsePayload));
+        if (isSuccessful) {
+          return dispatch(getCaffeineList());
+        }
       })
       .catch((error) => {
-        return dispatch(emitDispatch(_types.PUT_REQUEST_CAFFEINE_ITEM_ERROR, { error }));
+        dispatch(emitDispatch(_types.PUT_REQUEST_CAFFEINE_ITEM_ERROR, { error }));
       })
       .finally(() => {
-        return dispatch(emitDispatch(_types.PUT_REQUEST_CAFFEINE_ITEM_COMPLETED));
+        dispatch(emitDispatch(_types.PUT_REQUEST_CAFFEINE_ITEM_COMPLETED));
       });
   };
 };
 
-export { getCaffeineList, putCaffeine };
+export { clearPutSuccess, getCaffeineList, putCaffeine };
