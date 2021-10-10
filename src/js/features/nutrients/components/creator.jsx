@@ -5,27 +5,64 @@ import { v4 as uuidv4 } from 'uuid';
 import { Button, TextField } from '@material-ui/core';
 import { eventDefaultValue } from '../../../lib/defaultValue';
 import { UnsecuredUserAlert } from '../../../auth';
+import { clearNutrientTypePutSuccess, putNutrientType } from '../state/actions';
 
 const propTypes = {
-  isUserSecured: PropTypes.bool
+  clearSaveSuccess: PropTypes.func,
+  isLoading: PropTypes.bool,
+  isProcessing: PropTypes.bool,
+  isSuccessfulPut: PropTypes.bool,
+  isUserSecured: PropTypes.bool,
+  saveNutrientReport: PropTypes.func,
+  types: PropTypes.array
 };
 const creator = ({
-  isUserSecured
+  clearSaveSuccess = null,
+  isLoading = false,
+  isProcessing = false,
+  isSuccessfulPut = false,
+  isUserSecured = false,
+  saveNutrientReport = null,
+  types = null
 }) => {
   const [description, setDescription] = useState('');
   const [details, setDetails] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
+  const [isNameMatched, setIsNameMatched] = useState(false);
   const [name, setName] = useState('');
 
   useEffect(() => {
-    setIsDisabled(!isUserSecured);
-  }, [isUserSecured]);
+    setIsDisabled(isLoading || isProcessing || !isUserSecured);
+  }, [isLoading, isProcessing, isUserSecured]);
+
+  useEffect(() => {
+    if (isSuccessfulPut) {
+      resetFormValues();
+      clearSaveSuccess();
+    }
+  }, [isSuccessfulPut]);
+
+  const handleNameChange = (event) => {
+    const newName = eventDefaultValue(event, '');
+    if (newName) {
+      let isMatched = false;
+      const length = types?.length || 0;
+      for (let idx = 0; idx < length; idx++) {
+        if (types[idx]?.name && newName.toLocaleLowerCase() === types[idx]?.name.toLocaleLowerCase()) {
+          isMatched = true;
+          break;
+        }
+      }
+      setIsNameMatched(isMatched);
+    }
+    setName(newName);
+  };
 
   const handleSubmit = () => {
     const id = uuidv4();
     const createdDate = new Date().toJSON();
     const item = { createdDate, description, details, id, name };
-    console.info('TODO, emit save', item);
+    saveNutrientReport(item);
   };
 
   const resetFormValues = () => {
@@ -39,9 +76,11 @@ const creator = ({
       <UnsecuredUserAlert isSecured={isUserSecured} />
       <TextField
         disabled={isDisabled}
-        label="Nutrient Name"
+        error={isNameMatched}
+        helperText={isNameMatched ? 'Nutrtient name already exists!' : ''}
+        label="Nutrient name"
         name="name"
-        onChange={(event) => setName(eventDefaultValue(event, ''))}
+        onChange={handleNameChange}
         value={name}
         variant="outlined"
       />
@@ -67,7 +106,7 @@ const creator = ({
       />
       <div>
         <Button disabled={isDisabled} onClick={resetFormValues} variant="contained">Clear</Button>
-        <Button color="primary" disabled={isDisabled || !name} onClick={handleSubmit} variant="contained">Submit</Button>
+        <Button color="primary" disabled={isDisabled || isNameMatched || !name} onClick={handleSubmit} variant="contained">Submit</Button>
       </div>
     </Fragment>
   );
@@ -75,7 +114,14 @@ const creator = ({
 
 creator.propTypes = propTypes;
 const mapStateToProps = state => ({
-  isUserSecured: !!state.auth.token
+  isLoading: state.nutrientsData.isLoadingReports || state.nutrientsData.isLoadingTypes,
+  isProcessing: state.nutrientsData.isProcessingReport || state.nutrientsData.isProcessingType,
+  isSuccessfulPut: !!state.nutrientsData.typePutPayload,
+  isUserSecured: !!state.auth.token,
+  types: state.nutrientsData.typesPayload
 });
-const mapDispatchToProps = null;
+const mapDispatchToProps = {
+  clearSaveSuccess: clearNutrientTypePutSuccess,
+  saveNutrientReport: putNutrientType
+};
 export default connect(mapStateToProps, mapDispatchToProps)(creator);
