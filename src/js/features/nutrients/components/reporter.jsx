@@ -74,8 +74,10 @@ const reporter = ({
   const handleChangeName = (newId = '') => {
     const matchingType = Array.isArray(types) && newId && types.find((type) => newId === type?.id);
     const newName = defaultValue(matchingType?.name, '');
+    const newUnit = defaultValue(matchingType?.defaultUnit, '');
     setName(newName);
     setNameId(newId);
+    setAmountType(newUnit);
   };
 
   const handleChangeDate = (date) => {
