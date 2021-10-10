@@ -1,5 +1,5 @@
 import DateSwitchPicker from './dateSwitchPicker';
-import InputLabel from './inputLabel';
+import OutlinedSelector from './outlinedSelector';
 import TimeField from './TimeField';
 
-export { DateSwitchPicker, InputLabel, TimeField };
+export { DateSwitchPicker, OutlinedSelector, TimeField };
