@@ -79,19 +79,15 @@ const reporter = ({
   };
 
   const handleChangeName = (event) => {
-    const id = eventDefaultValue(event, '');
-    if (id) {
-      const matchingType = Array.isArray(types) && types.find((type) => id === type?.id);
-      const foundName = matchingType?.name;
-      if (foundName) {
-        setName(foundName);
-        setNameId(id);
-      }
-    }
+    const newId = eventDefaultValue(event, '');
+    const matchingType = Array.isArray(types) && newId && types.find((type) => newId === type?.id);
+    const newName = defaultValue(matchingType?.name, '');
+    setName(newName);
+    setNameId(newId);
   };
 
-  const handleChangeDate = (event) => {
-    setConsumptionTime(defaultValue(event, ''));
+  const handleChangeDate = (date) => {
+    setConsumptionTime(defaultValue(date, ''));
   };
 
   const handleSubmit = () => {
@@ -117,7 +113,8 @@ const reporter = ({
           title="units"
           value={nameId}
         >
-          {unitItems?.length > 0 ? unitItems : <MenuItem value=""><em>- -</em></MenuItem>}
+          <MenuItem value=""><em>- -</em></MenuItem>
+          {unitItems}
         </Select>
       </FormControl>
       <TextField
