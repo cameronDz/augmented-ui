@@ -6,6 +6,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.21.0] 2021-10-10
+
+### Added
+
+- Nutrients creator for creating specific types of nutrients connects to storage endpoints
+
+### Changed
+
+- Nutrients reports section now stored in different storeage location under new, reports name
+
 ## [0.20.0] 2021-10-09
 
 ### Added
