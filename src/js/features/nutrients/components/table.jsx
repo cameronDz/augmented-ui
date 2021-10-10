@@ -7,7 +7,7 @@ import { splitTextKeyToArray } from '../../../lib/splits';
 
 const columns = ['day', 'amountDisplay', 'userName'];
 const details = ['day', 'time', 'amount', 'amountType', 'userName', 'comment'];
-const title = 'Caffiene dose details';
+const title = 'Nutrients dose details';
 const titles = {
   day: 'Day',
   time: 'Time',
@@ -19,32 +19,31 @@ const titles = {
 };
 
 const propTypes = {
-  caffeine: PropTypes.array,
-  getData: PropTypes.func,
+  nutrients: PropTypes.array,
   isLoading: PropTypes.bool
 };
-const table = ({ caffeine = null, getData = null, isLoading = false }) => {
+const table = ({ nutrients = null, isLoading = false }) => {
   const [processedData, setProcessedData] = useState(null);
 
   useEffect(() => {
-    if (Array.isArray(caffeine)) {
+    if (Array.isArray(nutrients)) {
       const arr = [];
-      const length = caffeine.length;
+      const { length } = nutrients;
       for (let idx = 0; idx < length; idx++) {
-        if (typeof caffeine[idx] === 'object') {
-          const splitTime = splitTextKeyToArray(caffeine[idx], 'intakeTime', 'T');
+        if (typeof nutrients[idx] === 'object') {
+          const splitTime = splitTextKeyToArray(nutrients[idx], 'intakeTime', 'T');
           const obj = {
-            amountDisplay: `${caffeine[idx]?.amount} ${caffeine[idx]?.amountType}`,
+            amountDisplay: `${nutrients[idx]?.amount} ${nutrients[idx]?.amountType}`,
             day: splitTime[0],
             time: splitTime[1] ? splitTime[1].substring(0, 5) : '',
-            ...caffeine[idx]
+            ...nutrients[idx]
           };
           arr.push(obj);
         }
       }
       setProcessedData(arr.sort((a, b) => orderByDateKey(a, b, 'intakeTime')));
     }
-  }, [caffeine]);
+  }, [nutrients]);
 
   return (
     <SimpleTable
@@ -62,8 +61,8 @@ const table = ({ caffeine = null, getData = null, isLoading = false }) => {
 };
 
 const mapStateToProps = state => ({
-  caffeine: state.nutrientsData.caffeineGetPayload,
-  isLoading: state.nutrientsData.isLoadingCaffeine
+  nutrients: state.nutrientsData.nutrientGetPayload,
+  isLoading: state.nutrientsData.isLoadingNutrient
 });
 const mapDispatchToProps = null;
 table.propTypes = propTypes;

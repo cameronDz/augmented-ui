@@ -4,23 +4,23 @@ import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { Button, FormControl, MenuItem, Select, TextField } from '@material-ui/core';
 import { UnsecuredUserAlert } from '../../../auth';
-import { clearPutSuccess, putCaffeine } from '../state/actions';
+import { clearNutrientReportPutSuccess, putNutrientReport } from '../state/actions';
 
 const propTypes = {
-  clearSuccessSave: PropTypes.func,
-  isLoadingCaffeine: PropTypes.bool,
-  isProcessingCaffeine: PropTypes.bool,
+  clearSaveSuccess: PropTypes.func,
+  isLoadingNutrient: PropTypes.bool,
+  isProcessingNutrientReport: PropTypes.bool,
   isUserSecured: PropTypes.bool,
   isSuccessfulPut: PropTypes.bool,
-  saveCaffeine: PropTypes.func
+  saveNutrientReport: PropTypes.func
 };
 const reporter = ({
-  clearSuccessSave,
-  isLoadingCaffeine,
-  isProcessingCaffeine,
+  clearSaveSuccess,
+  isLoadingNutrient,
+  isProcessingNutrientReport,
   isSuccessfulPut,
   isUserSecured,
-  saveCaffeine
+  saveNutrientReport
 }) => {
   const [amount, setAmount] = useState('');
   const [amountType, setAmountType] = useState('mg');
@@ -29,8 +29,8 @@ const reporter = ({
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(isLoadingCaffeine || isProcessingCaffeine);
-  }, [isLoadingCaffeine, isProcessingCaffeine]);
+    setIsLoading(isLoadingNutrient || isProcessingNutrientReport);
+  }, [isLoadingNutrient, isProcessingNutrientReport]);
 
   useEffect(() => {
     setIsDisabled(isLoading || !isUserSecured);
@@ -39,7 +39,7 @@ const reporter = ({
   useEffect(() => {
     if (isSuccessfulPut) {
       resetFormValues();
-      clearSuccessSave();
+      clearSaveSuccess();
     }
   }, [isSuccessfulPut]);
 
@@ -57,7 +57,7 @@ const reporter = ({
       amountType: amountType,
       comment: comment
     };
-    saveCaffeine(payload);
+    saveNutrientReport(payload);
   };
 
   return (
@@ -111,10 +111,13 @@ const reporter = ({
 
 reporter.propTypes = propTypes;
 const mapStateToProps = state => ({
-  isLoadingCaffeine: state.nutrientsData.isLoadingCaffeine,
-  isProcessingCaffeine: state.nutrientsData.isProcessingCaffeine,
-  isSuccessfulPut: !!state.nutrientsData.caffeinePostPayload,
+  isLoadingNutrient: state.nutrientsData.isLoadingNutrient,
+  isProcessingNutrientReport: state.nutrientsData.isProcessingNutrientReport,
+  isSuccessfulPut: !!state.nutrientsData.nutrientReportPutPayload,
   isUserSecured: !!state.auth.token
 });
-const mapDispatchToProps = { clearSuccessSave: clearPutSuccess, saveCaffeine: putCaffeine };
+const mapDispatchToProps = {
+  clearSaveSuccess: clearNutrientReportPutSuccess,
+  saveNutrientReport: putNutrientReport
+};
 export default connect(mapStateToProps, mapDispatchToProps)(reporter);

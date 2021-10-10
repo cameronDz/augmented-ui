@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SimpleCard from '../../components/simpleCard';
 import { TabbedPage } from '../../components/pages';
 import { NutrientsCreator, NutrientsReporter, NutrientsTable } from './components';
-import { getCaffeineList } from './state/actions';
+import { getNutrientList } from './state/actions';
 import { handleFunction } from '../../lib/eventHandler';
 
 const tabPanels = [
@@ -24,5 +24,5 @@ const NutrientsPage = ({ getData }) => {
 
 NutrientsPage.propTypes = propTypes;
 const mapStateToProps = null;
-const mapDispatchToProps = { getData: getCaffeineList };
+const mapDispatchToProps = { getData: getNutrientList };
 export default connect(mapStateToProps, mapDispatchToProps)(NutrientsPage);

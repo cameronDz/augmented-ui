@@ -1,8 +1,8 @@
 export default {
-  isLoadingCaffeine: false,
-  isProcessingCaffeine: false,
-  caffeineGetPayload: null,
-  caffeineGetError: null,
-  caffeinePostPayload: null,
-  caffeinePostError: null
+  isLoadingNutrient: false,
+  isProcessingNutrientReport: false,
+  nutrientGetPayload: null,
+  nutrientGetError: null,
+  nutrientReportPutPayload: null,
+  nutrientReportPutError: null
 };

@@ -6,55 +6,55 @@ const emitDispatch = (type, actions = {}) => {
   return { type, ...actions };
 };
 
-const getCaffeineList = () => {
+const getNutrientList = () => {
   return (dispatch, _getDispatch) => {
     const url = `${_config.baseApiUrl}/object/caffeine`;
-    dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_START));
+    dispatch(emitDispatch(_types.GET_REQUEST_NUTRIENTS_LIST_START));
     return axios.get(url, _config.baseApiConfig)
       .then((response) => {
-        const caffeine = !!response && !!response.data && response.data.payload && Array.isArray(response.data.payload.caffeine) ? response.data.payload.caffeine : [];
-        return dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_SUCCESS, { data: caffeine }));
+        const nutrients = Array.isArray(response?.data?.payload?.caffeine) ? response.data.payload.caffeine : [];
+        return dispatch(emitDispatch(_types.GET_REQUEST_NUTRIENTS_LIST_SUCCESS, { data: nutrients }));
       })
       .catch((error) => {
-        dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_ERROR, { error }));
+        dispatch(emitDispatch(_types.GET_REQUEST_NUTRIENTS_LIST_ERROR, { error }));
       })
       .finally(() => {
-        dispatch(emitDispatch(_types.GET_REQUEST_CAFFEINE_LIST_COMPLETED));
+        dispatch(emitDispatch(_types.GET_REQUEST_NUTRIENTS_LIST_COMPLETED));
       });
   };
 };
 
-const clearPutSuccess = () => {
+const clearNutrientReportPutSuccess = () => {
   return (dispatch, _getState) => {
-    dispatch(emitDispatch(_types.CLEAR_PUT_REQUEST_CAFFEINE_ITEM_SUCCESS));
+    dispatch(emitDispatch(_types.CLEAR_PUT_REQUEST_NUTRIENTS_REPORT_SUCCESS));
   };
 };
 
-const putCaffeine = item => {
+const putNutrientReport = item => {
   return (dispatch, getState) => {
     const url = `${_config.baseApiUrl}/update/caffeine`;
     const userName = getState().auth.username || 'UNKNOWN';
-    const caffeines = getState().nutrientsData.caffeineGetPayload || [];
-    const newCaffeine = { ...(item || {}), userName };
-    const payload = [...caffeines, newCaffeine];
-    dispatch(emitDispatch(_types.PUT_REQUEST_CAFFEINE_ITEM_START));
+    const nutrients = getState().nutrientsData.nutrientGetPayload || [];
+    const newNutrients = { ...(item || {}), userName };
+    const payload = [...nutrients, newNutrients];
+    dispatch(emitDispatch(_types.PUT_REQUEST_NUTRIENTS_REPORT_START));
     return axios.put(url, payload, _config.baseApiConfig)
       .then((response) => {
         const isSuccessful = !!response?.data;
-        const type = isSuccessful ? _types.PUT_REQUEST_CAFFEINE_ITEM_SUCCESS : _types.PUT_REQUEST_CAFFEINE_ITEM_ERROR;
+        const type = isSuccessful ? _types.PUT_REQUEST_NUTRIENTS_REPORT_SUCCESS : _types.PUT_REQUEST_NUTRIENTS_REPORT_ERROR;
         const responsePayload = { data: response?.data || null, error: 'No data in response.' };
         dispatch(emitDispatch(type, responsePayload));
         if (isSuccessful) {
-          return dispatch(getCaffeineList());
+          return dispatch(getNutrientList());
         }
       })
       .catch((error) => {
-        dispatch(emitDispatch(_types.PUT_REQUEST_CAFFEINE_ITEM_ERROR, { error }));
+        dispatch(emitDispatch(_types.PUT_REQUEST_NUTRIENTS_REPORT_ERROR, { error }));
       })
       .finally(() => {
-        dispatch(emitDispatch(_types.PUT_REQUEST_CAFFEINE_ITEM_COMPLETED));
+        dispatch(emitDispatch(_types.PUT_REQUEST_NUTRIENTS_REPORT_COMPLETED));
       });
   };
 };
 
-export { clearPutSuccess, getCaffeineList, putCaffeine };
+export { clearNutrientReportPutSuccess, getNutrientList, putNutrientReport };
