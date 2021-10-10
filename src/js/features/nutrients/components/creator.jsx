@@ -44,8 +44,8 @@ const creator = ({
 
   const handleNameChange = (event) => {
     const newName = eventDefaultValue(event, '');
+    let isMatched = false;
     if (newName) {
-      let isMatched = false;
       const length = types?.length || 0;
       for (let idx = 0; idx < length; idx++) {
         if (types[idx]?.name && newName.toLocaleLowerCase() === types[idx]?.name.toLocaleLowerCase()) {
@@ -53,8 +53,8 @@ const creator = ({
           break;
         }
       }
-      setIsNameMatched(isMatched);
     }
+    setIsNameMatched(isMatched);
     setName(newName);
   };
 
