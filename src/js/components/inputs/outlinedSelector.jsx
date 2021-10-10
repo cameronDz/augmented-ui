@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
 import { makeStyles, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { eventDefaultValue } from '../../lib/defaultValue';
 import { handleFunction } from '../../lib/eventHandler';
 import { outlinedSelectorStyles as styles } from './styles';
-import classNames from 'classnames';
 
-const isActive = false;
 const propTypes = {
   isDisabled: PropTypes.bool,
   isExtended: PropTypes.bool,
@@ -68,7 +67,7 @@ const OutlinedSelector = ({
       isExtended && classes.extendedSelectorContainer
     )}>
       <FormControl variant="outlined">
-        {isActive && label && <InputLabel id={labelId}>{label}</InputLabel>}
+        {label && <InputLabel id={labelId}>{label}</InputLabel>}
         <Select
           labelId={labelId}
           disabled={isDisabled}

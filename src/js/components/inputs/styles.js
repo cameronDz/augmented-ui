@@ -9,11 +9,17 @@ const outlinedSelectorStyles = {
   rootSelectorContainer: {
     display: 'inline-block',
     '&$extendedSelectorContainer': {
-      width: '223px',
       '& .MuiFormControl-root': {
-        paddingRight: '12px',
-        width: '100%'
+        width: '223px'
       }
+    },
+    '& .MuiFormControl-root': {
+      width: '84px'
+    },
+    '& .MuiFormControl-root .MuiFormLabel-root[data-shrink=true]': {
+      backgroundColor: 'white',
+      padding: '0 4px',
+      zIndex: '1000'
     }
   },
   extendedSelectorContainer: {}
