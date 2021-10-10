@@ -13,6 +13,7 @@ import TabPanel from './tabPanel';
 import { tabbedPageStyles as styles } from './styles';
 
 const propTypes = {
+  isTabsCentered: PropTypes.bool,
   isSecuredUser: PropTypes.bool,
   tabNames: PropTypes.array.isRequired,
   tabPanels: PropTypes.array.isRequired,
@@ -20,7 +21,7 @@ const propTypes = {
 };
 
 const useStyles = makeStyles(() => styles);
-const TabbedPage = ({ isSecuredUser, tabNames, tabPanels, title }) => {
+const TabbedPage = ({ isTabsCentered = true, isSecuredUser = false, tabNames = [], tabPanels = [], title = '' }) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (_event, newValue) => {
@@ -47,7 +48,7 @@ const TabbedPage = ({ isSecuredUser, tabNames, tabPanels, title }) => {
         <SimpleNavbar isSecuredUser={isSecuredUser} />
         <h2 className={classes.pageHero}>{title}</h2>
         <AppBar position="static">
-          <Tabs centered={true} value={value} onChange={handleChange} >
+          <Tabs centered={isTabsCentered} value={value} onChange={handleChange} >
             {renderTabLabels()}
           </Tabs>
         </AppBar>

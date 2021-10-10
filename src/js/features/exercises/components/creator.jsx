@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { makeStyles, Button, TextField } from '@material-ui/core';
 import { UnsecuredUserAlert } from '../../../auth';
+import { eventDefaultValue } from '../../../lib/defaultValue';
 import { clearSuccessSaveFlag, putExercise } from '../state/actions';
 import { creatorStyles as styles } from './styles';
 
@@ -67,7 +68,7 @@ const ExerciseCreator = ({
           disabled={isDisabled}
           label="Exercise name"
           name="name"
-          onChange={event => setName(event.target.value || '')}
+          onChange={(event) => setName(eventDefaultValue(event, ''))}
           value={name}
           variant="outlined"
         />
@@ -75,7 +76,7 @@ const ExerciseCreator = ({
           disabled={isDisabled}
           label="Exercise type"
           name="type"
-          onChange={event => setType(event.target?.value || '')}
+          onChange={(event) => setType(eventDefaultValue(event, ''))}
           value={type}
           variant="outlined"
         />
@@ -87,7 +88,7 @@ const ExerciseCreator = ({
           label="Exercise description"
           multiline={!isDisabled}
           name="description"
-          onChange={event => setDescription(event.target.value || '')}
+          onChange={event => setDescription(eventDefaultValue(event, ''))}
           value={description}
           variant="outlined"
         />
