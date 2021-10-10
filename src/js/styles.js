@@ -17,10 +17,6 @@ const appStyles = {
     '.MuiFormControl-root, .MuiButtonBase-root.MuiButton-root.MuiButton-contained': {
       marginRight: '12px',
       marginTop: '12px'
-    },
-    '.aug-date-form': {
-      alignItems: 'center',
-      display: 'flex'
     }
   }
 };
