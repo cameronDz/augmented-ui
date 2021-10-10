@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { Button, TextField } from '@material-ui/core';
-import { eventDefaultValue } from '../../../lib/defaultValue';
+import { defaultValue, eventDefaultValue } from '../../../lib/defaultValue';
 import { hasTruthy } from '../../../lib/hasTruthy';
 import { UnsecuredUserAlert } from '../../../auth';
+import { UnitTypeSelector } from './unitTypeSelector';
 import { clearNutrientTypePutSuccess, putNutrientType } from '../state/actions';
 
 const propTypes = {
@@ -26,6 +27,7 @@ const creator = ({
   saveNutrientReport = null,
   types = null
 }) => {
+  const [defaultUnit, setDefaultUnit] = useState('');
   const [description, setDescription] = useState('');
   const [details, setDetails] = useState('');
   const [isDisabled, setIsDisabled] = useState(true);
@@ -62,11 +64,12 @@ const creator = ({
   const handleSubmit = () => {
     const id = uuidv4();
     const createdDate = new Date().toJSON();
-    const item = { createdDate, description, details, id, name };
+    const item = { createdDate, defaultUnit, description, details, id, name };
     saveNutrientReport(item);
   };
 
   const resetFormValues = () => {
+    setDefaultUnit('');
     setDescription('');
     setDetails('');
     setName('');
@@ -84,6 +87,13 @@ const creator = ({
         onChange={handleNameChange}
         value={name}
         variant="outlined"
+      />
+      <UnitTypeSelector
+        isDisabled={isDisabled}
+        isExtended={true}
+        label="Default units"
+        onChange={(selected) => setDefaultUnit(defaultValue(selected, ''))}
+        value={defaultUnit}
       />
       <TextField
         disabled={isDisabled}
