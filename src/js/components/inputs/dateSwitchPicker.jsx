@@ -3,7 +3,7 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { makeStyles, FormControlLabel, Switch } from '@material-ui/core';
 import { DateTimePicker } from '@material-ui/pickers';
-import { defaultValue, eventDefaultValue } from '../../lib/defaultValue';
+import { defaultValue } from '../../lib/defaultValue';
 import { handleFunction } from '../../lib/eventHandler';
 import { dateSwitchPickerStyles as styles } from './styles';
 
@@ -36,7 +36,7 @@ const DateSwitchPicker = ({
 
   const handleOffset = () => {
     const msStateTime = new Date().getTime() - (startOffset * 1000);
-    handleDate(Date(msStateTime));
+    handleFunction(onDateChange, Date(msStateTime));
   };
 
   const handleDate = (date) => {
@@ -45,11 +45,8 @@ const DateSwitchPicker = ({
     setValueSwitch(false);
   };
 
-  const handleToggle = (event) => {
-    const value = eventDefaultValue(event, false);
-    console.info('e', event);
-    console.info('v', value);
-    setValueSwitch(value);
+  const handleToggle = (_event) => {
+    setValueSwitch((prev) => !prev);
   };
 
   const classes = useStyles();
