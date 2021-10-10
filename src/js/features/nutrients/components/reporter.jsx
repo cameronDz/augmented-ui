@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { Button, FormControl, MenuItem, Select, TextField } from '@material-ui/core';
+import { UnitTypeSelector } from './unitTypeSelector';
 import { DateSwitchPicker } from '../../../components/inputs';
 import { UnsecuredUserAlert } from '../../../auth';
 import { defaultValue, eventDefaultValue } from '../../../lib/defaultValue';
@@ -31,9 +32,12 @@ const reporter = ({
   const [amountType, setAmountType] = useState('mg');
   const [comment, setComment] = useState('');
   const [consumptionTime, setConsumptionTime] = useState(new Date());
+  const [firstName, setFirstName] = useState('');
+  const [firstNameId, setFirstNameId] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);
-  const [name, setName] = useState('Caffeine');
-  const [nameId, setNameId] = useState('caffeine');
+  const [name, setName] = useState('');
+  const [nameId, setNameId] = useState('');
+  const [unitItems, setUnitItems] = useState([]);
 
   useEffect(() => {
     setIsDisabled(hasTruthy(isLoading, isProcessing, !isUserSecured));
@@ -47,7 +51,22 @@ const reporter = ({
   }, [isSuccessfulPut]);
 
   useEffect(() => {
-    console.info('types', types);
+    let hasSetSelected = false;
+    const units = [];
+    const length = Array.isArray(types) ? types.length : 0;
+    for (let idx = 0; idx < length; idx++) {
+      if (types[idx]?.id && types[idx]?.name) {
+        units.push(<MenuItem key={types[idx].id} value={types[idx].id}>{types[idx].name}</MenuItem>);
+        if (!hasSetSelected) {
+          setName(types[idx].name);
+          setFirstName(types[idx].name);
+          setNameId(types[idx].id);
+          setFirstNameId(types[idx].id);
+          hasSetSelected = true;
+        }
+      }
+    }
+    setUnitItems(units);
   }, [types]);
 
   const resetFormValues = () => {
@@ -55,12 +74,20 @@ const reporter = ({
     setAmountType('mg');
     setComment('');
     setConsumptionTime(new Date());
-    setName('');
-    setNameId('');
+    setName(firstName);
+    setNameId(firstNameId);
   };
 
   const handleChangeName = (event) => {
-    console.info('handleChangeName', event);
+    const id = eventDefaultValue(event, '');
+    if (id) {
+      const matchingType = Array.isArray(types) && types.find((type) => id === type?.id);
+      const foundName = matchingType?.name;
+      if (foundName) {
+        setName(foundName);
+        setNameId(id);
+      }
+    }
   };
 
   const handleChangeDate = (event) => {
@@ -90,9 +117,7 @@ const reporter = ({
           title="units"
           value={nameId}
         >
-          <MenuItem value=""><em>- -</em></MenuItem>
-          <MenuItem value="caffeine">Caffeine</MenuItem>
-          <MenuItem value="excedrin">Excedrin</MenuItem>
+          {unitItems?.length > 0 ? unitItems : <MenuItem value=""><em>- -</em></MenuItem>}
         </Select>
       </FormControl>
       <TextField
@@ -105,21 +130,11 @@ const reporter = ({
         value={amount}
         variant="outlined"
       />
-      <FormControl variant="outlined">
-        <Select
-          disabled={isDisabled}
-          onChange={(event) => setAmountType(eventDefaultValue(event, ''))}
-          title="units"
-          value={amountType}
-        >
-          <MenuItem value=""><em>- -</em></MenuItem>
-          <MenuItem value="mg">mg</MenuItem>
-          <MenuItem value="pill">pill</MenuItem>
-          <MenuItem value="ounce">oz</MenuItem>
-          <MenuItem value="pound">lb</MenuItem>
-          <MenuItem value="kg">kg</MenuItem>
-        </Select>
-      </FormControl>
+      <UnitTypeSelector
+        isDisabled={isDisabled}
+        onChange={(value) => setAmountType(defaultValue(value, ''))}
+        value={amountType}
+      />
       <TextField
         disabled={isDisabled}
         fullWidth={true}
@@ -141,7 +156,7 @@ const reporter = ({
       />
       <div>
         <Button disabled={isDisabled} onClick={resetFormValues} variant="contained">Clear</Button>
-        <Button color="primary" disabled={hasTruthy(isDisabled, !!name)} onClick={handleSubmit} variant="contained">Submit</Button>
+        <Button color="primary" disabled={hasTruthy(isDisabled, !name)} onClick={handleSubmit} variant="contained">Submit</Button>
       </div>
     </Fragment>);
 };
