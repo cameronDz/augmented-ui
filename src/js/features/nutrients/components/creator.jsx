@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { Button, TextField } from '@material-ui/core';
 import { eventDefaultValue } from '../../../lib/defaultValue';
+import { hasTruthy } from '../../../lib/hasTruthy';
 import { UnsecuredUserAlert } from '../../../auth';
 import { clearNutrientTypePutSuccess, putNutrientType } from '../state/actions';
 
@@ -32,7 +33,7 @@ const creator = ({
   const [name, setName] = useState('');
 
   useEffect(() => {
-    setIsDisabled(isLoading || isProcessing || !isUserSecured);
+    setIsDisabled(hasTruthy(!!isLoading, !!isProcessing, !isUserSecured));
   }, [isLoading, isProcessing, isUserSecured]);
 
   useEffect(() => {
@@ -45,8 +46,8 @@ const creator = ({
   const handleNameChange = (event) => {
     const newName = eventDefaultValue(event, '');
     let isMatched = false;
-    if (newName) {
-      const length = types?.length || 0;
+    if (newName && Array.isArray(types)) {
+      const { length } = types;
       for (let idx = 0; idx < length; idx++) {
         if (types[idx]?.name && newName.toLocaleLowerCase() === types[idx]?.name.toLocaleLowerCase()) {
           isMatched = true;
@@ -106,7 +107,7 @@ const creator = ({
       />
       <div>
         <Button disabled={isDisabled} onClick={resetFormValues} variant="contained">Clear</Button>
-        <Button color="primary" disabled={isDisabled || isNameMatched || !name} onClick={handleSubmit} variant="contained">Submit</Button>
+        <Button color="primary" disabled={hasTruthy(isDisabled, isNameMatched, !name)} onClick={handleSubmit} variant="contained">Submit</Button>
       </div>
     </Fragment>
   );
@@ -114,8 +115,8 @@ const creator = ({
 
 creator.propTypes = propTypes;
 const mapStateToProps = state => ({
-  isLoading: state.nutrientsData.isLoadingReports || state.nutrientsData.isLoadingTypes,
-  isProcessing: state.nutrientsData.isProcessingReport || state.nutrientsData.isProcessingType,
+  isLoading: hasTruthy(state.nutrientsData.isLoadingReports, state.nutrientsData.isLoadingTypes),
+  isProcessing: hasTruthy(state.nutrientsData.isProcessingReport, state.nutrientsData.isProcessingType),
   isSuccessfulPut: !!state.nutrientsData.typePutPayload,
   isUserSecured: !!state.auth.token,
   types: state.nutrientsData.typesPayload

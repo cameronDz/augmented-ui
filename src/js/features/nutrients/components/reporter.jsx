@@ -69,7 +69,7 @@ const reporter = ({
           value={amount}
           variant="outlined"
         />
-        <FormControl className="aug-mrg-left-12" variant="outlined">
+        <FormControl variant="outlined">
           <Select
             disabled={isDisabled}
             onChange={event => setAmountType(event.target?.value || '')}
