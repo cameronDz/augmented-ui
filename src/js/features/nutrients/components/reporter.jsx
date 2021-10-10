@@ -14,7 +14,7 @@ const propTypes = {
   isSuccessfulPut: PropTypes.bool,
   saveCaffeine: PropTypes.func
 };
-const creator = ({
+const reporter = ({
   clearSuccessSave,
   isLoadingCaffeine,
   isProcessingCaffeine,
@@ -109,12 +109,12 @@ const creator = ({
     </Fragment>);
 };
 
-creator.propTypes = propTypes;
+reporter.propTypes = propTypes;
 const mapStateToProps = state => ({
-  isLoadingCaffeine: state.caffeineIntakes.isLoadingCaffeine,
-  isProcessingCaffeine: state.caffeineIntakes.isProcessingCaffeine,
-  isSuccessfulPut: !!state.caffeineIntakes.caffeinePostPayload,
+  isLoadingCaffeine: state.nutrientsData.isLoadingCaffeine,
+  isProcessingCaffeine: state.nutrientsData.isProcessingCaffeine,
+  isSuccessfulPut: !!state.nutrientsData.caffeinePostPayload,
   isUserSecured: !!state.auth.token
 });
 const mapDispatchToProps = { clearSuccessSave: clearPutSuccess, saveCaffeine: putCaffeine };
-export default connect(mapStateToProps, mapDispatchToProps)(creator);
+export default connect(mapStateToProps, mapDispatchToProps)(reporter);

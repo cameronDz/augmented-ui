@@ -34,7 +34,7 @@ const putCaffeine = item => {
   return (dispatch, getState) => {
     const url = `${_config.baseApiUrl}/update/caffeine`;
     const userName = getState().auth.username || 'UNKNOWN';
-    const caffeines = getState().caffeineIntakes.caffeineGetPayload || [];
+    const caffeines = getState().nutrientsData.caffeineGetPayload || [];
     const newCaffeine = { ...(item || {}), userName };
     const payload = [...caffeines, newCaffeine];
     dispatch(emitDispatch(_types.PUT_REQUEST_CAFFEINE_ITEM_START));
