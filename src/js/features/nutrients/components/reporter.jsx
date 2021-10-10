@@ -6,6 +6,7 @@ import { Button, FormControl, MenuItem, Select, TextField } from '@material-ui/c
 import { UnitTypeSelector } from './unitTypeSelector';
 import { DateSwitchPicker } from '../../../components/inputs';
 import { UnsecuredUserAlert } from '../../../auth';
+import { createValidTypesList } from '../lib';
 import { defaultValue, eventDefaultValue } from '../../../lib/defaultValue';
 import { hasTruthy } from '../../../lib/hasTruthy';
 import { clearNutrientReportPutSuccess, putNutrientReport } from '../state/actions';
@@ -51,22 +52,23 @@ const reporter = ({
   }, [isSuccessfulPut]);
 
   useEffect(() => {
-    let hasSetSelected = false;
     const units = [];
-    const length = Array.isArray(types) ? types.length : 0;
+    const validTypes = createValidTypesList(types);
+    const { length } = validTypes;
     for (let idx = 0; idx < length; idx++) {
-      if (types[idx]?.id && types[idx]?.name) {
-        units.push(<MenuItem key={types[idx].id} value={types[idx].id}>{types[idx].name}</MenuItem>);
-        if (!hasSetSelected) {
-          setName(types[idx].name);
-          setFirstName(types[idx].name);
-          setNameId(types[idx].id);
-          setFirstNameId(types[idx].id);
-          hasSetSelected = true;
-        }
-      }
+      units.push(
+        <MenuItem key={validTypes[idx].id} value={validTypes[idx].id}>
+          {validTypes[idx].name}
+        </MenuItem>
+      );
     }
     setUnitItems(units);
+    const baseName = defaultValue(validTypes[0]?.name, '');
+    setName(baseName);
+    setFirstName(baseName);
+    const baseId = defaultValue(validTypes[0]?.id, '');
+    setNameId(baseId);
+    setFirstNameId(baseId);
   }, [types]);
 
   const resetFormValues = () => {
