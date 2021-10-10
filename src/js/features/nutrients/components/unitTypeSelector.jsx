@@ -12,13 +12,15 @@ const unitOptions = [
 ];
 const propTypes = {
   isDisabled: PropTypes.bool,
+  isExtended: PropTypes.bool,
   onChange: PropTypes.func,
   value: PropTypes.string
 };
-const UnitTypeSelector = ({ isDisabled = true, onChange = null, value = '' }) => {
+const UnitTypeSelector = ({ isDisabled = true, isExtended = false, onChange = null, value = '' }) => {
   return (
     <OutlinedSelector
       isDisabled={isDisabled}
+      isExtended={isExtended}
       label="Units"
       onChange={(selected) => handleFunction(onChange, selected)}
       options={unitOptions}
