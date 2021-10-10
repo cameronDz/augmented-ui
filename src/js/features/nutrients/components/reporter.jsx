@@ -46,6 +46,10 @@ const reporter = ({
     }
   }, [isSuccessfulPut]);
 
+  useEffect(() => {
+    console.info('types', types);
+  }, [types]);
+
   const resetFormValues = () => {
     setAmount('');
     setAmountType('mg');
