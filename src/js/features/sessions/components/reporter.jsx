@@ -108,8 +108,8 @@ const SessionReporter = ({
       />
       <DateSwitchPicker
         onDateChange={handleDateChange}
-        isDisabledDate={false}
-        isDisabledSwitch={false}
+        isDisabledDate={isDisabled}
+        isDisabledSwitch={isDisabled}
         labelDate="Date"
         labelSwitch="Session just ended"
         startOffset={defaultValue(form?.seconds, 0)}
