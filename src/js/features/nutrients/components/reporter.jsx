@@ -100,6 +100,7 @@ const reporter = ({
       <UnsecuredUserAlert isSecured={isUserSecured} />
       <OutlinedSelector
         isDisabled={isDisabled}
+        isExtended={true}
         label="Nutrient Name"
         onChange={handleChangeName}
         options={optionNames}

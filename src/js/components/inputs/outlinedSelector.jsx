@@ -1,25 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import { FormControl, MenuItem, Select } from '@material-ui/core';
+import { v4 as uuidv4 } from 'uuid';
+import { makeStyles, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { eventDefaultValue } from '../../lib/defaultValue';
 import { handleFunction } from '../../lib/eventHandler';
+import { outlinedSelectorStyles as styles } from './styles';
+import classNames from 'classnames';
 
+const isActive = false;
 const propTypes = {
   isDisabled: PropTypes.bool,
+  isExtended: PropTypes.bool,
   label: PropTypes.string,
   onChange: PropTypes.func,
   options: PropTypes.array,
   value: PropTypes.string
 };
+const useStyles = makeStyles(() => styles);
 const OutlinedSelector = ({
   isDisabled = true,
+  isExtended = false,
   label = '',
   onChange = null,
   options = [],
   value = ''
 }) => {
   const [items, setItems] = useState([]);
+  const [labelId, setLabelId] = useState('');
   const [selected, setSelected] = useState('');
+
+  useEffect(() => {
+    setLabelId(uuidv4());
+  }, []);
 
   useEffect(() => {
     const newItems = [];
@@ -49,18 +61,26 @@ const OutlinedSelector = ({
     handleFunction(onChange, newValue);
   };
 
+  const classes = useStyles();
   return (
-    <FormControl variant="outlined">
-      <Select
-        disabled={isDisabled}
-        onChange={handleChange}
-        title="units"
-        value={selected}
-      >
-        <MenuItem value=""><em>- -</em></MenuItem>
-        {items}
-      </Select>
-    </FormControl>
+    <div className={classNames(
+      classes.rootSelectorContainer,
+      isExtended && classes.extendedSelectorContainer
+    )}>
+      <FormControl variant="outlined">
+        {isActive && label && <InputLabel id={labelId}>{label}</InputLabel>}
+        <Select
+          labelId={labelId}
+          disabled={isDisabled}
+          placeholder="test"
+          onChange={handleChange}
+          value={selected}
+        >
+          <MenuItem value=""><em>- -</em></MenuItem>
+          {items}
+        </Select>
+      </FormControl>
+    </div>
   );
 };
 
