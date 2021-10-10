@@ -1,43 +1,55 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { makeStyles, FormControlLabel, Switch } from '@material-ui/core';
 import { DateTimePicker } from '@material-ui/pickers';
+import { defaultValue, eventDefaultValue } from '../../lib/defaultValue';
 import { handleFunction } from '../../lib/eventHandler';
 import { dateSwitchPickerStyles as styles } from './styles';
 
-const isActive = false;
 const propTypes = {
-  isDisabled: PropTypes.bool,
+  isDisabledDate: PropTypes.bool,
+  isDisabledSwitch: PropTypes.bool,
   labelDate: PropTypes.string,
   labelSwitch: PropTypes.string,
   onDateChange: PropTypes.func,
-  onSwitchChange: PropTypes.func,
-  valueDate: PropTypes.any,
-  valueSwitch: PropTypes.bool
+  startOffset: PropTypes.number,
+  valueDate: PropTypes.any
 };
 const useStyles = makeStyles(() => styles);
 const DateSwitchPicker = ({
-  onDateChange = null,
-  onSwitchChange = null,
-  isDisabled = true,
+  isDisabledDate = true,
+  isDisabledSwitch = true,
   labelDate = '',
   labelSwitch = '',
-  valueDate = '',
-  valueSwitch = true
+  onDateChange = null,
+  startOffset = 0,
+  valueDate = ''
 }) => {
-  const handleDate = (value) => {
-    console.info('handleDate', value);
-    if (isActive) {
-      handleFunction(onDateChange, value);
+  const [valueSwitch, setValueSwitch] = useState(true);
+
+  useEffect(() => {
+    if (valueSwitch) {
+      handleOffset();
     }
+  }, [startOffset, valueSwitch]);
+
+  const handleOffset = () => {
+    const msStateTime = new Date().getTime() - (startOffset * 1000);
+    handleDate(Date(msStateTime));
   };
 
-  const handleToggle = (value) => {
-    console.info('handleToggle', value);
-    if (isActive) {
-      handleFunction(onSwitchChange, value);
-    }
+  const handleDate = (date) => {
+    const value = defaultValue(date, '');
+    handleFunction(onDateChange, value);
+    setValueSwitch(false);
+  };
+
+  const handleToggle = (event) => {
+    const value = eventDefaultValue(event, false);
+    console.info('e', event);
+    console.info('v', value);
+    setValueSwitch(value);
   };
 
   const classes = useStyles();
@@ -46,7 +58,7 @@ const DateSwitchPicker = ({
       <DateTimePicker
         ampm={false}
         autoOk
-        disabled={isDisabled}
+        disabled={isDisabledDate}
         inputVariant="outlined"
         label={labelDate}
         onChange={handleDate}
@@ -57,7 +69,7 @@ const DateSwitchPicker = ({
           <Switch
             checked={valueSwitch}
             color="primary"
-            disabled={isDisabled}
+            disabled={isDisabledSwitch}
             onChange={handleToggle}
           />
         }
