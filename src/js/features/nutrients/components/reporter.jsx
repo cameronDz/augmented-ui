@@ -30,7 +30,7 @@ const reporter = ({
   const [amount, setAmount] = useState('');
   const [amountType, setAmountType] = useState('mg');
   const [comment, setComment] = useState('');
-  const [consumptionTime, setConsumptionTime] = useState('');
+  const [consumptionTime, setConsumptionTime] = useState(new Date());
   const [isDisabled, setIsDisabled] = useState(false);
   const [name, setName] = useState('Caffeine');
   const [nameId, setNameId] = useState('caffeine');
@@ -54,7 +54,7 @@ const reporter = ({
     setAmount('');
     setAmountType('mg');
     setComment('');
-    setConsumptionTime('');
+    setConsumptionTime(new Date());
     setName('');
     setNameId('');
   };
@@ -64,8 +64,7 @@ const reporter = ({
   };
 
   const handleChangeDate = (event) => {
-    console.info(defaultValue(event, ''));
-    setConsumptionTime('');
+    setConsumptionTime(defaultValue(event, ''));
   };
 
   const handleSubmit = () => {
