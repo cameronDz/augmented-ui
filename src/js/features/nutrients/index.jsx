@@ -8,9 +8,9 @@ import { getNutrientReports, getNutrientTypes } from './state/actions';
 import { handleFunction } from '../../lib/eventHandler';
 
 const tabPanels = [
-  <SimpleCard key="table" child={<NutrientsTable />} title={'Nutrients Table'} />,
-  <SimpleCard key="reporter" child={<NutrientsReporter />} title={'Nutrients Report'} />,
-  <SimpleCard key="creator" child={<NutrientsCreator />} title={'Nutrients Creator'} />
+  <SimpleCard key="table" child={<NutrientsTable />} title={'Nutrient Records'} />,
+  <SimpleCard key="reporter" child={<NutrientsReporter />} title={'Nutrient Reporter'} />,
+  <SimpleCard key="creator" child={<NutrientsCreator />} title={'Nutrient Type Creator'} />
 ];
 
 const propTypes = {
@@ -26,7 +26,7 @@ const NutrientsPage = ({ getReportsData, getTypesData }) => {
     handleFunction(getTypesData);
   }, [getTypesData]);
 
-  return <TabbedPage tabNames={['History', 'Report', 'Creator']} tabPanels={tabPanels} />;
+  return <TabbedPage tabNames={['Records', 'Reporter', 'Creator']} tabPanels={tabPanels} />;
 };
 
 NutrientsPage.propTypes = propTypes;
