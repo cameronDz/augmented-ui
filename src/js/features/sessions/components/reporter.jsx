@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Button, TextField } from '@material-ui/core';
 import { DateSwitchPicker, TimeField } from '../../../components/inputs';
 import { defaultValue, eventDefaultValue } from '../../../lib/defaultValue';
+import { hasTruthy } from '../../../lib/hasTruthy';
 import { UnsecuredUserAlert } from '../../../auth';
 import { clearSuccessPutCardioSession, putCardioSession } from '../state/actions';
 import { calulcateTimingSeconds } from '../lib/utility';
@@ -43,7 +44,7 @@ const SessionReporter = ({
   }, [isSaveSuccessful]);
 
   useEffect(() => {
-    setIsDisabled(isProcessing || !isUserSecured);
+    setIsDisabled(hasTruthy(isProcessing, !isUserSecured));
   }, [isProcessing, isUserSecured]);
 
   const resetForm = () => {
@@ -72,7 +73,7 @@ const SessionReporter = ({
     const item = {
       ...form,
       id: uuidv4(),
-      startTime: form?.startDate?.toJSON() || ''
+      startTime: defaultValue(form?.startDate?.toJSON(), '')
     };
     formSave(item);
   };
@@ -103,7 +104,7 @@ const SessionReporter = ({
         label="Distance (miles)"
         onChange={(event) => updateForm({ distanceMiles: eventDefaultValue(event, 0) })}
         type="number"
-        value={form.distanceMiles || ''}
+        value={defaultValue(form?.distanceMiles, '')}
         variant="outlined"
       />
       <DateSwitchPicker
@@ -136,7 +137,7 @@ const SessionReporter = ({
         </Button>
         <Button
           color="primary"
-          disabled={isDisabled || !form?.machineType}
+          disabled={hasTruthy(isDisabled, !form?.machineType)}
           onClick={handleSubmit}
           variant="contained"
         >
