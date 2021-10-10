@@ -19,9 +19,8 @@ const propTypes = {
   tabPanels: PropTypes.array.isRequired,
   title: PropTypes.string
 };
-
 const useStyles = makeStyles(() => styles);
-const TabbedPage = ({ isTabsCentered = true, isSecuredUser = false, tabNames = [], tabPanels = [], title = '' }) => {
+const TabbedPage = ({ isTabsCentered = false, isSecuredUser = false, tabNames = [], tabPanels = [], title = '' }) => {
   const [value, setValue] = useState(0);
 
   const handleChange = (_event, newValue) => {
@@ -39,7 +38,6 @@ const TabbedPage = ({ isTabsCentered = true, isSecuredUser = false, tabNames = [
       return (<TabPanel index={key} key={key} value={value}>{item}</TabPanel>);
     });
   };
-  console.info('isTabsCentered', isTabsCentered);
 
   const classes = useStyles();
   return (
