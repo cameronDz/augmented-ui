@@ -2,9 +2,9 @@ import React, { Fragment, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
-import { Button, FormControl, MenuItem, Select, TextField } from '@material-ui/core';
+import { Button, TextField } from '@material-ui/core';
 import { UnitTypeSelector } from './unitTypeSelector';
-import { DateSwitchPicker } from '../../../components/inputs';
+import { DateSwitchPicker, OutlinedSelector } from '../../../components/inputs';
 import { UnsecuredUserAlert } from '../../../auth';
 import { createValidTypesList } from '../lib';
 import { defaultValue, eventDefaultValue } from '../../../lib/defaultValue';
@@ -38,7 +38,7 @@ const reporter = ({
   const [isDisabled, setIsDisabled] = useState(false);
   const [name, setName] = useState('');
   const [nameId, setNameId] = useState('');
-  const [unitItems, setUnitItems] = useState([]);
+  const [optionNames, setOptionNames] = useState([]);
 
   useEffect(() => {
     setIsDisabled(hasTruthy(isLoading, isProcessing, !isUserSecured));
@@ -52,21 +52,12 @@ const reporter = ({
   }, [isSuccessfulPut]);
 
   useEffect(() => {
-    const units = [];
     const validTypes = createValidTypesList(types);
-    const { length } = validTypes;
-    for (let idx = 0; idx < length; idx++) {
-      units.push(
-        <MenuItem key={validTypes[idx].id} value={validTypes[idx].id}>
-          {validTypes[idx].name}
-        </MenuItem>
-      );
-    }
-    setUnitItems(units);
     const baseName = defaultValue(validTypes[0]?.name, '');
+    const baseId = defaultValue(validTypes[0]?.id, '');
+    setOptionNames(validTypes);
     setName(baseName);
     setFirstName(baseName);
-    const baseId = defaultValue(validTypes[0]?.id, '');
     setNameId(baseId);
     setFirstNameId(baseId);
   }, [types]);
@@ -80,8 +71,7 @@ const reporter = ({
     setNameId(firstNameId);
   };
 
-  const handleChangeName = (event) => {
-    const newId = eventDefaultValue(event, '');
+  const handleChangeName = (newId = '') => {
     const matchingType = Array.isArray(types) && newId && types.find((type) => newId === type?.id);
     const newName = defaultValue(matchingType?.name, '');
     setName(newName);
@@ -108,17 +98,13 @@ const reporter = ({
   return (
     <Fragment>
       <UnsecuredUserAlert isSecured={isUserSecured} />
-      <FormControl variant="outlined">
-        <Select
-          disabled={isDisabled}
-          onChange={handleChangeName}
-          title="units"
-          value={nameId}
-        >
-          <MenuItem value=""><em>- -</em></MenuItem>
-          {unitItems}
-        </Select>
-      </FormControl>
+      <OutlinedSelector
+        isDisabled={isDisabled}
+        label="Nutrient Name"
+        onChange={handleChangeName}
+        options={optionNames}
+        value={nameId}
+      />
       <TextField
         disabled={isDisabled}
         InputProps={{ min: 0 }}
