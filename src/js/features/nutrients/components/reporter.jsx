@@ -8,16 +8,16 @@ import { clearNutrientReportPutSuccess, putNutrientReport } from '../state/actio
 
 const propTypes = {
   clearSaveSuccess: PropTypes.func,
-  isLoadingNutrient: PropTypes.bool,
-  isProcessingNutrientReport: PropTypes.bool,
+  isLoadingData: PropTypes.bool,
+  isProcessing: PropTypes.bool,
   isUserSecured: PropTypes.bool,
   isSuccessfulPut: PropTypes.bool,
   saveNutrientReport: PropTypes.func
 };
 const reporter = ({
   clearSaveSuccess,
-  isLoadingNutrient,
-  isProcessingNutrientReport,
+  isLoading,
+  isProcessing,
   isSuccessfulPut,
   isUserSecured,
   saveNutrientReport
@@ -26,15 +26,10 @@ const reporter = ({
   const [amountType, setAmountType] = useState('mg');
   const [comment, setComment] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    setIsLoading(isLoadingNutrient || isProcessingNutrientReport);
-  }, [isLoadingNutrient, isProcessingNutrientReport]);
-
-  useEffect(() => {
-    setIsDisabled(isLoading || !isUserSecured);
-  }, [isLoading, isUserSecured]);
+    setIsDisabled(isLoading || isProcessing || !isUserSecured);
+  }, [isLoading, isProcessing, isUserSecured]);
 
   useEffect(() => {
     if (isSuccessfulPut) {
@@ -111,9 +106,9 @@ const reporter = ({
 
 reporter.propTypes = propTypes;
 const mapStateToProps = state => ({
-  isLoadingNutrient: state.nutrientsData.isLoadingNutrient,
-  isProcessingNutrientReport: state.nutrientsData.isProcessingNutrientReport,
-  isSuccessfulPut: !!state.nutrientsData.nutrientReportPutPayload,
+  isLoading: state.nutrientsData.isLoadingReports || state.nutrientsData.isLoadingTypes,
+  isProcessing: state.nutrientsData.isProcessingReport || state.nutrientsData.isProcessingType,
+  isSuccessfulPut: !!state.nutrientsData.reportPutPayload,
   isUserSecured: !!state.auth.token
 });
 const mapDispatchToProps = {

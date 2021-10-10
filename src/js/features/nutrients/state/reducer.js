@@ -5,33 +5,65 @@ const reducer = (state = initialState, action = null) => {
   let newState;
   switch (action?.type) {
     // actions for getting nutrient list
-    case _types.GET_REQUEST_NUTRIENTS_LIST_START:
-      newState = { ...state, nutrientGetError: null, isLoadingNutrient: true };
+    case _types.GET_REQUEST_NUTRIENTS_REPORTS_START:
+      newState = { ...state, isLoadingReports: true };
       break;
-    case _types.GET_REQUEST_NUTRIENTS_LIST_SUCCESS:
-      newState = { ...state, nutrientGetError: null, nutrientGetPayload: action.data };
+    case _types.GET_REQUEST_NUTRIENTS_REPORTS_SUCCESS:
+      newState = { ...state, reportsGetError: null, reportsPayload: action.data };
       break;
-    case _types.GET_REQUEST_NUTRIENTS_LIST_ERROR:
-      newState = { ...state, nutrientGetError: action.error };
+    case _types.GET_REQUEST_NUTRIENTS_REPORTS_ERROR:
+      newState = { ...state, reportsGetError: action.error, reportsPayload: null };
       break;
-    case _types.GET_REQUEST_NUTRIENTS_LIST_COMPLETED:
-      newState = { ...state, isLoadingNutrient: false };
+    case _types.GET_REQUEST_NUTRIENTS_REPORTS_COMPLETED:
+      newState = { ...state, isLoadingReports: false };
       break;
-    // actions for puting a new nutrient
+
+    // actions for getting nutrient types
+    case _types.GET_REQUEST_NUTRIENTS_TYPES_START:
+      newState = { ...state, isLoadingTypes: true };
+      break;
+    case _types.GET_REQUEST_NUTRIENTS_TYPES_SUCCESS:
+      newState = { ...state, typesGetError: null, typesPayload: action.data };
+      break;
+    case _types.GET_REQUEST_NUTRIENTS_TYPES_ERROR:
+      newState = { ...state, typesGetError: action.error, typesPayload: null };
+      break;
+    case _types.GET_REQUEST_NUTRIENTS_TYPES_COMPLETED:
+      newState = { ...state, isLoadingTypes: false };
+      break;
+
+    // actions for putting a new nutrient report
     case _types.PUT_REQUEST_NUTRIENTS_REPORT_START:
-      newState = { ...state, nutrientReportPutError: null, nutrientReportPutPayload: null, isProcessingNutrientReport: true };
+      newState = { ...state, isProcessingReport: true };
       break;
     case _types.PUT_REQUEST_NUTRIENTS_REPORT_SUCCESS:
-      newState = { ...state, nutrientReportPutError: null, nutrientReportPutPayload: action.data };
+      newState = { ...state, reportPutError: null, reportPutPayload: action.data };
       break;
     case _types.PUT_REQUEST_NUTRIENTS_REPORT_ERROR:
-      newState = { ...state, nutrientReportPutError: action.error, nutrientReportPutPayload: null };
+      newState = { ...state, reportPutError: action.error, reportPutPayload: null };
       break;
     case _types.PUT_REQUEST_NUTRIENTS_REPORT_COMPLETED:
-      newState = { ...state, isProcessingNutrientReport: false };
+      newState = { ...state, isProcessingReport: false };
       break;
     case _types.CLEAR_PUT_REQUEST_NUTRIENTS_REPORT_SUCCESS:
-      newState = { ...state, nutrientReportPutError: null, nutrientReportPutPayload: null };
+      newState = { ...state, reportPutError: null, reportPutPayload: null };
+      break;
+
+    // actions for putting a new nutrient type
+    case _types.PUT_REQUEST_NUTRIENTS_TYPE_START:
+      newState = { ...state, isProcessingType: true };
+      break;
+    case _types.PUT_REQUEST_NUTRIENTS_TYPE_SUCCESS:
+      newState = { ...state, typePutError: null, typePutPayload: action.data };
+      break;
+    case _types.PUT_REQUEST_NUTRIENTS_TYPE_ERROR:
+      newState = { ...state, typePutError: action.error, typePutPayload: null };
+      break;
+    case _types.PUT_REQUEST_NUTRIENTS_TYPE_COMPLETED:
+      newState = { ...state, isProcessingType: false };
+      break;
+    case _types.CLEAR_PUT_REQUEST_NUTRIENTS_TYPE_SUCCESS:
+      newState = { ...state, typePutError: null, typePutPayload: null };
       break;
     default:
       newState = state;

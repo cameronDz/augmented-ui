@@ -50,7 +50,7 @@ const table = ({ nutrients = null, isLoading = false }) => {
       columns={columns}
       details={details}
       detailsTitle={title}
-      downloadEndpoint={'object/caffeine'}
+      downloadEndpoint={'object/nutrientReports'}
       downloadText={'Download Intakes in JSON file.'}
       includeDetails={true}
       isLoading={isLoading}
@@ -61,8 +61,8 @@ const table = ({ nutrients = null, isLoading = false }) => {
 };
 
 const mapStateToProps = state => ({
-  nutrients: state.nutrientsData.nutrientGetPayload,
-  isLoading: state.nutrientsData.isLoadingNutrient
+  nutrients: state.nutrientsData.reportsPayload,
+  isLoading: state.nutrientsData.isLoadingReports
 });
 const mapDispatchToProps = null;
 table.propTypes = propTypes;

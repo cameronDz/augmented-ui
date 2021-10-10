@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import SimpleCard from '../../components/simpleCard';
 import { TabbedPage } from '../../components/pages';
 import { NutrientsCreator, NutrientsReporter, NutrientsTable } from './components';
-import { getNutrientList } from './state/actions';
+import { getNutrientReports, getNutrientTypes } from './state/actions';
 import { handleFunction } from '../../lib/eventHandler';
 
 const tabPanels = [
@@ -13,16 +13,26 @@ const tabPanels = [
   <SimpleCard key="creator" child={<NutrientsCreator />} title={'Nutrients Creator'} />
 ];
 
-const propTypes = { getData: PropTypes.func };
-const NutrientsPage = ({ getData }) => {
+const propTypes = {
+  getReportsData: PropTypes.func,
+  getTypesData: PropTypes.func
+};
+const NutrientsPage = ({ getReportsData, getTypesData }) => {
   useEffect(() => {
-    handleFunction(getData);
-  }, [getData]);
+    handleFunction(getReportsData);
+  }, [getReportsData]);
+
+  useEffect(() => {
+    handleFunction(getTypesData);
+  }, [getTypesData]);
 
   return <TabbedPage tabNames={['History', 'Report', 'Creator']} tabPanels={tabPanels} />;
 };
 
 NutrientsPage.propTypes = propTypes;
 const mapStateToProps = null;
-const mapDispatchToProps = { getData: getNutrientList };
+const mapDispatchToProps = {
+  getReportsData: getNutrientReports,
+  getTypesData: getNutrientTypes
+};
 export default connect(mapStateToProps, mapDispatchToProps)(NutrientsPage);
