@@ -8,11 +8,10 @@ import { getCardioSessionList } from './state/actions';
 
 const propTypes = { getCardioSessions: PropTypes.func };
 const sessions = ({ getCardioSessions }) => {
-  const tabNames = ['History', 'Record', 'Data Visualization'];
+  const tabNames = ['History', 'Record'];
   const tabPanels = [
     <SessionsTableDisplay key="table" />,
-    <SessionCreator key="creator" />,
-    <p key="construction">Under construction</p>
+    <SessionCreator key="creator" />
   ];
 
   useEffect(() => {

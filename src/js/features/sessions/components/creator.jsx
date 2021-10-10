@@ -96,29 +96,33 @@ const creator = ({
   return (
     <Fragment>
       <UnsecuredUserAlert isSecured={isUserSecured} />
-      <div className="is-horizontal">
-        <TextField
-          disabled={isDisabled}
-          label="Machine type"
-          name="machineType"
-          onChange={(event) => updateForm({ machineType: event.target?.value || '' })}
-          required={true}
-          value={form.machineType || ''}
-          variant="outlined"
-        />
-      </div>
-
-      <div className="is-horizontal">
-        <TimeField
-          isDisabled={isDisabled}
-          label="Duration (hh:mm:ss)"
-          name="duration"
-          onChange={handleTimeChange}
-          value={(form.timing || '').replace(/:/g, '')}
-        />
-      </div>
-
-      <div className="is-horizontal">
+      <TextField
+        disabled={isDisabled}
+        label="Machine type"
+        name="machineType"
+        onChange={(event) => updateForm({ machineType: event.target?.value || '' })}
+        required={true}
+        value={form.machineType || ''}
+        variant="outlined"
+      />
+      <TimeField
+        isDisabled={isDisabled}
+        label="Duration (hh:mm:ss)"
+        name="duration"
+        onChange={handleTimeChange}
+        value={(form.timing || '').replace(/:/g, '')}
+      />
+      <TextField
+        disabled={isDisabled}
+        InputProps={{ step: '0.01' }}
+        name="distanceMiles"
+        label="Distance (miles)"
+        onChange={ event => updateForm({ distanceMiles: event.target.value })}
+        type="number"
+        value={form.distanceMiles || ''}
+        variant="outlined"
+      />
+      <div className="aug-date-form">
         <DateTimePicker
           ampm={false}
           autoOk
@@ -128,9 +132,6 @@ const creator = ({
           onChange={handleDateChange}
           value={form.startDate || ''}
         />
-      </div>
-
-      <div className="is-horizontal">
         <FormControlLabel
           control={
             <Switch
@@ -143,32 +144,17 @@ const creator = ({
           label="Session Just Ended"
         />
       </div>
-
-      <div className="is-horizontal">
-        <TextField
-          disabled={isDisabled}
-          InputProps={{ step: '0.01' }}
-          name="distanceMiles"
-          label="Distance (miles)"
-          onChange={ event => updateForm({ distanceMiles: event.target.value })}
-          type="number"
-          value={form.distanceMiles || ''}
-          variant="outlined"
-        />
-      </div>
-      <div>
-        <TextField
-          disabled={isDisabled}
-          fullWidth={true}
-          label="Session comment"
-          minRows={isDisabled ? 1 : 2}
-          multiline={!isDisabled}
-          name="comment"
-          onChange={event => updateForm({ comment: event.target?.value || '' })}
-          value={form.comment || ''}
-          variant="outlined"
-        />
-      </div>
+      <TextField
+        disabled={isDisabled}
+        fullWidth={true}
+        label="Session comment"
+        minRows={isDisabled ? 1 : 2}
+        multiline={!isDisabled}
+        name="comment"
+        onChange={event => updateForm({ comment: event.target?.value || '' })}
+        value={form.comment || ''}
+        variant="outlined"
+      />
       <div className="control">
         <Button
           disabled={isDisabled}

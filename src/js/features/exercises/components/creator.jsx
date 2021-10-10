@@ -71,8 +71,6 @@ const ExerciseCreator = ({
           value={name}
           variant="outlined"
         />
-      </div>
-      <div className={classNames(classes.exerciseInputContainer)}>
         <TextField
           disabled={isDisabled}
           label="Exercise type"

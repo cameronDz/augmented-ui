@@ -14,15 +14,13 @@ const appStyles = {
       margin: 0,
       padding: 0
     },
-    '.MuiButtonBase-root.MuiButton-root.MuiButton-contained': {
+    '.MuiFormControl-root, .MuiButtonBase-root.MuiButton-root.MuiButton-contained': {
       marginRight: '12px',
       marginTop: '12px'
     },
-    '.MuiFormControl-root': {
-      marginTop: '12px'
-    },
-    '.aug-mrg-left-12': {
-      marginLeft: '12px'
+    '.aug-date-form': {
+      alignItems: 'center',
+      display: 'flex'
     }
   }
 };
