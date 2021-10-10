@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { Button, FormControl, MenuItem, Select, TextField } from '@material-ui/core';
 import { UnsecuredUserAlert } from '../../../auth';
+import { eventDefaultValue } from '../../../lib/defaultValue';
+import { hasTruthy } from '../../../lib/hasTruthy';
 import { clearNutrientReportPutSuccess, putNutrientReport } from '../state/actions';
 
 const propTypes = {
@@ -28,7 +30,7 @@ const reporter = ({
   const [isDisabled, setIsDisabled] = useState(false);
 
   useEffect(() => {
-    setIsDisabled(isLoading || isProcessing || !isUserSecured);
+    setIsDisabled(hasTruthy(isLoading, isProcessing, !isUserSecured));
   }, [isLoading, isProcessing, isUserSecured]);
 
   useEffect(() => {
@@ -58,45 +60,42 @@ const reporter = ({
   return (
     <Fragment>
       <UnsecuredUserAlert isSecured={isUserSecured} />
-      <div>
-        <TextField
+      <TextField
+        disabled={isDisabled}
+        InputProps={{ min: 0 }}
+        label="Amount"
+        name="amount"
+        onChange={(event) => setAmount(eventDefaultValue(event, 0))}
+        type="number"
+        value={amount}
+        variant="outlined"
+      />
+      <FormControl variant="outlined">
+        <Select
           disabled={isDisabled}
-          InputProps={{ min: 0 }}
-          label="Amount"
-          name="amount"
-          onChange={event => setAmount(event.target?.value || 0)}
-          type="number"
-          value={amount}
-          variant="outlined"
-        />
-        <FormControl variant="outlined">
-          <Select
-            disabled={isDisabled}
-            onChange={event => setAmountType(event.target?.value || '')}
-            title="units"
-            value={amountType}
-          >
-            <MenuItem value=""><em>- -</em></MenuItem>
-            <MenuItem value="mg">mg</MenuItem>
-            <MenuItem value="kg">kg</MenuItem>
-            <MenuItem value="pound">lb</MenuItem>
-            <MenuItem value="ounce">oz</MenuItem>
-          </Select>
-        </FormControl>
-      </div>
-      <div>
-        <TextField
-          disabled={isDisabled}
-          fullWidth={true}
-          label="Description"
-          minRows={isDisabled ? 1 : 3}
-          multiline={!isDisabled}
-          name="comment"
-          onChange={event => setComment(event.target?.value || '')}
-          value={comment}
-          variant="outlined"
-        />
-      </div>
+          onChange={(event) => setAmountType(eventDefaultValue(event, ''))}
+          title="units"
+          value={amountType}
+        >
+          <MenuItem value=""><em>- -</em></MenuItem>
+          <MenuItem value="mg">mg</MenuItem>
+          <MenuItem value="pill">pill</MenuItem>
+          <MenuItem value="ounce">oz</MenuItem>
+          <MenuItem value="pound">lb</MenuItem>
+          <MenuItem value="kg">kg</MenuItem>
+        </Select>
+      </FormControl>
+      <TextField
+        disabled={isDisabled}
+        fullWidth={true}
+        label="Description"
+        minRows={isDisabled ? 1 : 3}
+        multiline={!isDisabled}
+        name="comment"
+        onChange={(event) => setComment(eventDefaultValue(event, ''))}
+        value={comment}
+        variant="outlined"
+      />
       <div>
         <Button disabled={isDisabled} onClick={resetFormValues} variant="contained">Clear</Button>
         <Button color="primary" disabled={isDisabled} onClick={handleSubmit} variant="contained">Submit</Button>
@@ -106,8 +105,8 @@ const reporter = ({
 
 reporter.propTypes = propTypes;
 const mapStateToProps = state => ({
-  isLoading: state.nutrientsData.isLoadingReports || state.nutrientsData.isLoadingTypes,
-  isProcessing: state.nutrientsData.isProcessingReport || state.nutrientsData.isProcessingType,
+  isLoading: hasTruthy(state.nutrientsData.isLoadingReports, state.nutrientsData.isLoadingTypes),
+  isProcessing: hasTruthy(state.nutrientsData.isProcessingReport, state.nutrientsData.isProcessingType),
   isSuccessfulPut: !!state.nutrientsData.reportPutPayload,
   isUserSecured: !!state.auth.token
 });
