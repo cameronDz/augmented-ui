@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { Button, FormControl, MenuItem, Select, TextField } from '@material-ui/core';
-import { UnsecuredUserAlert } from '../../../../auth';
+import { UnsecuredUserAlert } from '../../../auth';
 import { clearPutSuccess, putCaffeine } from '../state/actions';
 
 const propTypes = {

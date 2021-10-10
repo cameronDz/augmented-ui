@@ -1,9 +1,9 @@
 import initialState from './initialState';
 import * as _types from './types';
 
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState, action = null) => {
   let newState;
-  switch (action.type) {
+  switch (action?.type) {
     // actions for getting caffeines list
     case _types.GET_REQUEST_CAFFEINE_LIST_START:
       newState = { ...state, caffeineGetError: null, isLoadingCaffeine: true };
