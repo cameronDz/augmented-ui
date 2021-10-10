@@ -1,4 +1,9 @@
+import creator from './creator';
 import reporter from './reporter';
 import table from './table';
 
-export { reporter as NutrientsReporter, table as NutrientsTable };
+export {
+  creator as NutrientsCreator,
+  reporter as NutrientsReporter,
+  table as NutrientsTable
+};
