@@ -39,6 +39,7 @@ const TabbedPage = ({ isTabsCentered = true, isSecuredUser = false, tabNames = [
       return (<TabPanel index={key} key={key} value={value}>{item}</TabPanel>);
     });
   };
+  console.info('isTabsCentered', isTabsCentered);
 
   const classes = useStyles();
   return (

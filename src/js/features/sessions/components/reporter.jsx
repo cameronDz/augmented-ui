@@ -25,7 +25,7 @@ const propTypes = {
   isSaveSuccessful: PropTypes.bool,
   isUserSecured: PropTypes.bool
 };
-const creator = ({
+const SessionReporter = ({
   formClear,
   formSave,
   isProcessing,
@@ -184,5 +184,5 @@ const mapStateToProps = state => ({
   isSaveSuccessful: !!state.cardioMachineSessions.cardioSessionPutPayload,
   isUserSecured: !!state.auth.token
 });
-creator.propTypes = propTypes;
-export default connect(mapStateToProps, mapDispatchToProps)(creator);
+SessionReporter.propTypes = propTypes;
+export default connect(mapStateToProps, mapDispatchToProps)(SessionReporter);
