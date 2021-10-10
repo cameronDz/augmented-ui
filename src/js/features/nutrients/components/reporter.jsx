@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { v4 as uuidv4 } from 'uuid';
 import { Button, FormControl, MenuItem, Select, TextField } from '@material-ui/core';
+import { DateSwitchPicker } from '../../../components/inputs';
 import { UnsecuredUserAlert } from '../../../auth';
-import { eventDefaultValue } from '../../../lib/defaultValue';
+import { defaultValue, eventDefaultValue } from '../../../lib/defaultValue';
 import { hasTruthy } from '../../../lib/hasTruthy';
 import { clearNutrientReportPutSuccess, putNutrientReport } from '../state/actions';
 
@@ -14,7 +15,8 @@ const propTypes = {
   isProcessing: PropTypes.bool,
   isUserSecured: PropTypes.bool,
   isSuccessfulPut: PropTypes.bool,
-  saveNutrientReport: PropTypes.func
+  saveNutrientReport: PropTypes.func,
+  types: PropTypes.array
 };
 const reporter = ({
   clearSaveSuccess,
@@ -22,12 +24,16 @@ const reporter = ({
   isProcessing,
   isSuccessfulPut,
   isUserSecured,
-  saveNutrientReport
+  saveNutrientReport,
+  types
 }) => {
   const [amount, setAmount] = useState('');
   const [amountType, setAmountType] = useState('mg');
   const [comment, setComment] = useState('');
+  const [consumptionTime, setConsumptionTime] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);
+  const [name, setName] = useState('Caffeine');
+  const [nameId, setNameId] = useState('caffeine');
 
   useEffect(() => {
     setIsDisabled(hasTruthy(isLoading, isProcessing, !isUserSecured));
@@ -44,15 +50,29 @@ const reporter = ({
     setAmount('');
     setAmountType('mg');
     setComment('');
+    setConsumptionTime('');
+    setName('');
+    setNameId('');
+  };
+
+  const handleChangeName = (event) => {
+    console.info('handleChangeName', event);
+  };
+
+  const handleChangeDate = (event) => {
+    console.info(defaultValue(event, ''));
+    setConsumptionTime('');
   };
 
   const handleSubmit = () => {
     const payload = {
       amount: Number(amount),
-      id: uuidv4(),
-      intakeTime: new Date().toJSON(),
       amountType: amountType,
-      comment: comment
+      comment: comment,
+      id: uuidv4(),
+      intakeTime: defaultValue(consumptionTime, new Date()).toJSON(),
+      name,
+      nameId
     };
     saveNutrientReport(payload);
   };
@@ -60,6 +80,18 @@ const reporter = ({
   return (
     <Fragment>
       <UnsecuredUserAlert isSecured={isUserSecured} />
+      <FormControl variant="outlined">
+        <Select
+          disabled={isDisabled}
+          onChange={handleChangeName}
+          title="units"
+          value={nameId}
+        >
+          <MenuItem value=""><em>- -</em></MenuItem>
+          <MenuItem value="caffeine">Caffeine</MenuItem>
+          <MenuItem value="excedrin">Excedrin</MenuItem>
+        </Select>
+      </FormControl>
       <TextField
         disabled={isDisabled}
         InputProps={{ min: 0 }}
@@ -96,9 +128,17 @@ const reporter = ({
         value={comment}
         variant="outlined"
       />
+      <DateSwitchPicker
+        onDateChange={handleChangeDate}
+        isDisabledDate={isDisabled}
+        isDisabledSwitch={isDisabled}
+        labelDate="Consumed"
+        labelSwitch="Just consumed"
+        valueDate={defaultValue(consumptionTime, '')}
+      />
       <div>
         <Button disabled={isDisabled} onClick={resetFormValues} variant="contained">Clear</Button>
-        <Button color="primary" disabled={isDisabled} onClick={handleSubmit} variant="contained">Submit</Button>
+        <Button color="primary" disabled={hasTruthy(isDisabled, !!name)} onClick={handleSubmit} variant="contained">Submit</Button>
       </div>
     </Fragment>);
 };
@@ -108,7 +148,8 @@ const mapStateToProps = state => ({
   isLoading: hasTruthy(state.nutrientsData.isLoadingReports, state.nutrientsData.isLoadingTypes),
   isProcessing: hasTruthy(state.nutrientsData.isProcessingReport, state.nutrientsData.isProcessingType),
   isSuccessfulPut: !!state.nutrientsData.reportPutPayload,
-  isUserSecured: !!state.auth.token
+  isUserSecured: !!state.auth.token,
+  types: state.nutrientsData.typesPayload
 });
 const mapDispatchToProps = {
   clearSaveSuccess: clearNutrientReportPutSuccess,
