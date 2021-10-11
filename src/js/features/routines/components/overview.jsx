@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import SimpleCard from '../../../components/simpleCard';
-import FullRoutine from './fullRoutine';
+import Table from './table';
 import AvailableRoutines from './availableRoutines';
 
 const Overview = () => {
@@ -13,7 +13,7 @@ const Overview = () => {
     <SimpleCard title="Routines page" child={(
       <div className="">
         <AvailableRoutines handleClick={handleRoutineClick} selectedId={currentId} />
-        <SimpleCard child={<FullRoutine selectedId={currentId} />} title="Current routine" />
+        <SimpleCard child={<Table selectedId={currentId} />} title="Current routine" />
       </div>
     )} />
   );

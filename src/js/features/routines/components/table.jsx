@@ -11,7 +11,7 @@ const propTypes = {
   list: PropTypes.array,
   selectedId: PropTypes.string
 };
-const FullRoutine = ({
+const Table = ({
   isErrored = false,
   isLoading = false,
   list = [],
@@ -82,11 +82,11 @@ const FullRoutine = ({
   );
 };
 
-FullRoutine.propTypes = propTypes;
+Table.propTypes = propTypes;
 const mapStateToProps = (state) => ({
   isErrored: !!state.routine.rountineError,
   isLoading: !!state.routine.isFetchingRountines,
   list: state.routine.routineList
 });
 const mapDispatchToProps = null;
-export default connect(mapStateToProps, mapDispatchToProps)(FullRoutine);
+export default connect(mapStateToProps, mapDispatchToProps)(Table);
