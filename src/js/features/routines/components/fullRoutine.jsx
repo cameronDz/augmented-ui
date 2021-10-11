@@ -44,7 +44,8 @@ const FullRoutine = ({
     const length = Array.isArray(sets) ? sets.length : 0;
     return length > 0 && sets.map((item, idx) => {
       const line = createSetDisplay(item);
-      const breakLine = idx + 1 !== length && <br/>;
+      const num = idx + 1;
+      const breakLine = num !== length ? <br/> : '';
       return (
         <Fragment key={idx}>
           {line} {breakLine}
@@ -57,11 +58,11 @@ const FullRoutine = ({
     let byAmount = '';
     const reps = `${set?.reps || ''}`;
     if (set?.percent) {
-      byAmount = `x ${set.percent * 100}%`;
+      byAmount = `x${set.percent * 100}%`;
     } else if (set?.pounds) {
-      byAmount = `x ${set.pounds}#`;
+      byAmount = `x${set.pounds}#`;
     }
-    return `${reps} ${byAmount}`;
+    return `${reps}${byAmount}`;
   };
 
   return (
@@ -74,7 +75,7 @@ const FullRoutine = ({
           includeDetails={false}
           isLoading={isLoading}
           rowsData={processedRoutineData}
-          titles={['Name', 'Sets', 'Note']}
+          titles={{ name: 'Name', sets: 'Sets', note: 'Note' }}
         />
       )}
     </Fragment>
