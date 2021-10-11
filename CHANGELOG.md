@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Routines table using simple table styling and moved underneath routine list
+
+## [0.22.0] 2021-10-10
+
 ### Added
 
 - Nutrient reports now has consumption time input option
