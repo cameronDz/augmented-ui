@@ -26,7 +26,7 @@ const SimpleNavbar = ({ isSecuredUser }) => {
             <NavMenuItems links={fitnessLinks} title="Fitness" />
           </div>
           <div className={classNames(classes.navItem)}>
-            <NavMenuItems links={nutrientsLinks} title="Nutrients" />
+            <NavMenuItems links={nutrientsLinks} title="Nutrition" />
           </div>
           <div className={classNames(classes.navItem)}>
             <Link to="/help">Help</Link>

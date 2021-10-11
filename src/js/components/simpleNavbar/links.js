@@ -5,7 +5,7 @@ const fitnessLinks = [
 ];
 
 const nutrientsLinks = [
-  { title: 'Caffeine', url: 'nutrient' }
+  { title: 'Supplements', url: 'nutrient' }
 ];
 
 export { fitnessLinks, nutrientsLinks };
