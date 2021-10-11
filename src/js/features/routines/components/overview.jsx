@@ -8,15 +8,12 @@ const Overview = () => {
   const handleRoutineClick = (eventId) => {
     setCurrentId(eventId);
   };
+
   return (
     <SimpleCard title="Routines page" child={(
-      <div className="card-content columns is-tablet">
-        <div className="content column is-one-third">
-          <SimpleCard child={<AvailableRoutines handleClick={handleRoutineClick} selectedId={currentId} />} title="Routine list" />
-        </div>
-        <div className="content column is-two-thirds">
-          <SimpleCard child={<FullRoutine selectedId={currentId} />} title="Latest routine" />
-        </div>
+      <div className="">
+        <AvailableRoutines handleClick={handleRoutineClick} selectedId={currentId} />
+        <SimpleCard child={<FullRoutine selectedId={currentId} />} title="Current routine" />
       </div>
     )} />
   );
