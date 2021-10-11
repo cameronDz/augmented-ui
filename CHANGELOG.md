@@ -6,6 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Nutrient reports now has consumption time input option
+- Selector dropdown now has outlined version to match text inputs
+
+### Changed
+
+- Nutrient reports name now comes from list of types
+- Nutrient types now has default unit option
+- Nutrient naming updated throughout page
+- Nutrient records table shows more information on table and in dialog
+- Simple table dialog styling updated with bold for titles
+
 ## [0.21.0] 2021-10-10
 
 ### Added
