@@ -127,7 +127,7 @@ const SessionReporter = ({
         value={defaultValue(form?.comment, '')}
         variant="outlined"
       />
-      <div className="control">
+      <div>
         <Button
           disabled={isDisabled}
           onClick={resetForm}

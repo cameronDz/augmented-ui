@@ -24,7 +24,7 @@ const TablePagination = ({ currentPage = 0, links = null, totalPages = 0 }) => {
   }, [links]);
 
   const renderPageEllipsis = () => {
-    return (<span className="pagination-ellipsis">&hellip;</span>);
+    return (<span>&hellip;</span>);
   };
 
   const displayPrevSelfNextButtons = (prevPage = 0, selfPage = 0, nextPage = 0) => {
