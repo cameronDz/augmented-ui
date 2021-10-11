@@ -28,7 +28,7 @@ const RowDetailsButton = ({ data, details = null, title = '', titles }) => {
             {Array.isArray(details) && details.map((item, idx) => {
               return titles?.[item] && (
                 <div key={idx}>
-                  <span>{titles[item]}</span>
+                  <span style={{ fontWeight: '600' }}>{titles[item]}</span>
                   {`: ${!!data?.[item] || data?.[item] === 0 ? data[item] : ''}`}
                 </div>
               );

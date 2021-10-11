@@ -5,17 +5,19 @@ import SimpleTable from '../../../components/simpleTable';
 import { orderByDateKey } from '../../../lib/sorts';
 import { splitTextKeyToArray } from '../../../lib/splits';
 
-const columns = ['day', 'amountDisplay', 'userName'];
-const details = ['day', 'time', 'amount', 'amountType', 'userName', 'comment'];
+const columns = ['day', 'name', 'amountDisplay', 'userName'];
+const details = ['day', 'time', 'name', 'description', 'amount', 'amountType', 'userName', 'comment'];
 const title = 'Nutrients dose details';
 const titles = {
-  day: 'Day',
-  time: 'Time',
   amount: 'Amt',
   amountDisplay: 'Amount',
   amountType: 'Type',
-  userName: 'User',
-  comments: 'Comments'
+  comment: 'Comments',
+  day: 'Day',
+  description: 'Description',
+  name: 'Name',
+  time: 'Time',
+  userName: 'User'
 };
 
 const propTypes = {
@@ -33,7 +35,7 @@ const table = ({ nutrients = null, isLoading = false }) => {
         if (typeof nutrients[idx] === 'object') {
           const splitTime = splitTextKeyToArray(nutrients[idx], 'intakeTime', 'T');
           const obj = {
-            amountDisplay: `${nutrients[idx]?.amount} ${nutrients[idx]?.amountType}`,
+            amountDisplay: `${nutrients[idx]?.amount} ${nutrients[idx]?.amountType}${nutrients[idx]?.amount > 1 ? 's' : ''}`,
             day: splitTime[0],
             time: splitTime[1] ? splitTime[1].substring(0, 5) : '',
             ...nutrients[idx]

@@ -33,6 +33,7 @@ const reporter = ({
   const [amountType, setAmountType] = useState('mg');
   const [comment, setComment] = useState('');
   const [consumptionTime, setConsumptionTime] = useState(new Date());
+  const [description, setDescription] = useState('');
   const [firstName, setFirstName] = useState('');
   const [firstNameId, setFirstNameId] = useState('');
   const [isDisabled, setIsDisabled] = useState(false);
@@ -75,9 +76,11 @@ const reporter = ({
     const matchingType = Array.isArray(types) && newId && types.find((type) => newId === type?.id);
     const newName = defaultValue(matchingType?.name, '');
     const newUnit = defaultValue(matchingType?.defaultUnit, '');
+    const newDesc = defaultValue(matchingType?.description, '');
     setName(newName);
     setNameId(newId);
     setAmountType(newUnit);
+    setDescription(newDesc);
   };
 
   const handleChangeDate = (date) => {
@@ -89,6 +92,7 @@ const reporter = ({
       amount: Number(amount),
       amountType: amountType,
       comment: comment,
+      description,
       id: uuidv4(),
       intakeTime: defaultValue(consumptionTime, new Date()).toJSON(),
       name,
