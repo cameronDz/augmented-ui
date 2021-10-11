@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { TabbedPage } from '../../components/pages';
 import SimpleCard from '../../components/simpleCard';
 import Routine from './components/fullRoutine';
+import { RoutineSidebar } from './components';
 import { fetchRoutineList } from './state/actions';
 
 const propTypes = {
@@ -44,41 +45,14 @@ const routinePage = ({ fetchRoutines, routine }) => {
     setCurrentRoutine(current);
   }, [routineList]);
 
-  const getRoutineStyle = (id = '') => {
-    const style = { cursor: 'pointer' };
-    if (id === currentId) {
-      style.backgroundColor = 'lightgray';
-      style.cursor = 'default';
-    }
-    return style;
-  };
-
-  const handleRoutineClick = (event) => {
-    const id = ((!!event) && (!!event.currentTarget) && (!!event.currentTarget.dataset)) ? event.currentTarget.dataset.id : -1;
-    if ((!!id) && (id !== currentId)) {
-      const current = Array.isArray(routineList) && routineList.find((item) => ((!!item) && (item.id === id)));
+  const handleRoutineClick = (eventId) => {
+    if ((!!eventId) && (eventId !== currentId)) {
+      const current = Array.isArray(routineList) && routineList.find((item) => item?.id === eventId);
       if (current) {
-        setCurrentId(id);
+        setCurrentId(eventId);
         setCurrentRoutine(current);
       }
     }
-  };
-
-  const getRoutineSideBarChild = () => {
-    return (isFetching)
-      ? <p style={{ fontStyle: 'italic' }}>Loading...</p>
-      : <Fragment>
-        <ul>
-          {
-            Array.isArray(routineList) && routineList.map((item, key) => {
-              return ((!!item) && (!!item.id) && (!!item.name)) && (
-                <li onClick={handleRoutineClick} data-id={item.id} key={key} style={getRoutineStyle(item.id)}>
-                  {item.name}
-                </li>);
-            })
-          }
-        </ul>
-      </Fragment>;
   };
 
   const getRoutineChild = () => {
@@ -93,7 +67,7 @@ const routinePage = ({ fetchRoutines, routine }) => {
         </header>
         <div className="card-content columns is-tablet">
           <div className="content column is-one-third">
-            <SimpleCard child={getRoutineSideBarChild()} title={sideBarTitle} />
+            <SimpleCard child={<RoutineSidebar handleClick={handleRoutineClick} selectedId={currentId} />} title={sideBarTitle} />
           </div>
           <div className="content column is-two-thirds">
             <SimpleCard child={getRoutineChild()} title={routineTitle} />
