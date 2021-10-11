@@ -74,7 +74,6 @@ const OutlinedSelector = ({
         <Select
           labelId={labelId}
           disabled={isDisabled}
-          placeholder="test"
           onChange={handleChange}
           value={selected}
         >
