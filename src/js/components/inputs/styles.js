@@ -13,6 +13,11 @@ const outlinedSelectorStyles = {
         width: '223px'
       }
     },
+    '&$fullExtendedSelectorContainer': {
+      '& .MuiFormControl-root': {
+        width: '100%'
+      }
+    },
     '& .MuiFormControl-root': {
       width: '84px'
     },
@@ -22,7 +27,8 @@ const outlinedSelectorStyles = {
       zIndex: '1000'
     }
   },
-  extendedSelectorContainer: {}
+  extendedSelectorContainer: {},
+  fullExtendedSelectorContainer: {}
 };
 
 export { dateSwitchPickerStyles, outlinedSelectorStyles };

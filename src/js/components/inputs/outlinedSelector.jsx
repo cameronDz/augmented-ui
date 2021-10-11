@@ -10,6 +10,7 @@ import { outlinedSelectorStyles as styles } from './styles';
 const propTypes = {
   isDisabled: PropTypes.bool,
   isExtended: PropTypes.bool,
+  isFullExtended: PropTypes.bool,
   label: PropTypes.string,
   onChange: PropTypes.func,
   options: PropTypes.array,
@@ -19,6 +20,7 @@ const useStyles = makeStyles(() => styles);
 const OutlinedSelector = ({
   isDisabled = true,
   isExtended = false,
+  isFullExtended = false,
   label = '',
   onChange = null,
   options = [],
@@ -64,7 +66,8 @@ const OutlinedSelector = ({
   return (
     <div className={classNames(
       classes.rootSelectorContainer,
-      isExtended && classes.extendedSelectorContainer
+      isExtended && !isFullExtended && classes.extendedSelectorContainer,
+      isFullExtended && classes.fullExtendedSelectorContainer
     )}>
       <FormControl variant="outlined">
         {label && <InputLabel id={labelId}>{label}</InputLabel>}
