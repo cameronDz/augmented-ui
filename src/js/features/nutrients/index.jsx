@@ -1,16 +1,15 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import SimpleCard from '../../components/simpleCard';
 import { TabbedPage } from '../../components/pages';
 import { NutrientsCreator, NutrientsReporter, NutrientsTable } from './components';
 import { getNutrientReports, getNutrientTypes } from './state/actions';
 import { handleFunction } from '../../lib/eventHandler';
 
 const tabPanels = [
-  <SimpleCard key="table" child={<NutrientsTable />} title={'Nutrient Records'} />,
-  <SimpleCard key="reporter" child={<NutrientsReporter />} title={'Nutrient Reporter'} />,
-  <SimpleCard key="creator" child={<NutrientsCreator />} title={'Nutrient Type Creator'} />
+  <NutrientsTable key="table" />,
+  <NutrientsReporter key="reporter" />,
+  <NutrientsCreator key="creator" />
 ];
 
 const propTypes = {
