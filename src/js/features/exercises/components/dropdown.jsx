@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import SimpleDropdown from '../../../components/simpleDropdown';
+import { OutlinedSelector } from '../../../components/inputs';
 
 const propTypes = {
   exercises: PropTypes.array
@@ -16,23 +16,26 @@ const ExerciseDropdown = ({ exercises }) => {
     for (let idx = 0; idx < length; idx++) {
       if ((exercises[idx]) && (exercises[idx].id) && (exercises[idx].name)) {
         const { id, name } = exercises[idx];
-        temp.push({ id: id + '', key: id + '', title: name });
+        temp.push({ id, name });
       }
     }
     setProcessedExercises(temp);
   }, [exercises]);
 
-  const resetThenSet = id => {
+  const handleChange = (id) => {
     setSelectedId(id);
   };
 
   return (
-    <SimpleDropdown
-      list={processedExercises}
-      resetThenSet={resetThenSet}
-      selectedId={selectedId}
-      title="Exercise Dropdown">
-    </SimpleDropdown>);
+    <OutlinedSelector
+      isDisabled={false}
+      isExtended={true}
+      label="Exercise dropdown"
+      onChange={handleChange}
+      options={processedExercises}
+      value={selectedId}
+    />
+  );
 };
 
 ExerciseDropdown.propTypes = propTypes;
