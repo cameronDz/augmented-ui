@@ -6,6 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Exercise dropdown using Mui outlined styled input
+
+### Removed
+
+- Dropdown styled with Bulma css
+
 ## [0.23.1] 2021-10-11
 
 ### Changed
