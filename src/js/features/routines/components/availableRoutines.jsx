@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { defaultValue } from '../../../lib/defaultValue';
@@ -22,10 +22,17 @@ const AvailableRoutines = ({
   list = [],
   selectedId = ''
 }) => {
+  useEffect(() => {
+    if (!selectedId && list?.[0]?.id) {
+      handleFunction(handleClick, list[0].id);
+    }
+  }, [list, selectedId]);
+
   const handleRoutineClick = (event) => {
     const value = defaultValue(event?.currentTarget?.dataset?.id, '');
     handleFunction(handleClick, value);
   };
+
   return (
     <Fragment>
       {isLoading && <p style={{ fontStyle: 'italic' }}>Loading...</p>}
@@ -55,7 +62,7 @@ const AvailableRoutines = ({
 AvailableRoutines.propTypes = propTypes;
 const mapStateToProps = (state) => ({
   isErrored: !!state.routine.rountineError,
-  isLoading: state.routine.isFetchingRountines,
+  isLoading: !!state.routine.isFetchingRountines,
   list: state.routine.routineList
 });
 const mapDispatchToProps = null;
