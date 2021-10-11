@@ -20,10 +20,10 @@ const AvailableRoutines = ({
   selectedId = ''
 }) => {
   useEffect(() => {
-    if (!selectedId && list?.[0]?.id) {
+    if (list?.[0]?.id) {
       handleFunction(handleClick, list[0].id);
     }
-  }, [list, selectedId]);
+  }, [list]);
 
   const handleChange = (selected) => {
     handleFunction(handleClick, defaultValue(selected, ''));
