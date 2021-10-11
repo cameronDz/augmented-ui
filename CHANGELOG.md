@@ -6,9 +6,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.23.1] 2021-10-11
+
 ### Changed
 
+- Navbar navigation options to remove caffeine
+
+## [0.23.0] 2021-10-10
+
+### Changed
+
+- Routines selection now in a dropdown list above table
 - Routines table using simple table styling and moved underneath routine list
+
+### Remored
+
+- Rountines sidebar removed and placed about table
 
 ## [0.22.0] 2021-10-10
 
