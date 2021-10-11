@@ -1,13 +1,10 @@
 import React, { useEffect, Fragment } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { OutlinedSelector } from '../../../components/inputs';
 import { defaultValue } from '../../../lib/defaultValue';
 import { handleFunction } from '../../../lib/eventHandler';
 
-const selectedStyles = {
-  backgroundColor: 'lightgray',
-  cursor: 'default'
-};
 const propTypes = {
   handleClick: PropTypes.func,
   isErrored: PropTypes.bool,
@@ -28,9 +25,8 @@ const AvailableRoutines = ({
     }
   }, [list, selectedId]);
 
-  const handleRoutineClick = (event) => {
-    const value = defaultValue(event?.currentTarget?.dataset?.id, '');
-    handleFunction(handleClick, value);
+  const handleChange = (selected) => {
+    handleFunction(handleClick, defaultValue(selected, ''));
   };
 
   return (
@@ -38,22 +34,17 @@ const AvailableRoutines = ({
       {isLoading && <p style={{ fontStyle: 'italic' }}>Loading...</p>}
       {!isLoading && isErrored && <p style={{ fontStyle: 'italic' }}>Errored...</p>}
       {!isLoading && !isErrored && (
-        <ul>
-          {
-            Array.isArray(list) && list.map((item, idx) => {
-              return item?.id && item?.name && (
-                <li
-                  onClick={handleRoutineClick}
-                  data-id={item.id}
-                  key={item.id || idx}
-                  style={{ cursor: 'pointer', ...(item.id === selectedId ? selectedStyles : {}) }}
-                >
-                  {item.name}
-                </li>
-              );
-            })
-          }
-        </ul>
+        <div style={{ marginBottom: '8px' }}>
+          <OutlinedSelector
+            isDisabled={isLoading}
+            isExtended={false}
+            isFullExtended={true}
+            label="Select routine"
+            onChange={handleChange}
+            options={list}
+            value={selectedId}
+          />
+        </div>
       )}
     </Fragment>
   );

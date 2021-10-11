@@ -14,6 +14,7 @@ const outlinedSelectorStyles = {
       }
     },
     '&$fullExtendedSelectorContainer': {
+      width: '100%',
       '& .MuiFormControl-root': {
         width: '100%'
       }
