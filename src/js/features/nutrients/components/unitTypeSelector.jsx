@@ -6,6 +6,7 @@ import { handleFunction } from '../../../lib/eventHandler';
 const unitOptions = [
   { id: 'mg', name: 'mg' },
   { id: 'pill', name: 'pill' },
+  { id: 'g', name: 'g' },
   { id: 'oz', name: 'oz' },
   { id: 'lb', name: 'lb' },
   { id: 'kg', name: 'kg' }
