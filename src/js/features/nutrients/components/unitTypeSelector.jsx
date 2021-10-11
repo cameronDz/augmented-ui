@@ -6,8 +6,8 @@ import { handleFunction } from '../../../lib/eventHandler';
 const unitOptions = [
   { id: 'mg', name: 'mg' },
   { id: 'pill', name: 'pill' },
-  { id: 'ounce', name: 'oz' },
-  { id: 'pound', name: 'lb' },
+  { id: 'oz', name: 'oz' },
+  { id: 'lb', name: 'lb' },
   { id: 'kg', name: 'kg' }
 ];
 const propTypes = {
