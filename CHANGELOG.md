@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Tabs no longer wrapped with Bulma styled cards, with no additional titles
 - Dropdown styled with Bulma css
 
 ## [0.23.1] 2021-10-11
