@@ -27,7 +27,7 @@ const app = () => {
           </RouterSwtich>
         </HashRouter>
       </div>
-      <Footer className="app-root-footer" />
+      <Footer />
     </Fragment>);
 };
 
