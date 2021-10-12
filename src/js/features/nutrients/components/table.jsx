@@ -35,7 +35,7 @@ const table = ({ nutrients = null, isLoading = false }) => {
         if (typeof nutrients[idx] === 'object') {
           const splitTime = splitTextKeyToArray(nutrients[idx], 'intakeTime', 'T');
           const obj = {
-            amountDisplay: `${nutrients[idx]?.amount} ${nutrients[idx]?.amountType}${nutrients[idx]?.amount > 1 ? 's' : ''}`,
+            amountDisplay: `${nutrients[idx]?.amount} ${nutrients[idx]?.amountType}${nutrients[idx]?.amount > 1 ? '(s)' : ''}`,
             day: splitTime[0],
             time: splitTime[1] ? splitTime[1].substring(0, 5) : '',
             ...nutrients[idx]
