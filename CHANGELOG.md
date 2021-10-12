@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.24.2] 2021-10-12
+
+### Fixed
+
+- Datepicker component broadcasts new Date object instead of Date string
+
 ## [0.24.1] 2021-10-11
 
 ### Fixed

@@ -98,5 +98,5 @@
     "start": "webpack-dev-server --open --config webpack/dev.babel.js",
     "test": "mocha --require @babel/register --require ignore-styles --reqire jsdom-global/register"
   },
-  "version": "0.24.1"
+  "version": "0.24.2"
 }
