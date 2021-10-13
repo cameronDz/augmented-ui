@@ -20,27 +20,6 @@ const simpleDialogStyles = {
   }
 };
 
-const cardStyles = {
-  cardContainer: {
-    marginBottom: '20px'
-  },
-  cardContent: {
-    padding: '8px',
-    '&.column': {
-      marginBottom: '8px'
-    }
-  },
-  '@media all and (max-width: 600px)': {
-    cardContent: {
-      margin: 0,
-      padding: '0 4px',
-      '&.column': {
-        padding: 0
-      }
-    }
-  }
-};
-
 const footerStyles = {
   footerContainer: {
     alignItems: 'center',
@@ -62,4 +41,4 @@ const footerStyles = {
   }
 };
 
-export { cardStyles, footerStyles, simpleDialogStyles };
+export { footerStyles, simpleDialogStyles };
