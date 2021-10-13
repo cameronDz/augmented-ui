@@ -28,7 +28,7 @@ The following commands are used for building, testing, and deploying the applica
 ```javascript
 npm run build:dev // build unminified bundle
 npm run build:prod // build minified bundle for prod
-npm run lint // run linter against src/js, test, and webpack directories
+npm run lint // run linter against src/js, and webpack directories
 npm run lint:fix // run linter and fix any issues that linter can corrects
 npm run start // build unminified bundle and server through webpack server
 npm run test // run unit tests
@@ -43,7 +43,6 @@ augmented-frontend/
   src/
     assets/
       images/
-    css/
     js/
       components/
       features/
@@ -60,7 +59,6 @@ augmented-frontend/
       app.jsx
     index.js
     index.html
-  test/
   webpack/
 ```
 
