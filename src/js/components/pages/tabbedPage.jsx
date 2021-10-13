@@ -45,7 +45,6 @@ const TabbedPage = ({ isTabsCentered = false, isSecuredUser = false, tabNames = 
       <Grid item xs={12} sm={12} md={1}></Grid>
       <Grid item xs={12} sm={12} md={10}>
         <SimpleNavbar isSecuredUser={isSecuredUser} />
-        <h2 className={classes.pageHero}>{title}</h2>
         <AppBar position="static">
           <Tabs centered={isTabsCentered} value={value} onChange={handleChange} >
             {renderTabLabels()}
