@@ -23,7 +23,7 @@ const Table = ({
     const current = Array.isArray(list) && selectedId ? list.find((item) => selectedId === item?.id) : null;
     const currProcessedRoutine = processData(defaultValue(current?.exercises, []));
     setProcessedRoutineData(currProcessedRoutine);
-  }, [selectedId]);
+  }, [list, selectedId]);
 
   const processData = (currExercises) => {
     const arr = [];
