@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SimpleTable from '../../../components/simpleTable';
 import { orderByDateKey } from '../../../lib/sorts';
-import { splitTextKeyToArray } from '../../../lib/splits';
+import { splitZuluStringToLocalDayTime } from '../../../lib/time';
 
 const columns = ['day', 'name', 'amountDisplay', 'userName'];
 const details = ['day', 'time', 'name', 'description', 'amount', 'amountType', 'userName', 'comment'];
@@ -33,11 +33,11 @@ const table = ({ nutrients = null, isLoading = false }) => {
       const { length } = nutrients;
       for (let idx = 0; idx < length; idx++) {
         if (typeof nutrients[idx] === 'object') {
-          const splitTime = splitTextKeyToArray(nutrients[idx], 'intakeTime', 'T');
+          const zuluConvert = splitZuluStringToLocalDayTime(nutrients[idx].intakeTime);
           const obj = {
             amountDisplay: `${nutrients[idx]?.amount} ${nutrients[idx]?.amountType}${nutrients[idx]?.amount > 1 ? '(s)' : ''}`,
-            day: splitTime[0],
-            time: splitTime[1] ? splitTime[1].substring(0, 5) : '',
+            day: zuluConvert.day,
+            time: zuluConvert.time,
             ...nutrients[idx]
           };
           arr.push(obj);
