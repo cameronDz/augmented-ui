@@ -22,6 +22,10 @@ const simpleNavbarStyles = {
       backgroundColor: '#fafafa',
       paddingBottom: '8px',
       paddingTop: '8px'
+    },
+    '& a': {
+      color: '#3273dc',
+      textDecorator: 'none'
     }
   },
   navItemEnd: {
