@@ -34,8 +34,8 @@ const TabbedPage = ({ isTabsCentered = false, isSecuredUser = false, tabNames = 
   };
 
   const renderTabPanels = () => {
-    return !!Array.isArray(tabPanels) && tabPanels.map((item, key) => {
-      return (<TabPanel index={key} key={key} value={value}>{item}</TabPanel>);
+    return !!Array.isArray(tabPanels) && tabPanels.map((item, idx) => {
+      return <TabPanel key={item?.id || idx} index={idx} value={value}>{item}</TabPanel>;
     });
   };
 

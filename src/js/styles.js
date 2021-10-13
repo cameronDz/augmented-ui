@@ -1,7 +1,6 @@
 const appStyles = {
   appContainer: {
-    minHeight: '100%',
-    paddingBottom: '36px'
+    minHeight: '100%'
   },
   '@global': {
     html: {

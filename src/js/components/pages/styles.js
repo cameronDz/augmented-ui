@@ -10,4 +10,10 @@ const tabbedPageStyles = {
   }
 };
 
-export { tabbedPageStyles };
+const tabPanelStyles = {
+  tabContentWrapper: {
+    marginBottom: '32px'
+  }
+};
+
+export { tabbedPageStyles, tabPanelStyles };

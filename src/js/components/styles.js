@@ -43,13 +43,15 @@ const cardStyles = {
 
 const footerStyles = {
   footerContainer: {
+    alignItems: 'center',
     bottom: '0',
-    marginTop: '-36px',
-    maxHeight: '36px',
-    minHeight: '36px',
+    display: 'flex',
+    height: '36px',
+    marginTop: '-44px',
     maxWidth: '100%',
     padding: '4px 0',
-    textAlign: 'center'
+    textAlign: 'center',
+    width: '100%'
   },
   footerVerbiage: {
     margin: 'auto',
