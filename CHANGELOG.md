@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Simple Table styled using MUI component instead of Bulma CSS
+
 ## [0.24.2] 2021-10-12
 
 ### Fixed
