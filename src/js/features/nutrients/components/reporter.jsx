@@ -91,6 +91,7 @@ const reporter = ({
     const payload = {
       amount: Number(amount),
       amountType: amountType,
+      createdDate: new Date().toJSON(),
       comment: comment,
       description,
       id: uuidv4(),

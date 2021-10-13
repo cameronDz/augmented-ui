@@ -73,6 +73,7 @@ const SessionReporter = ({
     const item = {
       ...form,
       id: uuidv4(),
+      createdDate: new Date().toJSON(),
       startTime: defaultValue(form?.startDate?.toJSON(), '')
     };
     formSave(item);
