@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.25.3] 2021-10-12
+
+### Fixed
+
+- Footer sticks to bottom correctly
+
 ## [0.25.2] 2021-10-12
 
 ### Fixed
