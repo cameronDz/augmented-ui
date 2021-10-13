@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import SimpleTable from '../../../components/simpleTable';
 import { orderByDateKey } from '../../../lib/sorts';
-import { splitTextKeyToArray } from '../../../lib/splits';
+import { splitZuluStringToLocalDayTime } from '../../../lib/time';
 import { formatMiles, formatSeconds } from '../../../lib/format';
 
 const columns = ['date', 'machineType', 'userName'];
@@ -36,10 +36,10 @@ const table = ({ isLoading, isProcessing, sessions }) => {
       for (let idx = 0; idx < length; idx++) {
         if (typeof sessions[idx] === 'object') {
           const { distanceMiles, seconds, ...other } = sessions[idx];
-          const splitTime = splitTextKeyToArray(sessions[idx], 'startTime', 'T');
+          const zuluConvert = splitZuluStringToLocalDayTime(sessions[idx].startTime);
           const obj = {
-            date: splitTime[0],
-            time: splitTime[1] ? splitTime[1].substring(0, 5) : '',
+            date: zuluConvert.day,
+            time: zuluConvert.time,
             duration: formatSeconds(seconds),
             distance: formatMiles(distanceMiles),
             ...other
