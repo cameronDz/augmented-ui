@@ -6,9 +6,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.25.0] 2021-10-12
+
 ### Changed
 
 - Simple Table styled using MUI component instead of Bulma CSS
+
+### Fixed
+
+- Dates in tables converted from Zulu time to locale
+
+### Removed
+
+- Bulma CSS tag from index file
 
 ## [0.24.2] 2021-10-12
 
