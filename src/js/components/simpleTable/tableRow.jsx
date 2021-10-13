@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { TableCell, TableRow as MuiTableRow } from '@material-ui/core';
 import RowDetailsButton from './rowDetailsButton';
 
 const propTypes = {
@@ -12,19 +13,21 @@ const propTypes = {
 };
 const TableRow = ({ columns, details, includeDetails, rowData, title, titles }) => {
   return Object.keys(rowData).length > 0 && (
-    <tr>
+    <MuiTableRow>
       {Array.isArray(columns) && columns.map((col, idx) => {
-        return col && <td key={col?.id || idx}>{rowData[col]}</td>;
+        return col && <TableCell key={col?.id || idx}>{rowData[col]}</TableCell>;
       })}
       {includeDetails && (
-        <RowDetailsButton
-          data={rowData}
-          details={details}
-          title={title}
-          titles={titles}
-        />
+        <TableCell align="center">
+          <RowDetailsButton
+            data={rowData}
+            details={details}
+            title={title}
+            titles={titles}
+          />
+        </TableCell>
       )}
-    </tr>);
+    </MuiTableRow>);
 };
 
 TableRow.propTypes = propTypes;

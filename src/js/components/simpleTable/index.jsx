@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { makeStyles, CircularProgress } from '@material-ui/core';
+import { makeStyles, CircularProgress, Table, TableContainer } from '@material-ui/core';
 import TableContent from './tableContent';
 import TableHeader from './tableHeader';
 import { simpleTableStles as styles } from './styles';
@@ -35,17 +35,19 @@ const SimpleTable = ({
   return (
     <Fragment>
       <div className={classNames(classes.simpleTableWrapper, 'nssd-table-wrapper')}>
-        <table className={classNames(classes.tableSelector)}>
-          <TableHeader columnNames={columns} includeDetails={includeDetails} titles={titles} />
-          <TableContent
-            columnNames={columns}
-            detailNames={details}
-            includeDetails={includeDetails}
-            rowsData={rowsData}
-            title={detailsTitle}
-            titles={titles}
-          />
-        </table>
+        <TableContainer>
+          <Table className={classNames(classes.tableSelector)} size="small">
+            <TableHeader columnNames={columns} includeDetails={includeDetails} titles={titles} />
+            <TableContent
+              columnNames={columns}
+              detailNames={details}
+              includeDetails={includeDetails}
+              rowsData={rowsData}
+              title={detailsTitle}
+              titles={titles}
+            />
+          </Table>
+        </TableContainer>
       </div>
       {isLoading && (
         <div className={classNames(classes.tableLoader)}>

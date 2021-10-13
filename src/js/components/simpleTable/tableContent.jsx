@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { TableBody } from '@material-ui/core';
 import TableRow from './tableRow';
 
 const propTypes = {
@@ -12,7 +13,7 @@ const propTypes = {
 };
 const TableContent = ({ columnNames, detailNames, includeDetails, rowsData, title, titles }) => {
   return (
-    <tbody>
+    <TableBody>
       {Array.isArray(rowsData) && rowsData.map((row, idx) => {
         return (
           <TableRow
@@ -26,7 +27,8 @@ const TableContent = ({ columnNames, detailNames, includeDetails, rowsData, titl
           />
         );
       })}
-    </tbody>);
+    </TableBody>
+  );
 };
 
 TableContent.propTypes = propTypes;

@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { TableCell, TableHead, TableRow } from '@material-ui/core';
 
 const propTypes = {
   columnNames: PropTypes.array,
@@ -8,14 +9,14 @@ const propTypes = {
 };
 const TableHeader = ({ columnNames, includeDetails, titles }) => {
   return (
-    <thead>
-      <tr>
+    <TableHead>
+      <TableRow>
         {Array.isArray(columnNames) && columnNames.map((col, idx) => {
-          return col && <th key={idx}>{titles?.[col] || ''}</th>;
+          return col && <TableCell key={idx}>{titles?.[col] || ''}</TableCell>;
         })}
-        {includeDetails && <th></th>}
-      </tr>
-    </thead>
+        {includeDetails && <TableCell></TableCell>}
+      </TableRow>
+    </TableHead>
   );
 };
 

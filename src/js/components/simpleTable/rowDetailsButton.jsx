@@ -15,7 +15,7 @@ const RowDetailsButton = ({ data, details = null, title = '', titles }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <td style={{ textAlign: 'center' }}>
+    <Fragment>
       <IconButton onClick={() => setIsOpen(true)}>
         <ErrorOutlineIcon />
       </IconButton>
@@ -36,7 +36,7 @@ const RowDetailsButton = ({ data, details = null, title = '', titles }) => {
           </Fragment>
         }
       />
-    </td>);
+    </Fragment>);
 };
 
 RowDetailsButton.propTypes = propTypes;
