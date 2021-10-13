@@ -3,9 +3,9 @@ Application used for tracking various fitness and nutritional activities. Curren
 
 ## TODO list ##
 - [ ] sticky footer issue
-- [ ] rm underlines on links on footer and help page
 - [ ] upgrade React to v17, Webpack v5, Mui v5, and Babel v8
 - [ ] setup prettier file for formatting with linter
+- [x] rm underlines on links on footer and help page
 - [x] Set time values to be based off UTC
 - [x] Switch from bulma to material ui for styling
 - [x] Set nutrients report to have consumption time and based off types

@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.25.2] 2021-10-12
+
+### Fixed
+
+- a tags all set same color blue and removed underline
+
 ## [0.25.1] 2021-10-12
 
 ### Fixed

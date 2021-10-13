@@ -17,6 +17,10 @@ const appStyles = {
     '.MuiFormControl-root, .MuiButtonBase-root.MuiButton-root.MuiButton-contained': {
       marginRight: '12px',
       marginTop: '12px'
+    },
+    a: {
+      color: '#3273dc',
+      textDecoration: 'none'
     }
   }
 };
