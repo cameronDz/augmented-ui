@@ -25,7 +25,7 @@ const simpleNavbarStyles = {
     },
     '& a': {
       color: '#3273dc',
-      textDecorator: 'none'
+      textDecoration: 'none'
     }
   },
   navItemEnd: {
@@ -44,6 +44,14 @@ const navbarItemsStyles = {
   navTitleDisplay: {
     fontWeight: '600',
     fontVariationSettings: "'wght' 500"
+  },
+  '@global': {
+    '.MuiPopover-root': {
+      '& a': {
+        color: '#3273dc',
+        textDecoration: 'none'
+      }
+    }
   }
 };
 
