@@ -13,10 +13,11 @@ const appStyles = {
       margin: 0,
       padding: 0
     },
-    '.MuiFormControl-root, .MuiButtonBase-root.MuiButton-root.MuiButton-contained': {
-      marginRight: '12px',
-      marginTop: '12px'
-    },
+    '.MuiFormControl-root, .MuiButtonBase-root.MuiButton-root.MuiButton-contained':
+      {
+        marginRight: '12px',
+        marginTop: '12px'
+      },
     a: {
       color: '#3273dc',
       textDecoration: 'none'

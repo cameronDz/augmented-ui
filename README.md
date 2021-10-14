@@ -1,7 +1,9 @@
-# augmented-ui #
-Application used for tracking various fitness and nutritional activities. Currently live at [http://www.augmented.fit](http://www.augmented.fit). Site is forward masking to the deployed S3 bucket, [here](http://augmented-frontend.s3-website-us-east-1.amazonaws.com). The AWS S3 bucket is a static page. This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app), and later used the command ```npm run eject``` to customize project into current state.
+# augmented-ui
 
-## TODO list ##
+Application used for tracking various fitness and nutritional activities. Currently live at [http://www.augmented.fit](http://www.augmented.fit). Site is forward masking to the deployed S3 bucket, [here](http://augmented-frontend.s3-website-us-east-1.amazonaws.com). The AWS S3 bucket is a static page. This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app), and later used the command `npm run eject` to customize project into current state.
+
+## TODO list
+
 - [ ] upgrade Mui to v5
 - [ ] setup prettier file for formatting with linter
 - [x] upgrade React to v17
@@ -22,7 +24,8 @@ Application used for tracking various fitness and nutritional activities. Curren
 - [x] Create #/ routing system
 - [x] Set footer to be sticky
 
-## npm - Commands for Application ##
+## npm - Commands for Application
+
 The following commands are used for building, testing, and deploying the application.
 
 ```javascript
@@ -34,10 +37,12 @@ npm run start // build unminified bundle and server through webpack server
 npm run test // run unit tests
 ```
 
-### General Notes ###
+### General Notes
+
 Augmented logo is generated through all CAPS "dosis-bold" font.
 
-## Folder Structure ##
+## Folder Structure
+
 ```
 augmented-frontend/
   src/
@@ -62,9 +67,10 @@ augmented-frontend/
   webpack/
 ```
 
-## AWS Configuration ##
+## AWS Configuration
 
-### S3 Rerouting ###
+### S3 Rerouting
+
 Since Augmented Frontend is a Single Page Application (SPA), routing is done on the browser side. This means that the S3 bucket has to be configured to be rerouted. In the S3 buckets portal on AWS, under 'Properties' tab, in the 'Static website hosting' section, a 'Redirection rule' needs to be added to reroute all pages to the home page. This is a temporary solution while application is in its early stages. A Stack Overflow article detailing different solutions to routing can be view [here](https://stackoverflow.com/questions/27928372/react-router-urls-dont-work-when-refreshing-or-writting-manually), in order to come up with application specific solution for routing.
 
 ```xml
@@ -80,5 +86,6 @@ Since Augmented Frontend is a Single Page Application (SPA), routing is done on 
 </RoutingRules>
 ```
 
-### S3 Authentication/Permissions ###
+### S3 Authentication/Permissions
+
 In order to push assets to S3, need to set up credentials on local machine. Use following tutorial: [backup to s3](https://aws.amazon.com/getting-started/tutorials/backup-to-s3-cli/).

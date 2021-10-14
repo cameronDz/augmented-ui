@@ -13,18 +13,21 @@ module.exports = {
     extensions: ['*', '.js', '.jsx']
   },
   module: {
-    rules: [{
-      test: /\.(js|jsx)$/,
-      exclude: /node_module/,
-      use: {
-        loader: 'babel-loader'
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_module/,
+        use: {
+          loader: 'babel-loader'
+        }
+      },
+      {
+        test: /\.html$/,
+        use: {
+          loader: 'html-loader'
+        }
       }
-    }, {
-      test: /\.html$/,
-      use: {
-        loader: 'html-loader'
-      }
-    }]
+    ]
   },
   plugins: [
     new CopyWebpackPlugin({
