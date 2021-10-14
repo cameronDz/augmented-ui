@@ -18,17 +18,18 @@ const app = () => {
       <div className={classNames(classes.appContainer)}>
         <HashRouter>
           <RouterSwtich>
-            <Route exact path='/' component={Session} />
-            <Route exact path='/exercise' component={ExercisePage} />
-            <Route exact path='/help' component={HelpPage} />
-            <Route exact path='/nutrient' component={NutrientPage} />
-            <Route exact path='/routine' component={RoutinePage} />
-            <Route exact path='/session' component={Session} />
+            <Route exact path="/" component={Session} />
+            <Route exact path="/exercise" component={ExercisePage} />
+            <Route exact path="/help" component={HelpPage} />
+            <Route exact path="/nutrient" component={NutrientPage} />
+            <Route exact path="/routine" component={RoutinePage} />
+            <Route exact path="/session" component={Session} />
           </RouterSwtich>
         </HashRouter>
       </div>
       <Footer />
-    </Fragment>);
+    </Fragment>
+  );
 };
 
 export default app;

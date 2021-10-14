@@ -34,9 +34,7 @@ const NavMenuItems = ({ links, title = '' }) => {
         color="inherit"
         onClick={handleMenuOpen}
       >
-        <div className={classes.navTitleDisplay}>
-          {title}
-        </div>
+        <div className={classes.navTitleDisplay}>{title}</div>
         <KeyboardArrowDown />
       </div>
       <Menu
@@ -48,13 +46,16 @@ const NavMenuItems = ({ links, title = '' }) => {
         open={isOpen}
         transformOrigin={{ horizontal: 'right', vertical: 'top' }}
       >
-        {Array.isArray(links) && links.map((link, idx) => {
-          return !!link && (
-            <MenuItem key={link.url + idx}>
-              <Link to={`/${link.url}`}>{link.title}</Link>
-            </MenuItem>
-          );
-        })}
+        {Array.isArray(links) &&
+          links.map((link, idx) => {
+            return (
+              !!link && (
+                <MenuItem key={link.url + idx}>
+                  <Link to={`/${link.url}`}>{link.title}</Link>
+                </MenuItem>
+              )
+            );
+          })}
       </Menu>
     </Fragment>
   );

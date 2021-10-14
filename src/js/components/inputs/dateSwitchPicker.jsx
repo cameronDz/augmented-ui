@@ -35,7 +35,7 @@ const DateSwitchPicker = ({
   }, [startOffset, valueSwitch]);
 
   const handleOffset = () => {
-    const msStateTime = new Date().getTime() - (startOffset * 1000);
+    const msStateTime = new Date().getTime() - startOffset * 1000;
     handleFunction(onDateChange, new Date(msStateTime));
   };
 

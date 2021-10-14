@@ -17,7 +17,7 @@ const SimpleNavbar = ({ isSecuredUser }) => {
       <AppBar elevation={0} position="static">
         <Toolbar>
           <div className={classNames(classes.navItem, classes.navImageLogo)}>
-            <img alt="augmented-logo" src="images/aug-logo.png"/>
+            <img alt="augmented-logo" src="images/aug-logo.png" />
           </div>
           <div className={classNames(classes.navItem)}>
             <Link to="/">Home</Link>

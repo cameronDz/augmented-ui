@@ -2,7 +2,13 @@ import React, { useEffect, useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import { v4 as uuidv4 } from 'uuid';
-import { makeStyles, FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import {
+  makeStyles,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select
+} from '@material-ui/core';
 import { eventDefaultValue } from '../../lib/defaultValue';
 import { handleFunction } from '../../lib/eventHandler';
 import { outlinedSelectorStyles as styles } from './styles';
@@ -64,11 +70,13 @@ const OutlinedSelector = ({
 
   const classes = useStyles();
   return (
-    <div className={classNames(
-      classes.rootSelectorContainer,
-      isExtended && !isFullExtended && classes.extendedSelectorContainer,
-      isFullExtended && classes.fullExtendedSelectorContainer
-    )}>
+    <div
+      className={classNames(
+        classes.rootSelectorContainer,
+        isExtended && !isFullExtended && classes.extendedSelectorContainer,
+        isFullExtended && classes.fullExtendedSelectorContainer
+      )}
+    >
       <FormControl variant="outlined">
         {label && <InputLabel id={labelId}>{label}</InputLabel>}
         <Select
@@ -77,7 +85,9 @@ const OutlinedSelector = ({
           onChange={handleChange}
           value={selected}
         >
-          <MenuItem value=""><em>- -</em></MenuItem>
+          <MenuItem value="">
+            <em>- -</em>
+          </MenuItem>
           {items}
         </Select>
       </FormControl>

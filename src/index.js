@@ -2,7 +2,10 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DateFnsUtils from '@date-io/date-fns';
 import { MuiPickersUtilsProvider } from '@material-ui/pickers';
-import { StylesProvider, createGenerateClassName } from '@material-ui/core/styles';
+import {
+  StylesProvider,
+  createGenerateClassName
+} from '@material-ui/core/styles';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import App from './js/app';
@@ -12,7 +15,7 @@ const generateClassName = createGenerateClassName({
   productionPrefix: 'nssd'
 });
 
-ReactDOM.render((
+ReactDOM.render(
   <Provider store={configureStore()}>
     <StylesProvider generateClassName={generateClassName}>
       <BrowserRouter>
@@ -21,5 +24,6 @@ ReactDOM.render((
         </MuiPickersUtilsProvider>
       </BrowserRouter>
     </StylesProvider>
-  </Provider>
-), document.getElementById('augmented-root'));
+  </Provider>,
+  document.getElementById('augmented-root')
+);

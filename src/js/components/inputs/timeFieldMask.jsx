@@ -20,7 +20,10 @@ const timeFormatNumber = (num) => {
   } else if (len === 5) {
     ret = `0${val.substring(0, 1)}:${val.substring(1, 3)}:${val.substring(3)}`;
   } else {
-    ret = `${val.substring(0, len - 4)}:${val.substring(len - 4, len - 2)}:${val.substring(len - 2)}`;
+    ret = `${val.substring(0, len - 4)}:${val.substring(
+      len - 4,
+      len - 2
+    )}:${val.substring(len - 2)}`;
   }
   return ret;
 };

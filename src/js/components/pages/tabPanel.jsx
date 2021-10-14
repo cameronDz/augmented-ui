@@ -21,7 +21,8 @@ const tabPanel = ({ children, index, value, ...other }) => {
       {...other}
     >
       <Box p={3}>{children}</Box>
-    </Typography>);
+    </Typography>
+  );
 };
 
 tabPanel.propTypes = propTypes;

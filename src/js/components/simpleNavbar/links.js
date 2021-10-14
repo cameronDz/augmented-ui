@@ -4,8 +4,6 @@ const fitnessLinks = [
   { title: 'Routines', url: 'routine' }
 ];
 
-const nutrientsLinks = [
-  { title: 'Supplements', url: 'nutrient' }
-];
+const nutrientsLinks = [{ title: 'Supplements', url: 'nutrient' }];
 
 export { fitnessLinks, nutrientsLinks };

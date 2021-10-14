@@ -12,18 +12,25 @@ const footer = () => {
 
   const classes = useStyles();
   return (
-    <footer className={classNames('nssd-footer-container', classes.footerContainer)}>
+    <footer
+      className={classNames('nssd-footer-container', classes.footerContainer)}
+    >
       <p className={classNames(classes.footerVerbiage)}>
         <span className={classNames(classes.appTitle)}>
           {`Augmented @v${_package.version}`}
         </span>
         <span>. Created by </span>
-        <a href={homepageUrl} target="_">{name}</a>
+        <a href={homepageUrl} target="_">
+          {name}
+        </a>
         <span>. Repository on </span>
-        <a href={repositoryUrl} target="_">GitHub</a>
+        <a href={repositoryUrl} target="_">
+          GitHub
+        </a>
         <span>.</span>
       </p>
-    </footer>);
+    </footer>
+  );
 };
 
 export default footer;
