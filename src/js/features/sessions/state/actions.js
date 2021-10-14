@@ -18,7 +18,7 @@ const getCardioSessionList = () => {
     dispatch(emitDispatch(_types.GET_REQUEST_CARDIO_SESSION_LIST_START));
     return axios.get(url, _config.baseApiConfig)
       .then((response) => {
-        const cardio = !!response && !!response.data && response.data.payload && Array.isArray(response.data.payload.cardio) ? response.data.payload.cardio : [];
+        const cardio = Array.isArray(response?.data?.payload?.cardio) ? response.data.payload.cardio : [];
         return dispatch(emitDispatch(_types.GET_REQUEST_CARDIO_SESSION_LIST_SUCCESS, { data: cardio }));
       })
       .catch((error) => {

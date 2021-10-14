@@ -12,7 +12,7 @@ const getExerciseList = () => {
     dispatch(emitDispatch(_types.GET_REQUEST_EXERCISE_LIST_START));
     return axios.get(url, _config.baseApiConfig)
       .then((response) => {
-        const exercises = !!response && !!response.data && response.data.payload && Array.isArray(response.data.payload.exercises) ? response.data.payload.exercises : [];
+        const exercises = Array.isArray(response?.data?.payload?.exercises) ? response.data.payload.exercises : [];
         return dispatch(emitDispatch(_types.GET_REQUEST_EXERCISE_LIST_SUCCESS, { data: exercises }));
       })
       .catch((error) => {

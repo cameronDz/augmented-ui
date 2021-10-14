@@ -12,7 +12,7 @@ export const fetchRoutineList = () => {
     dispatch(emitDispatch(_types.GET_REQUEST_ROUTINE_LIST_START));
     return axios.get(url, _config.baseApiConfig)
       .then((payload) => {
-        const routines = !!payload && !!payload.data && payload.data.payload ? payload.data.payload.routines : [];
+        const routines = Array.isArray(payload?.data?.payload?.routines) ? payload.data.payload.routines : [];
         return dispatch(emitDispatch(_types.GET_REQUEST_ROUTINE_LIST_SUCCESS, { routines }));
       })
       .catch((error) => {
