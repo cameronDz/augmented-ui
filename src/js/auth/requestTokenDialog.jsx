@@ -98,7 +98,7 @@ const RequestTokenDialog = ({
 
   const getText = () => {
     return token
-      ? 'You\'re credentials are valid.'
+      ? "You're credentials are valid."
       : 'To create new Augmented sessions and logs, please log in with valid credentials.';
   };
 
@@ -110,17 +110,25 @@ const RequestTokenDialog = ({
       contentBody={
         <Fragment>
           <div className={classes?.dialogContentContainer}>
-            {isProcessingRequest
-              ? (
+            {isProcessingRequest ? (
               <CircularProgress />
-                )
-              : (
+            ) : (
               <Fragment>
-                {error && <Alert severity="error">Unable to validate credentials. Please try again!</Alert>}
-                {success && <Alert severity="success">Successfully validated credentials!</Alert>}
-                {!error && !success && <DialogContentText>{getText()}</DialogContentText>}
-              </Fragment>
+                {error && (
+                  <Alert severity="error">
+                    Unable to validate credentials. Please try again!
+                  </Alert>
                 )}
+                {success && (
+                  <Alert severity="success">
+                    Successfully validated credentials!
+                  </Alert>
+                )}
+                {!error && !success && (
+                  <DialogContentText>{getText()}</DialogContentText>
+                )}
+              </Fragment>
+            )}
           </div>
           <TextField
             autoFocus
@@ -152,20 +160,18 @@ const RequestTokenDialog = ({
       contentFooter={
         <Fragment>
           <Button onClick={handleClose}>{token ? 'Close' : 'Cancel'}</Button>
-          {token
-            ? (
+          {token ? (
             <Button disabled={isProcessingRequest} onClick={handleActionClick}>
               Clear Credentials
             </Button>
-              )
-            : (
+          ) : (
             <Button
               disabled={isProcessingRequest || !username || !password}
               onClick={handleActionClick}
             >
               Signin
             </Button>
-              )}
+          )}
         </Fragment>
       }
     />

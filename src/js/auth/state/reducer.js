@@ -8,7 +8,13 @@ const reducer = (state = initialState, action = null) => {
       newState = { ...state, error: null, success: false };
       break;
     case _types.CLEAR_TOKEN:
-      newState = { ...state, error: null, success: false, token: null, username: null };
+      newState = {
+        ...state,
+        error: null,
+        success: false,
+        token: null,
+        username: null
+      };
       break;
     case _types.GET_TOKEN_CANCELLED:
       newState = { ...state, isCancelled: true, isFetching: false };

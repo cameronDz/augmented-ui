@@ -41,7 +41,11 @@ const fetchToken = (credentials) => {
       .post(url, credentials, config)
       .then((payload) => {
         const type = _types.GET_TOKEN_SUCCESS;
-        return dispatch({ data: payload?.data, username: credentials.username, type });
+        return dispatch({
+          data: payload?.data,
+          username: credentials.username,
+          type
+        });
       })
       .catch((error) => {
         const type = _types.GET_TOKEN_ERROR;
