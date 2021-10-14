@@ -6,7 +6,16 @@ import { orderByDateKey } from '../../../lib/sorts';
 import { splitZuluStringToLocalDayTime } from '../../../lib/time';
 
 const columns = ['day', 'name', 'amountDisplay', 'userName'];
-const details = ['day', 'time', 'name', 'description', 'amount', 'amountType', 'userName', 'comment'];
+const details = [
+  'day',
+  'time',
+  'name',
+  'description',
+  'amount',
+  'amountType',
+  'userName',
+  'comment'
+];
 const title = 'Nutrients dose details';
 const titles = {
   amount: 'Amt',
@@ -33,9 +42,13 @@ const table = ({ nutrients = null, isLoading = false }) => {
       const { length } = nutrients;
       for (let idx = 0; idx < length; idx++) {
         if (typeof nutrients[idx] === 'object') {
-          const zuluConvert = splitZuluStringToLocalDayTime(nutrients[idx].intakeTime);
+          const zuluConvert = splitZuluStringToLocalDayTime(
+            nutrients[idx].intakeTime
+          );
           const obj = {
-            amountDisplay: `${nutrients[idx]?.amount} ${nutrients[idx]?.amountType}${nutrients[idx]?.amount > 1 ? '(s)' : ''}`,
+            amountDisplay: `${nutrients[idx]?.amount} ${
+              nutrients[idx]?.amountType
+            }${nutrients[idx]?.amount > 1 ? '(s)' : ''}`,
             day: zuluConvert.day,
             time: zuluConvert.time,
             ...nutrients[idx]
@@ -62,7 +75,7 @@ const table = ({ nutrients = null, isLoading = false }) => {
   );
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   nutrients: state.nutrientsData.reportsPayload,
   isLoading: state.nutrientsData.isLoadingReports
 });

@@ -51,7 +51,10 @@ const creator = ({
     if (newName && Array.isArray(types)) {
       const { length } = types;
       for (let idx = 0; idx < length; idx++) {
-        if (types[idx]?.name && newName.toLocaleLowerCase() === types[idx]?.name.toLocaleLowerCase()) {
+        if (
+          types[idx]?.name &&
+          newName.toLocaleLowerCase() === types[idx]?.name.toLocaleLowerCase()
+        ) {
           isMatched = true;
           break;
         }
@@ -116,17 +119,36 @@ const creator = ({
         variant="outlined"
       />
       <div>
-        <Button disabled={isDisabled} onClick={resetFormValues} variant="contained">Clear</Button>
-        <Button color="primary" disabled={hasTruthy(isDisabled, isNameMatched, !name)} onClick={handleSubmit} variant="contained">Submit</Button>
+        <Button
+          disabled={isDisabled}
+          onClick={resetFormValues}
+          variant="contained"
+        >
+          Clear
+        </Button>
+        <Button
+          color="primary"
+          disabled={hasTruthy(isDisabled, isNameMatched, !name)}
+          onClick={handleSubmit}
+          variant="contained"
+        >
+          Submit
+        </Button>
       </div>
     </Fragment>
   );
 };
 
 creator.propTypes = propTypes;
-const mapStateToProps = state => ({
-  isLoading: hasTruthy(state.nutrientsData.isLoadingReports, state.nutrientsData.isLoadingTypes),
-  isProcessing: hasTruthy(state.nutrientsData.isProcessingReport, state.nutrientsData.isProcessingType),
+const mapStateToProps = (state) => ({
+  isLoading: hasTruthy(
+    state.nutrientsData.isLoadingReports,
+    state.nutrientsData.isLoadingTypes
+  ),
+  isProcessing: hasTruthy(
+    state.nutrientsData.isProcessingReport,
+    state.nutrientsData.isProcessingType
+  ),
   isSuccessfulPut: !!state.nutrientsData.typePutPayload,
   isUserSecured: !!state.auth.token,
   types: state.nutrientsData.typesPayload

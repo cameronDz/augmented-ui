@@ -9,7 +9,10 @@ import { UnsecuredUserAlert } from '../../../auth';
 import { createValidTypesList } from '../lib';
 import { defaultValue, eventDefaultValue } from '../../../lib/defaultValue';
 import { hasTruthy } from '../../../lib/hasTruthy';
-import { clearNutrientReportPutSuccess, putNutrientReport } from '../state/actions';
+import {
+  clearNutrientReportPutSuccess,
+  putNutrientReport
+} from '../state/actions';
 
 const propTypes = {
   clearSaveSuccess: PropTypes.func,
@@ -73,7 +76,8 @@ const reporter = ({
   };
 
   const handleChangeName = (newId = '') => {
-    const matchingType = Array.isArray(types) && newId && types.find((type) => newId === type?.id);
+    const matchingType =
+      Array.isArray(types) && newId && types.find((type) => newId === type?.id);
     const newName = defaultValue(matchingType?.name, '');
     const newUnit = defaultValue(matchingType?.defaultUnit, '');
     const newDesc = defaultValue(matchingType?.description, '');
@@ -148,16 +152,36 @@ const reporter = ({
         valueDate={defaultValue(consumptionTime, '')}
       />
       <div>
-        <Button disabled={isDisabled} onClick={resetFormValues} variant="contained">Clear</Button>
-        <Button color="primary" disabled={hasTruthy(isDisabled, !name)} onClick={handleSubmit} variant="contained">Submit</Button>
+        <Button
+          disabled={isDisabled}
+          onClick={resetFormValues}
+          variant="contained"
+        >
+          Clear
+        </Button>
+        <Button
+          color="primary"
+          disabled={hasTruthy(isDisabled, !name)}
+          onClick={handleSubmit}
+          variant="contained"
+        >
+          Submit
+        </Button>
       </div>
-    </Fragment>);
+    </Fragment>
+  );
 };
 
 reporter.propTypes = propTypes;
-const mapStateToProps = state => ({
-  isLoading: hasTruthy(state.nutrientsData.isLoadingReports, state.nutrientsData.isLoadingTypes),
-  isProcessing: hasTruthy(state.nutrientsData.isProcessingReport, state.nutrientsData.isProcessingType),
+const mapStateToProps = (state) => ({
+  isLoading: hasTruthy(
+    state.nutrientsData.isLoadingReports,
+    state.nutrientsData.isLoadingTypes
+  ),
+  isProcessing: hasTruthy(
+    state.nutrientsData.isProcessingReport,
+    state.nutrientsData.isProcessingType
+  ),
   isSuccessfulPut: !!state.nutrientsData.reportPutPayload,
   isUserSecured: !!state.auth.token,
   types: state.nutrientsData.typesPayload

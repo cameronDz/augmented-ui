@@ -2,7 +2,11 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { TabbedPage } from '../../components/pages';
-import { NutrientsCreator, NutrientsReporter, NutrientsTable } from './components';
+import {
+  NutrientsCreator,
+  NutrientsReporter,
+  NutrientsTable
+} from './components';
 import { getNutrientReports, getNutrientTypes } from './state/actions';
 import { handleFunction } from '../../lib/eventHandler';
 
@@ -25,7 +29,12 @@ const NutrientsPage = ({ getReportsData, getTypesData }) => {
     handleFunction(getTypesData);
   }, [getTypesData]);
 
-  return <TabbedPage tabNames={['Records', 'Reporter', 'Creator']} tabPanels={tabPanels} />;
+  return (
+    <TabbedPage
+      tabNames={['Records', 'Reporter', 'Creator']}
+      tabPanels={tabPanels}
+    />
+  );
 };
 
 NutrientsPage.propTypes = propTypes;

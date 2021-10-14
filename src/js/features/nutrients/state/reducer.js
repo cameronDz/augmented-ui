@@ -9,10 +9,18 @@ const reducer = (state = initialState, action = null) => {
       newState = { ...state, isLoadingReports: true };
       break;
     case _types.GET_REQUEST_NUTRIENTS_REPORTS_SUCCESS:
-      newState = { ...state, reportsGetError: null, reportsPayload: action.data };
+      newState = {
+        ...state,
+        reportsGetError: null,
+        reportsPayload: action.data
+      };
       break;
     case _types.GET_REQUEST_NUTRIENTS_REPORTS_ERROR:
-      newState = { ...state, reportsGetError: action.error, reportsPayload: null };
+      newState = {
+        ...state,
+        reportsGetError: action.error,
+        reportsPayload: null
+      };
       break;
     case _types.GET_REQUEST_NUTRIENTS_REPORTS_COMPLETED:
       newState = { ...state, isLoadingReports: false };
@@ -37,10 +45,18 @@ const reducer = (state = initialState, action = null) => {
       newState = { ...state, isProcessingReport: true };
       break;
     case _types.PUT_REQUEST_NUTRIENTS_REPORT_SUCCESS:
-      newState = { ...state, reportPutError: null, reportPutPayload: action.data };
+      newState = {
+        ...state,
+        reportPutError: null,
+        reportPutPayload: action.data
+      };
       break;
     case _types.PUT_REQUEST_NUTRIENTS_REPORT_ERROR:
-      newState = { ...state, reportPutError: action.error, reportPutPayload: null };
+      newState = {
+        ...state,
+        reportPutError: action.error,
+        reportPutPayload: null
+      };
       break;
     case _types.PUT_REQUEST_NUTRIENTS_REPORT_COMPLETED:
       newState = { ...state, isProcessingReport: false };
