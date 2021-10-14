@@ -10,7 +10,10 @@ const Overview = () => {
 
   return (
     <Fragment>
-      <AvailableRoutines handleClick={handleRoutineClick} selectedId={currentId} />
+      <AvailableRoutines
+        handleClick={handleRoutineClick}
+        selectedId={currentId}
+      />
       <Table selectedId={currentId} />
     </Fragment>
   );

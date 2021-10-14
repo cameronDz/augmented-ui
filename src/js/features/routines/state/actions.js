@@ -10,16 +10,25 @@ export const fetchRoutineList = () => {
   return (dispatch) => {
     const url = `${_config.baseApiUrl}/object/routines`;
     dispatch(emitDispatch(_types.GET_REQUEST_ROUTINE_LIST_START));
-    return axios.get(url, _config.baseApiConfig)
+    return axios
+      .get(url, _config.baseApiConfig)
       .then((payload) => {
-        const routines = Array.isArray(payload?.data?.payload?.routines) ? payload.data.payload.routines : [];
-        return dispatch(emitDispatch(_types.GET_REQUEST_ROUTINE_LIST_SUCCESS, { routines }));
+        const routines = Array.isArray(payload?.data?.payload?.routines)
+          ? payload.data.payload.routines
+          : [];
+        return dispatch(
+          emitDispatch(_types.GET_REQUEST_ROUTINE_LIST_SUCCESS, { routines })
+        );
       })
       .catch((error) => {
-        return dispatch(emitDispatch(_types.GET_REQUEST_ROUTINE_LIST_ERROR, { error }));
+        return dispatch(
+          emitDispatch(_types.GET_REQUEST_ROUTINE_LIST_ERROR, { error })
+        );
       })
       .finally(() => {
-        return dispatch(emitDispatch(_types.GET_REQUEST_ROUTINE_LIST_COMPLETED));
+        return dispatch(
+          emitDispatch(_types.GET_REQUEST_ROUTINE_LIST_COMPLETED)
+        );
       });
   };
 };

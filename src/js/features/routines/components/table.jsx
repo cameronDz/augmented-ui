@@ -20,8 +20,13 @@ const Table = ({
   const [processedRoutineData, setProcessedRoutineData] = useState([]);
 
   useEffect(() => {
-    const current = Array.isArray(list) && selectedId ? list.find((item) => selectedId === item?.id) : null;
-    const currProcessedRoutine = processData(defaultValue(current?.exercises, []));
+    const current =
+      Array.isArray(list) && selectedId
+        ? list.find((item) => selectedId === item?.id)
+        : null;
+    const currProcessedRoutine = processData(
+      defaultValue(current?.exercises, [])
+    );
     setProcessedRoutineData(currProcessedRoutine);
   }, [list, selectedId]);
 
@@ -42,16 +47,19 @@ const Table = ({
 
   const createSets = (sets) => {
     const length = Array.isArray(sets) ? sets.length : 0;
-    return length > 0 && sets.map((item, idx) => {
-      const line = createSetDisplay(item);
-      const num = idx + 1;
-      const breakLine = num !== length ? <br/> : '';
-      return (
-        <Fragment key={idx}>
-          {line} {breakLine}
-        </Fragment>
-      );
-    });
+    return (
+      length > 0 &&
+      sets.map((item, idx) => {
+        const line = createSetDisplay(item);
+        const num = idx + 1;
+        const breakLine = num !== length ? <br /> : '';
+        return (
+          <Fragment key={idx}>
+            {line} {breakLine}
+          </Fragment>
+        );
+      })
+    );
   };
 
   const createSetDisplay = (set) => {
@@ -67,8 +75,16 @@ const Table = ({
 
   return (
     <Fragment>
-      {isLoading && <div className='circular-loader'><CircularProgress /></div>}
-      {!isLoading && isErrored && <div className='circular-loader'><CircularProgress /></div>}
+      {isLoading && (
+        <div className="circular-loader">
+          <CircularProgress />
+        </div>
+      )}
+      {!isLoading && isErrored && (
+        <div className="circular-loader">
+          <CircularProgress />
+        </div>
+      )}
       {!isLoading && !isErrored && (
         <SimpleTable
           columns={['name', 'sets', 'note']}

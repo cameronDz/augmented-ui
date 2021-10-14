@@ -32,7 +32,9 @@ const AvailableRoutines = ({
   return (
     <Fragment>
       {isLoading && <p style={{ fontStyle: 'italic' }}>Loading...</p>}
-      {!isLoading && isErrored && <p style={{ fontStyle: 'italic' }}>Errored...</p>}
+      {!isLoading && isErrored && (
+        <p style={{ fontStyle: 'italic' }}>Errored...</p>
+      )}
       {!isLoading && !isErrored && (
         <div style={{ marginBottom: '8px' }}>
           <OutlinedSelector

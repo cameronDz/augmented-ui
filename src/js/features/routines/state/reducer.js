@@ -5,7 +5,12 @@ const reducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case types.GET_REQUEST_ROUTINE_LIST_START:
-      newState = { ...state, isFetchingRountines: true, routineError: null, routineList: null };
+      newState = {
+        ...state,
+        isFetchingRountines: true,
+        routineError: null,
+        routineList: null
+      };
       break;
     case types.GET_REQUEST_ROUTINE_LIST_SUCCESS:
       newState = { ...state, routineError: null, routineList: action.routines };
