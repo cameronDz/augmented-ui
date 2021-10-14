@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.27.0] 2021-10-14
+
+### Added
+
+- Prettier formatting tool and commands with rule set matching linter and editorconfig
+
+### Fixed
+
+- Format that does not match standard pretter configuration with some custom rules
+
 ## [0.26.0] 2021-10-14
 
 ### Changed

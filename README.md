@@ -5,7 +5,7 @@ Application used for tracking various fitness and nutritional activities. Curren
 ## TODO list
 
 - [ ] upgrade Mui to v5
-- [ ] setup prettier file for formatting with linter
+- [x] setup prettier file for formatting with linter
 - [x] upgrade React to v17
 - [x] upgrade Babel v8
 - [x] upgrade Webpack to v5
