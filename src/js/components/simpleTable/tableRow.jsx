@@ -11,23 +11,36 @@ const propTypes = {
   title: PropTypes.string,
   titles: PropTypes.object
 };
-const TableRow = ({ columns, details, includeDetails, rowData, title, titles }) => {
-  return Object.keys(rowData).length > 0 && (
-    <MuiTableRow>
-      {Array.isArray(columns) && columns.map((col, idx) => {
-        return col && <TableCell key={col?.id || idx}>{rowData[col]}</TableCell>;
-      })}
-      {includeDetails && (
-        <TableCell align="center">
-          <RowDetailsButton
-            data={rowData}
-            details={details}
-            title={title}
-            titles={titles}
-          />
-        </TableCell>
-      )}
-    </MuiTableRow>);
+const TableRow = ({
+  columns,
+  details,
+  includeDetails,
+  rowData,
+  title,
+  titles
+}) => {
+  return (
+    Object.keys(rowData).length > 0 && (
+      <MuiTableRow>
+        {Array.isArray(columns) &&
+          columns.map((col, idx) => {
+            return (
+              col && <TableCell key={col?.id || idx}>{rowData[col]}</TableCell>
+            );
+          })}
+        {includeDetails && (
+          <TableCell align="center">
+            <RowDetailsButton
+              data={rowData}
+              details={details}
+              title={title}
+              titles={titles}
+            />
+          </TableCell>
+        )}
+      </MuiTableRow>
+    )
+  );
 };
 
 TableRow.propTypes = propTypes;

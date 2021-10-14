@@ -25,18 +25,24 @@ const RowDetailsButton = ({ data, details = null, title = '', titles }) => {
         contentHeader={title}
         contentBody={
           <Fragment>
-            {Array.isArray(details) && details.map((item, idx) => {
-              return titles?.[item] && (
-                <div key={idx}>
-                  <span style={{ fontWeight: '600' }}>{titles[item]}</span>
-                  {`: ${!!data?.[item] || data?.[item] === 0 ? data[item] : ''}`}
-                </div>
-              );
-            })}
+            {Array.isArray(details) &&
+              details.map((item, idx) => {
+                return (
+                  titles?.[item] && (
+                    <div key={idx}>
+                      <span style={{ fontWeight: '600' }}>{titles[item]}</span>
+                      {`: ${
+                        !!data?.[item] || data?.[item] === 0 ? data[item] : ''
+                      }`}
+                    </div>
+                  )
+                );
+              })}
           </Fragment>
         }
       />
-    </Fragment>);
+    </Fragment>
+  );
 };
 
 RowDetailsButton.propTypes = propTypes;

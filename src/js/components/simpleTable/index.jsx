@@ -1,7 +1,12 @@
 import React, { Fragment } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { makeStyles, CircularProgress, Table, TableContainer } from '@material-ui/core';
+import {
+  makeStyles,
+  CircularProgress,
+  Table,
+  TableContainer
+} from '@material-ui/core';
 import TableContent from './tableContent';
 import TableHeader from './tableHeader';
 import { simpleTableStles as styles } from './styles';
@@ -34,10 +39,16 @@ const SimpleTable = ({
   const classes = useStyles();
   return (
     <Fragment>
-      <div className={classNames(classes.simpleTableWrapper, 'nssd-table-wrapper')}>
+      <div
+        className={classNames(classes.simpleTableWrapper, 'nssd-table-wrapper')}
+      >
         <TableContainer>
           <Table className={classNames(classes.tableSelector)} size="small">
-            <TableHeader columnNames={columns} includeDetails={includeDetails} titles={titles} />
+            <TableHeader
+              columnNames={columns}
+              includeDetails={includeDetails}
+              titles={titles}
+            />
             <TableContent
               columnNames={columns}
               detailNames={details}
@@ -56,7 +67,9 @@ const SimpleTable = ({
       )}
       {!isLoading && downloadText && downloadEndpoint && (
         <div className={classNames(classes.tableFooterItem)}>
-          <a href={`${_config.baseApiUrl}/${downloadEndpoint}`} target="_">{downloadText}</a>
+          <a href={`${_config.baseApiUrl}/${downloadEndpoint}`} target="_">
+            {downloadText}
+          </a>
         </div>
       )}
     </Fragment>

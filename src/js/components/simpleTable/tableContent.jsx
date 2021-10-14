@@ -11,22 +11,30 @@ const propTypes = {
   title: PropTypes.string,
   titles: PropTypes.object
 };
-const TableContent = ({ columnNames, detailNames, includeDetails, rowsData, title, titles }) => {
+const TableContent = ({
+  columnNames,
+  detailNames,
+  includeDetails,
+  rowsData,
+  title,
+  titles
+}) => {
   return (
     <TableBody>
-      {Array.isArray(rowsData) && rowsData.map((row, idx) => {
-        return (
-          <TableRow
-            key={row?.id || idx}
-            columns={columnNames}
-            details={detailNames}
-            includeDetails={includeDetails}
-            rowData={row}
-            title={title}
-            titles={titles}
-          />
-        );
-      })}
+      {Array.isArray(rowsData) &&
+        rowsData.map((row, idx) => {
+          return (
+            <TableRow
+              key={row?.id || idx}
+              columns={columnNames}
+              details={detailNames}
+              includeDetails={includeDetails}
+              rowData={row}
+              title={title}
+              titles={titles}
+            />
+          );
+        })}
     </TableBody>
   );
 };

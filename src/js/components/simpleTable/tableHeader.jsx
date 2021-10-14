@@ -11,9 +11,12 @@ const TableHeader = ({ columnNames, includeDetails, titles }) => {
   return (
     <TableHead>
       <TableRow>
-        {Array.isArray(columnNames) && columnNames.map((col, idx) => {
-          return col && <TableCell key={idx}>{titles?.[col] || ''}</TableCell>;
-        })}
+        {Array.isArray(columnNames) &&
+          columnNames.map((col, idx) => {
+            return (
+              col && <TableCell key={idx}>{titles?.[col] || ''}</TableCell>
+            );
+          })}
         {includeDetails && <TableCell></TableCell>}
       </TableRow>
     </TableHead>
