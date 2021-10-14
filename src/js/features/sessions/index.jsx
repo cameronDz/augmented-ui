@@ -18,7 +18,11 @@ const SessionsPage = ({ getData }) => {
   }, []);
 
   return (
-    <TabbedPage tabNames={['History', 'Report']} tabPanels={tabPanels} title="Sessions" />
+    <TabbedPage
+      tabNames={['History', 'Report']}
+      tabPanels={tabPanels}
+      title="Sessions"
+    />
   );
 };
 

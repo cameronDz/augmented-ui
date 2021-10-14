@@ -7,7 +7,10 @@ import { DateSwitchPicker, TimeField } from '../../../components/inputs';
 import { defaultValue, eventDefaultValue } from '../../../lib/defaultValue';
 import { hasTruthy } from '../../../lib/hasTruthy';
 import { UnsecuredUserAlert } from '../../../auth';
-import { clearSuccessPutCardioSession, putCardioSession } from '../state/actions';
+import {
+  clearSuccessPutCardioSession,
+  putCardioSession
+} from '../state/actions';
 import { calulcateTimingSeconds } from '../lib/utility';
 
 const defaultForm = {
@@ -86,7 +89,9 @@ const SessionReporter = ({
         disabled={isDisabled}
         label="Machine type"
         name="machineType"
-        onChange={(event) => updateForm({ machineType: eventDefaultValue(event, '') })}
+        onChange={(event) =>
+          updateForm({ machineType: eventDefaultValue(event, '') })
+        }
         required={true}
         value={defaultValue(form?.machineType, '')}
         variant="outlined"
@@ -103,7 +108,9 @@ const SessionReporter = ({
         InputProps={{ step: '0.01' }}
         name="distanceMiles"
         label="Distance (miles)"
-        onChange={(event) => updateForm({ distanceMiles: eventDefaultValue(event, 0) })}
+        onChange={(event) =>
+          updateForm({ distanceMiles: eventDefaultValue(event, 0) })
+        }
         type="number"
         value={defaultValue(form?.distanceMiles, '')}
         variant="outlined"
@@ -124,16 +131,14 @@ const SessionReporter = ({
         minRows={isDisabled ? 1 : 2}
         multiline={!isDisabled}
         name="comment"
-        onChange={(event) => updateForm({ comment: eventDefaultValue(event, '') })}
+        onChange={(event) =>
+          updateForm({ comment: eventDefaultValue(event, '') })
+        }
         value={defaultValue(form?.comment, '')}
         variant="outlined"
       />
       <div>
-        <Button
-          disabled={isDisabled}
-          onClick={resetForm}
-          variant="contained"
-        >
+        <Button disabled={isDisabled} onClick={resetForm} variant="contained">
           Clear
         </Button>
         <Button
@@ -145,14 +150,15 @@ const SessionReporter = ({
           Submit
         </Button>
       </div>
-    </Fragment>);
+    </Fragment>
+  );
 };
 
 const mapDispatchToProps = {
   formClear: clearSuccessPutCardioSession,
   formSave: putCardioSession
 };
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isProcessing: !!state.cardioMachineSessions.isProcessingCardioSession,
   isSaveSuccessful: !!state.cardioMachineSessions.cardioSessionPutPayload,
   isUserSecured: !!state.auth.token

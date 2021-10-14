@@ -7,7 +7,15 @@ import { splitZuluStringToLocalDayTime } from '../../../lib/time';
 import { formatMiles, formatSeconds } from '../../../lib/format';
 
 const columns = ['date', 'machineType', 'userName'];
-const details = ['date', 'time', 'machineType', 'duration', 'distance', 'userName', 'comment'];
+const details = [
+  'date',
+  'time',
+  'machineType',
+  'duration',
+  'distance',
+  'userName',
+  'comment'
+];
 const titles = {
   date: 'Date',
   time: 'Time',
@@ -36,7 +44,9 @@ const table = ({ isLoading, isProcessing, sessions }) => {
       for (let idx = 0; idx < length; idx++) {
         if (typeof sessions[idx] === 'object') {
           const { distanceMiles, seconds, ...other } = sessions[idx];
-          const zuluConvert = splitZuluStringToLocalDayTime(sessions[idx].startTime);
+          const zuluConvert = splitZuluStringToLocalDayTime(
+            sessions[idx].startTime
+          );
           const obj = {
             date: zuluConvert.day,
             time: zuluConvert.time,
@@ -67,7 +77,7 @@ const table = ({ isLoading, isProcessing, sessions }) => {
 };
 
 table.propTypes = propTypes;
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isLoading: state.cardioMachineSessions.isLoadingCardioSessions,
   isProcessing: state.cardioMachineSessions.isProcessingCardioSession,
   sessions: state.cardioMachineSessions.cardioSessionGetPayload
