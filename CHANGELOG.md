@@ -6,6 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.26.0] 2021-10-14
+
+### Changed
+
+- Upgraded ESlint parser, Babel, React, and Webpack to latest major version
+
 ### Removed
 
 - Page header from Session and Help page

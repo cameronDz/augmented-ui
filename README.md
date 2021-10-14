@@ -2,11 +2,11 @@
 Application used for tracking various fitness and nutritional activities. Currently live at [http://www.augmented.fit](http://www.augmented.fit). Site is forward masking to the deployed S3 bucket, [here](http://augmented-frontend.s3-website-us-east-1.amazonaws.com). The AWS S3 bucket is a static page. This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app), and later used the command ```npm run eject``` to customize project into current state.
 
 ## TODO list ##
-- [ ] upgrade React to v17
-- [ ] upgrade Babel v8
-- [ ] upgrade Webpack to v5
 - [ ] upgrade Mui to v5
 - [ ] setup prettier file for formatting with linter
+- [x] upgrade React to v17
+- [x] upgrade Babel v8
+- [x] upgrade Webpack to v5
 - [x] sticky footer issue
 - [x] rm underlines on links on footer and help page
 - [x] Set time values to be based off UTC
