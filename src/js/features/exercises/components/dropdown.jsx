@@ -14,7 +14,7 @@ const ExerciseDropdown = ({ exercises }) => {
     const temp = [];
     const length = Array.isArray(exercises) ? exercises.length : 0;
     for (let idx = 0; idx < length; idx++) {
-      if ((exercises[idx]) && (exercises[idx].id) && (exercises[idx].name)) {
+      if (exercises[idx] && exercises[idx].id && exercises[idx].name) {
         const { id, name } = exercises[idx];
         temp.push({ id, name });
       }
@@ -39,5 +39,7 @@ const ExerciseDropdown = ({ exercises }) => {
 };
 
 ExerciseDropdown.propTypes = propTypes;
-const mapStateToProps = state => ({ exercises: state.exercises.exerciseGetPayload });
+const mapStateToProps = (state) => ({
+  exercises: state.exercises.exerciseGetPayload
+});
 export default connect(mapStateToProps)(ExerciseDropdown);

@@ -9,7 +9,11 @@ const reducer = (state = initialState, action = null) => {
       newState = { ...state, exerciseGetError: null, isLoadingExercises: true };
       break;
     case _types.GET_REQUEST_EXERCISE_LIST_SUCCESS:
-      newState = { ...state, exerciseGetError: null, exerciseGetPayload: action.data };
+      newState = {
+        ...state,
+        exerciseGetError: null,
+        exerciseGetPayload: action.data
+      };
       break;
     case _types.GET_REQUEST_EXERCISE_LIST_ERROR:
       newState = { ...state, exerciseGetError: action.error };
@@ -19,13 +23,26 @@ const reducer = (state = initialState, action = null) => {
       break;
     // actions for puting a new exercise
     case _types.PUT_REQUEST_EXERCISE_ITEM_START:
-      newState = { ...state, exercisePostError: null, exercisePostPayload: null, isProcessingExercise: true };
+      newState = {
+        ...state,
+        exercisePostError: null,
+        exercisePostPayload: null,
+        isProcessingExercise: true
+      };
       break;
     case _types.PUT_REQUEST_EXERCISE_ITEM_SUCCESS:
-      newState = { ...state, exercisePostError: null, exercisePostPayload: action.data };
+      newState = {
+        ...state,
+        exercisePostError: null,
+        exercisePostPayload: action.data
+      };
       break;
     case _types.PUT_REQUEST_EXERCISE_ITEM_ERROR:
-      newState = { ...state, exercisePostError: action.error, exercisePostPayload: null };
+      newState = {
+        ...state,
+        exercisePostError: action.error,
+        exercisePostPayload: null
+      };
       break;
     case _types.PUT_REQUEST_EXERCISE_ITEM_COMPLETED:
       newState = { ...state, isProcessingExercise: false };

@@ -8,7 +8,9 @@ const TabReport = () => {
       <ul>
         <li>
           <span>Posting a new issue on the </span>
-          <a href={`${_package.repository.url || ''}/issues`} target="_">issues page </a>
+          <a href={`${_package.repository.url || ''}/issues`} target="_">
+            issues page{' '}
+          </a>
           <span>of the augmented-ui repository on GitHub.</span>
         </li>
         <li>
@@ -19,7 +21,8 @@ const TabReport = () => {
           <span>, the maintainer, directly with the issue.</span>
         </li>
       </ul>
-    </Fragment>);
+    </Fragment>
+  );
 };
 
 export default TabReport;

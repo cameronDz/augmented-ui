@@ -8,13 +8,18 @@ const TabContact = () => {
       <p>Application creator and maintainer: {_package.author.name || ''}.</p>
       <p>
         <span>Email: </span>
-        <a href={`mailto:${email}`} target="_">{email}</a>
+        <a href={`mailto:${email}`} target="_">
+          {email}
+        </a>
       </p>
       <p>
         <span>GitHub: </span>
-        <a href={_package.repository.url || ''} target="_">Augmented Frontend</a>
+        <a href={_package.repository.url || ''} target="_">
+          Augmented Frontend
+        </a>
       </p>
-    </Fragment>);
+    </Fragment>
+  );
 };
 
 export default TabContact;

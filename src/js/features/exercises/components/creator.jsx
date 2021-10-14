@@ -88,7 +88,7 @@ const ExerciseCreator = ({
           label="Exercise description"
           multiline={!isDisabled}
           name="description"
-          onChange={event => setDescription(eventDefaultValue(event, ''))}
+          onChange={(event) => setDescription(eventDefaultValue(event, ''))}
           value={description}
           variant="outlined"
         />
@@ -101,13 +101,21 @@ const ExerciseCreator = ({
         >
           Clear
         </Button>
-        <Button color="primary" disabled={isDisabled || !name} onClick={handleSubmit} variant="contained">Submit</Button>
+        <Button
+          color="primary"
+          disabled={isDisabled || !name}
+          onClick={handleSubmit}
+          variant="contained"
+        >
+          Submit
+        </Button>
       </div>
-    </div>);
+    </div>
+  );
 };
 
 ExerciseCreator.propTypes = propTypes;
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   isLoading: state.exercises.isLoadingExercises,
   isProcessing: state.exercises.isProcessingExercise,
   isUserSecured: !!state.auth.token,
