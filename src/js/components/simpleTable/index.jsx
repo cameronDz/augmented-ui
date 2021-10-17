@@ -70,10 +70,10 @@ const SimpleTable = ({
               includeDetails={includeDetails}
               rowsData={
                 rowsPerPage > 0
-                  ? (rowsData || []).slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    )
+                  ? defaultValue(rowsData, []).slice(
+                    page * rowsPerPage,
+                    page * rowsPerPage + rowsPerPage
+                  )
                   : rowsData
               }
               title={detailsTitle}
