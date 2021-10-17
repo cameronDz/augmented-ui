@@ -26,7 +26,11 @@ const TableRow = ({
         {Array.isArray(columns) &&
           columns.map((col, idx) => {
             return (
-              col && <TableCell key={defaultValue(col?.id, idx)}>{defaultValue(rowData[col], '')}</TableCell>
+              col && (
+                <TableCell key={defaultValue(col?.id, idx)}>
+                  {defaultValue(rowData[col], '')}
+                </TableCell>
+              )
             );
           })}
         {includeDetails && (
