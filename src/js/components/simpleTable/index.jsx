@@ -8,9 +8,9 @@ import {
   TableContainer
 } from '@material-ui/core';
 import TableContent from './tableContent';
+import TableFooter from './tableFooter';
 import TableHeader from './tableHeader';
 import { simpleTableStles as styles } from './styles';
-import _config from '../../../assets/config.json';
 
 const propTypes = {
   columns: PropTypes.array,
@@ -58,19 +58,18 @@ const SimpleTable = ({
               title={detailsTitle}
               titles={titles}
             />
+            <TableFooter
+              downloadEndpoint={downloadEndpoint}
+              downloadText={downloadText}
+              isLoading={isLoading}
+              isPaginated={isPaginated}
+            />
           </Table>
         </TableContainer>
       </div>
       {isLoading && (
         <div className={classNames(classes.tableLoader)}>
           <CircularProgress />
-        </div>
-      )}
-      {!isLoading && downloadText && downloadEndpoint && (
-        <div className={classNames(classes.tableFooterItem)}>
-          <a href={`${_config.baseApiUrl}/${downloadEndpoint}`} target="_">
-            {downloadText}
-          </a>
         </div>
       )}
     </Fragment>

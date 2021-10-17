@@ -11,12 +11,6 @@ const simpleTableStles = {
       backgroundColor: '#f5f5f5'
     }
   },
-  tableFooterItem: {
-    alignItems: 'normal',
-    justifyContent: 'normal',
-    marginTop: '8px',
-    paddingLeft: 0
-  },
   tableLoader: {
     marginBottom: '2px',
     paddingTop: '15px',
