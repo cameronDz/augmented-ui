@@ -70,10 +70,7 @@ const SimpleTable = ({
               includeDetails={includeDetails}
               rowsData={
                 rowsPerPage > 0
-                  ? defaultValue(rowsData, []).slice(
-                      page * rowsPerPage,
-                      page * rowsPerPage + rowsPerPage
-                    )
+                  ? splicedRows(rowsData, page, rowsPerPage)
                   : rowsData
               }
               title={detailsTitle}
@@ -102,6 +99,11 @@ const SimpleTable = ({
       )}
     </Fragment>
   );
+};
+
+const splicedRows = (rows, page, cnt) => {
+  const steps = page * cnt;
+  return defaultValue(rows, []).slice(steps, steps + cnt);
 };
 
 SimpleTable.propTypes = propTypes;
