@@ -24,6 +24,11 @@ const TableFooter = ({
   rowCount = 0,
   rowsPerPage = 5
 }) => {
+  const handleLabelDisplay = ({ from, to, count }) => {
+    const toAmount = to > -1 ? to : count;
+    return `${from}-${toAmount} of ${count}`;
+  };
+
   return (
     <Fragment>
       {isPaginated && rowCount > 0 && (
@@ -32,6 +37,7 @@ const TableFooter = ({
             <MuiTablePagination
               ActionsComponent={TablePagination}
               count={rowCount}
+              labelDisplayedRows={handleLabelDisplay}
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               rowsPerPage={rowsPerPage}
               page={page}
