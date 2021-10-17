@@ -68,7 +68,14 @@ const SimpleTable = ({
               columnNames={columns}
               detailNames={details}
               includeDetails={includeDetails}
-              rowsData={rowsData}
+              rowsData={
+                rowsPerPage > 0
+                  ? (rowsData || []).slice(
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
+                  : rowsData
+              }
               title={detailsTitle}
               titles={titles}
             />

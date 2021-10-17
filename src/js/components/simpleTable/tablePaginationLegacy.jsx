@@ -8,7 +8,11 @@ const propTypes = {
   currentPage: PropType.number.isRequired
 };
 
-const TablePaginationLegacy = ({ currentPage = 0, links = null, totalPages = 0 }) => {
+const TablePaginationLegacy = ({
+  currentPage = 0,
+  links = null,
+  totalPages = 0
+}) => {
   const [firstLink, setFirstLink] = useState('');
   const [lastLink, setLastLink] = useState('');
   const [nextLink, setNextLink] = useState('');
