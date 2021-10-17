@@ -20,10 +20,12 @@ const propTypes = {
   downloadEndpoint: PropTypes.string,
   includeDetails: PropTypes.bool,
   isLoading: PropTypes.bool,
+  isPaginated: PropTypes.bool,
   rowsData: PropTypes.array,
   titles: PropTypes.object
 };
 
+const rootSelector = 'nssd-table-wrapper';
 const useStyles = makeStyles(() => styles);
 const SimpleTable = ({
   columns,
@@ -33,15 +35,14 @@ const SimpleTable = ({
   downloadText,
   includeDetails = true,
   isLoading,
+  isPaginated = false,
   rowsData,
   titles
 }) => {
   const classes = useStyles();
   return (
     <Fragment>
-      <div
-        className={classNames(classes.simpleTableWrapper, 'nssd-table-wrapper')}
-      >
+      <div className={classNames(classes.simpleTableWrapper, rootSelector)}>
         <TableContainer>
           <Table className={classNames(classes.tableSelector)} size="small">
             <TableHeader
