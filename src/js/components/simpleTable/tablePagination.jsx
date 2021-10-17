@@ -1,169 +1,52 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React from 'react';
 import PropType from 'prop-types';
-import PaginationButton from './paginationButton';
+import { makeStyles, IconButton } from '@material-ui/core';
+import FirstPageIcon from '@material-ui/icons/FirstPage';
+import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
+import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
+import LastPageIcon from '@material-ui/icons/LastPage';
+import { paginationStyles as styles } from './styles';
 
 const propTypes = {
-  links: PropType.object.isRequired,
-  totalPages: PropType.number.isRequired,
-  currentPage: PropType.number.isRequired
+  count: PropType.number.isRequired,
+  onPageChange: PropType.func.isRequired,
+  page: PropType.number.isRequired,
+  rowsPerPage: PropType.number.isRequired
 };
-
-const TablePagination = ({ currentPage = 0, links = null, totalPages = 0 }) => {
-  const [firstLink, setFirstLink] = useState('');
-  const [lastLink, setLastLink] = useState('');
-  const [nextLink, setNextLink] = useState('');
-  const [prevLink, setPrevLink] = useState('');
-  const [selfLink, setSelfLink] = useState('');
-
-  useEffect(() => {
-    setSelfLink(links?.self || '');
-    setFirstLink(links?.first || '');
-    setLastLink(links?.last || '');
-    setNextLink(links?.next || '');
-    setPrevLink(links?.prev || '');
-  }, [links]);
-
-  const renderPageEllipsis = () => {
-    return <span>&hellip;</span>;
+const useStyles = makeStyles(() => styles);
+const TablePagination = ({ count, page, rowsPerPage, onPageChange }) => {
+  const handleFirstPageButtonClick = (event) => {
+    onPageChange(event, 0);
   };
 
-  const displayPrevSelfNextButtons = (
-    prevPage = 0,
-    selfPage = 0,
-    nextPage = 0
-  ) => {
-    return (
-      <Fragment>
-        <PaginationButton pageLink={prevLink} pageNumber={prevPage} />
-        <PaginationButton pageLink={selfLink} pageNumber={selfPage} />
-        <PaginationButton pageLink={nextLink} pageNumber={nextPage} />
-      </Fragment>
-    );
+  const handleBackButtonClick = (event) => {
+    onPageChange(event, page - 1);
   };
 
-  let pager;
-  if (totalPages === 0) {
-    pager = null;
-  } else if (totalPages === 1) {
-    pager = <PaginationButton pageLink={firstLink} pageNumber={1} />;
-  } else if (totalPages === 2) {
-    pager = (
-      <Fragment>
-        <PaginationButton pageLink={firstLink} pageNumber={1} />
-        <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
-      </Fragment>
-    );
-  } else if (totalPages === 3) {
-    if (currentPage === 2) {
-      pager = displayPrevSelfNextButtons(1, 2, 3);
-    } else {
-      const linkTwo = currentPage === 1 ? nextLink : prevLink;
-      pager = (
-        <Fragment>
-          <PaginationButton pageLink={firstLink} pageNumber={1} />
-          <PaginationButton pageLink={linkTwo} pageNumber={2} />
-          <PaginationButton pageLink={lastLink} pageNumber={3} />
-        </Fragment>
-      );
-    }
-  } else if (totalPages >= 4 && currentPage === 1) {
-    pager = (
-      <Fragment>
-        <PaginationButton pageLink={firstLink} pageNumber={1} />
-        <PaginationButton pageLink={nextLink} pageNumber={2} />
-        {renderPageEllipsis()}
-        <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
-      </Fragment>
-    );
-  } else if (totalPages >= 4 && currentPage === totalPages) {
-    pager = (
-      <Fragment>
-        <PaginationButton pageLink={firstLink} pageNumber={1} />
-        {renderPageEllipsis()}
-        <PaginationButton pageLink={prevLink} pageNumber={totalPages - 1} />
-        <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
-      </Fragment>
-    );
-  } else if (totalPages === 4) {
-    if (currentPage === 2) {
-      pager = (
-        <Fragment>
-          {displayPrevSelfNextButtons(1, 2, 3)}
-          <PaginationButton pageLink={lastLink} pageNumber={4} />
-        </Fragment>
-      );
-    } else {
-      pager = (
-        <Fragment>
-          <PaginationButton pageLink={firstLink} pageNumber={1} />
-          {displayPrevSelfNextButtons(2, 3, 4)}
-        </Fragment>
-      );
-    }
-  } else if (totalPages >= 5 && currentPage === 2) {
-    pager = (
-      <Fragment>
-        {displayPrevSelfNextButtons(1, 2, 3)}
-        {renderPageEllipsis()}
-        <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
-      </Fragment>
-    );
-  } else if (totalPages >= 5 && currentPage === totalPages - 1) {
-    pager = (
-      <Fragment>
-        <PaginationButton pageLink={firstLink} pageNumber={1} />
-        {renderPageEllipsis()}
-        {displayPrevSelfNextButtons(totalPages - 2, totalPages - 1, totalPages)}
-      </Fragment>
-    );
-  } else if (totalPages === 5) {
-    pager = (
-      <Fragment>
-        <PaginationButton pageLink={firstLink} pageNumber={1} />
-        {displayPrevSelfNextButtons(2, 3, 4)}
-        <PaginationButton pageLink={lastLink} pageNumber={5} />
-      </Fragment>
-    );
-  } else if (currentPage === 3) {
-    pager = (
-      <Fragment>
-        <PaginationButton pageLink={firstLink} pageNumber={1} />
-        {displayPrevSelfNextButtons(2, 3, 4)}
-        {renderPageEllipsis()}
-        <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
-      </Fragment>
-    );
-  } else if (currentPage === totalPages - 2) {
-    pager = (
-      <Fragment>
-        <PaginationButton pageLink={firstLink} pageNumber={1} />
-        {renderPageEllipsis()}
-        {displayPrevSelfNextButtons(
-          totalPages - 3,
-          totalPages - 2,
-          totalPages - 1
-        )}
-        <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
-      </Fragment>
-    );
-  } else {
-    pager = (
-      <Fragment>
-        <PaginationButton pageLink={firstLink} pageNumber={1} />
-        {renderPageEllipsis()}
-        {displayPrevSelfNextButtons(
-          currentPage - 1,
-          currentPage,
-          currentPage + 1
-        )}
-        {renderPageEllipsis()}
-        <PaginationButton pageLink={lastLink} pageNumber={totalPages} />
-      </Fragment>
-    );
-  }
+  const handleNextButtonClick = (event) => {
+    onPageChange(event, page + 1);
+  };
+
+  const handleLastPageButtonClick = (event) => {
+    onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
+  };
+
+  const hasNoMorePages = page >= Math.ceil(count / rowsPerPage) - 1;
+  const classes = useStyles();
   return (
-    <div aria-label="pagination" style={{ marginTop: '10px' }}>
-      {pager}
+    <div className={classes.paginationRoot}>
+      <IconButton disabled={page === 0} onClick={handleFirstPageButtonClick}>
+        <FirstPageIcon />
+      </IconButton>
+      <IconButton disabled={page === 0} onClick={handleBackButtonClick}>
+        <KeyboardArrowLeft />
+      </IconButton>
+      <IconButton disabled={hasNoMorePages} onClick={handleNextButtonClick}>
+        <KeyboardArrowRight />
+      </IconButton>
+      <IconButton disabled={hasNoMorePages} onClick={handleLastPageButtonClick}>
+        <LastPageIcon />
+      </IconButton>
     </div>
   );
 };
