@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.28.0] 2021-10-17
+
+### Added
+
+- Table Pagination flag to simple table
+- Nutrients report table implements new pagination on simple table
+
+### Changed
+
+- Homepage not Nutrients page, instead of Sessions page
+
 ## [0.27.0] 2021-10-14
 
 ### Added

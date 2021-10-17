@@ -71,9 +71,9 @@ const SimpleTable = ({
               rowsData={
                 rowsPerPage > 0
                   ? defaultValue(rowsData, []).slice(
-                    page * rowsPerPage,
-                    page * rowsPerPage + rowsPerPage
-                  )
+                      page * rowsPerPage,
+                      page * rowsPerPage + rowsPerPage
+                    )
                   : rowsData
               }
               title={detailsTitle}
