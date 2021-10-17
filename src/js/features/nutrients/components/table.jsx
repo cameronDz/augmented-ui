@@ -69,6 +69,7 @@ const table = ({ nutrients = null, isLoading = false }) => {
       downloadText={'Download Intakes in JSON file.'}
       includeDetails={true}
       isLoading={isLoading}
+      isPaginated={true}
       rowsData={processedData}
       titles={titles}
     />

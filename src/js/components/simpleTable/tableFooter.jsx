@@ -7,12 +7,8 @@ import {
 } from '@material-ui/core';
 import TablePagination from './tablePagination';
 import { handleFunction } from '../../lib/eventHandler';
-import _config from '../../../assets/config.json';
 
 const propTypes = {
-  downloadText: PropTypes.string,
-  downloadEndpoint: PropTypes.string,
-  isLoading: PropTypes.bool,
   isPaginated: PropTypes.bool,
   onChangePage: PropTypes.func,
   onChangeRows: PropTypes.func,
@@ -21,9 +17,6 @@ const propTypes = {
   rowsPerPage: PropTypes.number
 };
 const TableFooter = ({
-  downloadText,
-  downloadEndpoint,
-  isLoading,
   isPaginated,
   onChangePage = null,
   onChangeRows = null,
@@ -38,7 +31,6 @@ const TableFooter = ({
           <TableRow>
             <MuiTablePagination
               ActionsComponent={TablePagination}
-              colSpan={3}
               count={rowCount}
               rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
               rowsPerPage={rowsPerPage}
@@ -52,11 +44,6 @@ const TableFooter = ({
             />
           </TableRow>
         </MuiTableFooter>
-      )}
-      {!isLoading && downloadText && downloadEndpoint && (
-        <a href={`${_config.baseApiUrl}/${downloadEndpoint}`} target="_">
-          {downloadText}
-        </a>
       )}
     </Fragment>
   );

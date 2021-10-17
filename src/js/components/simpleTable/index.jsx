@@ -12,6 +12,7 @@ import TableContent from './tableContent';
 import TableFooter from './tableFooter';
 import TableHeader from './tableHeader';
 import { simpleTableStles as styles } from './styles';
+import _config from '../../../assets/config.json';
 
 const propTypes = {
   columns: PropTypes.array,
@@ -72,9 +73,6 @@ const SimpleTable = ({
               titles={titles}
             />
             <TableFooter
-              downloadEndpoint={downloadEndpoint}
-              downloadText={downloadText}
-              isLoading={isLoading}
               isPaginated={isPaginated}
               onChangePage={handleChangePage}
               onChangeRows={handleChangeRows}
@@ -89,6 +87,11 @@ const SimpleTable = ({
         <div className={classNames(classes.tableLoader)}>
           <CircularProgress />
         </div>
+      )}
+      {!isLoading && downloadText && downloadEndpoint && (
+        <a href={`${_config.baseApiUrl}/${downloadEndpoint}`} target="_">
+          {downloadText}
+        </a>
       )}
     </Fragment>
   );
