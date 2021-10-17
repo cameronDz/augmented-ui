@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { useState, Fragment } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import {
@@ -7,6 +7,7 @@ import {
   Table,
   TableContainer
 } from '@material-ui/core';
+import { defaultValue, eventDefaultValue } from '../../lib/defaultValue';
 import TableContent from './tableContent';
 import TableFooter from './tableFooter';
 import TableHeader from './tableHeader';
@@ -39,6 +40,18 @@ const SimpleTable = ({
   rowsData,
   titles
 }) => {
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  const handleChangePage = (newPage) => {
+    setPage(defaultValue(newPage, 0));
+  };
+
+  const handleChangeRows = (event) => {
+    setRowsPerPage(eventDefaultValue(event, 5));
+    setPage(0);
+  };
+
   const classes = useStyles();
   return (
     <Fragment>
@@ -63,6 +76,11 @@ const SimpleTable = ({
               downloadText={downloadText}
               isLoading={isLoading}
               isPaginated={isPaginated}
+              onChangePage={handleChangePage}
+              onChangeRows={handleChangeRows}
+              page={page}
+              rowCount={defaultValue(rowsData?.length, 0)}
+              rowsPerPage={rowsPerPage}
             />
           </Table>
         </TableContainer>

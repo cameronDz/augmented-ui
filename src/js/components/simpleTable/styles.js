@@ -1,3 +1,9 @@
+const paginationStyles = {
+  paginationRoot: {
+    flexShrink: 0
+  }
+};
+
 const simpleTableStles = {
   simpleTableWrapper: {
     overflowX: 'auto'
@@ -18,4 +24,4 @@ const simpleTableStles = {
   }
 };
 
-export { simpleTableStles };
+export { paginationStyles, simpleTableStles };
