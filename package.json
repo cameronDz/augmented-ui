@@ -86,5 +86,5 @@
     "start": "webpack-dev-server --open --config webpack/dev.babel.js",
     "test": "echo no-tests"
   },
-  "version": "0.28.0"
+  "version": "0.28.1"
 }
