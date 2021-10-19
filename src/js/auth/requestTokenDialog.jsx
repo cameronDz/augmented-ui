@@ -110,9 +110,8 @@ const RequestTokenDialog = ({
       contentBody={
         <Fragment>
           <div className={classes?.dialogContentContainer}>
-            {isProcessingRequest ? (
-              <CircularProgress />
-            ) : (
+            {isProcessingRequest && <CircularProgress />}
+            {!isProcessingRequest && (
               <Fragment>
                 {error && (
                   <Alert severity="error">
@@ -160,11 +159,12 @@ const RequestTokenDialog = ({
       contentFooter={
         <Fragment>
           <Button onClick={handleClose}>{token ? 'Close' : 'Cancel'}</Button>
-          {token ? (
+          {token && (
             <Button disabled={isProcessingRequest} onClick={handleActionClick}>
               Clear Credentials
             </Button>
-          ) : (
+          )}
+          {!token && (
             <Button
               disabled={isProcessingRequest || !username || !password}
               onClick={handleActionClick}
