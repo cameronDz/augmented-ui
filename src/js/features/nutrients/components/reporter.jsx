@@ -51,20 +51,19 @@ const reporter = ({
   useEffect(() => {
     if (isSuccessfulPut) {
       resetFormValues();
+      resetOptions();
       clearSaveSuccess();
     }
   }, [isSuccessfulPut]);
 
   useEffect(() => {
     const validTypes = createValidTypesList(types);
-    const baseName = defaultValue(validTypes[0]?.name, '');
-    const baseId = defaultValue(validTypes[0]?.id, '');
     setOptionNames(validTypes);
-    setName(baseName);
-    setFirstName(baseName);
-    setNameId(baseId);
-    setFirstNameId(baseId);
   }, [types]);
+
+  useEffect(() => {
+    resetOptions();
+  }, [optionNames]);
 
   const resetFormValues = () => {
     setAmount('');
@@ -73,6 +72,15 @@ const reporter = ({
     setConsumptionTime(new Date());
     setName(firstName);
     setNameId(firstNameId);
+  };
+
+  const resetOptions = () => {
+    const baseName = defaultValue(optionNames?.[0]?.name, '');
+    const baseId = defaultValue(optionNames?.[0]?.id, '');
+    setName(baseName);
+    setFirstName(baseName);
+    setNameId(baseId);
+    setFirstNameId(baseId);
   };
 
   const handleChangeName = (newId = '') => {
