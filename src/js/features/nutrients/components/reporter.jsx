@@ -81,6 +81,7 @@ const reporter = ({
     setFirstName(baseName);
     setNameId(baseId);
     setFirstNameId(baseId);
+    handleChangeName(baseId);
   };
 
   const handleChangeName = (newId = '') => {
