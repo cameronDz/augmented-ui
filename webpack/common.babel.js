@@ -1,17 +1,10 @@
 import CopyWebpackPlugin from 'copy-webpack-plugin';
 import HtmlWebPackPlugin from 'html-webpack-plugin';
 import { resolve } from 'path';
+import _package from '../package.json';
 
 module.exports = {
   entry: './src/index.js',
-  output: {
-    filename: 'bundle.js',
-    path: resolve(__dirname, '..', './dist'),
-    publicPath: ''
-  },
-  resolve: {
-    extensions: ['*', '.js', '.jsx']
-  },
   module: {
     rules: [
       {
@@ -29,22 +22,30 @@ module.exports = {
       }
     ]
   },
+  output: {
+    filename: 'bundle.js',
+    path: resolve(__dirname, '..', './dist', _package.version),
+    publicPath: ''
+  },
   plugins: [
     new CopyWebpackPlugin({
       patterns: [
         {
-          from: resolve(__dirname, '..', './src/assets/images'),
+          from: './src/assets/images',
           to: 'images'
         },
         {
-          from: resolve(__dirname, '..', './src/favicon.ico'),
+          from: './src/favicon.ico',
           to: 'favicon.ico'
         }
       ]
     }),
     new HtmlWebPackPlugin({
-      filename: resolve(__dirname, '..', './dist/index.html'),
-      template: resolve(__dirname, '..', './src/index.html')
+      filename: './index.html',
+      template: './src/index.html'
     })
-  ]
+  ],
+  resolve: {
+    extensions: ['*', '.js', '.jsx']
+  }
 };

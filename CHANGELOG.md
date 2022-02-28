@@ -7,6 +7,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.29.0] 2022-02-27
+
+### Added
+
+- list of external portals in help tab
+
+### Security
+
+- update vulnerable packages, major version bump url-loader and node-forge
+
 ## [0.28.2] 2021-12-10
 
 ### Fixed

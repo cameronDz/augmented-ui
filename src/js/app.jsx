@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
+import { HashRouter, Route, Switch as RouterSwitch } from 'react-router-dom';
 import classNames from 'classnames';
-import { HashRouter, Route, Switch as RouterSwtich } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import ExercisePage from './features/exercises';
 import Footer from './components/footer';
@@ -17,14 +17,14 @@ const app = () => {
     <Fragment>
       <div className={classNames(classes.appContainer)}>
         <HashRouter>
-          <RouterSwtich>
+          <RouterSwitch>
             <Route exact path="/" component={NutrientPage} />
             <Route exact path="/exercise" component={ExercisePage} />
             <Route exact path="/help" component={HelpPage} />
             <Route exact path="/nutrient" component={NutrientPage} />
             <Route exact path="/routine" component={RoutinePage} />
             <Route exact path="/session" component={SessionPage} />
-          </RouterSwtich>
+          </RouterSwitch>
         </HashRouter>
       </div>
       <Footer />
