@@ -10,6 +10,11 @@ const externalSites = [
     id: 'fitbit',
     name: 'FitBit',
     url: 'https://www.fitbit.com/'
+  },
+  {
+    id: 'onthegomap',
+    name: 'On the go Map',
+    url: 'https://onthegomap.com/#/create'
   }
 ];
 const title = 'External portals';
