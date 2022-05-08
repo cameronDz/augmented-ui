@@ -50,7 +50,7 @@ const putCardioSession = (item) => {
     const payload = { cardio: [...sessions, newSession] };
     dispatch(emitDispatch(_types.PUT_REQUEST_CARDIO_SESSION_ITEM_START));
     const config = { ..._config.baseApiConfig };
-    config.headers.Authorization = getState().auth.token;
+    config.headers.Authorization = `Bearer ${getState().auth.token}`;
     return axios
       .put(url, payload, config)
       .then((response) => {

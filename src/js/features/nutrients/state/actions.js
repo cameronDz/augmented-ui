@@ -81,7 +81,7 @@ const putNutrientReport = (item) => {
     const payload = { reports: [...nutrients, newNutrients] };
     dispatch(emitDispatch(_types.PUT_REQUEST_NUTRIENTS_REPORT_START));
     const config = { ..._config.baseApiConfig };
-    config.headers.Authorization = getState().auth.token;
+    config.headers.Authorization = `Bearer ${getState().auth.token}`;
     return axios
       .put(url, payload, config)
       .then((response) => {
@@ -118,7 +118,7 @@ const putNutrientType = (item) => {
     const payload = { types: [...types, newType] };
     dispatch(emitDispatch(_types.PUT_REQUEST_NUTRIENTS_TYPE_START));
     const config = { ..._config.baseApiConfig };
-    config.headers.Authorization = getState().auth.token;
+    config.headers.Authorization = `Bearer ${getState().auth.token}`;
     return axios
       .put(url, payload, config)
       .then((response) => {

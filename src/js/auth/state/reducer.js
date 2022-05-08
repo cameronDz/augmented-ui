@@ -39,7 +39,7 @@ const reducer = (state = initialState, action = null) => {
         isCancelled: false,
         isFetching: false,
         success: !state.isCancelled,
-        token: state.isCancelled ? null : action.data,
+        token: state.isCancelled ? null : action.data.token,
         username: state.isCancelled ? null : action.username
       };
       break;
