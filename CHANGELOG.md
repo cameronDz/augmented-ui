@@ -7,6 +7,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.30.1] 2022-05-08
+
+### Added
+
+- liveness checks on app start and interval
+
+### Changed
+
+- browserlist update
+
+### Fixed
+
+- set api request headers correctly
+
 ## [0.30.0] 2022-05-08
 
 ### Added

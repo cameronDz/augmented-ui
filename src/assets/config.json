@@ -2,6 +2,7 @@
   "authApiEndpointLiveness": "liveness",
   "authApiEndpointToken": "token",
   "authBaseUrl": "https://jwt-auth-access-api.herokuapp.com",
-  "baseApiConfig": { "header": { "Content-Type": "application/json" } },
+  "baseApiConfig": { "headers": { "Content-Type": "application/json" } },
+  "baseApiLiveness": "liveness",
   "baseApiUrl": "https://augmented-storage-api.herokuapp.com/json"
 }
