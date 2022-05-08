@@ -7,9 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.30.0] 2022-05-08
+
 ### Added
 
 - externals port - on the go map url
+
+### Changed
+
+- added Bearer token to all modify/add requests
 
 ## [0.29.0] 2022-02-27
 

@@ -49,8 +49,10 @@ const putCardioSession = (item) => {
     const newSession = { ...(item || {}), userName };
     const payload = { cardio: [...sessions, newSession] };
     dispatch(emitDispatch(_types.PUT_REQUEST_CARDIO_SESSION_ITEM_START));
+    const config = { ..._config.baseApiConfig };
+    config.headers.Authorization = getState().auth.token;
     return axios
-      .put(url, payload, _config.baseApiConfig)
+      .put(url, payload, config)
       .then((response) => {
         const isValidResponse = !!response?.data;
         const responsePayload = {

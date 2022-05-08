@@ -43,8 +43,10 @@ const putExercise = (item) => {
     const newExercise = { ...(item || {}), username };
     const payload = { exercises: [...exercises, newExercise] };
     dispatch(emitDispatch(_types.PUT_REQUEST_EXERCISE_ITEM_START));
+    const config = { ..._config.baseApiConfig };
+    config.headers.Authorization = getState().auth.token;
     return axios
-      .put(url, payload, _config.baseApiConfig)
+      .put(url, payload, config)
       .then((response) => {
         const isValidResponse = !!response?.data;
         const responsePayload = {
