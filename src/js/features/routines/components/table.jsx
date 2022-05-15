@@ -90,6 +90,7 @@ const Table = ({
           columns={['name', 'sets', 'note']}
           includeDetails={false}
           isLoading={isLoading}
+          pageRows={10}
           rowsData={processedRoutineData}
           titles={{ name: 'Name', sets: 'Sets', note: 'Note' }}
         />

@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import {
@@ -23,6 +23,7 @@ const propTypes = {
   includeDetails: PropTypes.bool,
   isLoading: PropTypes.bool,
   isPaginated: PropTypes.bool,
+  pageRows: PropTypes.number,
   rowsData: PropTypes.array,
   titles: PropTypes.object
 };
@@ -38,11 +39,16 @@ const SimpleTable = ({
   includeDetails = true,
   isLoading,
   isPaginated = false,
+  pageRows = 5,
   rowsData,
   titles
 }) => {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+
+  useEffect(() => {
+    setRowsPerPage(pageRows);
+  }, [pageRows]);
 
   const handleChangePage = (newPage) => {
     setPage(defaultValue(newPage, 0));
