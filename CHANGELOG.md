@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.32.1] 2023-11-25
+
+### Changed
+
+- updated base href for submain routing
+
 ## [0.31.0] 2022-05-14
 
 ### Added
